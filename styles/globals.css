@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+@theme {
+  /* Main font */
+  --font-inter: "Inter Variable", system-ui, sans-serif;
+
+  /* Colors */
+  --Black: #180e19;
+  --Grey: #b8b8b8;
+  --LightGrey: #f4f4f4;
+  --White: #ffffff;
+  --DarkBlue: #003049;
+  --Background: #fafafa;
+  --Blue: #00669b;
+  --LightBlue: #008ed8;
+  --UltraLightBlue: #f4fbff;
+  --Green: #36cd1d;
+  --Red: #ff0000;
+
+  /* Font sizes */
+  --Large: 20;
+  --Small: 16;
+  --xSmall: 14;
+  --xxSmall: 13;
+  --xxxSmall: 12;
+}
