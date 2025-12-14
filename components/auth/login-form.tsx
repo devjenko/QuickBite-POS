@@ -12,6 +12,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  // Dynamic greeting
   const date = new Date();
   const hour = date.getHours();
 
