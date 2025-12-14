@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/Button";
+import { Button } from "../../../components/ui/Button";
 import {
   Field,
   FieldDescription,
@@ -7,16 +7,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-
-interface SignUpFormProps extends React.ComponentProps<"form"> {
-  onAuthenticated?: () => void;
-}
+import Link from "next/link";
 
 export function SignUpForm({
   className,
-  onAuthenticated,
   ...props
-}: SignUpFormProps) {
+}: React.ComponentProps<"form">) {
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <FieldGroup>
@@ -53,15 +49,9 @@ export function SignUpForm({
           </Button>
         </Field>
 
-        <FieldDescription className="text-center">
-          Already have an account?{" "}
-          <a
-            href="#"
-            onClick={onAuthenticated}
-            className="underline underline-offset-4"
-          >
-            Login
-          </a>
+        <FieldDescription className="text-center flex justify-center items-center gap-2">
+          Already have an account?
+          <Link href={"/login"}>Login</Link>
         </FieldDescription>
       </FieldGroup>
     </form>

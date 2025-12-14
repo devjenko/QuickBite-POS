@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/Button";
+import { Button } from "../../../components/ui/Button";
 import {
   Field,
   FieldDescription,
@@ -7,16 +7,12 @@ import {
   FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
-
-interface LoginFormProps extends React.ComponentProps<"form"> {
-  onAuthenticated?: () => void;
-}
+import Link from "next/link";
 
 export function LoginForm({
   className,
-  onAuthenticated,
   ...props
-}: LoginFormProps) {
+}: React.ComponentProps<"form">) {
   // Dynamic greeting
   const date = new Date();
   const hour = date.getHours();
@@ -64,15 +60,9 @@ export function LoginForm({
           </Button>
         </Field>
 
-        <FieldDescription className="text-center">
-          Don&apos;t have an account?{" "}
-          <a
-            onClick={onAuthenticated}
-            href="#"
-            className="underline underline-offset-4"
-          >
-            Sign up
-          </a>
+        <FieldDescription className="text-center flex justify-center items-center gap-2">
+          Don&apos;t have an account?
+          <Link href={"/sign-up"}>Sign Up</Link>
         </FieldDescription>
       </FieldGroup>
     </form>
