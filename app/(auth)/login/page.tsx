@@ -1,8 +1,14 @@
+"use client";
 import Image from "next/image";
-import logo from "@/assets/logos/quickbite-logo.svg";
+import logo from "@/public/quickbite-icon.svg";
 import { LoginForm } from "@/components/auth/login-form";
+import { useState } from "react";
+import { SignUpForm } from "@/components/auth/sign-up-form";
 
 export default function LoginPage() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+
+  const toggleAuthenticated = () => setIsAuthenticated(!isAuthenticated);
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -20,7 +26,11 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-sm">
-            <LoginForm />
+            {isAuthenticated ? (
+              <LoginForm onAuthenticated={toggleAuthenticated} />
+            ) : (
+              <SignUpForm onAuthenticated={toggleAuthenticated}  />
+            )}
           </div>
         </div>
       </div>
