@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "../../../components/ui/Button";
 import {
@@ -14,21 +16,19 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"form">) {
   // Dynamic greeting
-  const date = new Date();
-  const hour = date.getHours();
+  function greeting() {
+    const hour = new Date().getHours();
 
-  const greeting =
-    hour < 12
-      ? "Good morning!"
-      : hour < 18
-      ? "Good afternoon!"
-      : "Good evening!";
+    if (hour < 12) return "Good morning!";
+    if (hour < 18) return "Good afternoon!";
+    return "Good evening!";
+  }
 
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <FieldGroup>
         <div className="flex flex-col items-center gap-4 text-center">
-          <h1 className="text-4xl font-bold">{greeting}</h1>
+          <h1 className="text-4xl font-bold">{greeting()}</h1>
           <p className="text-muted-foreground text-md text-balance">
             Enter your credentials below to login
           </p>
