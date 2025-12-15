@@ -23,14 +23,6 @@ export function SignUpForm({
   const [error, setError] = useState("");
   const [generatedStaffId, setGeneratedStaffId] = useState("");
 
-  // Preview staff ID (shown while typing, but not final)
-  const previewStaffId =
-    firstName && lastName
-      ? `${firstName.trim().toLowerCase()}${lastName
-          .trim()[0]
-          ?.toLowerCase()}XXXX@quickbite`
-      : "";
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -128,22 +120,6 @@ export function SignUpForm({
             disabled={isLoading}
             value={lastName}
           />
-        </Field>
-
-        <Field>
-          <FieldLabel htmlFor="staffid-preview">
-            Your Staff ID Preview
-          </FieldLabel>
-          <Input
-            id="staffid-preview"
-            type="text"
-            value={previewStaffId}
-            readOnly
-            disabled
-          />
-          <FieldDescription className="text-xs">
-            The XXXX will be replaced with a random 4-digit number
-          </FieldDescription>
         </Field>
 
         <Field>
