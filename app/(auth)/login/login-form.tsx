@@ -39,6 +39,7 @@ export function LoginForm({
             id="email"
             type="email"
             placeholder="john1234@quickbite"
+            autoCapitalize="username"
             required
           />
         </Field>
@@ -52,7 +53,12 @@ export function LoginForm({
               Forgot your password?
             </a>
           </div>
-          <Input id="password" type="password" required />
+          <Input
+            id="password"
+            type="password"
+            required
+            autoComplete="current-password"
+          />
         </Field>
         <Field>
           <Button type="submit" variant={"dark"}>

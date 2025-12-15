@@ -29,6 +29,7 @@ export default function LoginPage() {
           src="/images/login1.webp"
           alt="Login background"
           fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
           className="object-cover absolute inset-0 h-full w-full  dark:brightness-[0.2] dark:grayscale "
         />
       </div>

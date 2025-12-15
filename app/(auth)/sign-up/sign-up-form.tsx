@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "../../../components/ui/Button";
 import {
@@ -8,11 +10,26 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { useState } from "react";
+
+// Random 4 Digit code generator
+const generateCode = () => Math.floor(1000 + Math.random() * 9000);
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
+  const staffID =
+    firstName && lastName
+      ? firstName.trim().toLowerCase() +
+        lastName.trim()[0].toLowerCase() +
+        generateCode() +
+        "@quickbite"
+      : "";
+
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <FieldGroup>
@@ -23,29 +40,38 @@ export function SignUpForm({
           </p>
         </div>
         <Field>
-          <FieldLabel htmlFor="email">Staff ID</FieldLabel>
+          <FieldLabel htmlFor="firstname">First Name</FieldLabel>
           <Input
-            id="email"
-            type="email"
-            placeholder="john1234@quickbite"
+            onChange={(e) => setFirstName(e.target.value)}
+            id="firstname"
+            type="text"
             required
           />
         </Field>
         <Field>
+          <FieldLabel htmlFor="lastname">Last Name</FieldLabel>
+          <Input
+            onChange={(e) => setLastName(e.target.value)}
+            id="lastname"
+            type="text"
+            required
+          />
+        </Field>
+        <Field>
+          <FieldLabel htmlFor="email">
+            Your Staff ID <strong>[Remember this]</strong>
+          </FieldLabel>
+          <Input id="email" type="email" value={staffID} readOnly />
+        </Field>
+        <Field>
           <div className="flex items-center">
-            <FieldLabel htmlFor="password">Password</FieldLabel>
-            <a
-              href="#"
-              className="ml-auto text-md underline-offset-4 hover:underline"
-            >
-              Forgot your password?
-            </a>
+            <FieldLabel htmlFor="password">Create a Password</FieldLabel>
           </div>
           <Input id="password" type="password" required />
         </Field>
         <Field>
           <Button type="submit" variant={"dark"}>
-            Sign up
+            Create account
           </Button>
         </Field>
 
