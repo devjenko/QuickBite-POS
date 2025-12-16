@@ -11,9 +11,9 @@ interface SideBarNavLinkProps {
 }
 
 const SideBarNavLink = ({ icon, name, href }: SideBarNavLinkProps) => {
-  // Use pathname custom hook to check current route
+  // usePathname custom nextjs hook to check current route
   const pathname = usePathname();
-  const isActive = href && pathname === href;
+  const isActive = pathname === href;
 
   return (
     <ContentWrapper variant={isActive ? "dark" : "light"}>
