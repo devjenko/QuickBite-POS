@@ -6,7 +6,7 @@ import { SignUpForm } from "@/app/(auth)/sign-up/sign-up-form";
 export default function SignUpPage() {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
-      <div className="flex flex-col gap-4 p-6 md:p-10">
+      <div className="flex flex-col gap-4 p-8 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-4 font-medium">
             <Image
@@ -16,7 +16,7 @@ export default function SignUpPage() {
               className="rounded-sm"
               alt="QuickBite logo"
             />
-            QuickBite
+            <span className="text-xl">QuickBite</span>
           </a>
         </div>
         <div className="flex flex-1 items-center justify-center">
