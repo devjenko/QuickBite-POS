@@ -6,17 +6,18 @@ import { signOut } from "next-auth/react";
 const NavSidebar = () => {
   const SidebarNavLinks = [
     {
-      name: "New Order",
-      iconPath: "/icons/newOrder.svg",
-      href: "/newOrder",
-    },
-    {
       name: "Dashboard",
       iconPath: "/icons/dashboard.svg",
       href: "/dashboard",
     },
     {
-      name: "Online Order",
+      name: "Menu",
+      iconPath: "/icons/newOrder.svg",
+      href: "/menu",
+    },
+
+    {
+      name: "Online Orders",
       iconPath: "/icons/online.svg",
       href: "/onlineOrder",
     },
@@ -37,7 +38,7 @@ const NavSidebar = () => {
   return (
     <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex items-center justify-center p-10">
       <ul className="flex flex-col gap-5 ">
-        <ContentWrapper className="w-[128px]">
+        <ContentWrapper className="w-[140px]">
           <Link href={"/dashboard"}>
             {/* Used regular img because next/image was causing blurryness due to performance optimization by the <Image /> component */}
             <img
