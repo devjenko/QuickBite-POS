@@ -17,9 +17,9 @@ const NavSidebar = () => {
     },
 
     {
-      name: "Online Orders",
+      name: "Orders",
       iconPath: "/icons/online.svg",
-      href: "/onlineOrder",
+      href: "/orders",
     },
     {
       name: "Settings",
