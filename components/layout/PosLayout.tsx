@@ -1,3 +1,4 @@
+"use client";
 import CartSidebar from "../sidebar/CartSidebar";
 import NavSidebar from "../sidebar/NavSidebar";
 

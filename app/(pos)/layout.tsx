@@ -1,7 +1,17 @@
+import { auth } from "@/auth";
+import { redirect } from "next/navigation";
+
 import PosLayout from "@/components/layout/PosLayout";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
-  return <PosLayout>{children}</PosLayout>;
-};
+export default async function DashboardLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const session = await auth();
 
-export default layout;
+  if (!session) {
+    redirect("/login");
+  }
+  return <PosLayout>{children}</PosLayout>;
+}
