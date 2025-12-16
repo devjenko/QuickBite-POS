@@ -2,14 +2,13 @@ import Link from "next/link";
 import ContentWrapper from "../ui/ContentWrapper";
 import SideBarNavLink from "../ui/SidebarNavLink";
 import { signOut } from "next-auth/react";
-import { redirect } from "next/dist/server/api-utils";
 
 const NavSidebar = () => {
   const SidebarNavLinks = [
     {
       name: "New Order",
       iconPath: "/icons/newOrder.svg",
-      href: "/neworder",
+      href: "/newOrder",
     },
     {
       name: "Dashboard",
@@ -19,7 +18,7 @@ const NavSidebar = () => {
     {
       name: "Online Order",
       iconPath: "/icons/online.svg",
-      href: "/onlineorder",
+      href: "/onlineOrder",
     },
     {
       name: "Settings",
@@ -36,10 +35,11 @@ const NavSidebar = () => {
   };
 
   return (
-    <aside className="bg-[var(--LightGrey)] h-screen flex items-center justify-center p-10">
+    <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex items-center justify-center p-10">
       <ul className="flex flex-col gap-5 ">
-        <ContentWrapper className="w-[125px]">
+        <ContentWrapper className="w-[128px]">
           <Link href={"/dashboard"}>
+            {/* Used regular img because next/image was causing blurryness due to performance optimization by the <Image /> component */}
             <img
               src="/logos/quickbite-logo.svg"
               alt="QuickBite logo"
