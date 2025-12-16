@@ -8,7 +8,7 @@ interface PosLayoutProps {
 
 const PosLayout = ({ children }: PosLayoutProps) => {
   return (
-    <div className="min-h-screen overflow-x-hidden flex">
+    <div className="min-h-screen overflow-x-hidden flex bg-[var(--LightGrey)]">
       <NavSidebar />
       {children}
       <CartSidebar />
