@@ -38,7 +38,7 @@ const NavSidebar = () => {
   };
 
   return (
-    <aside className="bg-[var(--LightGrey)] flex-shrink-0 sticky top-0  h-screen hidden md:flex  justify-center pl-10 pt-10">
+    <aside className="bg-[var(--LightGrey)] flex-shrink-0 sticky top-0  h-screen hidden md:flex  justify-center pl-10 pt-5.5">
       <ul className="flex flex-col gap-5 ">
         <Link href={"/dashboard"}>
           {/* Used regular img because next/image was causing blurryness due to performance optimization by the <Image /> component */}
