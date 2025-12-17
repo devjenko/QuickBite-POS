@@ -7,7 +7,7 @@ const POSLayout = ({
 }) => {
   return (
     <div
-      className={`min-h-screen  justify-between overflow-x-hidden flex bg-[var(--LightGrey)] ${className}`}
+      className={`h-screen  justify-between overflow-x-hidden flex bg-[var(--LightGrey)] ${className}`}
     >
       {children}
     </div>

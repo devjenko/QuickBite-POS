@@ -8,6 +8,12 @@
   /* Main font */
   --font-inter: "Inter Variable", system-ui, sans-serif;
 
+  --text-large: 20px;
+  --text-small: 16px;
+  --text-xsmall: 14px;
+  --text-xxsmall: 13px;
+  --text-xxxsmall: 12px;
+
   /* Colors */
   --Black: #180e19;
   --Grey: #b8b8b8;
@@ -20,13 +26,6 @@
   --UltraLightBlue: #f4fbff;
   --Green: #36cd1d;
   --Red: #ff0000;
-
-  /* Font sizes */
-  --Large: 20;
-  --Small: 16;
-  --xSmall: 14;
-  --xxSmall: 13;
-  --xxxSmall: 12;
 }
 
 @theme inline {

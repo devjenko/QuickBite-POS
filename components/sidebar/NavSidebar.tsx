@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import ContentWrapper from "../ui/ContentWrapper";
 import SideBarNavLink from "../ui/SidebarNavLink";
@@ -36,7 +38,7 @@ const NavSidebar = () => {
   };
 
   return (
-    <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex items-center justify-center p-10">
+    <aside className="bg-[var(--LightGrey)] flex-shrink-0 h-screen hidden md:flex  justify-center pl-10 pt-10">
       <ul className="flex flex-col gap-5 ">
         <ContentWrapper className="w-[140px]">
           <Link href={"/dashboard"}>
