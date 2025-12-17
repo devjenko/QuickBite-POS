@@ -13,7 +13,7 @@ const NavSidebar = () => {
     {
       name: "Menu",
       iconPath: "/icons/newOrder.svg",
-      href: "/menu",
+      href: "/menu/meals",
     },
 
     {

@@ -1,5 +1,11 @@
+import RightSidebarWrapper from "../ui/RightSidebarWrapper";
+
 const CartSidebar = () => {
-  return <aside></aside>;
+  return (
+    <aside>
+      <RightSidebarWrapper></RightSidebarWrapper>
+    </aside>
+  );
 };
 
 export default CartSidebar;

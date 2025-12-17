@@ -23,8 +23,8 @@ const SideBarNavLink = ({ icon, name, href }: SideBarNavLinkProps) => {
       >
         <Image
           alt="Sidebar Icon"
-          width={20}
-          height={20}
+          width={24}
+          height={24}
           src={icon}
           className={isActive ? "brightness-0 invert" : ""}
         />
