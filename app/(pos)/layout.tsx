@@ -1,8 +1,6 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 
-import PosLayout from "@/components/layout/DashboardLayout";
-
 export default async function DashboardLayout({
   children,
 }: {

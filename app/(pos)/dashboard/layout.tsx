@@ -1,6 +1,6 @@
 "use client";
 import CartSidebar from "@/components/sidebar/CartSidebar";
-import POSLayout from "@/components/sidebar/layout/POSLayout";
+import POSLayout from "@/components/layout/POSLayout";
 import NavSidebar from "@/components/sidebar/NavSidebar";
 
 interface DashboardLayoutProps {
