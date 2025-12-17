@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SideBarNavLink from "../ui/SidebarNavLink";
+import ContentWrapper from "../ui/ContentWrapper";
 
 const MenuSidebar = () => {
   const SidebarNavLinks = [
@@ -37,12 +38,13 @@ const MenuSidebar = () => {
   ];
 
   return (
-    <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex items-center justify-center p-10">
+    <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex justify-center pl-10 pt-10 ">
       <ul className="flex flex-col gap-5">
         <Link className="flex gap-2.5 " href={"/dashboard"}>
           <img src="/icons/arrow-left.svg" alt="left arrow icon" />
           <span>Back</span>
         </Link>
+
         {SidebarNavLinks.map((link, index) => (
           <li key={index}>
             <SideBarNavLink

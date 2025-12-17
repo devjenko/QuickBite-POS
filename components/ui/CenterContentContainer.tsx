@@ -6,7 +6,7 @@ const CenterContentContainer = ({
   className?: string;
 }) => {
   return (
-    <div className={`p-5.5 min-h-full  w-full ${className}`}>
+    <div className={`p-5.5 min-h-full w-full ${className}`}>
       {children ? children : "Coming Soon."}
     </div>
   );
