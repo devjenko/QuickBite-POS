@@ -7,7 +7,7 @@ const RightSidebarWrapper = ({
 }) => {
   return (
     <div
-      className={`bg-[var(--White)] min-h-screen w-77.5 fixed top-0 right-0 md:block  hidden  ${className}`}
+      className={`min-h-screen w-77.5 fixed md:block  hidden  ${className}`}
     >
       {children}
     </div>

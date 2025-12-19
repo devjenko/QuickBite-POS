@@ -1,10 +1,11 @@
 import RightSidebarWrapper from "../ui/RightSidebarWrapper";
+import BaseSidebar from "./BaseSidebar";
 
 const CartSidebar = () => {
   return (
-    <aside>
-      <RightSidebarWrapper></RightSidebarWrapper>
-    </aside>
+    <BaseSidebar className="top-0 right-0 bg-[var(--White)] ">
+      Cart Sidebar
+    </BaseSidebar>
   );
 };
 

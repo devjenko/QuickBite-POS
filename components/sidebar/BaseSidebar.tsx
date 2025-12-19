@@ -1,43 +1,15 @@
-import SideBarNavLink from "../ui/SidebarNavLink";
-
-const BaseSidebar = () => {
-  const SidebarNavLinks = [
-    {
-      name: "",
-      iconPath: "",
-      href: "",
-    },
-    {
-      name: "",
-      iconPath: "",
-      href: "",
-    },
-
-    {
-      name: "",
-      iconPath: "",
-      href: "",
-    },
-    {
-      name: "",
-      iconPath: "",
-      href: "",
-    },
-  ];
-
+const BaseSidebar = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
   return (
-    <aside className="bg-[var(--LightGrey)] h-screen hidden md:flex items-center justify-center p-10">
-      <ul className="flex flex-col gap-5 ">
-        {SidebarNavLinks.map((link, index) => (
-          <li key={index}>
-            <SideBarNavLink
-              name={link.name}
-              icon={link.iconPath}
-              href={link.href}
-            />
-          </li>
-        ))}
-      </ul>
+    <aside
+      className={`flex-shrink-0  fixed h-screen hidden md:flex flex-col justify-start p-5 overflow-hidden ${className} `}
+    >
+      {children}
     </aside>
   );
 };

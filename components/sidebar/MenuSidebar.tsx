@@ -1,6 +1,7 @@
 import Link from "next/link";
 import SideBarNavLink from "../ui/SidebarNavLink";
 import ContentWrapper from "../ui/ContentWrapper";
+import BaseSidebar from "./BaseSidebar";
 
 const MenuSidebar = () => {
   const SidebarNavLinks = [
@@ -38,8 +39,8 @@ const MenuSidebar = () => {
   ];
 
   return (
-    <aside className="bg-[var(--LightGrey)] h-screen sticky top-0 hidden md:flex justify-center pl-10 pt-5.5 ">
-      <ul className="flex flex-col gap-5">
+    <BaseSidebar>
+      <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
         <Link className="flex gap-2.5 " href={"/dashboard"}>
           <img src="/icons/arrow-left.svg" alt="left arrow icon" />
           <span>Back</span>
@@ -55,7 +56,7 @@ const MenuSidebar = () => {
           </li>
         ))}
       </ul>
-    </aside>
+    </BaseSidebar>
   );
 };
 

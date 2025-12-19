@@ -26,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         businessId: { label: "Business ID", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, request) {
+      async authorize(credentials) {
         // Validate that credentials exist
         if (!credentials?.businessId || !credentials?.password) {
           return null;

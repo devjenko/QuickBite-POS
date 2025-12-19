@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import ContentWrapper from "../ui/ContentWrapper";
 import SideBarNavLink from "../ui/SidebarNavLink";
 import { signOut } from "next-auth/react";
+import BaseSidebar from "./BaseSidebar";
 
 const NavSidebar = () => {
   const SidebarNavLinks = [
@@ -38,8 +38,8 @@ const NavSidebar = () => {
   };
 
   return (
-    <aside className="bg-[var(--LightGrey)] flex-shrink-0 sticky top-0  h-screen hidden md:flex  justify-center pl-10 pt-5.5">
-      <ul className="flex flex-col gap-5 ">
+    <BaseSidebar>
+      <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
         <Link href={"/dashboard"}>
           {/* Used regular img because next/image was causing blurryness due to performance optimization by the <Image /> component */}
           <img
@@ -68,7 +68,7 @@ const NavSidebar = () => {
           <span>Logout</span>
         </button>
       </ul>
-    </aside>
+    </BaseSidebar>
   );
 };
 
