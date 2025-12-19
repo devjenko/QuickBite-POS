@@ -3,6 +3,18 @@ import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
+declare module "next-auth" {
+  interface User {
+    businessId?: string;
+  }
+  interface Session {
+    user: User & {
+      id?: string;
+      businessId?: string;
+    };
+  }
+}
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: "jwt",
@@ -11,19 +23,19 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     Credentials({
       name: "Credentials",
       credentials: {
-        staffId: { label: "Staff ID", type: "text" },
+        businessId: { label: "Business ID", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials, request) {
         // Validate that credentials exist
-        if (!credentials?.staffId || !credentials?.password) {
+        if (!credentials?.businessId || !credentials?.password) {
           return null;
         }
 
-        // Find user in database by staffId
+        // Find user in database by businessId
         const user = await prisma.user.findUnique({
           where: {
-            staffId: credentials.staffId as string,
+            businessId: credentials.businessId as string,
           },
         });
 
@@ -43,13 +55,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           return null;
         }
 
-        // If everything is valid, return the user object
-        return {
-          id: user.id,
-          staffId: user.staffId,
-          firstName: user.firstName,
-          lastName: user.lastName,
-        };
+        // If everything is valid, remove the password and return the full user object
+        delete (user as any).password;
+        return user as any;
       },
     }),
   ],
@@ -58,9 +66,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // When user signs in, add their data to the token
       if (user) {
         token.id = user.id;
-        token.staffId = user.staffId;
-        token.firstName = user.firstName;
-        token.lastName = user.lastName;
+        token.businessId = user.businessId;
       }
       return token;
     },
@@ -68,9 +74,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       // Add user data from token to the session object
       if (token) {
         session.user.id = token.id as string;
-        session.user.staffId = token.staffId as string;
-        session.user.firstName = token.firstName as string;
-        session.user.lastName = token.lastName as string;
+        session.user.businessId = token.businessId as string;
       }
       return session;
     },

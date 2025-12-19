@@ -11,17 +11,17 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
+import InputPassword from "@/components/shadcn-studio/input/input-password";
 
 export function SignUpForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [businessName, setBusinessName] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [generatedStaffId, setGeneratedStaffId] = useState("");
+  const [generatedBusinessId, setGeneratedBusinessId] = useState();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,8 +35,7 @@ export function SignUpForm({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          firstName,
-          lastName,
+          businessName,
           password,
         }),
       });
@@ -47,8 +46,12 @@ export function SignUpForm({
         throw new Error(data.error || "Something went wrong");
       }
 
-      // Success! Show the generated staff ID
-      setGeneratedStaffId(data.staffId);
+      setTimeout(() => {
+        setGeneratedBusinessId(data.businessId);
+      }, 0);
+
+      // Success! Show the generated business ID
+      setGeneratedBusinessId(data.businessId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create account");
     } finally {
@@ -57,19 +60,21 @@ export function SignUpForm({
   };
 
   // If account was created successfully, show success message
-  if (generatedStaffId) {
+  if (generatedBusinessId) {
     return (
       <div className={cn("flex flex-col gap-6", className)}>
         <div className="flex flex-col items-center gap-4 text-center">
           <h1 className="text-4xl font-bold">Account Created! 🎉</h1>
           <p className="text-muted-foreground text-md text-balance">
-            Your staff ID has been generated. Please save it - you'll need it to
-            login.
+            Your business ID has been generated. Please save it - you'll need it
+            to login.
           </p>
         </div>
         <div className="p-6 bg-muted rounded-lg">
-          <p className="text-sm text-muted-foreground mb-2">Your Staff ID:</p>
-          <p className="text-2xl font-bold break-all">{generatedStaffId}</p>
+          <p className="text-sm text-muted-foreground mb-2">
+            Your Business ID:
+          </p>
+          <p className="text-2xl font-bold break-all">{generatedBusinessId}</p>
         </div>
         <Button asChild variant="dark">
           <Link href="/login">Go to Login</Link>
@@ -99,26 +104,14 @@ export function SignUpForm({
         )}
 
         <Field>
-          <FieldLabel htmlFor="firstname">First Name</FieldLabel>
+          <FieldLabel htmlFor="businessName">Business Name</FieldLabel>
           <Input
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) => setBusinessName(e.target.value)}
             id="firstname"
             type="text"
             required
             disabled={isLoading}
-            value={firstName}
-          />
-        </Field>
-
-        <Field>
-          <FieldLabel htmlFor="lastname">Last Name</FieldLabel>
-          <Input
-            onChange={(e) => setLastName(e.target.value)}
-            id="lastname"
-            type="text"
-            required
-            disabled={isLoading}
-            value={lastName}
+            value={businessName}
           />
         </Field>
 
@@ -130,7 +123,6 @@ export function SignUpForm({
             onChange={(e) => setPassword(e.target.value)}
             id="password"
             type="password"
-            required
             disabled={isLoading}
             value={password}
             minLength={8}

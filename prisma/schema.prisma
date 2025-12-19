@@ -8,16 +8,14 @@ datasource db {
 }
 
 model User {
-  id        String    @id @default(cuid())
-  firstName String
-  lastName  String
-  staffId   String    @unique
-  password  String
-  image     String?
-  accounts  Account[]
-  sessions  Session[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  id         String    @id @default(cuid())
+  businessId String    @unique
+  password   String
+  image      String?
+  accounts   Account[]
+  sessions   Session[]
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
 }
 
 model Account {

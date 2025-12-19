@@ -3,40 +3,38 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
 // Helper function to generate staff ID
-function generateStaffId(firstName: string, lastName: string): string {
+function generateBusinessId(businessName: string): string {
   const randomCode = Math.floor(1000 + Math.random() * 9000);
-  return `${firstName.toLowerCase()}${lastName[0].toLowerCase()}${randomCode}@quickbite`;
+  const base = businessName.trim().replace(/\s+/g, "");
+  return `${base}${randomCode}@quickbite`;
 }
 
 // Helper function to check if staffId is unique, regenerate if not
-async function generateUniqueStaffId(
-  firstName: string,
-  lastName: string
-): Promise<string> {
-  let staffId = generateStaffId(firstName, lastName);
+async function generateUniqueBusinessId(businessName: string): Promise<string> {
+  let businessId = generateBusinessId(businessName);
   let existingUser = await prisma.user.findUnique({
-    where: { staffId },
+    where: { businessId },
   });
 
   // Keep generating until we get a unique staffId
   while (existingUser) {
-    staffId = generateStaffId(firstName, lastName);
+    businessId = generateBusinessId(businessName);
     existingUser = await prisma.user.findUnique({
-      where: { staffId },
+      where: { businessId },
     });
   }
 
-  return staffId;
+  return businessId;
 }
 
 export async function POST(request: Request) {
   try {
     // Parse the request body
     const body = await request.json();
-    const { firstName, lastName, password } = body;
+    const { businessName, password } = body;
 
     // Validate required fields
-    if (!firstName || !lastName || !password) {
+    if (!businessName || !password) {
       return NextResponse.json(
         { error: "All fields are required" },
         { status: 400 }
@@ -44,11 +42,10 @@ export async function POST(request: Request) {
     }
 
     // Trim whitespace from names
-    const trimmedFirstName = firstName.trim();
-    const trimmedLastName = lastName.trim();
+    const trimmedBusinessName = businessName.trim();
 
     // Validate name lengths
-    if (trimmedFirstName.length === 0 || trimmedLastName.length === 0) {
+    if (trimmedBusinessName.length === 0) {
       return NextResponse.json(
         { error: "Names cannot be empty" },
         { status: 400 }
@@ -56,10 +53,7 @@ export async function POST(request: Request) {
     }
 
     // Generate unique staff ID
-    const staffId = await generateUniqueStaffId(
-      trimmedFirstName,
-      trimmedLastName
-    );
+    const businessId = await generateUniqueBusinessId(trimmedBusinessName);
 
     // Hash the password
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -67,9 +61,7 @@ export async function POST(request: Request) {
     // Create user in database
     const user = await prisma.user.create({
       data: {
-        firstName: trimmedFirstName,
-        lastName: trimmedLastName,
-        staffId,
+        businessId,
         password: hashedPassword,
       },
     });
@@ -78,7 +70,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         message: "Account created successfully",
-        staffId: user.staffId,
+        businessId: user.businessId,
       },
       { status: 201 }
     );
