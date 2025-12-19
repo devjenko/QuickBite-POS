@@ -1,15 +1,10 @@
 import Link from "next/link";
 import SideBarNavLink from "../ui/SidebarNavLink";
-import ContentWrapper from "../ui/ContentWrapper";
 import BaseSidebar from "./BaseSidebar";
-
+import { Dialog, DialogTrigger } from "@radix-ui/react-dialog";
+import AddItemModal from "../ui/AddItemModal";
 const MenuSidebar = () => {
   const SidebarNavLinks = [
-    {
-      name: "Add Item",
-      iconPath: "/icons/add.svg",
-      href: "",
-    },
     {
       name: "Meals",
       iconPath: "/icons/meals.svg",
@@ -45,7 +40,7 @@ const MenuSidebar = () => {
           <img src="/icons/arrow-left.svg" alt="left arrow icon" />
           <span>Back</span>
         </Link>
-
+        <AddItemModal />
         {SidebarNavLinks.map((link, index) => (
           <li key={index}>
             <SideBarNavLink
