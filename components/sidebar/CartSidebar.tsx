@@ -1,4 +1,3 @@
-import RightSidebarWrapper from "../ui/RightSidebarWrapper";
 import BaseSidebar from "./BaseSidebar";
 
 const CartSidebar = () => {

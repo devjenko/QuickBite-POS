@@ -4,8 +4,20 @@ import Link from "next/link";
 import SideBarNavLink from "../ui/SidebarNavLink";
 import { signOut } from "next-auth/react";
 import BaseSidebar from "./BaseSidebar";
+import { useState } from "react";
+import { Spinner } from "../ui/spinner";
 
 const NavSidebar = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignOut = async () => {
+    setIsLoading(true);
+    await signOut({
+      callbackUrl: "/login",
+      redirect: true,
+    });
+  };
+
   const SidebarNavLinks = [
     {
       name: "Dashboard",
@@ -29,13 +41,6 @@ const NavSidebar = () => {
       href: "/settings",
     },
   ];
-
-  const handleSignOut = async () => {
-    await signOut({
-      callbackUrl: "/login",
-      redirect: true,
-    });
-  };
 
   return (
     <BaseSidebar>
@@ -64,8 +69,26 @@ const NavSidebar = () => {
           className="gap-2 px-4 py-8 flex flex-col justify-center items-center bg-[var(--White)] rounded-sm cursor-pointer"
           onClick={handleSignOut}
         >
-          <img src="/icons/logout.svg" alt="Logout button icon" />
-          <span>Logout</span>
+          {
+            <span className="flex flex-col justify-center items-center gap-2">
+              {!isLoading ? (
+                <>
+                  <img
+                    width={24}
+                    height={24}
+                    src="/icons/logout.svg"
+                    alt="Logout button icon"
+                  />
+                  Logout
+                </>
+              ) : (
+                <>
+                  <Spinner color="black" />
+                  Logging Out
+                </>
+              )}
+            </span>
+          }
         </button>
       </ul>
     </BaseSidebar>
