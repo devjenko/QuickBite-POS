@@ -1,5 +1,6 @@
 "use client";
 
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { Button } from "../../../components/ui/Button";
 import {
@@ -116,8 +117,12 @@ export function SignUpForm({
         </Field>
 
         <Field>
-          <div className="flex items-center">
+          <div className="flex items-center justify-between">
             <FieldLabel htmlFor="password">Create a Password</FieldLabel>
+
+            <FieldDescription className="text-xs">
+              Must be at least 8 characters
+            </FieldDescription>
           </div>
           <Input
             onChange={(e) => setPassword(e.target.value)}
@@ -127,14 +132,17 @@ export function SignUpForm({
             value={password}
             minLength={8}
           />
-          <FieldDescription className="text-xs">
-            Must be at least 8 characters
-          </FieldDescription>
         </Field>
 
         <Field>
           <Button type="submit" variant="dark" disabled={isLoading}>
-            {isLoading ? "Creating account..." : "Create account"}
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                Creating Account <Spinner />
+              </span>
+            ) : (
+              "Create account"
+            )}
           </Button>
         </Field>
 

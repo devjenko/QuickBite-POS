@@ -1,5 +1,6 @@
 "use client";
 
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { Button } from "../../../components/ui/Button";
 import {
@@ -27,7 +28,7 @@ export function LoginForm({
     return "Good evening!";
   }
 
-  const [staffId, setStaffId] = useState("");
+  const [businessId, setBusinessId] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -35,7 +36,7 @@ export function LoginForm({
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
-    console.log("Form submitted!", { staffId, password: "***" });
+    console.log("Form submitted!", { businessId, password: "***" });
     e.preventDefault();
     setIsLoading(true);
     setError("");
@@ -43,7 +44,7 @@ export function LoginForm({
     try {
       console.log("About to call signIn...");
       const result = await signIn("credentials", {
-        staffId,
+        businessId,
         password,
         redirect: false,
       });
@@ -52,7 +53,7 @@ export function LoginForm({
 
       if (result?.error) {
         console.log("Error found:", result.error);
-        setError("Invalid staff ID or password");
+        setError("Invalid business ID or password");
         setIsLoading(false);
         return;
       }
@@ -86,15 +87,15 @@ export function LoginForm({
           </div>
         )}
         <Field>
-          <FieldLabel htmlFor="email">Staff ID</FieldLabel>
+          <FieldLabel htmlFor="email">Business ID</FieldLabel>
           <Input
             id="email"
             type="text"
-            value={staffId}
-            placeholder="john1234@quickbite"
+            value={businessId}
+            placeholder="starbucks1234@quickbite"
             autoCapitalize="username"
             required
-            onChange={(e) => setStaffId(e.target.value)}
+            onChange={(e) => setBusinessId(e.target.value)}
             disabled={isLoading}
           />
         </Field>
@@ -120,7 +121,13 @@ export function LoginForm({
         </Field>
         <Field>
           <Button type="submit" variant={"dark"} disabled={isLoading}>
-            {isLoading ? "Loggin in..." : "Login"}
+            {isLoading ? (
+              <span className="flex items-center gap-2">
+                Logging in <Spinner />
+              </span>
+            ) : (
+              "Login"
+            )}
           </Button>
         </Field>
 
