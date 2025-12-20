@@ -10,14 +10,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-const Dropdown = () => {
+const Dropdown = ({
+  onValueChange,
+  value,
+}: {
+  value?: string;
+  onValueChange: (value: string) => void;
+}) => {
   const id = useId();
 
   return (
     <div className="w-full  space-y-2">
-      <Select defaultValue="rock">
+      <Select value={value} onValueChange={onValueChange} defaultValue="none">
         <SelectTrigger id={id} className="w-full">
-          <SelectValue placeholder="Select a music genre" />
+          <SelectValue />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
