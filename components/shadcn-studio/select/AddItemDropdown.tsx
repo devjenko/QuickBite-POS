@@ -1,13 +1,6 @@
 import { useId } from "react";
 
-import {
-  GuitarIcon,
-  HeadphonesIcon,
-  MicVocalIcon,
-  MusicIcon,
-} from "lucide-react";
 
-import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,

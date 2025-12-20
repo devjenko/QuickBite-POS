@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-[family-name:var(--font-inter)] antialiased">
+      <body className="font-[family-name:var(--font-inter)] antialiased max-w-[3000px] m-auto">
         <Providers>{children}</Providers>
       </body>
     </html>
