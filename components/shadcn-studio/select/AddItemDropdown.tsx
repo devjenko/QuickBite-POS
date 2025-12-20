@@ -1,6 +1,5 @@
 import { useId } from "react";
 
-
 import {
   Select,
   SelectContent,
@@ -56,7 +55,7 @@ const Dropdown = () => {
                 src="/icons/drinks.svg"
                 alt="drinks"
               />
-              Sides
+              Drinks
             </SelectItem>
           </SelectGroup>
         </SelectContent>
