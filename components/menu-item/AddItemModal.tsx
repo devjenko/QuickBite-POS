@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "../ui/Button";
 import {
   Dialog,
@@ -14,12 +15,13 @@ import { Label } from "@/components/ui/label";
 import Dropdown from "../shadcn-studio/select/AddItemDropdown";
 import AddItemDescription from "../shadcn-studio/textarea/AddItemDescription";
 import ContentWrapper from "../ui/ContentWrapper";
-import Image from "next/image";
 import AddImage from "./AddImage";
 import PriceInput from "./PriceInput";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
 import { toast } from "sonner";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const AddItemModal = () => {
   const [name, setName] = useState<string>("");
@@ -29,6 +31,8 @@ const AddItemModal = () => {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const router = useRouter();
 
   async function handleAddItem(e: React.FormEvent) {
     e.preventDefault();
@@ -55,6 +59,8 @@ const AddItemModal = () => {
 
       const menuItem = await response.json();
       console.log("Menu item added:", menuItem);
+
+      router.refresh();
 
       // Reset form
       setName("");

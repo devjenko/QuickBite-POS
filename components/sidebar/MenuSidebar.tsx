@@ -1,7 +1,10 @@
 import Link from "next/link";
-import SideBarNavLink from "../ui/SidebarNavLink";
+import MenuSidebarLinks from "./MenuSidebarLinks";
 import BaseSidebar from "./BaseSidebar";
 import AddItemModal from "../menu-item/AddItemModal";
+import { Suspense } from "react";
+import { Spinner } from "../ui/spinner";
+
 const MenuSidebar = () => {
   const MenuSidebarNavLinks = [
     {
@@ -40,15 +43,15 @@ const MenuSidebar = () => {
           <span>Back</span>
         </Link>
         <AddItemModal />
-        {MenuSidebarNavLinks.map((link, index) => (
-          <li key={index}>
-            <SideBarNavLink
-              name={link.name}
-              icon={link.iconPath}
-              href={link.href}
-            />
-          </li>
-        ))}
+        <Suspense
+          fallback={
+            <div>
+              Loading <Spinner />
+            </div>
+          }
+        >
+          <MenuSidebarLinks />
+        </Suspense>
       </ul>
     </BaseSidebar>
   );

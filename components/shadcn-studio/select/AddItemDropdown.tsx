@@ -51,7 +51,7 @@ const Dropdown = ({
               Sandwiches
             </SelectItem>
             <SelectItem value="sides">
-              <img width={20} height={20} src="/icons/fries.svg" alt="fries" />
+              <img width={20} height={20} src="/icons/sides.svg" alt="fries" />
               Sides
             </SelectItem>
             <SelectItem value="drinks">
