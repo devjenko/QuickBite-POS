@@ -6,10 +6,16 @@ export default async function DashboardGreeting() {
   function extractBusinessName(businessId: string) {
     const namePart = businessId.split("@")[0];
     const nameWithoutNums = namePart.replace(/\d+$/g, "");
-    return nameWithoutNums
-      .split(/[\s-]+/)
+
+    // Split camelCase or PascalCase into separate words
+    const words = nameWithoutNums.split(/(?=[A-Z])|(?<=\d)(?=[A-Za-z])/);
+
+    // Capitalize each word and join with spaces
+    const formattedName = words
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
+
+    return formattedName;
   }
   return (
     <p>
