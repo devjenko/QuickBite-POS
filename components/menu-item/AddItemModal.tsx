@@ -17,6 +17,7 @@ import ContentWrapper from "../ui/ContentWrapper";
 import Image from "next/image";
 import AddImage from "./AddImage";
 import PriceInput from "./PriceInput";
+import { Spinner } from "../ui/spinner";
 import { useState } from "react";
 
 const AddItemModal = () => {
@@ -28,7 +29,6 @@ const AddItemModal = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   async function handleAddItem(e: React.FormEvent) {
-    e.preventDefault();
     setIsLoading(true);
 
     try {
@@ -61,7 +61,7 @@ const AddItemModal = () => {
       setImage(null);
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to add menu item. Please try again later.");
+      alert("Failed to add menu item. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -124,7 +124,7 @@ const AddItemModal = () => {
                 <Button variant="default">Cancel</Button>
               </DialogClose>
               <Button variant={"dark"} type="submit">
-                Add
+                {!isLoading ? "Add" : <Spinner color="white" />}
               </Button>
             </DialogFooter>
           </form>
