@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Providers from "./providers";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "QuickBite",
@@ -21,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-[family-name:var(--font-inter)] antialiased max-w-[3000px] m-auto">
         <Providers>{children}</Providers>
+        <Toaster />
       </body>
     </html>
   );

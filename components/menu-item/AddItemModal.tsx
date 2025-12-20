@@ -19,6 +19,7 @@ import AddImage from "./AddImage";
 import PriceInput from "./PriceInput";
 import { Spinner } from "../ui/spinner";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const AddItemModal = () => {
   const [name, setName] = useState<string>("");
@@ -27,8 +28,10 @@ const AddItemModal = () => {
   const [category, setCategory] = useState<string>("");
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   async function handleAddItem(e: React.FormEvent) {
+    e.preventDefault();
     setIsLoading(true);
 
     try {
@@ -59,9 +62,11 @@ const AddItemModal = () => {
       setPrice(0);
       setCategory("");
       setImage(null);
+      setIsOpen(false);
+      toast.success("Item added successfully!");
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to add menu item. Please try again.");
+      toast.error("Failed to add menu item. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -69,7 +74,7 @@ const AddItemModal = () => {
 
   return (
     <div className="w-full">
-      <Dialog>
+      <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
           <Button className="w-full cursor-pointer" variant="default">
             <ContentWrapper className="flex flex-col justify-center items-center gap-2 py-6 ">
