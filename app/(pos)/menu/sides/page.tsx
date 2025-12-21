@@ -1,5 +1,7 @@
+import CategoryPage from "@/components/ui/CategoryPage";
+
 const SidesPage = () => {
-  return <div>SidesPage</div>;
+  return <CategoryPage category="sides" />;
 };
 
 export default SidesPage;

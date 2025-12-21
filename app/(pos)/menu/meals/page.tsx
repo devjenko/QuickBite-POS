@@ -1,5 +1,7 @@
+import CategoryPage from "@/components/ui/CategoryPage";
+
 const MealsPage = () => {
-  return <div>Meals Page</div>;
+  return <CategoryPage category="meals" />;
 };
 
 export default MealsPage;

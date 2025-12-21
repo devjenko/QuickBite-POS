@@ -8,8 +8,9 @@ const CategoryPage = async ({ category }: { category: string }) => {
       category: category,
     },
   });
+
   return (
-    <CenterContentContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 grid-rows-6 gap-11">
+    <CenterContentContainer className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max">
       {items.map((item) => (
         <MenuItemCard
           name={item.name}

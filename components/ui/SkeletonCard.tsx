@@ -1,10 +1,27 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import ContentWrapper from "./ContentWrapper";
+import { Card, CardContent, CardFooter } from "./card";
 
 export function SkeletonCard() {
   return (
-    <ContentWrapper>
-      <Skeleton className="rounded-sm  " />
-    </ContentWrapper>
+    <Card className="w-[270px] h-[446px] max-w-sm overflow-hidden p-0">
+      {/* Image skeleton */}
+      <div className="w-full h-64 bg-gray-100">
+        <Skeleton className="w-full h-full" />
+      </div>
+
+      {/* Content skeleton */}
+      <CardContent className="pt-6 px-6 space-y-2">
+        {/* Price skeleton */}
+        <Skeleton className="h-5 w-16" />
+
+        {/* Title skeleton */}
+        <Skeleton className="h-5 w-3/4" />
+      </CardContent>
+
+      {/* Footer/Description skeleton */}
+      <CardFooter className="px-6 pb-6 pt-0">
+        <Skeleton className="h-4 w-full" />
+      </CardFooter>
+    </Card>
   );
 }

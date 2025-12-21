@@ -35,21 +35,21 @@ const MenuItemCard = ({
 
   return (
     <Card
-      className={`max-w-fit overflow-hidden pt-0 cursor-pointer  ${className}`}
+      className={`max-w-sm w-full overflow-hidden p-0 cursor-pointer ${className}`}
     >
       <div className="w-full h-64 overflow-hidden flex items-center justify-center">
         <img
           src={getOptimizedImage(image)}
           alt={name || "Menu item"}
-          className="min-w-fit h-full object-contain"
+          className="w-full h-full object-cover"
         />
       </div>
 
-      <CardContent className="pt-6">
+      <CardContent className="pt-6 px-6">
         <Label className="text-lg font-semibold">${price}</Label>
         <CardTitle className="mt-2">{name}</CardTitle>
       </CardContent>
-      <CardFooter>
+      <CardFooter className="px-6 pb-6">
         <CardDescription>{description}</CardDescription>
       </CardFooter>
     </Card>

@@ -1,5 +1,7 @@
+import CategoryPage from "@/components/ui/CategoryPage";
+
 const DrinksPage = () => {
-  return <div>Drinks Page</div>;
+  return <CategoryPage category="drinks" />;
 };
 
 export default DrinksPage;
