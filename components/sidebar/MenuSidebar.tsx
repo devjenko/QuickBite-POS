@@ -43,15 +43,8 @@ const MenuSidebar = () => {
           <span>Back</span>
         </Link>
         <AddItemModal />
-        <Suspense
-          fallback={
-            <div>
-              Loading <Spinner />
-            </div>
-          }
-        >
-          <MenuSidebarLinks />
-        </Suspense>
+
+        <MenuSidebarLinks />
       </ul>
     </BaseSidebar>
   );
