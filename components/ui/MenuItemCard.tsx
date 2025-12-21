@@ -6,7 +6,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "./card";
 import { Label } from "@radix-ui/react-label";
 
 type MenuItemCardProps = {
