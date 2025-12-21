@@ -4,6 +4,8 @@ import Link from "next/link";
 import ContentWrapper from "./ContentWrapper";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+
 interface SideBarNavLinkProps {
   icon: string;
   name: string;
@@ -11,12 +13,21 @@ interface SideBarNavLinkProps {
 }
 
 const SideBarNavLink = ({ icon, name, href }: SideBarNavLinkProps) => {
-  // usePathname custom nextjs hook to check current route
   const pathname = usePathname();
-  const isActive = pathname === href;
+  const [clickedActive, setClickedActive] = useState(false);
+
+  // Active if either clicked OR pathname matches
+  const isActive =
+    clickedActive || pathname === href || pathname.startsWith(href + "/");
+
+  const handleClick = () => {
+    setClickedActive(true);
+
+    setTimeout(() => setClickedActive(false), 100);
+  };
 
   return (
-    <ContentWrapper variant={isActive ? "dark" : "light"}>
+    <ContentWrapper onClick={handleClick} variant={isActive ? "dark" : "light"}>
       <Link
         href={href}
         className="gap-2 px-4 py-8 flex flex-col justify-center items-center"
