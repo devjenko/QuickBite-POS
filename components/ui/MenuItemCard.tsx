@@ -41,7 +41,7 @@ const MenuItemCard = ({
         <img
           src={getOptimizedImage(image)}
           alt={name || "Menu item"}
-          className="w-full h-full object-contain"
+          className="min-w-fit h-full object-contain"
         />
       </div>
 

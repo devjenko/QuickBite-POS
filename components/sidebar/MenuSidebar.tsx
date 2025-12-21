@@ -1,40 +1,11 @@
 import Link from "next/link";
 import MenuSidebarLinks from "./MenuSidebarLinks";
 import BaseSidebar from "./BaseSidebar";
-import AddItemModal from "../menu-item/AddItemModal";
+import AddItemModal from "../menu-item-modal/AddItemModal";
 import { Suspense } from "react";
 import { SkeletonCard } from "../ui/SkeletonCard";
 
 const MenuSidebar = () => {
-  const MenuSidebarNavLinks = [
-    {
-      name: "Meals",
-      iconPath: "/icons/meals.svg",
-      href: "/menu/meals",
-    },
-
-    {
-      name: "Burgers",
-      iconPath: "/icons/burgers.svg",
-      href: "/menu/burgers",
-    },
-    {
-      name: "Sandwiches",
-      iconPath: "/icons/sandwiches.svg",
-      href: "/menu/sandwiches",
-    },
-    {
-      name: "Sides",
-      iconPath: "/icons/fries.svg",
-      href: "/menu/sides",
-    },
-    {
-      name: "Drinks",
-      iconPath: "/icons/drinks.svg",
-      href: "/menu/drinks",
-    },
-  ];
-
   return (
     <BaseSidebar>
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">

@@ -1,5 +1,7 @@
+import CategoryPage from "@/components/ui/CategoryPage";
+
 const SandwichesPage = () => {
-  return <div>Sandwiches Page</div>;
+  return <CategoryPage category="sandwiches" />;
 };
 
 export default SandwichesPage;
