@@ -3,7 +3,7 @@ import MenuSidebarLinks from "./MenuSidebarLinks";
 import BaseSidebar from "./BaseSidebar";
 import AddItemModal from "../menu-item/AddItemModal";
 import { Suspense } from "react";
-import { Spinner } from "../ui/spinner";
+import { SkeletonCard } from "../ui/SkeletonCard";
 
 const MenuSidebar = () => {
   const MenuSidebarNavLinks = [
@@ -43,8 +43,15 @@ const MenuSidebar = () => {
           <span>Back</span>
         </Link>
         <AddItemModal />
-
-        <MenuSidebarLinks />
+        <Suspense
+          fallback={
+            <div>
+              <SkeletonCard />
+            </div>
+          }
+        >
+          <MenuSidebarLinks />
+        </Suspense>
       </ul>
     </BaseSidebar>
   );
