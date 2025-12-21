@@ -4,7 +4,7 @@ interface ContentWrapperProps {
   variant?: "light" | "dark" | string;
   children: React.ReactNode;
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 }
 
 const ContentWrapper = ({
