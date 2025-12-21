@@ -16,18 +16,11 @@ const SideBarNavLink = ({ icon, name, href }: SideBarNavLinkProps) => {
   const pathname = usePathname();
   const [clickedActive, setClickedActive] = useState(false);
 
-  // Active if either clicked OR pathname matches
-  const isActive =
-    clickedActive || pathname === href || pathname.startsWith(href + "/");
-
-  const handleClick = () => {
-    setClickedActive(true);
-
-    setTimeout(() => setClickedActive(false), 100);
-  };
+  // Active if pathname matches
+  const isActive = pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <ContentWrapper onClick={handleClick} variant={isActive ? "dark" : "light"}>
+    <ContentWrapper variant={(isActive && "dark") || undefined}>
       <Link
         href={href}
         className="gap-2 px-4 py-8 flex flex-col justify-center items-center"
@@ -37,7 +30,7 @@ const SideBarNavLink = ({ icon, name, href }: SideBarNavLinkProps) => {
           width={24}
           height={24}
           src={icon}
-          className={isActive ? "brightness-0 invert" : ""}
+          className={(isActive && "brightness-0 invert") || undefined}
         />
         <span>{name}</span>
       </Link>
