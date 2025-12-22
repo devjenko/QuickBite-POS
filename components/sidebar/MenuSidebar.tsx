@@ -14,15 +14,7 @@ const MenuSidebar = () => {
           <span>Back</span>
         </Link>
         <AddItemModal />
-        <Suspense
-          fallback={
-            <div>
-              <SkeletonCard />
-            </div>
-          }
-        >
-          <MenuSidebarLinks />
-        </Suspense>
+        <MenuSidebarLinks />
       </ul>
     </BaseSidebar>
   );
