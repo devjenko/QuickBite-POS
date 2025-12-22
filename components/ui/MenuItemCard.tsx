@@ -4,7 +4,6 @@ import {
   CardContent,
   CardDescription,
   CardFooter,
-  CardHeader,
   CardTitle,
 } from "./card";
 import { Label } from "@radix-ui/react-label";
@@ -34,9 +33,7 @@ const MenuItemCard = ({
   };
 
   return (
-    <Card
-      className={`max-w-sm w-full overflow-hidden p-0 cursor-pointer ${className}`}
-    >
+    <Card className={`${className}`}>
       <div className="w-full h-64 overflow-hidden flex items-center justify-center">
         <img
           src={getOptimizedImage(image)}
@@ -45,11 +42,11 @@ const MenuItemCard = ({
         />
       </div>
 
-      <CardContent className="pt-6 px-6">
+      <CardContent>
         <Label className="text-lg font-semibold">${price}</Label>
-        <CardTitle className="mt-2">{name}</CardTitle>
+        <CardTitle>{name}</CardTitle>
       </CardContent>
-      <CardFooter className="px-6 pb-6">
+      <CardFooter>
         <CardDescription>{description}</CardDescription>
       </CardFooter>
     </Card>
