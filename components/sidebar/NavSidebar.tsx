@@ -7,7 +7,6 @@ import BaseSidebar from "./BaseSidebar";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
 
-
 const NavSidebar = () => {
   const [isLoading, setIsLoading] = useState(false);
 
