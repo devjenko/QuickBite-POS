@@ -3,16 +3,16 @@ import { Card, CardContent, CardFooter } from "./card";
 
 export function SkeletonCard() {
   return (
-    <Card className="w-[270px] h-[446px] max-w-sm overflow-hidden p-0">
+    <Card className=" flex flex-col gap-4 rounded-sm border p-0 shadow-sm max-w-sm w-full overflow-hidden">
       {/* Image skeleton */}
       <div className="w-full h-64 bg-gray-100">
         <Skeleton className="w-full h-full" />
       </div>
 
       {/* Content skeleton */}
-      <CardContent className="pt-6 px-6 space-y-2">
+      <CardContent className=" px-6 space-y-2">
         {/* Price skeleton */}
-        <Skeleton className="h-5 w-16" />
+        <Skeleton className="pb-3 w-16" />
 
         {/* Title skeleton */}
         <Skeleton className="h-5 w-3/4" />
