@@ -67,7 +67,7 @@ const NavSidebar = () => {
           </li>
         ))}
         <button
-          className="gap-2 px-4 py-8 flex flex-col justify-center items-center bg-[var(--White)] rounded-sm cursor-pointer"
+          className="gap-2 px-4 py-8 flex flex-col justify-center items-center bg-[var(--White)] rounded-sm shadow-sm cursor-pointer"
           onClick={handleSignOut}
         >
           {

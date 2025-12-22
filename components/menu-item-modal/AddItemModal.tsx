@@ -82,8 +82,8 @@ const AddItemModal = () => {
     <div className="w-full">
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogTrigger asChild>
-          <Button className="w-full cursor-pointer" variant="default">
-            <ContentWrapper className="flex flex-col justify-center items-center gap-2 py-6 ">
+          <Button className="w-full cursor-pointer shadow-sm" variant="default">
+            <ContentWrapper className="flex flex-col shadow-none justify-center items-center gap-2 py-6 ">
               <Image
                 alt="Sidebar Icon"
                 width={24}

@@ -19,7 +19,8 @@ const ContentWrapper = ({
       className={cn(
         "rounded-sm",
         variant === "dark" && "bg-[var(--DarkBlue)] text-[var(--White)]",
-        variant === "light" && "bg-[var(--White)] text-[var(--Black)]",
+        variant === "light" &&
+          "bg-[var(--White)] text-[var(--Black)] shadow-sm",
         className
       )}
     >

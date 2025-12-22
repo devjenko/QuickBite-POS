@@ -2,8 +2,6 @@ import Link from "next/link";
 import MenuSidebarLinks from "./MenuSidebarLinks";
 import BaseSidebar from "./BaseSidebar";
 import AddItemModal from "../menu-item-modal/AddItemModal";
-import { Suspense } from "react";
-import { SkeletonCard } from "../ui/SkeletonCard";
 
 const MenuSidebar = () => {
   return (
