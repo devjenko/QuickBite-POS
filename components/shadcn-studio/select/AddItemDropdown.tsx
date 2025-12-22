@@ -40,6 +40,15 @@ const Dropdown = ({
     { name: "Coffee" },
   ];
 
+  // Helper function to normalize category name for file paths
+  const normalizeForPath = (name: string) => {
+    return name
+      .trim()
+      .toLowerCase()
+      .replace(/\s*&\s*/g, "and")
+      .replace(/\s+/g, "");
+  };
+
   return (
     <div className="w-full  space-y-2">
       <Select value={value} onValueChange={onValueChange} defaultValue="none">
@@ -56,7 +65,7 @@ const Dropdown = ({
                   height={20}
                   unoptimized
                   alt={item.name}
-                  src={"/icons/" + item.name.toLowerCase() + ".svg"}
+                  src={"/icons/" + normalizeForPath(item.name) + ".svg"}
                 />
                 {item.name}
               </SelectItem>
