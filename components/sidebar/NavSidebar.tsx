@@ -6,6 +6,7 @@ import { signOut } from "next-auth/react";
 import BaseSidebar from "./BaseSidebar";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
+import Image from "next/image";
 
 const NavSidebar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -46,9 +47,9 @@ const NavSidebar = () => {
     <BaseSidebar>
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
         <Link href={"/dashboard"}>
-          {/* Used regular img because next/image was causing blurryness due to performance optimization by the <Image /> component */}
-          <img
-            src="/logos/quickbite-logo.svg"
+          <Image
+            unoptimized
+            src={"/logos/quickbite-logo.svg"}
             alt="QuickBite logo"
             className="object-cover rounded-sm"
             width={125}
