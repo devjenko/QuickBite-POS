@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import Image from "next/image";
 
 const Dropdown = ({
   onValueChange,
@@ -19,6 +20,26 @@ const Dropdown = ({
 }) => {
   const id = useId();
 
+  const itemCategories = [
+    { name: "Breakfast" },
+    { name: "Lunch" },
+    { name: "Dinner" },
+
+    { name: "Starters" },
+    { name: "Main Courses" },
+    { name: "Deserts" },
+    { name: "Sides" },
+    { name: "Burgers" },
+    { name: "Sandwiches" },
+    { name: "Soups & Salads" },
+    { name: "Pizzas" },
+
+    { name: "Hot Drinks" },
+    { name: "Cold Drinks" },
+    { name: "Alcoholic Drinks" },
+    { name: "Coffee" },
+  ];
+
   return (
     <div className="w-full  space-y-2">
       <Select value={value} onValueChange={onValueChange} defaultValue="none">
@@ -26,43 +47,20 @@ const Dropdown = ({
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectGroup>
+          <SelectGroup className="overflow-y-auto max-h-40">
             <SelectLabel>Categories</SelectLabel>
-            <SelectItem value="meals">
-              <img width={20} height={20} src="/icons/meals.svg" alt="meals" />
-              Meals
-            </SelectItem>
-            <SelectItem value="burgers">
-              <img
-                width={20}
-                height={20}
-                src="/icons/burgers.svg"
-                alt="burger"
-              />
-              Burgers
-            </SelectItem>
-            <SelectItem value="sandwiches">
-              <img
-                width={20}
-                height={20}
-                src="/icons/sandwiches.svg"
-                alt="meals"
-              />
-              Sandwiches
-            </SelectItem>
-            <SelectItem value="sides">
-              <img width={20} height={20} src="/icons/sides.svg" alt="fries" />
-              Sides
-            </SelectItem>
-            <SelectItem value="drinks">
-              <img
-                width={20}
-                height={20}
-                src="/icons/drinks.svg"
-                alt="drinks"
-              />
-              Drinks
-            </SelectItem>
+            {itemCategories.map((item, index) => (
+              <SelectItem key={index} value={item.name}>
+                <Image
+                  width={20}
+                  height={20}
+                  unoptimized
+                  alt={item.name}
+                  src={"/icons/" + item.name.toLowerCase() + ".svg"}
+                />
+                {item.name}
+              </SelectItem>
+            ))}
           </SelectGroup>
         </SelectContent>
       </Select>
