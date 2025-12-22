@@ -1,9 +1,17 @@
 import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
+import { auth } from "@/auth";
 
 export async function POST(request: NextRequest) {
   try {
+    // Check authentication
+    const session = await auth();
+
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = await request.json();
     const { name, description, price, category, image } = body;
 
@@ -35,6 +43,7 @@ export async function POST(request: NextRequest) {
         price,
         category: normalizedCategory,
         image: imageUrl,
+        userId: session.user.id, // Associate with user
       },
     });
     return NextResponse.json(menuItem, { status: 201 });

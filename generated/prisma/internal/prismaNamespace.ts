@@ -874,6 +874,7 @@ export const MenuItemScalarFieldEnum = {
   category: 'category',
   image: 'image',
   isAvailable: 'isAvailable',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const

@@ -36,20 +36,16 @@ export function LoginForm({
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
-    console.log("Form submitted!", { businessId, password: "***" });
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
     try {
-      console.log("About to call signIn...");
       const result = await signIn("credentials", {
         businessId,
         password,
         redirect: false,
       });
-
-      console.log("SignIn result:", result);
 
       if (result?.error) {
         console.log("Error found:", result.error);
