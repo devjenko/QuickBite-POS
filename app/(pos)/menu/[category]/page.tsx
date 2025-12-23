@@ -1,4 +1,4 @@
-import CategoryPage from "@/components/ui/CategoryPage";
+import CategoryPage from "@/components/menu/CategoryPage";
 
 const DynamicCategoryPage = async ({
   params,

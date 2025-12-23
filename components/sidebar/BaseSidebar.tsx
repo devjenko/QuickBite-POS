@@ -10,7 +10,7 @@ const BaseSidebar = ({
   return (
     <aside
       style={style}
-      className={`flex-shrink-0  fixed h-screen hidden md:flex flex-col justify-start p-5 overflow-hidden ${className} `}
+      className={`flex-shrink-0  fixed h-screen hidden md:flex flex-col justify-start p-5 overflow-hidden  ${className} `}
     >
       {children}
     </aside>

@@ -1,5 +1,5 @@
-import DashboardGreeting from "@/components/ui/DashboardGreeting";
-import DateDisplay from "@/components/ui/DateDisplay";
+import DashboardGreeting from "@/components/dashboard/DashboardGreeting";
+import DateDisplay from "@/components/dashboard/DateDisplay";
 
 export default function DashboardPage() {
   return (

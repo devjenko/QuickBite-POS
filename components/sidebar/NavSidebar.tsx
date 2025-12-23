@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import SideBarNavLink from "../ui/SidebarNavLink";
+import SideBarNavLink from "./SidebarNavLink";
 import { signOut } from "next-auth/react";
 import BaseSidebar from "./BaseSidebar";
 import { useState } from "react";

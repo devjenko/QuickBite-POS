@@ -17,7 +17,7 @@ const ContentWrapper = ({
     <div
       onClick={onClick}
       className={cn(
-        "rounded-sm",
+        "rounded-sm shadow-sm",
         variant === "dark" && "bg-[var(--DarkBlue)] text-[var(--White)]",
         variant === "light" &&
           "bg-[var(--White)] text-[var(--Black)] shadow-sm",
