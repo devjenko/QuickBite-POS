@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../../ui/Button";
+import { Button } from "../../ui/button";
 import { Input } from "@/components/ui/input";
 import { XIcon } from "lucide-react";
 import Image from "next/image";

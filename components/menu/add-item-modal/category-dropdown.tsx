@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/select";
 import Image from "next/image";
 
-const Dropdown = ({
+const CategoryDropdown = ({
   onValueChange,
   value,
 }: {
@@ -77,4 +77,4 @@ const Dropdown = ({
   );
 };
 
-export default Dropdown;
+export default CategoryDropdown;

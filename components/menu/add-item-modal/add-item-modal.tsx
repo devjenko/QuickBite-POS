@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../../ui/Button";
+import { Button } from "../../ui/button";
 import {
   Dialog,
   DialogClose,
@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Dropdown from "./AddItemDropdown";
-import AddItemDescription from "../../shadcn-studio/textarea/AddItemDescription";
-import ContentWrapper from "../../shared/ContentWrapper";
-import AddImage from "./AddImage";
-import PriceInput from "./PriceInput";
+import Dropdown from "./category-dropdown";
+import AddItemDescription from "./add-item-description";
+import ContentWrapper from "../../shared/content-wrapper";
+import AddImage from "./add-image";
+import PriceInput from "./price-input";
 import { Spinner } from "../../ui/spinner";
 import { useState } from "react";
 import { toast } from "sonner";

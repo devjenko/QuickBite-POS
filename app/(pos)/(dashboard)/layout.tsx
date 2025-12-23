@@ -1,8 +1,8 @@
 "use client";
-import CartSidebar from "@/components/sidebar/CartSidebar";
-import POSLayout from "@/components/layout/POSLayout";
-import NavSidebar from "@/components/sidebar/NavSidebar";
-import CenterContentContainer from "@/components/shared/CenterContentContainer";
+import CartSidebar from "@/components/sidebar/cart-sidebar";
+import POSLayout from "@/components/layout/pos-layout";
+import NavSidebar from "@/components/sidebar/nav-sidebar";
+import CenterContentContainer from "@/components/shared/center-content-container";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;

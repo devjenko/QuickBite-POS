@@ -2,7 +2,7 @@
 
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import {
   Field,
   FieldDescription,
@@ -12,8 +12,8 @@ import {
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
-import InputPassword from "@/components/shadcn-studio/input/input-password";
-import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
+import InputPassword from "@/components/auth/input-password";
+import { CopyButton } from "@/components/auth/copy-text-button";
 
 export function SignUpForm({
   className,
@@ -122,12 +122,9 @@ export function SignUpForm({
           </p>
         </div>
         <div className="p-6 bg-muted rounded-lg">
-          <p className="text-xl font-bold break-all flex justify-around items-center">
+          <p className="text-xl font-bold break-all flex justify-center gap-2 items-center">
             {generatedBusinessId}{" "}
-            <CopyButton
-              className={"bg-[var(--DarkBlue)]"}
-              content={generatedBusinessId}
-            />
+            <CopyButton variant={"ghost"} content={generatedBusinessId} />
           </p>
         </div>
         <Button asChild variant="dark">

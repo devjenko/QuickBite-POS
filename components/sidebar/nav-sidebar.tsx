@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import SideBarNavLink from "./SidebarNavLink";
+import SideBarNavLink from "./sidebar-nav-link";
 import { signOut } from "next-auth/react";
-import BaseSidebar from "./BaseSidebar";
+import BaseSidebar from "./base-sidebar";
 import { useState } from "react";
 import { Spinner } from "../ui/spinner";
 import Image from "next/image";

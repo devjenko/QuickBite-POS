@@ -1,7 +1,7 @@
-import CartSidebar from "@/components/sidebar/CartSidebar";
-import POSLayout from "@/components/layout/POSLayout";
-import MenuSidebar from "@/components/sidebar/MenuSidebar";
-import CenterContentContainer from "@/components/shared/CenterContentContainer";
+import CartSidebar from "@/components/sidebar/cart-sidebar";
+import POSLayout from "@/components/layout/pos-layout";
+import MenuSidebar from "@/components/sidebar/menu-sidebar";
+import CenterContentContainer from "@/components/shared/center-content-container";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 interface DashboardLayoutProps {

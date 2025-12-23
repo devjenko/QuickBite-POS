@@ -1,5 +1,5 @@
-import { SkeletonCard } from "./SkeletonCard";
-import CenterContentContainer from "@/components/shared/CenterContentContainer";
+import { SkeletonCard } from "./skeleton-card";
+import CenterContentContainer from "@/components/shared/center-content-container";
 
 const MenuSkeletonPage = () => {
   return (

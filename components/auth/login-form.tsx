@@ -2,7 +2,7 @@
 
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/Button";
+import { Button } from "../ui/button";
 import {
   Field,
   FieldDescription,
@@ -14,7 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import InputPassword from "@/components/shadcn-studio/input/input-password";
+import InputPassword from "@/components/auth/input-password";
 
 export function LoginForm({
   className,

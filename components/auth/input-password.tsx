@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 type InputPasswordProps = React.InputHTMLAttributes<HTMLInputElement>;
