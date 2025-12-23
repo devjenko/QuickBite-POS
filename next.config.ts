@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  experimental: {
+    turbopackFileSystemCacheForDev: true,
+  },
+  
   images: {
     remotePatterns: [
       {
@@ -13,7 +17,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // security
+  // security headers
   async headers() {
     return [
       {

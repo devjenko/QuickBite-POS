@@ -7,9 +7,8 @@ export const metadata: Metadata = {
   title: "QuickBite",
   description: "An elegant fast food POS system.",
   icons: {
-    icon: "/quickbite-icon.svg",
-    shortcut: "/quickbite-icon.ico",
-    apple: "/quickbite-icon.svg",
+    shortcut: "/favicon-32x32.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 
