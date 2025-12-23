@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/quickbite-icon.svg";
-import { LoginForm } from "@/app/(auth)/login/login-form";
+import { LoginForm } from "@/components/auth/login-form";
 
 export default function LoginPage() {
   return (

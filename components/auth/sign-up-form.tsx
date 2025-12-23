@@ -2,7 +2,7 @@
 
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../ui/Button";
 import {
   Field,
   FieldDescription,

@@ -26,7 +26,7 @@ const InputPassword = ({ className, ...props }: InputPasswordProps) => {
           onClick={() => setIsVisible((prevState) => !prevState)}
           className="text-muted-foreground focus-visible:ring-ring/50 absolute inset-y-2 right-0 rounded-l-none bg-transparent hover:bg-transparent"
         >
-          {isVisible ? <EyeIcon /> : <EyeOffIcon />}
+          {isVisible ? <EyeOffIcon /> : <EyeIcon />}
           <span className="sr-only">
             {isVisible ? "Hide password" : "Show password"}
           </span>

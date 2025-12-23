@@ -2,7 +2,7 @@
 
 import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
-import { Button } from "../../../components/ui/Button";
+import { Button } from "../ui/Button";
 import {
   Field,
   FieldDescription,
@@ -98,12 +98,12 @@ export function LoginForm({
         <Field>
           <div className="flex items-center">
             <FieldLabel htmlFor="password">Password</FieldLabel>
-            <a
-              href="#"
+            <Link
+              href={"/forgot-password"}
               className="ml-auto text-md underline-offset-4 hover:underline"
             >
               Forgot your password?
-            </a>
+            </Link>
           </div>
           <InputPassword
             id="password"
