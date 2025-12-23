@@ -56,7 +56,7 @@ const Dropdown = ({
           <SelectValue />
         </SelectTrigger>
         <SelectContent>
-          <SelectGroup className="overflow-y-auto max-h-40">
+          <SelectGroup className="overflow-y-auto h-40">
             <SelectLabel>Categories</SelectLabel>
             {itemCategories.map((item, index) => (
               <SelectItem key={index} value={item.name}>

@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Dropdown from "../../shadcn-studio/select/AddItemDropdown";
+import Dropdown from "./AddItemDropdown";
 import AddItemDescription from "../../shadcn-studio/textarea/AddItemDescription";
 import ContentWrapper from "../../shared/ContentWrapper";
 import AddImage from "./AddImage";
