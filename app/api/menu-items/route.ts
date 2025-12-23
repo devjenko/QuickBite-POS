@@ -5,7 +5,7 @@ import { auth } from "@/auth";
 
 export async function POST(request: NextRequest) {
   try {
-    // Check authentication
+    // Verify auth
     const session = await auth();
 
     if (!session?.user?.id) {
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
         price,
         category: normalizedCategory,
         image: imageUrl,
-        userId: session.user.id, // Associate with user
+        userId: session.user.id, 
       },
     });
     return NextResponse.json(menuItem, { status: 201 });
@@ -51,6 +51,45 @@ export async function POST(request: NextRequest) {
     console.error("Error creating menu item", error);
     return NextResponse.json(
       { error: "Failed to create menu item" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  try {
+    // check auth
+    const session = await auth();
+    if (!session?.user?.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    // get ID from URL
+    const { id } = params;
+
+    // delete from the db
+    await prisma.menuItem.delete({
+      where: { id },
+    });
+
+    // success message
+    return NextResponse.json(
+      { message: "Item deleted successfully" },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error("Delete error:", error);
+
+    // if item does not exist
+    if (error instanceof Error && "code" in error && error.code === "P2025") {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { error: "Failed to delete the item" },
       { status: 500 }
     );
   }

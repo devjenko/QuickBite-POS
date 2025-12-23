@@ -1,12 +1,12 @@
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
   CardTitle,
 } from "../ui/card";
 import { Label } from "../ui/label";
+import DeleteItemButton from "./delete-item-button";
 
 type MenuItemCardProps = {
   className?: string;
@@ -14,6 +14,7 @@ type MenuItemCardProps = {
   name: string | null;
   price: number | null;
   description: string | null;
+  id: string;
 };
 
 const MenuItemCard = ({
@@ -22,6 +23,7 @@ const MenuItemCard = ({
   name,
   price,
   description,
+  id,
 }: MenuItemCardProps) => {
   // Optimize Cloudinary images
   const getOptimizedImage = (url: string) => {
@@ -33,7 +35,11 @@ const MenuItemCard = ({
   };
 
   return (
-    <Card className={`${className}`}>
+    <Card className={`${className} relative`}>
+      {/* delete button */}
+      <DeleteItemButton ItemId={id} ItemName={name || "this item"} />
+
+      {/* card image */}
       <div className="w-full h-64 overflow-hidden flex items-center justify-center">
         <img
           src={getOptimizedImage(image)}
