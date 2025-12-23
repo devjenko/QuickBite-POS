@@ -1,24 +1,24 @@
 "use client";
 
 import { useId, useState } from "react";
-
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/input";
 
-const InputPassword = () => {
-  const [isVisible, setIsVisible] = useState(false);
+type InputPasswordProps = React.InputHTMLAttributes<HTMLInputElement>;
 
+const InputPassword = ({ className, ...props }: InputPasswordProps) => {
+  const [isVisible, setIsVisible] = useState(false);
   const id = useId();
 
   return (
     <div className="w-full max-w-md space-y-2">
       <div className="relative">
         <Input
-          id={id}
+          {...props}
+          id={props.id || id}
           type={isVisible ? "text" : "password"}
-          className="pr-9"
+          className={`pr-9 ${className || ""}`}
         />
         <Button
           type="button"

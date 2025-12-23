@@ -23,11 +23,59 @@ export function SignUpForm({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [generatedBusinessId, setGeneratedBusinessId] = useState();
+  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
+
+  function validatePassword(password: string): {
+    isValid: boolean;
+    errors: string[];
+  } {
+    const errors: string[] = [];
+
+    if (password.length < 8) {
+      errors.push("Must be at least 8 characters");
+    }
+
+    if (!/[A-Z]/.test(password)) {
+      errors.push("Must contain at least one uppercase letter");
+    }
+
+    if (!/[a-z]/.test(password)) {
+      errors.push("Must contain at least one lowercase letter");
+    }
+
+    if (!/[0-9]/.test(password)) {
+      errors.push("Must contain at least one number");
+    }
+
+    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
+      errors.push("Must contain at least one special character");
+    }
+
+    return { isValid: errors.length === 0, errors };
+  }
+
+  // Validate password on change
+  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newPassword = e.target.value;
+    setPassword(newPassword);
+
+    // Show real-time validation
+    const validation = validatePassword(newPassword);
+    setPasswordErrors(validation.errors);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
+
+    const passwordValidation = validatePassword(password);
+
+    if (!passwordValidation.isValid) {
+      setError(passwordValidation.errors.join(". "));
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const response = await fetch("/api/auth/signup", {
@@ -119,19 +167,32 @@ export function SignUpForm({
         <Field>
           <div className="flex items-center justify-between">
             <FieldLabel htmlFor="password">Create a Password</FieldLabel>
-
-            <FieldDescription className="text-xs">
-              Must be at least 8 characters
-            </FieldDescription>
           </div>
-          <Input
-            onChange={(e) => setPassword(e.target.value)}
+          <InputPassword
+            onChange={handlePasswordChange}
             id="password"
-            type="password"
             disabled={isLoading}
             value={password}
-            minLength={8}
+            required
           />
+
+          {/* Real-time password requirements display */}
+          {password.length > 0 && passwordErrors.length > 0 && (
+            <ul className="text-sm space-y-1 mt-2">
+              {passwordErrors.map((error, index) => (
+                <li key={index} className="text-destructive text-xs">
+                  • {error}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {/* Show success when all requirements met */}
+          {password.length > 0 && passwordErrors.length === 0 && (
+            <p className="text-sm text-green-600 mt-2">
+              ✓ Password meets all requirements
+            </p>
+          )}
         </Field>
 
         <Field>

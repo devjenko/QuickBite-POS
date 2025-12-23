@@ -14,6 +14,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import InputPassword from "@/components/shadcn-studio/input/input-password";
 
 export function LoginForm({
   className,
@@ -54,7 +55,6 @@ export function LoginForm({
         return;
       }
 
-      console.log("No error, about to redirect...");
       router.push("/dashboard");
       router.refresh();
     } catch (err) {
@@ -105,7 +105,7 @@ export function LoginForm({
               Forgot your password?
             </a>
           </div>
-          <Input
+          <InputPassword
             id="password"
             type="password"
             required
