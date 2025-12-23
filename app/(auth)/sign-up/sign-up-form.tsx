@@ -115,8 +115,7 @@ export function SignUpForm({
         <div className="flex flex-col items-center gap-4 text-center">
           <h1 className="text-4xl font-bold">Account Created! 🎉</h1>
           <p className="text-muted-foreground text-md text-balance">
-            Your business ID has been generated. Please save it - you'll need it
-            to login.
+            Your business ID has been generated. Please save it to login.
           </p>
         </div>
         <div className="p-6 bg-muted rounded-lg">
