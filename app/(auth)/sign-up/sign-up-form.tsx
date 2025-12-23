@@ -13,6 +13,7 @@ import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
 import InputPassword from "@/components/shadcn-studio/input/input-password";
+import { CopyButton } from "@/components/ui/shadcn-io/copy-button";
 
 export function SignUpForm({
   className,
@@ -113,16 +114,21 @@ export function SignUpForm({
     return (
       <div className={cn("flex flex-col gap-6", className)}>
         <div className="flex flex-col items-center gap-4 text-center">
-          <h1 className="text-4xl font-bold">Account Created! 🎉</h1>
+          <h1 className="text-3xl font-bold">
+            Account Created! <span className="absolute">🎉</span>
+          </h1>
           <p className="text-muted-foreground text-md text-balance">
-            Your business ID has been generated. Please save it to login.
+            Your business ID has been generated. <br /> Please save it to login.
           </p>
         </div>
         <div className="p-6 bg-muted rounded-lg">
-          <p className="text-sm text-muted-foreground mb-2">
-            Your Business ID:
+          <p className="text-xl font-bold break-all flex justify-around items-center">
+            {generatedBusinessId}{" "}
+            <CopyButton
+              className={"bg-[var(--DarkBlue)]"}
+              content={generatedBusinessId}
+            />
           </p>
-          <p className="text-2xl font-bold break-all">{generatedBusinessId}</p>
         </div>
         <Button asChild variant="dark">
           <Link href="/login">Go to Login</Link>
