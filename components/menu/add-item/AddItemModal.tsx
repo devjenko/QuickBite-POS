@@ -23,7 +23,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const AddItemModal = ({ ItemId }: { ItemId: string }) => {
+const AddItemModal = ({ ItemId }: { ItemId?: string }) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>(0);

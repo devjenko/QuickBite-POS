@@ -16,8 +16,8 @@ import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 
 interface DeleteItemModalProps {
-  ItemName: string;
-  ItemId: string;
+  ItemName?: string;
+  ItemId?: string;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isDeleting: boolean;
