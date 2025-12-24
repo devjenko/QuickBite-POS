@@ -1,3 +1,4 @@
+"use client";
 import {
   Card,
   CardContent,
@@ -6,7 +7,9 @@ import {
   CardTitle,
 } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
-import DeleteItemButton from "@/components/menu/DeleteItemButton";
+import DeleteItemButton from "@/components/menu/delete-item/DeleteItemButton";
+import DeleteItemModal from "@/components/menu/delete-item/DeleteItemModal";
+import { useState } from "react";
 
 type MenuItemCardProps = {
   className?: string;
@@ -25,6 +28,9 @@ const MenuItemCard = ({
   description,
   id,
 }: MenuItemCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   // Optimize Cloudinary images
   const getOptimizedImage = (url: string) => {
     if (url.includes("cloudinary.com")) {
@@ -36,8 +42,24 @@ const MenuItemCard = ({
 
   return (
     <Card className={`${className} relative`}>
-      {/* delete button */}
-      <DeleteItemButton ItemId={id} ItemName={name || "this item"} />
+      {/* delete item button */}
+      <DeleteItemButton
+        isDeleting={isDeleting}
+        onClick={() => setIsOpen(true)}
+        ItemId={id}
+        ItemName={name || "this item"}
+      />
+
+      {isOpen && (
+        <DeleteItemModal
+          isDeleting={isDeleting}
+          setIsDeleting={setIsDeleting}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          ItemName={name || "this item"}
+          ItemId={id}
+        />
+      )}
 
       {/* card image */}
       <div className="w-full h-64 overflow-hidden flex items-center justify-center">

@@ -12,18 +12,18 @@ import {
 } from "@/components/ui/Dialog";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
-import Dropdown from "@/components/menu/add-item-modal/CategoryDropdown";
-import AddItemDescription from "@/components/menu/add-item-modal/AddItemDescription";
+import Dropdown from "@/components/menu/add-item/CategoryDropdown";
+import AddItemDescription from "@/components/menu/add-item/AddItemDescription";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import AddImage from "./AddImage";
-import PriceInput from "@/components/menu/add-item-modal/PriceInput";
+import PriceInput from "@/components/menu/add-item/PriceInput";
 import Spinner from "@/components/ui/Spinner";
 import { useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const AddItemModal = () => {
+const AddItemModal = ({ ItemId }: { ItemId: string }) => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>(0);
@@ -39,7 +39,7 @@ const AddItemModal = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/menu-items", {
+      const response = await fetch(`/api/menu-items/${ItemId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const AddItemModal = () => {
       setCategory("");
       setImage(null);
       setIsOpen(false);
-      toast.success("Item added successfully!");
+      toast.success("Menu item added successfully!");
     } catch (error) {
       console.error("Error:", error);
       toast.error("Failed to add menu item. Please try again.");

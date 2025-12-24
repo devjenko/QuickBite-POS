@@ -25,7 +25,7 @@ const CategoryPage = async ({ category }: { category: string }) => {
         <MenuItemCard
           id={item.id}
           name={item.name}
-          key={item.id}
+          key={item.name}
           price={item.price}
           description={item.description}
           image={

@@ -56,8 +56,13 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(request: NextRequest, context: { params: any }) {
-  const id = context.params.id;
+export async function DELETE(
+  request: NextRequest,
+  context: { params: Promise<{ id: string }> }
+) {
+  const id = (await context.params).id;
+
+  console.log("Deleting item with id:", id);
 
   try {
     const session = await auth();
@@ -69,7 +74,7 @@ export async function DELETE(request: NextRequest, context: { params: any }) {
 
     return NextResponse.json(
       { message: "Item deleted successfully" },
-      { status: 201 }
+      { status: 200 }
     );
   } catch (error: any) {
     console.error("Delete error:", error);
