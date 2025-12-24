@@ -59,11 +59,11 @@ const DeleteItemModal = ({
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild></DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] overflow-hidden">
+      <DialogContent className="max-w-[425px] overflow-hidden">
         <DialogHeader>
           <DialogTitle>Delete a Menu Item</DialogTitle>
           <DialogDescription className="flex flex-col gap-2">
-            <span className="max-w-sm">
+            <span className=" m-auto sm:m-0">
               Are you sure you want to delete your <strong>{ItemName}</strong>?
             </span>
 
@@ -73,7 +73,7 @@ const DeleteItemModal = ({
           </DialogDescription>
         </DialogHeader>
 
-        <DialogFooter className="flex gap-3 ">
+        <DialogFooter className="flex gap-3  m-auto  w-full">
           <DialogClose asChild>
             <Button variant="default">Cancel</Button>
           </DialogClose>
