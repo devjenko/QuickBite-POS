@@ -62,9 +62,10 @@ const DeleteItemModal = ({
         <DialogHeader>
           <DialogTitle>Delete a Menu Item</DialogTitle>
           <DialogDescription>
-            Are you sure you want to delete your <strong>{ItemName}</strong>?{" "}
-            <br />
-            This item will be permanently removed and cannot be recovered.
+            Are you sure you want to delete your <strong>{ItemName}</strong>?
+            <p className="my-2">
+              This item will be permanently removed and cannot be recovered.
+            </p>
           </DialogDescription>
         </DialogHeader>
 
