@@ -124,7 +124,7 @@ export function SignUpForm({
         <div className="p-6 bg-muted rounded-lg">
           <p className="text-xl font-bold break-all flex justify-center gap-2 items-center">
             {generatedBusinessId}{" "}
-            <CopyButton variant={"ghost"} content={generatedBusinessId} />
+            <CopyButton variant={"muted"} content={generatedBusinessId} />
           </p>
         </div>
         <Button asChild variant="dark">
