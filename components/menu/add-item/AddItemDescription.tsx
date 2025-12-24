@@ -14,7 +14,7 @@ const AddItemDescription = ({
       <Textarea
         onChange={onChange}
         id={id}
-        className="field-sizing-content max-h-30 min-h-12  resize-none "
+        className="field-sizing-content max-h-30 min-h-12  resize-none max-w-sm "
       />
     </div>
   );

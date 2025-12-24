@@ -45,8 +45,8 @@ const DeleteItemModal = ({
       if (!response.ok) {
         throw new Error("Failed to delete menu item");
       }
-      toast.success("Menu item deleted");
       router.refresh();
+      toast.success("Menu item deleted");
     } catch (error) {
       console.error("Error deleting item:", error);
       toast.error("Failed to delete menu item. Please try again.");
@@ -61,7 +61,7 @@ const DeleteItemModal = ({
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>Delete a Menu Item</DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="max-w-sm">
             Are you sure you want to delete your <strong>{ItemName}</strong>?
             <p className="my-2">
               This item will be permanently removed and cannot be recovered.
