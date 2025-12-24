@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import SideBarNavLink from "./sidebar-nav-link";
+import SideBarNavLink from "./SidebarNavLinks";
 import { auth } from "@/auth";
 
 const categoryMap: Record<string, string> = {

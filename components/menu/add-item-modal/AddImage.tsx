@@ -1,6 +1,6 @@
 "use client";
-import { Button } from "../../ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../ui/Button";
+import { Input } from "@/components/ui/Input";
 import { XIcon } from "lucide-react";
 import Image from "next/image";
 import { type ChangeEvent, Dispatch, SetStateAction, useState } from "react";

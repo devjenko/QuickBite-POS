@@ -1,6 +1,6 @@
 import Image from "next/image";
 import logo from "@/public/quickbite-icon.svg";
-import { SignUpForm } from "@/components/auth/sign-up-form";
+import { SignUpForm } from "@/components/auth/SignupForm";
 
 export default function SignUpPage() {
   return (

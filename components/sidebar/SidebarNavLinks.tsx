@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import ContentWrapper from "../shared/content-wrapper";
+import ContentWrapper from "../shared/ContentWrapper";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 

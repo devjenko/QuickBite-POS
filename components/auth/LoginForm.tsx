@@ -1,20 +1,15 @@
 "use client";
 
-import { Spinner } from "@/components/ui/spinner";
+import Spinner from "@/components/ui/Spinner";
 import { cn } from "@/lib/utils";
-import { Button } from "../ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/Button";
+import { Field, FieldDescription, FieldGroup, FieldLabel } from "../ui/Field";
+import { Input } from "@/components/ui/Input";
 import Link from "next/link";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import InputPassword from "@/components/auth/input-password";
+import InputPassword from "@/components/auth/InputPassword";
 
 export function LoginForm({
   className,
