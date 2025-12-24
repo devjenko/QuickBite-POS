@@ -1,12 +1,10 @@
-"use client";
 import { Button } from "@/components/ui/Button";
 import { Trash2Icon } from "lucide-react";
-import React, { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 
 export interface DeleteItemButtonProps {
-  ItemId: string;
-  ItemName: string;
+  ItemId?: string;
+  ItemName?: string;
   onClick: () => void;
   isDeleting: boolean;
 }
