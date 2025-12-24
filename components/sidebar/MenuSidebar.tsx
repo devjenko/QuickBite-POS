@@ -1,7 +1,7 @@
 import Link from "next/link";
-import MenuSidebarLinks from "./MenuSidebarLinks";
-import BaseSidebar from "./BaseSidebar";
-import AddItemModal from "../menu/add-item-modal/AddItemModal";
+import MenuSidebarLinks from "@/components/sidebar/MenuSidebarLinks";
+import BaseSidebar from "@/components/sidebar/BaseSidebar";
+import AddItemModal from "@/components/menu/add-item-modal/AddItemModal";
 
 const MenuSidebar = () => {
   return (

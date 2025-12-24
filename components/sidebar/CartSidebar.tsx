@@ -1,4 +1,4 @@
-import BaseSidebar from "./BaseSidebar";
+import BaseSidebar from "@/components/sidebar/BaseSidebar";
 
 const CartSidebar = () => {
   return (

@@ -1,4 +1,4 @@
-import { SkeletonCard } from "./SkeletonCard";
+import { SkeletonCard } from "@/components/skeletons/SkeletonCard";
 import CenterContentContainer from "@/components/shared/CenterContentContainer";
 
 const MenuSkeletonPage = () => {

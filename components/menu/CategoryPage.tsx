@@ -1,5 +1,5 @@
 import CenterContentContainer from "@/components/shared/CenterContentContainer";
-import MenuItemCard from "./MenuItemCard";
+import MenuItemCard from "@/components/menu/MenuItemCard";
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";

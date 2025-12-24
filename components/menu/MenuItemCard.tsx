@@ -4,9 +4,9 @@ import {
   CardDescription,
   CardFooter,
   CardTitle,
-} from "../ui/Card";
-import { Label } from "../ui/Label";
-import DeleteItemButton from "./DeleteItemButton";
+} from "@/components/ui/Card";
+import { Label } from "@/components/ui/Label";
+import DeleteItemButton from "@/components/menu/DeleteItemButton";
 
 type MenuItemCardProps = {
   className?: string;

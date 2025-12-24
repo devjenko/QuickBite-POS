@@ -1,5 +1,5 @@
 "use client";
-import { Button } from "../ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Trash2Icon } from "lucide-react";
 import prisma from "@/lib/prisma";
 import { useRouter } from "next/navigation";

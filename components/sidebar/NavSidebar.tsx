@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import SideBarNavLink from "./SidebarNavLinks";
+import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
 import { signOut } from "next-auth/react";
-import BaseSidebar from "./BaseSidebar";
+import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import { useState } from "react";
-import Spinner from "../ui/Spinner";
+import Spinner from "@/components/ui/Spinner";
 import Image from "next/image";
 
 const NavSidebar = () => {
