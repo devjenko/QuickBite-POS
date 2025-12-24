@@ -56,29 +56,20 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function DELETE(
-  request: NextRequest,
-  context: { params: { id: string } }
-) {
+export async function DELETE(request: NextRequest, context: { params: any }) {
+  const id = context.params.id;
+
   try {
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = context.params;
-
-    if (!id) {
-      return NextResponse.json({ error: "Missing id" }, { status: 400 });
-    }
-
-    await prisma.menuItem.delete({
-      where: { id },
-    });
+    await prisma.menuItem.delete({ where: { id } });
 
     return NextResponse.json(
       { message: "Item deleted successfully" },
-      { status: 200 }
+      { status: 201 }
     );
   } catch (error: any) {
     console.error("Delete error:", error);
