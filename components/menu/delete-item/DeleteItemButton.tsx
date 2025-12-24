@@ -12,6 +12,7 @@ export interface DeleteItemButtonProps {
 const DeleteItemButton = ({ onClick, isDeleting }: DeleteItemButtonProps) => {
   return (
     <Button
+      variant={"default"}
       onClick={onClick}
       className={"w-fit absolute right-0 rounded-sm rounded-r-none shadow-sm"}
     >
