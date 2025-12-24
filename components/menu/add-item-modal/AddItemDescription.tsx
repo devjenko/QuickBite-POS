@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { ChangeEventHandler } from "react";
-import { Textarea } from "@/components/ui/TextArea";
+import Textarea from "@/components/ui/TextArea";
 
 const AddItemDescription = ({
   onChange,
