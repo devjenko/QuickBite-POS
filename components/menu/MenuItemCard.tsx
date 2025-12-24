@@ -41,7 +41,7 @@ const MenuItemCard = ({
   };
 
   return (
-    <Card className={`${className} relative m-auto`}>
+    <Card className={`${className} relative m-auto h-full `}>
       {/* delete item button */}
       <DeleteItemButton
         isDeleting={isDeleting}
