@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
         price,
         category: normalizedCategory,
         image: imageUrl,
-        userId: session.user.id, 
+        userId: session.user.id,
       },
     });
     return NextResponse.json(menuItem, { status: 201 });
@@ -58,33 +58,32 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
-    // check auth
     const session = await auth();
     if (!session?.user?.id) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // get ID from URL
-    const { id } = params;
+    const { id } = context.params;
 
-    // delete from the db
+    if (!id) {
+      return NextResponse.json({ error: "Missing id" }, { status: 400 });
+    }
+
     await prisma.menuItem.delete({
       where: { id },
     });
 
-    // success message
     return NextResponse.json(
       { message: "Item deleted successfully" },
-      { status: 201 }
+      { status: 200 }
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("Delete error:", error);
 
-    // if item does not exist
-    if (error instanceof Error && "code" in error && error.code === "P2025") {
+    if (error.code === "P2025") {
       return NextResponse.json({ error: "Item not found" }, { status: 404 });
     }
 
