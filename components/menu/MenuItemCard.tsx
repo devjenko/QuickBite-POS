@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -36,7 +37,7 @@ const MenuItemCard = ({
   };
 
   const handleAddToCart = () => {
-    addItem({ image, name, price, id });
+    addItem({ image, name: name || "", price: price || 0, id, quantity: 1 });
   };
 
   return (
@@ -64,7 +65,7 @@ const MenuItemCard = ({
       )}
 
       {/* card image */}
-      <div className="w-full h-64 overflow-hidden flex items-center justify-center">
+      <div className="w-full h-64 overflow-hidden flex items-center justify-center relative">
         <img
           src={getOptimizedImage(image)}
           alt={name || "Menu item"}

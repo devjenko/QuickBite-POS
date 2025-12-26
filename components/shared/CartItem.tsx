@@ -6,8 +6,8 @@ import Button from "../ui/Button";
 
 interface CartItemProps {
   id: string;
-  name: string | null;
-  price: number | string;
+  name: string;
+  price: number;
   className?: string;
   imageUrl?: string;
 }
@@ -22,7 +22,7 @@ const CartItem = ({ name, price, className, imageUrl, id }: CartItemProps) => {
         width={40}
         height={40}
         alt="cart item image"
-        src={imageUrl}
+        src={imageUrl || ""}
         className="object-cover w-15 h-15 rounded-sm"
       />
 

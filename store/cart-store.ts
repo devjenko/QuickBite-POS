@@ -2,7 +2,7 @@ import { create } from "zustand";
 
 type CartItem = {
   image: string;
-  name: string | null;
+  name: string;
   price: number;
   id: string;
   quantity: number;
@@ -25,9 +25,13 @@ export const useCartStore = create<CartState>((set) => ({
       // go through items and check if any new items have the same id as the previous ones
       const exists = state.items.find((i) => i.id === item.id);
 
-      // if any new items have the same id then return the same item instead of adding a new one
+      // if any new items have the same id increase the quantity on click
       if (exists) {
-        return item;
+        return {
+          items: state.items.map((i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+          ),
+        };
       }
 
       // else add the new item

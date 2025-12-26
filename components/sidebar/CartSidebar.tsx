@@ -25,7 +25,7 @@ const CartSidebar = () => {
             imageUrl={item.image}
             id={item.id}
             name={item.name}
-            price={`$${item.price}`}
+            price={item.price}
           />
         </li>
       ))}
