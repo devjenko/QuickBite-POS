@@ -146,6 +146,13 @@
     @apply bg-background text-foreground;
   }
 
+  ul {
+    @apply p-0 m-0;
+  }
+
+  li {
+    @apply list-none;
+  }
   /* Hide scrollbar for Chrome, Safari and Opera */
   .hide-scrollbar::-webkit-scrollbar {
     display: none;

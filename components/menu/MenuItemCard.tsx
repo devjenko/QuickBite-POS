@@ -10,15 +10,8 @@ import { Label } from "@/components/ui/Label";
 import DeleteItemButton from "@/components/menu/delete-item/DeleteItemButton";
 import DeleteItemModal from "@/components/menu/delete-item/DeleteItemModal";
 import { useState } from "react";
-
-type MenuItemCardProps = {
-  className?: string;
-  image: string;
-  name: string | null;
-  price: number | null;
-  description: string | null;
-  id: string;
-};
+import { MenuItemCardProps } from "@/types/menu-item";
+import { useCartStore } from "@/store/cart-store";
 
 const MenuItemCard = ({
   className,
@@ -31,6 +24,8 @@ const MenuItemCard = ({
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const { addItem } = useCartStore();
+
   // Optimize Cloudinary images
   const getOptimizedImage = (url: string) => {
     if (url.includes("cloudinary.com")) {
@@ -40,8 +35,15 @@ const MenuItemCard = ({
     return url;
   };
 
+  const handleAddToCart = () => {
+    addItem({ image, name, price, id });
+  };
+
   return (
-    <Card className={`${className} relative m-auto h-full `}>
+    <Card
+      onClick={handleAddToCart}
+      className={`${className} relative m-auto h-full `}
+    >
       {/* delete item button */}
       <DeleteItemButton
         isDeleting={isDeleting}
