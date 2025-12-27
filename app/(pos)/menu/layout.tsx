@@ -12,6 +12,8 @@ const MenuLayout = async ({ children }: DashboardLayoutProps) => {
   // redirect users that aren't authed
   const session = await auth();
   if (!session) redirect("/login");
+
+  
   return (
     <POSLayout>
       <MenuSidebar session={session} />

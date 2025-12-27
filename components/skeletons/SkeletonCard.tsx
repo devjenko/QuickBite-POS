@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/Card";
 
 export function SkeletonCard() {
   return (
-    <Card className=" flex flex-col gap-4 rounded-sm border p-0 shadow-sm max-w-sm w-full overflow-hidden cursor-one">
+    <Card className=" flex flex-col gap-4 shadow-none rounded-sm border p-0 shadow-sm max-w-sm w-full overflow-hidden cursor-one">
       {/* Image skeleton */}
       <div className="w-full h-64 bg-gray-100">
         <Skeleton className="w-full h-full" />

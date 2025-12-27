@@ -1,8 +1,8 @@
 import CenterContentContainer from "@/components/shared/CenterContentContainer";
-import MenuItemCard from "@/components/menu/MenuItemCard";
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
+import CategoryPageContent from "./CategoryPageContent";
 
 const CategoryPage = async ({ category }: { category: string }) => {
   const session = await auth();
@@ -21,19 +21,7 @@ const CategoryPage = async ({ category }: { category: string }) => {
 
   return (
     <CenterContentContainer className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max ">
-      {items.map((item) => (
-        <MenuItemCard
-          id={item.id}
-          name={item.name}
-          key={item.name}
-          price={item.price}
-          description={item.description}
-          image={
-            item.image ||
-            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTB5emRxdHViYzU1ZmswcHR2YnU0eHBtMWl1NWNhMDNkcHB3NDY0diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3zhxq2ttgN6rEw8SDx/giphy.gif"
-          }
-        />
-      ))}
+      <CategoryPageContent items={items} />
     </CenterContentContainer>
   );
 };
