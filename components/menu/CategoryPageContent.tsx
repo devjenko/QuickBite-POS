@@ -13,7 +13,7 @@ const CategoryPageContent = ({ items }: CategoryPageContentProps) => {
   const [search, setSearch] = useState("");
 
   const filteredItems = items.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.name.toLowerCase().includes(search.trim().toLowerCase())
   );
 
   return (

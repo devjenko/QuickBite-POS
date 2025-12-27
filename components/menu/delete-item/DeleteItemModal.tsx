@@ -9,10 +9,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
-import { DeleteItemButtonProps } from "./DeleteItemButton";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 
 interface DeleteItemModalProps {
