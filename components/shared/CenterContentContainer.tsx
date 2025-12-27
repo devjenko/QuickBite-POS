@@ -7,7 +7,7 @@ const CenterContentContainer = ({
 }) => {
   return (
     <div
-      className={`${className} py-5.5 px-10 m-auto  min-h-screen w-full md:px-44 `}
+      className={`${className} py-5.5 px-10 m-auto  min-h-screen w-full md:px-28 md:pr-44`}
     >
       {children}
     </div>

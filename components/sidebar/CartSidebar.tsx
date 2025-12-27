@@ -13,7 +13,7 @@ const CartSidebar = () => {
   return (
     <BaseSidebar
       style={{ right: "max(0px, calc((100vw - 3000px) / 2))" }}
-      className="top-0 bg-[var(--White)] right-[max(0px, calc((100vw - 3000px) / 2))] overflow-y-auto hide-scrollbar"
+      className="top-0 bg-[var(--White)] overflow-y-auto hide-scrollbar min-w-xs"
     >
       <div className="flex justify-between">
         <h2>New Order</h2>
