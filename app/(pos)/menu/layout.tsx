@@ -14,7 +14,7 @@ const MenuLayout = async ({ children }: DashboardLayoutProps) => {
   if (!session) redirect("/login");
   return (
     <POSLayout>
-      <MenuSidebar />
+      <MenuSidebar session={session} />
       <CenterContentContainer>{children}</CenterContentContainer>
       <CartSidebar />
     </POSLayout>

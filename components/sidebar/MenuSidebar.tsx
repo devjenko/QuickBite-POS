@@ -2,8 +2,13 @@ import Link from "next/link";
 import MenuSidebarLinks from "@/components/sidebar/MenuSidebarLinks";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import AddItemModal from "@/components/menu/add-item/AddItemModal";
+import { Session } from "next-auth";
 
-const MenuSidebar = () => {
+interface MenuSidebarProps {
+  session: Session | null;
+}
+
+const MenuSidebar = ({ session }: MenuSidebarProps) => {
   return (
     <BaseSidebar>
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
@@ -12,7 +17,7 @@ const MenuSidebar = () => {
           <span>Back</span>
         </Link>
         <AddItemModal />
-        <MenuSidebarLinks />
+        <MenuSidebarLinks session={session} />
       </ul>
     </BaseSidebar>
   );

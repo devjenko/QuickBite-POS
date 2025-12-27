@@ -1,6 +1,10 @@
 import prisma from "@/lib/prisma";
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
-import { auth } from "@/auth";
+import { Session } from "next-auth";
+
+interface MenuSidebarLinksProps {
+  session: Session | null;
+}
 
 const categoryMap: Record<string, string> = {
   breakfast: "Breakfast",
@@ -20,14 +24,12 @@ const categoryMap: Record<string, string> = {
   coffee: "Coffee",
 };
 
-const MenuSidebarLinks = async () => {
-  const session = await auth();
-
+const MenuSidebarLinks = async ({ session }: MenuSidebarLinksProps) => {
   if (!session?.user?.id) {
     return null;
   }
 
-  // Get categories from menuItem
+  // Get categories from menuItem - using userId from session
   const categories = await prisma.menuItem.findMany({
     where: {
       userId: session.user.id,

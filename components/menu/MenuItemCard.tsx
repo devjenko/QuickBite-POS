@@ -65,11 +65,13 @@ const MenuItemCard = ({
       )}
 
       {/* card image */}
-      <div className="w-full h-64 overflow-hidden flex items-center justify-center relative">
+      <div className="w-full h-64 overflow-hidden flex items-center justify-center">
+        {/* used img instead of the <Image /> component due to it having better performance + better image quality */}
         <img
           src={getOptimizedImage(image)}
           alt={name || "Menu item"}
           className="w-full h-full object-cover"
+          loading="lazy"
         />
       </div>
 
