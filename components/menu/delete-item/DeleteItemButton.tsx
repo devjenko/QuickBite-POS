@@ -14,9 +14,7 @@ const DeleteItemButton = ({ onClick, isDeleting }: DeleteItemButtonProps) => {
     <Button
       variant={"default"}
       onClick={onClick}
-      className={
-        "w-fit absolute right-0 rounded-sm rounded-r-none shadow-sm z-999"
-      }
+      className={"w-fit absolute right-0 rounded-sm rounded-r-none shadow-sm"}
     >
       {!isDeleting ? <Trash2Icon /> : <Spinner color="black" />}
     </Button>
