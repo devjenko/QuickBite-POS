@@ -5,7 +5,7 @@ import Spinner from "@/components/ui/Spinner";
 export interface DeleteItemButtonProps {
   ItemId?: string;
   ItemName?: string;
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDeleting: boolean;
 }
 
@@ -14,7 +14,9 @@ const DeleteItemButton = ({ onClick, isDeleting }: DeleteItemButtonProps) => {
     <Button
       variant={"default"}
       onClick={onClick}
-      className={"w-fit absolute right-0 rounded-sm rounded-r-none shadow-sm"}
+      className={
+        "w-fit absolute right-0 rounded-sm rounded-r-none shadow-sm z-999"
+      }
     >
       {!isDeleting ? <Trash2Icon /> : <Spinner color="black" />}
     </Button>

@@ -48,7 +48,10 @@ const MenuItemCard = ({
       {/* delete item button */}
       <DeleteItemButton
         isDeleting={isDeleting}
-        onClick={() => setIsOpen(true)}
+        onClick={(e) => {
+          e.stopPropagation(); // Stop the click from reaching the card
+          setIsOpen(true);
+        }}
         ItemId={id}
         ItemName={name || "this item"}
       />

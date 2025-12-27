@@ -56,10 +56,18 @@ const DeleteItemModal = ({
     }
   };
 
+  // Add stopPropagation to the dialog content itself
+  const handleDialogClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild></DialogTrigger>
-      <DialogContent className="max-w-[425px] overflow-hidden">
+      <DialogContent
+        onClick={handleDialogClick}
+        className="max-w-[425px] overflow-hidden"
+      >
         <DialogHeader>
           <DialogTitle>Delete a Menu Item</DialogTitle>
           <DialogDescription className="flex flex-col gap-2">
