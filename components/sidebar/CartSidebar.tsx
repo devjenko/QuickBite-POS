@@ -19,7 +19,7 @@ const CartSidebar = () => {
         <h2>New Order</h2>
         <Trash2Icon onClick={clearCart} />
       </div>
-      <div className="overflow-y-auto hide-scrollbar pb-3">
+      <div className="overflow-y-auto hide-scrollbar p-2.5 pb-15 gap-2.5 flex flex-col">
         {items.map((item) => (
           <li key={item.name}>
             <CartItem
