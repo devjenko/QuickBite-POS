@@ -73,13 +73,14 @@ const NavSidebar = () => {
             <span className="flex flex-col justify-center items-center gap-2">
               {!isLoading ? (
                 <>
-                  <img
+                  <Image
                     width={24}
                     height={24}
                     src="/icons/logout.svg"
                     alt="Logout button icon"
                   />
-                  Logout
+
+                  <span>Logout</span>
                 </>
               ) : (
                 <>
