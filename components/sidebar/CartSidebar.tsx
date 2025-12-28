@@ -18,7 +18,7 @@ const CartSidebar = () => {
         <Trash2Icon onClick={clearCart} />
       </div>
       <OrderList />
-      <CheckoutButton />
+      <CheckoutButton className="w-2xs" href="/checkout" />
     </BaseSidebar>
   );
 };

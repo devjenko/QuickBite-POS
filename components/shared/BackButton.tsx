@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const BackButton = ({ href }: { href: string }) => {
   return (
-    <Link className="flex gap-2.5 " href={href}>
+    <Link className="flex gap-2.5" href={href}>
       <Image
         width={24}
         height={24}

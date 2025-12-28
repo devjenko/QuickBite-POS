@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 type CartItem = {
   image: string;
@@ -17,48 +18,53 @@ interface CartState {
   decreaseQuantity: (id: string) => void;
 }
 
-export const useCartStore = create<CartState>((set) => ({
-  items: [],
+export const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
+      items: [],
 
-  addItem: (item) =>
-    set((state) => {
-      // go through items and check if any new items have the same id as the previous ones
-      const exists = state.items.find((i) => i.id === item.id);
+      addItem: (item) =>
+        set((state) => {
+          const exists = state.items.find((i) => i.id === item.id);
 
-      // if any new items have the same id increase the quantity on click
-      if (exists) {
-        return {
+          if (exists) {
+            return {
+              items: state.items.map((i) =>
+                i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+              ),
+            };
+          }
+
+          return {
+            items: [...state.items, { ...item, quantity: 1 }],
+          };
+        }),
+
+      removeItem: (id) =>
+        set((state) => ({
+          items: state.items.filter((i) => i.id !== id),
+        })),
+
+      clearCart: () => set({ items: [] }),
+
+      increaseQuantity: (id) =>
+        set((state) => ({
           items: state.items.map((i) =>
-            i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+            i.id === id ? { ...i, quantity: i.quantity + 1 } : i
           ),
-        };
-      }
+        })),
 
-      // else add the new item
-      return { items: [...state.items, { ...item, quantity: 1 }] };
+      decreaseQuantity: (id) =>
+        set((state) => ({
+          items: state.items.map((i) =>
+            i.id === id && i.quantity > 1
+              ? { ...i, quantity: i.quantity - 1 }
+              : i
+          ),
+        })),
     }),
-
-  removeItem: (id) => {
-    set((state) => ({ items: state.items.filter((i) => i.id !== id) }));
-  },
-  clearCart: () => {
-    set(() => ({ items: [] }));
-  },
-
-  increaseQuantity: (id: string) => {
-    set((state) => ({
-      items: state.items.map((i) =>
-        i.id === id ? { ...i, quantity: i.quantity + 1 } : i
-      ),
-    }));
-  },
-  decreaseQuantity: (id: string) => {
-    set((state) => ({
-      items: state.items.map((i) =>
-        i.id === id
-          ? { ...i, quantity: i.quantity > 1 ? i.quantity - 1 : i.quantity }
-          : i
-      ),
-    }));
-  },
-}));
+    {
+      name: "cart-storage", // 👈 localStorage key
+    }
+  )
+);
