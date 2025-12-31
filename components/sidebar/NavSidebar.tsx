@@ -2,16 +2,19 @@
 
 import Link from "next/link";
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
-import { signOut } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 import Image from "next/image";
+import SettingsModal from "../settings/SettingsModal";
 
 const NavSidebar = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [password, setPassword] = useState("");
 
-  const handleSignOut = async () => {
+  const handleLogoutOut = async () => {
     setIsLoading(true);
     await signOut({
       callbackUrl: "/login",
@@ -37,9 +40,9 @@ const NavSidebar = () => {
       href: "/orders",
     },
     {
-      name: "Settings",
-      iconPath: "/icons/settings.svg",
-      href: "/settings",
+      name: "Inventory",
+      iconPath: "/icons/inventory.svg",
+      href: "/inventory",
     },
   ];
 
@@ -65,32 +68,34 @@ const NavSidebar = () => {
             />
           </li>
         ))}
-        <button
-          className="gap-2 px-4 py-8 flex flex-col justify-center items-center bg-[var(--White)] rounded-sm shadow-sm cursor-pointer"
-          onClick={handleSignOut}
-        >
-          {
-            <span className="flex flex-col justify-center items-center gap-2">
-              {!isLoading ? (
-                <>
-                  <Image
-                    width={24}
-                    height={24}
-                    src="/icons/logout.svg"
-                    alt="Logout button icon"
-                  />
 
-                  <span>Logout</span>
-                </>
-              ) : (
-                <>
-                  <Spinner color="black" />
-                  Logging Out
-                </>
-              )}
-            </span>
-          }
-        </button>
+        {/* Settings button */}
+        <SideBarNavLink
+          name="Settings"
+          icon="/icons/settings.svg"
+          href="#"
+          onClick={() => setIsOpen(true)}
+        />
+
+        <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />
+
+        {/* Logout button */}
+
+        {!isLoading ? (
+          <>
+            <SideBarNavLink
+              name="Logout"
+              icon="/icons/logout.svg"
+              href={"/login"}
+              onClick={handleLogoutOut}
+            />
+          </>
+        ) : (
+          <>
+            <Spinner color="black" />
+            Logging Out
+          </>
+        )}
       </ul>
     </BaseSidebar>
   );
