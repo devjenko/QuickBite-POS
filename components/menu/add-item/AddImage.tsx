@@ -129,7 +129,6 @@ const AddImage = ({
             alt="Cropped"
             fill
             src={image}
-            unoptimized
             className="object-cover rounded"
           />
         </div>

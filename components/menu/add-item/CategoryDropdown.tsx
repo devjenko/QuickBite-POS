@@ -63,7 +63,6 @@ const CategoryDropdown = ({
                 <Image
                   width={20}
                   height={20}
-                  unoptimized
                   alt={item.name}
                   src={"/icons/" + normalizeForPath(item.name) + ".svg"}
                 />

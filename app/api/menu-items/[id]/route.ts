@@ -70,16 +70,25 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    // verify item belongs to user
+    const menuItem = await prisma.menuItem.findUnique({where: {id}, select: {userId: true}});
+    if (!menuItem) {
+      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+    }
+    if (menuItem.userId !== session.user.id) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     await prisma.menuItem.delete({ where: { id } });
 
     return NextResponse.json(
       { message: "Item deleted successfully" },
       { status: 200 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Delete error:", error);
 
-    if (error.code === "P2025") {
+    if ((error as { code?: string }).code === "P2025") {
       return NextResponse.json({ error: "Item not found" }, { status: 404 });
     }
 

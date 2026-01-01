@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
@@ -56,8 +56,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         }
 
         // If everything is valid, remove the password and return the full user object
-        delete (user as any).password;
-        return user as any;
+        delete (user as unknown as { password?: string }).password;
+        return user as unknown as User | null;
       },
     }),
   ],

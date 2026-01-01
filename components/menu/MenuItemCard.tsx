@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -37,7 +36,9 @@ const MenuItemCard = ({
   };
 
   const handleAddToCart = () => {
-    addItem({ image, name: name || "", price: price || 0, id, quantity: 1 });
+    // Store optimized image URL in cart for better quality
+    const optimizedImage = getOptimizedImage(image);
+    addItem({ image: optimizedImage, name: name || "", price: price || 0, id, quantity: 1 });
   };
 
   return (
