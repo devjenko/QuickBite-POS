@@ -1,6 +1,5 @@
 # QuickBite POS System
 
-An elegant and modern Point of Sale (POS) system designed for fast food restaurants. QuickBite enables businesses to manage their menu items, process orders, and handle checkout seamlessly.
 
 ![QuickBite](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
@@ -161,7 +160,6 @@ quickbite-app/
 ### User
 - Business accounts with unique `businessId`
 - Hashed passwords
-- Profile images
 - One-to-many relationship with MenuItems
 
 ### MenuItem
@@ -207,17 +205,6 @@ The shopping cart uses Zustand with localStorage persistence, so cart items rema
 ### Server-Side Rendering
 Leverages Next.js App Router for optimal performance with server components for data fetching and client components for interactivity.
 
-## 🚧 Roadmap
-
-- [ ] Complete orders management functionality
-- [ ] Implement inventory tracking
-- [ ] Add payment processing integration
-- [ ] Real-time order updates
-- [ ] Analytics and reporting dashboard
-- [ ] Multi-location support
-- [ ] Staff management and roles
-- [ ] Receipt printing
-- [ ] Customer management
 
 ## 🤝 Contributing
 
@@ -229,9 +216,9 @@ This project is private and proprietary.
 
 ## 👤 Author
 
-**Brandon**
+**Brandon Jenkins [devjenko]**
 
 ---
 
-Built with ❤️ using Next.js and TypeScript
+
 
