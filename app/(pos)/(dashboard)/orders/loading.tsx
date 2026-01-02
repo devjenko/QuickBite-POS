@@ -1,5 +1,11 @@
+import DashboardLayout from "@/components/layout/DashboardLayout";
+
 const loading = () => {
-  return <div>loading</div>;
+  return (
+    <DashboardLayout>
+      <div>loading</div>
+    </DashboardLayout>
+  );
 };
 
 export default loading;
