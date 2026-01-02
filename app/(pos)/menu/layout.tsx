@@ -3,7 +3,7 @@ import POSLayout from "@/components/layout/POSLayout";
 import MenuSidebar from "@/components/sidebar/MenuSidebar";
 import CenterContentContainer from "@/components/shared/CenterContentContainer";
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
+
 interface DashboardLayoutProps {
   children: React.ReactNode;
 }
@@ -11,9 +11,7 @@ interface DashboardLayoutProps {
 const MenuLayout = async ({ children }: DashboardLayoutProps) => {
   // redirect users that aren't authed
   const session = await auth();
-  if (!session) redirect("/login");
 
-  
   return (
     <POSLayout>
       <MenuSidebar session={session} />

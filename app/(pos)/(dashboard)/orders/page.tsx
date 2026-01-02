@@ -1,5 +1,11 @@
+import DashboardLayout from "@/components/layout/DashboardLayout";
+
 const OrdersPage = () => {
-  return <div>OrdersPage</div>;
+  return (
+    <DashboardLayout>
+      <div>OrdersPage</div>
+    </DashboardLayout>
+  );
 };
 
 export default OrdersPage;

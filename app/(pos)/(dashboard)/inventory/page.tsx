@@ -1,5 +1,11 @@
+import DashboardLayout from "@/components/layout/DashboardLayout";
+
 const InventoryPage = () => {
-  return <div>InventoryPage</div>;
+  return (
+    <DashboardLayout>
+      <div>InventoryPage</div>
+    </DashboardLayout>
+  );
 };
 
 export default InventoryPage;

@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import { cookies } from "next/headers";
 
 export async function POST(req: Request) {
   try {
@@ -37,6 +38,17 @@ export async function POST(req: Request) {
     if (!isPasswordValid) {
       return NextResponse.json({ error: "Invalid password" }, { status: 401 });
     }
+
+    // store user ID in cookie, for account owners trying to access settings (only user in current session after password verification will be able to access settings page within 15 min)
+
+    const cookieStore = await cookies();
+    cookieStore.set("settings-verified", session.user.id, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 60 * 15,
+      path: "/",
+    });
 
     return NextResponse.json({ success: true });
   } catch (error) {
