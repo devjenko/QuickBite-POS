@@ -2,17 +2,17 @@
 
 import Link from "next/link";
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
-import { signIn, signOut } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
 import Image from "next/image";
 import SettingsModal from "../settings/SettingsModal";
+import ContentWrapper from "../shared/ContentWrapper";
 
 const NavSidebar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [password, setPassword] = useState("");
 
   const handleLogoutOut = async () => {
     setIsLoading(true);
@@ -91,10 +91,10 @@ const NavSidebar = () => {
             />
           </>
         ) : (
-          <>
-            <Spinner color="black" />
-            Logging Out
-          </>
+          <ContentWrapper className="px-4 py-8 gap-2 flex flex-col justify-center items-center">
+            <Spinner className="size-6" color="black" />
+            <span>Logging out</span>
+          </ContentWrapper>
         )}
       </ul>
     </BaseSidebar>

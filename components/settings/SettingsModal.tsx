@@ -60,7 +60,7 @@ const SettingsModal = ({ isOpen, setIsOpen }: BaseModalProps) => {
       onSubmit={handleVerifyPassword}
       isLoading={isLoading}
     >
-      <form>
+      <form onSubmit={handleVerifyPassword}>
         <InputPassword onChange={(e) => setInput(e.target.value)} />
       </form>
     </BaseModal>

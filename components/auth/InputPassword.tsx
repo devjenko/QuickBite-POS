@@ -12,7 +12,7 @@ const InputPassword = ({ className, ...props }: InputPasswordProps) => {
   const id = useId();
 
   return (
-    <div className="w-full max-w-md space-y-2">
+    <div className="w-full  space-y-2">
       <div className="relative">
         <Input
           {...props}

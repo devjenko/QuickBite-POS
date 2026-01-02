@@ -10,9 +10,16 @@ interface SideBarNavLinkProps {
   name: string;
   href?: string;
   onClick?: () => void;
+  children?: React.ReactNode;
 }
 
-const SideBarNavLink = ({ icon, name, href, onClick }: SideBarNavLinkProps) => {
+const SideBarNavLink = ({
+  icon,
+  name,
+  href,
+  onClick,
+  children,
+}: SideBarNavLinkProps) => {
   const pathname = usePathname();
 
   // Active if pathname matches
@@ -29,6 +36,7 @@ const SideBarNavLink = ({ icon, name, href, onClick }: SideBarNavLinkProps) => {
             src={icon}
             className={(isActive && "brightness-0 invert") || undefined}
           />
+          {children}
           <span>{name}</span>
         </div>
       </ContentWrapper>
