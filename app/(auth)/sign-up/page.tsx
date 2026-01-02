@@ -26,11 +26,13 @@ export default function SignUpPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <Image
-          src="/images/login1.webp"
+          src="/images/login.webp"
           alt="Login background"
           fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover absolute inset-0 h-full w-full  dark:brightness-[0.2] dark:grayscale "
+          sizes="50vw"
+          className="object-cover object-right"
+          quality={85}
+          priority
         />
       </div>
     </div>
