@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MenuSidebarLinks from "@/components/sidebar/MenuSidebarLinks";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import AddItemModal from "@/components/menu/add-item/AddItemModal";

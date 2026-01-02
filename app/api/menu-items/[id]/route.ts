@@ -2,6 +2,7 @@ import prisma from "@/lib/prisma";
 import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
 import { auth } from "@/auth";
+import { createMenuItemSchema } from "@/lib/validations";
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,7 +14,20 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, description, price, category, image } = body;
+    
+    // validate body with zod
+    const validatedBody = createMenuItemSchema.safeParse(body);
+
+    if (!validatedBody.success) {
+      return NextResponse.json(
+        { error: validatedBody.error.message },
+        { status: 400 }
+      );
+    }
+
+    const { name, description, price, category, image } = validatedBody.data;
+
+
 
     // normalize category to lowercase, remove spaces, and replace & with 'and'
     const normalizedCategory =
@@ -21,13 +35,6 @@ export async function POST(request: NextRequest) {
         ? category.trim().toLowerCase().replace(/&/g, "and").replace(/\s+/g, "")
         : category;
 
-    // Validate fields
-    if (!name || !price || !normalizedCategory) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 }
-      );
-    }
 
     // Upload image to Cloudinary
     let imageUrl = null;
