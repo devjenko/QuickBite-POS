@@ -18,11 +18,11 @@ export default async function DashboardGreeting() {
     return formattedName;
   }
   return (
-    <p>
+    <h1>
       Welcome,{" "}
       <strong>
         {extractBusinessName(session?.user?.businessId ?? "Guest")}.
       </strong>
-    </p>
+    </h1>
   );
 }

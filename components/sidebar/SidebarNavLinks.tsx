@@ -11,6 +11,7 @@ interface SideBarNavLinkProps {
   href?: string;
   onClick?: () => void;
   children?: React.ReactNode;
+  className?: string;
 }
 
 const SideBarNavLink = ({
@@ -18,6 +19,8 @@ const SideBarNavLink = ({
   name,
   href,
   onClick,
+  className,
+
   children,
 }: SideBarNavLinkProps) => {
   const pathname = usePathname();
@@ -28,7 +31,9 @@ const SideBarNavLink = ({
   return (
     <Link onClick={onClick} href={href || ""}>
       <ContentWrapper variant={(isActive && "dark") || undefined}>
-        <div className="gap-2 px-4 py-8 flex flex-col justify-center items-center">
+        <div
+          className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}
+        >
           <Image
             alt="Sidebar Icon"
             width={24}

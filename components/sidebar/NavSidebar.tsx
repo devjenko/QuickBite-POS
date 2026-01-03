@@ -46,6 +46,10 @@ const NavSidebar = () => {
     },
   ];
 
+  const handleOpenSettings = () => {
+    setIsOpen(true);
+  };
+
   return (
     <BaseSidebar>
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
@@ -73,8 +77,7 @@ const NavSidebar = () => {
         <SideBarNavLink
           name="Settings"
           icon="/icons/settings.svg"
-          href="#"
-          onClick={() => setIsOpen(true)}
+          onClick={handleOpenSettings}
         />
 
         <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />

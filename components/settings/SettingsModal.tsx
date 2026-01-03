@@ -56,7 +56,7 @@ const SettingsModal = ({ isOpen, setIsOpen }: BaseModalProps) => {
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       title="Password Verification"
-      description="Enter account password to access settings"
+      description="Verify account password to access settings"
       onSubmit={handleVerifyPassword}
       isLoading={isLoading}
     >
