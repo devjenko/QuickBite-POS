@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "@/public/quickbite-icon.svg";
 import { SignUpForm } from "@/components/auth/SignupForm";
 
 export default function SignUpPage() {
@@ -9,7 +8,7 @@ export default function SignUpPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-4 font-medium">
             <Image
-              src={logo}
+              src={"/quickbite-icon.webp"}
               height={50}
               width={50}
               className="rounded-sm"
@@ -26,11 +25,13 @@ export default function SignUpPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <Image
-          src="/images/login1.webp"
+          src="/images/auth-cover.webp"
           alt="Login background"
           fill
-          sizes="(max-width: 1024px) 100vw, 50vw"
-          className="object-cover absolute inset-0 h-full w-full  dark:brightness-[0.2] dark:grayscale "
+          sizes="50vw"
+          className="object-cover"
+          quality={85}
+          priority
         />
       </div>
     </div>

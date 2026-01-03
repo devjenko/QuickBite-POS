@@ -55,11 +55,12 @@ const NavSidebar = () => {
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
         <Link href={"/dashboard"}>
           <Image
-            src={"/logos/quickbite-logo.svg"}
+            src={"/logos/quickbite-logo.webp"}
             alt="QuickBite logo"
             className="object-cover rounded-sm"
             width={125}
             height={125}
+            unoptimized
           />
         </Link>
 
