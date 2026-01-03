@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-[family-name:var(--font-inter)] antialiased overflow-hidden max-w-[3000px] m-auto">
+      <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto">
         <Providers>{children}</Providers>
         <Toaster />
       </body>

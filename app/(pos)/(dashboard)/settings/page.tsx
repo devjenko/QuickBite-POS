@@ -1,9 +1,10 @@
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import SettingsContent from "@/components/settings/SettingsContent";
 import DashboardLayout from "@/components/layout/DashboardLayout";
 
-const settingsPage = async () => {
+const SettingsPage = async () => {
   const session = await auth();
 
   // check if password was verified and verify the user ID matches
@@ -17,9 +18,9 @@ const settingsPage = async () => {
 
   return (
     <DashboardLayout>
-      <div>settingsPage</div>
+      <SettingsContent />
     </DashboardLayout>
   );
 };
 
-export default settingsPage;
+export default SettingsPage;
