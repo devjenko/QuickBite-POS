@@ -1,5 +1,4 @@
 import Image from "next/image";
-import logo from "@/public/quickbite-icon.svg";
 import { LoginForm } from "@/components/auth/LoginForm";
 
 export default function LoginPage() {
@@ -9,7 +8,7 @@ export default function LoginPage() {
         <div className="flex justify-center gap-2 md:justify-start">
           <a className="flex  items-center gap-4 font-medium">
             <Image
-              src={logo}
+              src={"/quickbite-icon.webp"}
               height={50}
               width={50}
               className="rounded-sm"
@@ -26,11 +25,11 @@ export default function LoginPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <Image
-          src="/images/login.webp"
+          src="/images/auth-cover.webp"
           alt="Login background"
           fill
           sizes="50vw"
-          className="object-cover object-right"
+          className="object-cover"
           quality={85}
           priority
         />
