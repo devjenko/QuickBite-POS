@@ -19,7 +19,7 @@ const DateDisplay = () => {
   const time = currentTime.toLocaleTimeString();
 
   return (
-    <span suppressHydrationWarning>
+    <span suppressHydrationWarning className="flex justify-center items-center">
       {today} | {time}
     </span>
   );
