@@ -9,7 +9,6 @@ interface DashboardLayoutProps {
 }
 
 const MenuLayout = async ({ children }: DashboardLayoutProps) => {
-  // redirect users that aren't authed
   const session = await auth();
 
   return (

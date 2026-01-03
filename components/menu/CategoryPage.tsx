@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CategoryPageContent from "./CategoryPageContent";
 
+
 const CategoryPage = async ({ category }: { category: string }) => {
   const session = await auth();
 

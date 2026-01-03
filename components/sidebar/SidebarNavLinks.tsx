@@ -12,6 +12,7 @@ interface SideBarNavLinkProps {
   onClick?: () => void;
   children?: React.ReactNode;
   className?: string;
+  prefetch?: boolean;
 }
 
 const SideBarNavLink = ({
@@ -20,6 +21,7 @@ const SideBarNavLink = ({
   href,
   onClick,
   className,
+  prefetch = true,
 
   children,
 }: SideBarNavLinkProps) => {
@@ -29,7 +31,7 @@ const SideBarNavLink = ({
   const isActive = pathname === href || pathname.startsWith(href + "/");
 
   return (
-    <Link onClick={onClick} href={href || ""}>
+    <Link prefetch={prefetch} onClick={onClick} href={href || ""}>
       <ContentWrapper variant={(isActive && "dark") || undefined}>
         <div
           className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}

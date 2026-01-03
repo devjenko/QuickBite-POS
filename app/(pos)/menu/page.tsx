@@ -3,23 +3,26 @@ import prisma from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 
+// Cache for 60 seconds
+export const revalidate = 60;
+
 const page = async () => {
   const session = await auth();
 
-  // Check if user has any menu items
-  const categories = await prisma.menuItem.findMany({
+  //  get the first user category
+  const firstMenuItem = await prisma.menuItem.findFirst({
     where: {
       userId: session?.user.id,
     },
-
     select: {
       category: true,
     },
-
-    distinct: ["category"],
+    orderBy: {
+      createdAt: "asc",
+    },
   });
 
-  if (categories.length === 0) {
+  if (!firstMenuItem) {
     return (
       <div className="flex justify-center items-center w-full h-screen">
         <EmptyMenuState />
@@ -27,8 +30,8 @@ const page = async () => {
     );
   }
 
-  // If there are categories then redirect to the first one
-  redirect(`/menu/${categories[0].category}`);
+  // Redirect to the first category
+  redirect(`/menu/${firstMenuItem.category}`);
 };
 
 export default page;

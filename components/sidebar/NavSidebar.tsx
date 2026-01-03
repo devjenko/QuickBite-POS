@@ -70,36 +70,41 @@ const NavSidebar = () => {
               name={link.name}
               icon={link.iconPath}
               href={link.href}
+              prefetch={true}
             />
           </li>
         ))}
 
         {/* Settings button */}
-        <SideBarNavLink
-          name="Settings"
-          icon="/icons/settings.svg"
-          onClick={handleOpenSettings}
-        />
+        <li>
+          <SideBarNavLink
+            name="Settings"
+            icon="/icons/settings.svg"
+            onClick={handleOpenSettings}
+            prefetch={false}
+          />
+        </li>
 
         <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />
 
         {/* Logout button */}
-
-        {!isLoading ? (
-          <>
-            <SideBarNavLink
-              name="Logout"
-              icon="/icons/logout.svg"
-              href={"/login"}
-              onClick={handleLogoutOut}
-            />
-          </>
-        ) : (
-          <ContentWrapper className="px-4 py-8 gap-2 flex flex-col justify-center items-center">
-            <Spinner className="size-6" color="black" />
-            <span>Logging out</span>
-          </ContentWrapper>
-        )}
+        <li>
+          {!isLoading ? (
+            <>
+              <SideBarNavLink
+                name="Logout"
+                icon="/icons/logout.svg"
+                onClick={handleLogoutOut}
+                prefetch={false}
+              />
+            </>
+          ) : (
+            <ContentWrapper className="px-4 py-8 gap-2 flex flex-col justify-center items-center">
+              <Spinner className="size-6" color="black" />
+              <span>Logging out</span>
+            </ContentWrapper>
+          )}
+        </li>
       </ul>
     </BaseSidebar>
   );
