@@ -165,6 +165,7 @@ export function SignUpForm({
             required
             disabled={isLoading}
             value={businessName}
+            autoComplete="off"
           />
         </Field>
 
@@ -178,6 +179,7 @@ export function SignUpForm({
             disabled={isLoading}
             value={password}
             required
+            autoComplete="off"
           />
 
           {/* Real-time password requirements display */}
