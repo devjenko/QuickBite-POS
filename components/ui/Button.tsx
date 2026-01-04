@@ -10,6 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-[var(--White)] text-[var(--Black)]",
         dark: "bg-[var(--DarkBlue)] text-[var(--White)] hover:bg-[var(--DarkBlue)]/90",
+        grey: "bg-gray-50 text-black shadow-sm",
       },
       size: {
         default: "px-4 py-2 has-[>svg]:px-3",

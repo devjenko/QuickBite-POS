@@ -7,8 +7,6 @@ import SettingItem from "./SettingItem";
 import Select, { SelectOption } from "./Select";
 import ConnectAccountCard from "./ConnectAccountCard";
 import UserModeOption from "./UserModeOption";
-import CenterContentContainer from "../shared/CenterContentContainer";
-import DashboardLayout from "../layout/DashboardLayout";
 
 type UserMode = "owner" | "staff";
 
@@ -43,7 +41,7 @@ const SettingsContent: React.FC = () => {
     enableTipping: true,
     defaultTaxRate: "7",
 
-    // User Mode
+    // User Modes
     userMode: "owner",
 
     // Display & Interface

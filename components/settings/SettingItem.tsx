@@ -19,10 +19,10 @@ const SettingItem: React.FC<SettingItemProps> = ({
     `}
     >
       <div className="flex-1">
-        <div className="text-[15px] font-medium text-gray-900 mb-1">
+        <div className="text-small font-medium text-[var(--Black)] mb-1">
           {label}
         </div>
-        <div className="text-[13px] text-gray-500">{sublabel}</div>
+        <div className="text-xxsmall text-gray-500">{sublabel}</div>
       </div>
       <div className="sm:ml-4 flex justify-end">{children}</div>
     </div>

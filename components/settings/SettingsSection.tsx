@@ -10,7 +10,7 @@ const SettingsSection: React.FC<SettingsSectionProps> = ({
   children,
 }) => {
   return (
-    <section className="mb-11">
+    <section className="mb-11 px-2">
       <h2 className="mb-2">{title}</h2>
       <p className="mb-6">{description}</p>
       {children}

@@ -18,9 +18,8 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
       onClick={() => onChange(!checked)}
       className={`
         relative inline-flex h-[31px] w-[51px] shrink-0 items-center rounded-full
-        transition-colors duration-300 focus:outline-none focus:ring-2 
-        focus:ring-blue-500 focus:ring-offset-2
-        ${checked ? "bg-green-500" : "bg-gray-300"}
+        transition-colors duration-300 focus:outline-none focus:ring-offset-2
+        ${checked ? "bg-[var(--DarkBlue)]" : "bg-gray-300"}
         ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
       `}
     >
