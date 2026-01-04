@@ -101,6 +101,7 @@ export function LoginForm({
             <Link
               href={"/forgot-password"}
               className="ml-auto text-md underline-offset-4 hover:underline"
+              prefetch={false}
             >
               Forgot your password?
             </Link>
@@ -129,7 +130,9 @@ export function LoginForm({
 
         <FieldDescription className="text-center flex justify-center items-center gap-2">
           Don&apos;t have an account?
-          <Link href={"/sign-up"}>Sign Up</Link>
+          <Link href={"/sign-up"} prefetch={false}>
+            Sign Up
+          </Link>
         </FieldDescription>
       </FieldGroup>
     </form>

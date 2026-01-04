@@ -25,13 +25,13 @@ export default function SignUpPage() {
       </div>
       <div className="bg-muted relative hidden lg:block">
         <Image
-          src="/images/auth-cover.webp"
+          src="https://res.cloudinary.com/dope0htm4/image/upload/f_auto,q_auto:good,w_1920/auth-cover_tdd9bn"
           alt="Login background"
           fill
           sizes="50vw"
           className="object-cover"
-          quality={85}
           priority
+          unoptimized
         />
       </div>
     </div>

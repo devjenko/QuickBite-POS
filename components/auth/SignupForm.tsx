@@ -128,7 +128,9 @@ export function SignUpForm({
           </p>
         </div>
         <Button asChild variant="dark">
-          <Link href="/login">Go to Login</Link>
+          <Link href="/login" prefetch={false}>
+            Go to Login
+          </Link>
         </Button>
       </div>
     );
@@ -211,7 +213,9 @@ export function SignUpForm({
 
         <FieldDescription className="text-center flex justify-center items-center gap-2">
           Already have an account?
-          <Link href="/login">Login</Link>
+          <Link href="/login" prefetch={false}>
+            Login
+          </Link>
         </FieldDescription>
       </FieldGroup>
     </form>
