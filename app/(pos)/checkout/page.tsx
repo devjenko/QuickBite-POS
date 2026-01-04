@@ -10,7 +10,7 @@ const CheckoutPage = () => {
   return (
     <CenterContentContainer className="flex w-full gap-5.5 h-screen ">
       <ContentWrapper className="flex-1 p-5 overflow-hidden gap-5 flex flex-col">
-        <BackButton />
+        <BackButton href="/menu" />
         <OrderList />
       </ContentWrapper>
       <ContentWrapper className="flex-1 p-5  flex flex-col">
