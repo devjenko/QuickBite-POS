@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --text-xlarge: 24px;
   --text-large: 20px;
   --text-small: 16px;
   --text-xsmall: 14px;
@@ -143,11 +144,11 @@
   }
 
   h1 {
-    @apply text-3xl font-semibold text-[var(--Black)];
+    @apply text-xlarge font-semibold text-[var(--Black)];
   }
 
   h2 {
-    @apply text-xl font-semibold text-[var(--Black)];
+    @apply text-large font-semibold text-[var(--Black)];
   }
 
   p {

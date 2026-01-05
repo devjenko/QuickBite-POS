@@ -9,6 +9,7 @@ interface SideBarNavLinkProps {
   icon: string;
   name: string;
   href?: string;
+  activeHref?: string;
   onClick?: () => void;
   children?: React.ReactNode;
   className?: string;
@@ -19,6 +20,7 @@ const SideBarNavLink = ({
   icon,
   name,
   href,
+  activeHref,
   onClick,
   className,
   prefetch = true,
@@ -27,11 +29,15 @@ const SideBarNavLink = ({
 }: SideBarNavLinkProps) => {
   const pathname = usePathname();
 
-  // Active if pathname matches
-  const isActive = pathname === href || pathname.startsWith(href + "/");
+  const checkPath = activeHref || href;
+
+  // Active if pathname matches or the href is active
+  const isActive = checkPath
+    ? pathname === checkPath || pathname.startsWith(checkPath + "/")
+    : false;
 
   return (
-    <Link prefetch={prefetch} onClick={onClick} href={href || ""}>
+    <Link prefetch={prefetch} onClick={onClick} href={href || "#"}>
       <ContentWrapper variant={(isActive && "dark") || undefined}>
         <div
           className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}

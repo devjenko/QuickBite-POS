@@ -10,6 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import Image from "next/image";
+import { itemCategories } from "@/consts/menu";
 
 const CategoryDropdown = ({
   onValueChange,
@@ -19,26 +20,6 @@ const CategoryDropdown = ({
   onValueChange: (value: string) => void;
 }) => {
   const id = useId();
-
-  const itemCategories = [
-    { name: "Breakfast" },
-    { name: "Lunch" },
-    { name: "Dinner" },
-
-    { name: "Starters" },
-    { name: "Main Courses" },
-    { name: "Deserts" },
-    { name: "Sides" },
-    { name: "Burgers" },
-    { name: "Sandwiches" },
-    { name: "Soups & Salads" },
-    { name: "Pizzas" },
-
-    { name: "Hot Drinks" },
-    { name: "Cold Drinks" },
-    { name: "Alcoholic Drinks" },
-    { name: "Coffee" },
-  ];
 
   // Helper function to normalize category name for file paths
   const normalizeForPath = (name: string) => {

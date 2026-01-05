@@ -9,6 +9,7 @@ import Spinner from "@/components/ui/Spinner";
 import Image from "next/image";
 import SettingsModal from "../settings/SettingsModal";
 import ContentWrapper from "../shared/ContentWrapper";
+import { SidebarNavLinks } from "@/consts/nav-sidebar";
 
 const NavSidebar = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -21,30 +22,6 @@ const NavSidebar = () => {
       redirect: true,
     });
   };
-
-  const SidebarNavLinks = [
-    {
-      name: "Dashboard",
-      iconPath: "/icons/dashboard.svg",
-      href: "/dashboard",
-    },
-    {
-      name: "Menu",
-      iconPath: "/icons/newOrder.svg",
-      href: "/menu",
-    },
-
-    {
-      name: "Orders",
-      iconPath: "/icons/online.svg",
-      href: "/orders",
-    },
-    {
-      name: "Inventory",
-      iconPath: "/icons/inventory.svg",
-      href: "/inventory",
-    },
-  ];
 
   const handleOpenSettings = () => {
     setIsOpen(true);
@@ -82,6 +59,7 @@ const NavSidebar = () => {
             icon="/icons/settings.svg"
             onClick={handleOpenSettings}
             prefetch={false}
+            activeHref="/settings"
           />
         </li>
 

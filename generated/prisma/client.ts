@@ -64,3 +64,13 @@ export type VerificationToken = Prisma.VerificationTokenModel
  * 
  */
 export type MenuItem = Prisma.MenuItemModel
+/**
+ * Model Settings
+ * 
+ */
+export type Settings = Prisma.SettingsModel
+/**
+ * Model PaymentAccount
+ * 
+ */
+export type PaymentAccount = Prisma.PaymentAccountModel

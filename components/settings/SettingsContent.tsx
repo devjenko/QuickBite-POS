@@ -1,18 +1,26 @@
 "use client";
 
 import React, { useState } from "react";
-import ToggleSwitch from "./ToggleSwitch";
-import SettingsSection from "./SettingsSection";
-import SettingItem from "./SettingItem";
-import Select, { SelectOption } from "./Select";
-import ConnectAccountCard from "./ConnectAccountCard";
-import UserModeOption from "./UserModeOption";
-
-type UserMode = "owner" | "staff";
+import ToggleSwitch from "@/components/settings/ToggleSwitch";
+import SettingsSection from "@/components/settings/SettingsSection";
+import SettingItem from "@/components/settings/SettingItem";
+import {
+  taxRateOptions,
+  languageOptions,
+  currencyOptions,
+  dateFormatOptions,
+  timeFormatOptions,
+} from "@/consts/settings";
+import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
+import UserModeOption from "@/components/settings/UserModeOption";
+import { toast } from "sonner";
+import { UserMode } from "@/types/settings";
+import Dropdown from "../shared/Dropdown";
 
 interface SettingsState {
   // Payment Settings
-  stripeConnected: boolean;
+  ABAConnected: boolean;
+  WingConnected: boolean;
   acceptCardPayments: boolean;
   qrCodePayments: boolean;
   cashPayments: boolean;
@@ -34,12 +42,13 @@ interface SettingsState {
 const SettingsContent: React.FC = () => {
   const [settings, setSettings] = useState<SettingsState>({
     // Payment Settings
-    stripeConnected: false,
+    ABAConnected: false,
+    WingConnected: false,
     acceptCardPayments: true,
     qrCodePayments: true,
     cashPayments: true,
     enableTipping: true,
-    defaultTaxRate: "7",
+    defaultTaxRate: "0",
 
     // User Modes
     userMode: "owner",
@@ -61,51 +70,25 @@ const SettingsContent: React.FC = () => {
     setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleStripeConnect = () => {
-    console.log("Connecting to Stripe...");
-    updateSetting("stripeConnected", true);
+  const handleABAConnect = () => {
+    console.log("Connecting to ABA...");
+    updateSetting("ABAConnected", true);
   };
 
-  const handleStripeDisconnect = () => {
-    console.log("Disconnecting from Stripe...");
-    updateSetting("stripeConnected", false);
+  const handleABADisconnect = () => {
+    console.log("Disconnecting from ABA...");
+    updateSetting("ABAConnected", false);
   };
 
-  // Options for dropdowns
-  const taxRateOptions: SelectOption[] = [
-    { value: "0", label: "0%" },
-    { value: "5", label: "5%" },
-    { value: "7", label: "7%" },
-    { value: "10", label: "10%" },
-    { value: "custom", label: "Custom" },
-  ];
+  const handleWingConnect = () => {
+    console.log("Connecting to Wing...");
+    updateSetting("WingConnected", true);
+  };
 
-  const languageOptions: SelectOption[] = [
-    { value: "en", label: "English" },
-    { value: "es", label: "Spanish" },
-    { value: "fr", label: "French" },
-    { value: "de", label: "German" },
-    { value: "zh", label: "Chinese" },
-  ];
-
-  const currencyOptions: SelectOption[] = [
-    { value: "usd", label: "USD ($)" },
-    { value: "eur", label: "EUR (€)" },
-    { value: "gbp", label: "GBP (£)" },
-    { value: "jpy", label: "JPY (¥)" },
-    { value: "cad", label: "CAD ($)" },
-  ];
-
-  const dateFormatOptions: SelectOption[] = [
-    { value: "mm-dd-yyyy", label: "MM/DD/YYYY" },
-    { value: "dd-mm-yyyy", label: "DD/MM/YYYY" },
-    { value: "yyyy-mm-dd", label: "YYYY-MM-DD" },
-  ];
-
-  const timeFormatOptions: SelectOption[] = [
-    { value: "12h", label: "12-hour (2:30 PM)" },
-    { value: "24h", label: "24-hour (14:30)" },
-  ];
+  const handleWingDisconnect = () => {
+    console.log("Disconnecting from Wing...");
+    updateSetting("WingConnected", false);
+  };
 
   return (
     <>
@@ -117,9 +100,19 @@ const SettingsContent: React.FC = () => {
         description="Manage your payment processing and transaction preferences"
       >
         <ConnectAccountCard
-          isConnected={settings.stripeConnected}
-          onConnect={handleStripeConnect}
-          onDisconnect={handleStripeDisconnect}
+          name="ABA"
+          img="/logos/aba_bank_logo.webp"
+          isConnected={settings.ABAConnected}
+          onConnect={handleABAConnect}
+          onDisconnect={handleABADisconnect}
+        />
+
+        <ConnectAccountCard
+          isConnected={settings.WingConnected}
+          onConnect={handleWingConnect}
+          onDisconnect={handleWingDisconnect}
+          name="Wing"
+          img="/logos/wing_bank_logo.webp"
         />
 
         <div>
@@ -156,23 +149,15 @@ const SettingsContent: React.FC = () => {
           </SettingItem>
 
           <SettingItem
-            label="Enable Tipping"
-            sublabel="Show tip options at checkout"
-          >
-            <ToggleSwitch
-              checked={settings.enableTipping}
-              onChange={(checked) => updateSetting("enableTipping", checked)}
-            />
-          </SettingItem>
-
-          <SettingItem
             label="Default Tax Rate"
             sublabel="Applied to all menu items unless overridden"
             isLast
           >
-            <Select
+            <Dropdown
               value={settings.defaultTaxRate}
-              onChange={(value) => updateSetting("defaultTaxRate", value)}
+              onValueChange={(value: string) =>
+                updateSetting("defaultTaxRate", value)
+              }
               options={taxRateOptions}
             />
           </SettingItem>
@@ -209,9 +194,9 @@ const SettingsContent: React.FC = () => {
             label="Language"
             sublabel="Choose your preferred language"
           >
-            <Select
+            <Dropdown
               value={settings.language}
-              onChange={(value) => updateSetting("language", value)}
+              onValueChange={(value) => updateSetting("language", value)}
               options={languageOptions}
             />
           </SettingItem>
@@ -220,25 +205,25 @@ const SettingsContent: React.FC = () => {
             label="Currency"
             sublabel="Default currency for transactions"
           >
-            <Select
+            <Dropdown
               value={settings.currency}
-              onChange={(value) => updateSetting("currency", value)}
+              onValueChange={(value) => updateSetting("currency", value)}
               options={currencyOptions}
             />
           </SettingItem>
 
           <SettingItem label="Date Format" sublabel="How dates are displayed">
-            <Select
+            <Dropdown
               value={settings.dateFormat}
-              onChange={(value) => updateSetting("dateFormat", value)}
+              onValueChange={(value) => updateSetting("dateFormat", value)}
               options={dateFormatOptions}
             />
           </SettingItem>
 
           <SettingItem label="Time Format" sublabel="12-hour or 24-hour clock">
-            <Select
+            <Dropdown
               value={settings.timeFormat}
-              onChange={(value) => updateSetting("timeFormat", value)}
+              onValueChange={(value) => updateSetting("timeFormat", value)}
               options={timeFormatOptions}
             />
           </SettingItem>

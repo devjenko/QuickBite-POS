@@ -1,28 +1,40 @@
 import Button from "@/components/ui/Button";
 import ContentWrapper from "../shared/ContentWrapper";
+import Image from "next/image";
 
 interface ConnectAccountCardProps {
   isConnected: boolean;
   onConnect: () => void;
   onDisconnect?: () => void;
+  name: string;
+  img: string;
 }
 
 const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
   isConnected,
   onConnect,
   onDisconnect,
+  name,
+  img,
 }) => {
   return (
     <ContentWrapper className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-5 mb-5">
-      <div className="w-[60px] h-[60px] bg-gradient-to-br from-indigo-600 to-indigo-400 rounded-sm flex items-center justify-center text-white font-bold text-xl shrink-0">
-        S
+      <div className=" flex items-center justify-center shrink-0">
+        <Image
+          width={60}
+          height={60}
+          src={img}
+          alt={`${name} bank account logo`}
+          unoptimized
+          className="rounded-sm"
+        />
       </div>
       <div className="flex-1">
-        <div className="font-semibold text-base mb-1">Stripe Connect</div>
+        <div className="font-semibold text-base mb-1">{name} Connect</div>
         <div className="text-xxsmall text-gray-500">
           {isConnected
-            ? "Your Stripe account is connected and ready to receive payments"
-            : "Connect your Stripe account to start receiving payments"}
+            ? `Your ${name} account is connected and ready to receive payments`
+            : `Connect your ${name} bank account to start receiving payments`}
         </div>
         <span
           className={`
