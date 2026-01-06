@@ -77,7 +77,6 @@ const SettingsContent: React.FC = () => {
   };
 
   const handleABAConnect = () => {
-    e.preventDefault();
     setIsLoading(true);
     console.log("Connecting to ABA...");
 

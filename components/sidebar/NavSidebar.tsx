@@ -37,6 +37,7 @@ const NavSidebar = () => {
             className="object-cover rounded-sm"
             width={125}
             height={125}
+            loading="eager"
             unoptimized
           />
         </Link>

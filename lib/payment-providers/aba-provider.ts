@@ -22,11 +22,31 @@ export class ABAProvider implements PaymentProvider {
     this.merchantId = process.env.PAYWAY_MERCHANT_ID!;
     this.apiKey = process.env.PAYWAY_API_KEY!;
 
-    // Use sandbox for testing, production for real money
-    this.baseUrl =
-      process.env.NODE_ENV === "production"
-        ? process.env.PAYWAY_PRODUCTION_URL!
-        : process.env.PAYWAY_SANDBOX_URL!;
+    // Determine the base URL from environment variables, preferring the new PAYWAY_BASE_URL
+    const urlSource =
+      process.env.PAYWAY_BASE_URL ||
+      (process.env.NODE_ENV === "production"
+        ? process.env.PAYWAY_PRODUCTION_URL
+        : process.env.PAYWAY_SANDBOX_URL);
+
+    if (!urlSource) {
+      // If no URL is set, the app can't connect to PayWay.
+      // We set baseUrl to an empty string to ensure it fails loudly and clearly.
+      this.baseUrl = "";
+      return;
+    }
+
+    try {
+      // The configured URL might be too specific (e.g., including /api/payment-gateway).
+      // We extract just the origin (scheme + hostname + port) to create a reliable base for all API calls.
+      this.baseUrl = new URL(urlSource).origin;
+    } catch (error) {
+      console.error(
+        `[ABAProvider] Invalid PayWay URL configured: "${urlSource}"`,
+        error
+      );
+      this.baseUrl = ""; // Fail clearly if URL is malformed
+    }
   }
 
   async generateLinkQR(userId: string): Promise<LinkQRResponse> {
@@ -55,9 +75,9 @@ export class ABAProvider implements PaymentProvider {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        reqTime: reqTime,
-        merchantId: this.merchantId,
-        returnParam: returnParam,
+        req_time: reqTime,
+        merchant_id: this.merchantId,
+        return_param: returnParam,
         hash: hash,
       }),
     });
@@ -70,6 +90,15 @@ export class ABAProvider implements PaymentProvider {
       throw new Error(data.status?.message || "Failed to generate link QR");
     }
 
+    // Validate expire_in from response
+    if (typeof data.expire_in !== "number" || !isFinite(data.expire_in)) {
+      console.error(
+        "[ABAProvider] Invalid 'expire_in' received from PayWay:",
+        data.expire_in
+      );
+      throw new Error("Invalid or missing expiration time from payment provider.");
+    }
+
     // Save linking attempt to DB
     await prisma.paymentLinkRequest.create({
       data: {
@@ -77,7 +106,7 @@ export class ABAProvider implements PaymentProvider {
         provider: "ABA",
         returnParam,
         status: "pending",
-        expiresAt: new Date(data.expire_in * 1000),
+        expiresAt: new Date(Date.now() + data.expire_in * 1000), // Set expiry relative to now
       },
     });
 
