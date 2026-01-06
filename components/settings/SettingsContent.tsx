@@ -16,6 +16,7 @@ import UserModeOption from "@/components/settings/UserModeOption";
 import { toast } from "sonner";
 import { UserMode } from "@/types/settings";
 import Dropdown from "../shared/Dropdown";
+import ConnectAccountModal from "./ConnectAccountModal";
 
 interface SettingsState {
   // Payment Settings
@@ -62,6 +63,11 @@ const SettingsContent: React.FC = () => {
     soundEffects: true,
   });
 
+  const [isOpen, setIsOpen] = useState(false);
+  const [merchantId, setMerchantId] = useState("");
+  const [apiKey, setApiKey] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   // Handler functions
   const updateSetting = <K extends keyof SettingsState>(
     key: K,
@@ -71,8 +77,12 @@ const SettingsContent: React.FC = () => {
   };
 
   const handleABAConnect = () => {
+    e.preventDefault();
+    setIsLoading(true);
     console.log("Connecting to ABA...");
-    updateSetting("ABAConnected", true);
+
+    try {
+    } catch (error) {}
   };
 
   const handleABADisconnect = () => {
@@ -100,18 +110,49 @@ const SettingsContent: React.FC = () => {
         description="Manage your payment processing and transaction preferences"
       >
         <ConnectAccountCard
-          name="ABA"
+          name="ABA Merchant"
           img="/logos/aba_bank_logo.webp"
           isConnected={settings.ABAConnected}
-          onConnect={handleABAConnect}
+          onConnect={() => setIsOpen(true)}
           onDisconnect={handleABADisconnect}
+        />
+
+        <ConnectAccountModal
+          title="Connect ABA PayWay Account"
+          description="Enter your ABA PayWay Merchant credentials to start accepting payments"
+          helpText="Don't have an ABA Merchant account yet?"
+          helpLink={{
+            text: "Download the ABA Merchant App here",
+            href: "https://www.ababank.com/en/aba-merchant-app/",
+          }}
+          fields={[
+            {
+              label: "Merchant ID",
+              placeholder: "eg., eh629400",
+              type: "text",
+              required: true,
+              value: merchantId,
+              onChange: setMerchantId,
+            },
+            {
+              label: "API Key",
+              placeholder: "Your API Key",
+              type: "password",
+              required: true,
+              value: apiKey,
+              onChange: setApiKey,
+            },
+          ]}
+          onConnect={handleABAConnect}
+          setIsOpen={setIsOpen}
+          isOpen={isOpen}
         />
 
         <ConnectAccountCard
           isConnected={settings.WingConnected}
           onConnect={handleWingConnect}
           onDisconnect={handleWingDisconnect}
-          name="Wing"
+          name="Wing Merchant"
           img="/logos/wing_bank_logo.webp"
         />
 

@@ -53,6 +53,7 @@ const SettingsModal = ({ isOpen, setIsOpen }: BaseModalProps) => {
 
   return (
     <BaseModal
+      btnName="Verify"
       isOpen={isOpen}
       setIsOpen={setIsOpen}
       title="Password Verification"

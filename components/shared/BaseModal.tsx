@@ -20,6 +20,7 @@ export interface BaseModalProps {
   children?: React.ReactNode;
   isLoading?: boolean | undefined;
   onSubmit?: (e: FormEvent<Element>) => void;
+  btnName?: string;
 }
 
 const BaseModal = ({
@@ -30,6 +31,7 @@ const BaseModal = ({
   children,
   onSubmit,
   isLoading,
+  btnName,
 }: BaseModalProps) => {
   // Add stopPropagation to the dialog content itself
   const handleDialogClick = (e: React.MouseEvent) => {
@@ -64,10 +66,10 @@ const BaseModal = ({
           >
             {isLoading ? (
               <span className="flex items-center gap-2">
-                Verifying <Spinner />
+                {btnName}ing <Spinner />
               </span>
             ) : (
-              "Verify"
+              btnName
             )}
           </Button>
         </DialogFooter>

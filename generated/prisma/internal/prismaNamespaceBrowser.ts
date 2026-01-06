@@ -57,7 +57,12 @@ export const ModelName = {
   VerificationToken: 'VerificationToken',
   MenuItem: 'MenuItem',
   Settings: 'Settings',
-  PaymentAccount: 'PaymentAccount'
+  PaymentAccount: 'PaymentAccount',
+  LinkedAccount: 'LinkedAccount',
+  PaymentLinkRequest: 'PaymentLinkRequest',
+  Customer: 'Customer',
+  Order: 'Order',
+  OrderItem: 'OrderItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -175,6 +180,87 @@ export const PaymentAccountScalarFieldEnum = {
 } as const
 
 export type PaymentAccountScalarFieldEnum = (typeof PaymentAccountScalarFieldEnum)[keyof typeof PaymentAccountScalarFieldEnum]
+
+
+export const LinkedAccountScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  ctidEncrypted: 'ctidEncrypted',
+  pwtEncrypted: 'pwtEncrypted',
+  maskAccount: 'maskAccount',
+  tokenExpiresAt: 'tokenExpiresAt',
+  isActive: 'isActive',
+  linkedAt: 'linkedAt',
+  lastUsed: 'lastUsed',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type LinkedAccountScalarFieldEnum = (typeof LinkedAccountScalarFieldEnum)[keyof typeof LinkedAccountScalarFieldEnum]
+
+
+export const PaymentLinkRequestScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  provider: 'provider',
+  returnParam: 'returnParam',
+  status: 'status',
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PaymentLinkRequestScalarFieldEnum = (typeof PaymentLinkRequestScalarFieldEnum)[keyof typeof PaymentLinkRequestScalarFieldEnum]
+
+
+export const CustomerScalarFieldEnum = {
+  id: 'id',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  email: 'email',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CustomerScalarFieldEnum = (typeof CustomerScalarFieldEnum)[keyof typeof CustomerScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  merchantId: 'merchantId',
+  customerId: 'customerId',
+  linkedAccountId: 'linkedAccountId',
+  paymentProvider: 'paymentProvider',
+  paymentStatus: 'paymentStatus',
+  paywayTranId: 'paywayTranId',
+  subtotal: 'subtotal',
+  tax: 'tax',
+  total: 'total',
+  currency: 'currency',
+  paidAt: 'paidAt',
+  paywayApv: 'paywayApv',
+  qrGeneratedAt: 'qrGeneratedAt',
+  qrExpiresAt: 'qrExpiresAt',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  menuItemId: 'menuItemId',
+  name: 'name',
+  price: 'price',
+  quantity: 'quantity',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
 export const SortOrder = {

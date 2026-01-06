@@ -52,3 +52,28 @@ export type Settings = Prisma.SettingsModel
  * 
  */
 export type PaymentAccount = Prisma.PaymentAccountModel
+/**
+ * Model LinkedAccount
+ * 
+ */
+export type LinkedAccount = Prisma.LinkedAccountModel
+/**
+ * Model PaymentLinkRequest
+ * 
+ */
+export type PaymentLinkRequest = Prisma.PaymentLinkRequestModel
+/**
+ * Model Customer
+ * 
+ */
+export type Customer = Prisma.CustomerModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
