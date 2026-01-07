@@ -57,12 +57,10 @@ export const ModelName = {
   VerificationToken: 'VerificationToken',
   MenuItem: 'MenuItem',
   Settings: 'Settings',
-  PaymentAccount: 'PaymentAccount',
-  LinkedAccount: 'LinkedAccount',
-  PaymentLinkRequest: 'PaymentLinkRequest',
   Customer: 'Customer',
   Order: 'Order',
-  OrderItem: 'OrderItem'
+  OrderItem: 'OrderItem',
+  BankQRCode: 'BankQRCode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -166,54 +164,6 @@ export const SettingsScalarFieldEnum = {
 export type SettingsScalarFieldEnum = (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum]
 
 
-export const PaymentAccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  merchantId: 'merchantId',
-  apiKeyHash: 'apiKeyHash',
-  webhookSecret: 'webhookSecret',
-  isActive: 'isActive',
-  metadata: 'metadata',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentAccountScalarFieldEnum = (typeof PaymentAccountScalarFieldEnum)[keyof typeof PaymentAccountScalarFieldEnum]
-
-
-export const LinkedAccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  ctidEncrypted: 'ctidEncrypted',
-  pwtEncrypted: 'pwtEncrypted',
-  maskAccount: 'maskAccount',
-  tokenExpiresAt: 'tokenExpiresAt',
-  isActive: 'isActive',
-  linkedAt: 'linkedAt',
-  lastUsed: 'lastUsed',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LinkedAccountScalarFieldEnum = (typeof LinkedAccountScalarFieldEnum)[keyof typeof LinkedAccountScalarFieldEnum]
-
-
-export const PaymentLinkRequestScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  returnParam: 'returnParam',
-  status: 'status',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentLinkRequestScalarFieldEnum = (typeof PaymentLinkRequestScalarFieldEnum)[keyof typeof PaymentLinkRequestScalarFieldEnum]
-
-
 export const CustomerScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -231,18 +181,12 @@ export const OrderScalarFieldEnum = {
   id: 'id',
   merchantId: 'merchantId',
   customerId: 'customerId',
-  linkedAccountId: 'linkedAccountId',
-  paymentProvider: 'paymentProvider',
   paymentStatus: 'paymentStatus',
-  paywayTranId: 'paywayTranId',
   subtotal: 'subtotal',
   tax: 'tax',
   total: 'total',
   currency: 'currency',
   paidAt: 'paidAt',
-  paywayApv: 'paywayApv',
-  qrGeneratedAt: 'qrGeneratedAt',
-  qrExpiresAt: 'qrExpiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -263,20 +207,24 @@ export const OrderItemScalarFieldEnum = {
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
+export const BankQRCodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bankName: 'bankName',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BankQRCodeScalarFieldEnum = (typeof BankQRCodeScalarFieldEnum)[keyof typeof BankQRCodeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const NullableJsonNullValueInput = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull'
-} as const
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -293,13 +241,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: 'DbNull',
-  JsonNull: 'JsonNull',
-  AnyNull: 'AnyNull'
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

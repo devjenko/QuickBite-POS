@@ -18,10 +18,8 @@ model User {
   createdAt       DateTime             @default(now())
   updatedAt       DateTime             @updatedAt
   settings        Settings?
-  paymentAccounts PaymentAccount[]
-  linkedAccounts  LinkedAccount[] // NEW: Track linked bank accounts
-  linkRequests    PaymentLinkRequest[] // NEW: Track QR link attempts
-  orders          Order[] // NEW: For tracking customer orders
+  orders          Order[]
+  bankQRCodes     BankQRCode[]
 }
 
 model Account {
@@ -109,89 +107,6 @@ model Settings {
   @@index([userId])
 }
 
-model PaymentAccount {
-  id            String   @id @default(cuid())
-  userId        String
-  provider      String
-  merchantId    String
-  apiKeyHash    String
-  webhookSecret String?
-  isActive      Boolean  @default(true)
-  metadata      Json?
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@unique([userId, provider])
-  @@index([userId])
-}
-
-// ============================================
-// NEW MODELS FOR ACCOUNT LINKING FEATURE
-// ============================================
-
-// This stores the actual linked bank accounts (ABA, Wing, etc.)
-model LinkedAccount {
-  id       String @id @default(cuid())
-  userId   String // Which business owner owns this
-  provider String // 'ABA', 'WING', etc.
-
-  // Encrypted tokens from the bank
-  // WHY ENCRYPTED: These are like passwords - very sensitive!
-  ctidEncrypted String // Consumer Token ID (encrypted)
-  pwtEncrypted  String // PayWay Token (encrypted)
-
-  // Safe info we can show to users
-  maskAccount String // e.g., "*****1234" - safe to display
-
-  // Token lifecycle
-  tokenExpiresAt DateTime // When this token expires (usually 60 days)
-  isActive       Boolean  @default(true) // Can manually disable
-
-  // Tracking
-  linkedAt  DateTime  @default(now()) // When they first linked
-  lastUsed  DateTime? // Last time we used this for a payment
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-
-  // Relations
-  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
-  orders Order[] // Track which orders used this account
-
-  // Ensure one user can only link each provider once
-  @@unique([userId, provider])
-  @@index([userId])
-  @@index([provider])
-}
-
-// This tracks each QR code linking attempt
-// WHY: When user scans QR, bank sends data back. We need to know which user it was for.
-model PaymentLinkRequest {
-  id          String @id @default(cuid())
-  userId      String // Who initiated this link request
-  provider    String // Which bank (ABA, Wing, etc.)
-  returnParam String @unique // Unique ID we send to bank, they send back
-
-  // Status tracking
-  // 'pending' = QR shown, waiting for scan
-  // 'completed' = User scanned, account linked
-  // 'expired' = QR expired before scanning
-  // 'failed' = Something went wrong
-  status String @default("pending")
-
-  // Lifecycle
-  expiresAt DateTime // QR codes expire (usually 5-10 minutes)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  // Relations
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@index([userId])
-  @@index([returnParam])
-  @@index([status])
-}
 
 // ============================================
 // NEW MODELS FOR ORDER/PAYMENT TRACKING
@@ -222,10 +137,7 @@ model Order {
   customerId String // Which customer
 
   // Payment tracking
-  linkedAccountId String? // Which linked account receives payment
-  paymentProvider String? // 'ABA', 'WING', etc.
-  paymentStatus   String  @default("pending") // 'pending', 'paid', 'failed', 'refunded'
-  paywayTranId    String? @unique // Transaction ID from payment provider
+  paymentStatus String @default("pending") // 'pending', 'paid', 'failed', 'refunded'
 
   // Order details
   subtotal Float // Sum of items
@@ -234,27 +146,20 @@ model Order {
   currency String @default("USD")
 
   // Payment details (filled after payment)
-  paidAt    DateTime?
-  paywayApv String? // APV number from ABA (proof of payment)
-
-  // QR generation tracking
-  qrGeneratedAt DateTime?
-  qrExpiresAt   DateTime?
+  paidAt DateTime?
 
   // Timestamps
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   // Relations
-  merchant      User           @relation(fields: [merchantId], references: [id])
-  customer      Customer       @relation(fields: [customerId], references: [id])
-  linkedAccount LinkedAccount? @relation(fields: [linkedAccountId], references: [id])
-  items         OrderItem[]
+  merchant User     @relation(fields: [merchantId], references: [id])
+  customer Customer @relation(fields: [customerId], references: [id])
+  items    OrderItem[]
 
   @@index([merchantId])
   @@index([customerId])
   @@index([paymentStatus])
-  @@index([paywayTranId])
 }
 
 // Individual items in an order
@@ -277,4 +182,18 @@ model OrderItem {
 
   @@index([orderId])
   @@index([menuItemId])
+}
+
+model BankQRCode {
+  id        String   @id @default(cuid())
+  userId    String
+  bankName  String
+  imageUrl  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, bankName])
+  @@index([userId])
 }

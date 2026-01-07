@@ -100,7 +100,7 @@ function CopyButton({
       whileTap={{ scale: 0.95 }}
       className={cn(buttonVariants({ variant, size }), className)}
       onClick={handleCopy}
-      {...(props as any)}
+      {...props}
     >
       <AnimatePresence mode="wait">
         <motion.span

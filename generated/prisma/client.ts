@@ -70,21 +70,6 @@ export type MenuItem = Prisma.MenuItemModel
  */
 export type Settings = Prisma.SettingsModel
 /**
- * Model PaymentAccount
- * 
- */
-export type PaymentAccount = Prisma.PaymentAccountModel
-/**
- * Model LinkedAccount
- * 
- */
-export type LinkedAccount = Prisma.LinkedAccountModel
-/**
- * Model PaymentLinkRequest
- * 
- */
-export type PaymentLinkRequest = Prisma.PaymentLinkRequestModel
-/**
  * Model Customer
  * 
  */
@@ -99,3 +84,8 @@ export type Order = Prisma.OrderModel
  * 
  */
 export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model BankQRCode
+ * 
+ */
+export type BankQRCode = Prisma.BankQRCodeModel

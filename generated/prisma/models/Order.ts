@@ -42,18 +42,12 @@ export type OrderMinAggregateOutputType = {
   id: string | null
   merchantId: string | null
   customerId: string | null
-  linkedAccountId: string | null
-  paymentProvider: string | null
   paymentStatus: string | null
-  paywayTranId: string | null
   subtotal: number | null
   tax: number | null
   total: number | null
   currency: string | null
   paidAt: Date | null
-  paywayApv: string | null
-  qrGeneratedAt: Date | null
-  qrExpiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -62,18 +56,12 @@ export type OrderMaxAggregateOutputType = {
   id: string | null
   merchantId: string | null
   customerId: string | null
-  linkedAccountId: string | null
-  paymentProvider: string | null
   paymentStatus: string | null
-  paywayTranId: string | null
   subtotal: number | null
   tax: number | null
   total: number | null
   currency: string | null
   paidAt: Date | null
-  paywayApv: string | null
-  qrGeneratedAt: Date | null
-  qrExpiresAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -82,18 +70,12 @@ export type OrderCountAggregateOutputType = {
   id: number
   merchantId: number
   customerId: number
-  linkedAccountId: number
-  paymentProvider: number
   paymentStatus: number
-  paywayTranId: number
   subtotal: number
   tax: number
   total: number
   currency: number
   paidAt: number
-  paywayApv: number
-  qrGeneratedAt: number
-  qrExpiresAt: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -116,18 +98,12 @@ export type OrderMinAggregateInputType = {
   id?: true
   merchantId?: true
   customerId?: true
-  linkedAccountId?: true
-  paymentProvider?: true
   paymentStatus?: true
-  paywayTranId?: true
   subtotal?: true
   tax?: true
   total?: true
   currency?: true
   paidAt?: true
-  paywayApv?: true
-  qrGeneratedAt?: true
-  qrExpiresAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -136,18 +112,12 @@ export type OrderMaxAggregateInputType = {
   id?: true
   merchantId?: true
   customerId?: true
-  linkedAccountId?: true
-  paymentProvider?: true
   paymentStatus?: true
-  paywayTranId?: true
   subtotal?: true
   tax?: true
   total?: true
   currency?: true
   paidAt?: true
-  paywayApv?: true
-  qrGeneratedAt?: true
-  qrExpiresAt?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -156,18 +126,12 @@ export type OrderCountAggregateInputType = {
   id?: true
   merchantId?: true
   customerId?: true
-  linkedAccountId?: true
-  paymentProvider?: true
   paymentStatus?: true
-  paywayTranId?: true
   subtotal?: true
   tax?: true
   total?: true
   currency?: true
   paidAt?: true
-  paywayApv?: true
-  qrGeneratedAt?: true
-  qrExpiresAt?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -263,18 +227,12 @@ export type OrderGroupByOutputType = {
   id: string
   merchantId: string
   customerId: string
-  linkedAccountId: string | null
-  paymentProvider: string | null
   paymentStatus: string
-  paywayTranId: string | null
   subtotal: number
   tax: number
   total: number
   currency: string
   paidAt: Date | null
-  paywayApv: string | null
-  qrGeneratedAt: Date | null
-  qrExpiresAt: Date | null
   createdAt: Date
   updatedAt: Date
   _count: OrderCountAggregateOutputType | null
@@ -306,23 +264,16 @@ export type OrderWhereInput = {
   id?: Prisma.StringFilter<"Order"> | string
   merchantId?: Prisma.StringFilter<"Order"> | string
   customerId?: Prisma.StringFilter<"Order"> | string
-  linkedAccountId?: Prisma.StringNullableFilter<"Order"> | string | null
-  paymentProvider?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentStatus?: Prisma.StringFilter<"Order"> | string
-  paywayTranId?: Prisma.StringNullableFilter<"Order"> | string | null
   subtotal?: Prisma.FloatFilter<"Order"> | number
   tax?: Prisma.FloatFilter<"Order"> | number
   total?: Prisma.FloatFilter<"Order"> | number
   currency?: Prisma.StringFilter<"Order"> | string
   paidAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  paywayApv?: Prisma.StringNullableFilter<"Order"> | string | null
-  qrGeneratedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  qrExpiresAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   merchant?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
-  linkedAccount?: Prisma.XOR<Prisma.LinkedAccountNullableScalarRelationFilter, Prisma.LinkedAccountWhereInput> | null
   items?: Prisma.OrderItemListRelationFilter
 }
 
@@ -330,69 +281,49 @@ export type OrderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  linkedAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
-  paymentProvider?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  paywayTranId?: Prisma.SortOrderInput | Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  paywayApv?: Prisma.SortOrderInput | Prisma.SortOrder
-  qrGeneratedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  qrExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   merchant?: Prisma.UserOrderByWithRelationInput
   customer?: Prisma.CustomerOrderByWithRelationInput
-  linkedAccount?: Prisma.LinkedAccountOrderByWithRelationInput
   items?: Prisma.OrderItemOrderByRelationAggregateInput
 }
 
 export type OrderWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  paywayTranId?: string
   AND?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
   OR?: Prisma.OrderWhereInput[]
   NOT?: Prisma.OrderWhereInput | Prisma.OrderWhereInput[]
   merchantId?: Prisma.StringFilter<"Order"> | string
   customerId?: Prisma.StringFilter<"Order"> | string
-  linkedAccountId?: Prisma.StringNullableFilter<"Order"> | string | null
-  paymentProvider?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentStatus?: Prisma.StringFilter<"Order"> | string
   subtotal?: Prisma.FloatFilter<"Order"> | number
   tax?: Prisma.FloatFilter<"Order"> | number
   total?: Prisma.FloatFilter<"Order"> | number
   currency?: Prisma.StringFilter<"Order"> | string
   paidAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  paywayApv?: Prisma.StringNullableFilter<"Order"> | string | null
-  qrGeneratedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  qrExpiresAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   merchant?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   customer?: Prisma.XOR<Prisma.CustomerScalarRelationFilter, Prisma.CustomerWhereInput>
-  linkedAccount?: Prisma.XOR<Prisma.LinkedAccountNullableScalarRelationFilter, Prisma.LinkedAccountWhereInput> | null
   items?: Prisma.OrderItemListRelationFilter
-}, "id" | "paywayTranId">
+}, "id">
 
 export type OrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  linkedAccountId?: Prisma.SortOrderInput | Prisma.SortOrder
-  paymentProvider?: Prisma.SortOrderInput | Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  paywayTranId?: Prisma.SortOrderInput | Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   paidAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  paywayApv?: Prisma.SortOrderInput | Prisma.SortOrder
-  qrGeneratedAt?: Prisma.SortOrderInput | Prisma.SortOrder
-  qrExpiresAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.OrderCountOrderByAggregateInput
@@ -409,40 +340,28 @@ export type OrderScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Order"> | string
   merchantId?: Prisma.StringWithAggregatesFilter<"Order"> | string
   customerId?: Prisma.StringWithAggregatesFilter<"Order"> | string
-  linkedAccountId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  paymentProvider?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   paymentStatus?: Prisma.StringWithAggregatesFilter<"Order"> | string
-  paywayTranId?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
   subtotal?: Prisma.FloatWithAggregatesFilter<"Order"> | number
   tax?: Prisma.FloatWithAggregatesFilter<"Order"> | number
   total?: Prisma.FloatWithAggregatesFilter<"Order"> | number
   currency?: Prisma.StringWithAggregatesFilter<"Order"> | string
   paidAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
-  paywayApv?: Prisma.StringNullableWithAggregatesFilter<"Order"> | string | null
-  qrGeneratedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
-  qrExpiresAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Order"> | Date | string
 }
 
 export type OrderCreateInput = {
   id?: string
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   merchant: Prisma.UserCreateNestedOneWithoutOrdersInput
   customer: Prisma.CustomerCreateNestedOneWithoutOrdersInput
-  linkedAccount?: Prisma.LinkedAccountCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
@@ -450,18 +369,12 @@ export type OrderUncheckedCreateInput = {
   id?: string
   merchantId: string
   customerId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
@@ -469,22 +382,16 @@ export type OrderUncheckedCreateInput = {
 
 export type OrderUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchant?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutOrdersNestedInput
-  linkedAccount?: Prisma.LinkedAccountUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
 }
 
@@ -492,18 +399,12 @@ export type OrderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -513,35 +414,24 @@ export type OrderCreateManyInput = {
   id?: string
   merchantId: string
   customerId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type OrderUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -550,18 +440,12 @@ export type OrderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -580,18 +464,12 @@ export type OrderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  linkedAccountId?: Prisma.SortOrder
-  paymentProvider?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  paywayTranId?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  paywayApv?: Prisma.SortOrder
-  qrGeneratedAt?: Prisma.SortOrder
-  qrExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -606,18 +484,12 @@ export type OrderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  linkedAccountId?: Prisma.SortOrder
-  paymentProvider?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  paywayTranId?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  paywayApv?: Prisma.SortOrder
-  qrGeneratedAt?: Prisma.SortOrder
-  qrExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -626,18 +498,12 @@ export type OrderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   merchantId?: Prisma.SortOrder
   customerId?: Prisma.SortOrder
-  linkedAccountId?: Prisma.SortOrder
-  paymentProvider?: Prisma.SortOrder
   paymentStatus?: Prisma.SortOrder
-  paywayTranId?: Prisma.SortOrder
   subtotal?: Prisma.SortOrder
   tax?: Prisma.SortOrder
   total?: Prisma.SortOrder
   currency?: Prisma.SortOrder
   paidAt?: Prisma.SortOrder
-  paywayApv?: Prisma.SortOrder
-  qrGeneratedAt?: Prisma.SortOrder
-  qrExpiresAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -695,48 +561,6 @@ export type OrderUncheckedUpdateManyWithoutMerchantNestedInput = {
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
-export type OrderCreateNestedManyWithoutLinkedAccountInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput> | Prisma.OrderCreateWithoutLinkedAccountInput[] | Prisma.OrderUncheckedCreateWithoutLinkedAccountInput[]
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutLinkedAccountInput | Prisma.OrderCreateOrConnectWithoutLinkedAccountInput[]
-  createMany?: Prisma.OrderCreateManyLinkedAccountInputEnvelope
-  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-}
-
-export type OrderUncheckedCreateNestedManyWithoutLinkedAccountInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput> | Prisma.OrderCreateWithoutLinkedAccountInput[] | Prisma.OrderUncheckedCreateWithoutLinkedAccountInput[]
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutLinkedAccountInput | Prisma.OrderCreateOrConnectWithoutLinkedAccountInput[]
-  createMany?: Prisma.OrderCreateManyLinkedAccountInputEnvelope
-  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-}
-
-export type OrderUpdateManyWithoutLinkedAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput> | Prisma.OrderCreateWithoutLinkedAccountInput[] | Prisma.OrderUncheckedCreateWithoutLinkedAccountInput[]
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutLinkedAccountInput | Prisma.OrderCreateOrConnectWithoutLinkedAccountInput[]
-  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutLinkedAccountInput | Prisma.OrderUpsertWithWhereUniqueWithoutLinkedAccountInput[]
-  createMany?: Prisma.OrderCreateManyLinkedAccountInputEnvelope
-  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  update?: Prisma.OrderUpdateWithWhereUniqueWithoutLinkedAccountInput | Prisma.OrderUpdateWithWhereUniqueWithoutLinkedAccountInput[]
-  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutLinkedAccountInput | Prisma.OrderUpdateManyWithWhereWithoutLinkedAccountInput[]
-  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
-}
-
-export type OrderUncheckedUpdateManyWithoutLinkedAccountNestedInput = {
-  create?: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput> | Prisma.OrderCreateWithoutLinkedAccountInput[] | Prisma.OrderUncheckedCreateWithoutLinkedAccountInput[]
-  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutLinkedAccountInput | Prisma.OrderCreateOrConnectWithoutLinkedAccountInput[]
-  upsert?: Prisma.OrderUpsertWithWhereUniqueWithoutLinkedAccountInput | Prisma.OrderUpsertWithWhereUniqueWithoutLinkedAccountInput[]
-  createMany?: Prisma.OrderCreateManyLinkedAccountInputEnvelope
-  set?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  disconnect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  delete?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  connect?: Prisma.OrderWhereUniqueInput | Prisma.OrderWhereUniqueInput[]
-  update?: Prisma.OrderUpdateWithWhereUniqueWithoutLinkedAccountInput | Prisma.OrderUpdateWithWhereUniqueWithoutLinkedAccountInput[]
-  updateMany?: Prisma.OrderUpdateManyWithWhereWithoutLinkedAccountInput | Prisma.OrderUpdateManyWithWhereWithoutLinkedAccountInput[]
-  deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
-}
-
 export type OrderCreateNestedManyWithoutCustomerInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutCustomerInput, Prisma.OrderUncheckedCreateWithoutCustomerInput> | Prisma.OrderCreateWithoutCustomerInput[] | Prisma.OrderUncheckedCreateWithoutCustomerInput[]
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutCustomerInput | Prisma.OrderCreateOrConnectWithoutCustomerInput[]
@@ -779,6 +603,10 @@ export type OrderUncheckedUpdateManyWithoutCustomerNestedInput = {
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
 export type OrderCreateNestedOneWithoutItemsInput = {
   create?: Prisma.XOR<Prisma.OrderCreateWithoutItemsInput, Prisma.OrderUncheckedCreateWithoutItemsInput>
   connectOrCreate?: Prisma.OrderCreateOrConnectWithoutItemsInput
@@ -795,39 +623,27 @@ export type OrderUpdateOneRequiredWithoutItemsNestedInput = {
 
 export type OrderCreateWithoutMerchantInput = {
   id?: string
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   customer: Prisma.CustomerCreateNestedOneWithoutOrdersInput
-  linkedAccount?: Prisma.LinkedAccountCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutMerchantInput = {
   id?: string
   customerId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
@@ -866,123 +682,39 @@ export type OrderScalarWhereInput = {
   id?: Prisma.StringFilter<"Order"> | string
   merchantId?: Prisma.StringFilter<"Order"> | string
   customerId?: Prisma.StringFilter<"Order"> | string
-  linkedAccountId?: Prisma.StringNullableFilter<"Order"> | string | null
-  paymentProvider?: Prisma.StringNullableFilter<"Order"> | string | null
   paymentStatus?: Prisma.StringFilter<"Order"> | string
-  paywayTranId?: Prisma.StringNullableFilter<"Order"> | string | null
   subtotal?: Prisma.FloatFilter<"Order"> | number
   tax?: Prisma.FloatFilter<"Order"> | number
   total?: Prisma.FloatFilter<"Order"> | number
   currency?: Prisma.StringFilter<"Order"> | string
   paidAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  paywayApv?: Prisma.StringNullableFilter<"Order"> | string | null
-  qrGeneratedAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
-  qrExpiresAt?: Prisma.DateTimeNullableFilter<"Order"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
 }
 
-export type OrderCreateWithoutLinkedAccountInput = {
-  id?: string
-  paymentProvider?: string | null
-  paymentStatus?: string
-  paywayTranId?: string | null
-  subtotal: number
-  tax?: number
-  total: number
-  currency?: string
-  paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  merchant: Prisma.UserCreateNestedOneWithoutOrdersInput
-  customer: Prisma.CustomerCreateNestedOneWithoutOrdersInput
-  items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
-}
-
-export type OrderUncheckedCreateWithoutLinkedAccountInput = {
-  id?: string
-  merchantId: string
-  customerId: string
-  paymentProvider?: string | null
-  paymentStatus?: string
-  paywayTranId?: string | null
-  subtotal: number
-  tax?: number
-  total: number
-  currency?: string
-  paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
-}
-
-export type OrderCreateOrConnectWithoutLinkedAccountInput = {
-  where: Prisma.OrderWhereUniqueInput
-  create: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput>
-}
-
-export type OrderCreateManyLinkedAccountInputEnvelope = {
-  data: Prisma.OrderCreateManyLinkedAccountInput | Prisma.OrderCreateManyLinkedAccountInput[]
-  skipDuplicates?: boolean
-}
-
-export type OrderUpsertWithWhereUniqueWithoutLinkedAccountInput = {
-  where: Prisma.OrderWhereUniqueInput
-  update: Prisma.XOR<Prisma.OrderUpdateWithoutLinkedAccountInput, Prisma.OrderUncheckedUpdateWithoutLinkedAccountInput>
-  create: Prisma.XOR<Prisma.OrderCreateWithoutLinkedAccountInput, Prisma.OrderUncheckedCreateWithoutLinkedAccountInput>
-}
-
-export type OrderUpdateWithWhereUniqueWithoutLinkedAccountInput = {
-  where: Prisma.OrderWhereUniqueInput
-  data: Prisma.XOR<Prisma.OrderUpdateWithoutLinkedAccountInput, Prisma.OrderUncheckedUpdateWithoutLinkedAccountInput>
-}
-
-export type OrderUpdateManyWithWhereWithoutLinkedAccountInput = {
-  where: Prisma.OrderScalarWhereInput
-  data: Prisma.XOR<Prisma.OrderUpdateManyMutationInput, Prisma.OrderUncheckedUpdateManyWithoutLinkedAccountInput>
-}
-
 export type OrderCreateWithoutCustomerInput = {
   id?: string
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   merchant: Prisma.UserCreateNestedOneWithoutOrdersInput
-  linkedAccount?: Prisma.LinkedAccountCreateNestedOneWithoutOrdersInput
   items?: Prisma.OrderItemCreateNestedManyWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutCustomerInput = {
   id?: string
   merchantId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.OrderItemUncheckedCreateNestedManyWithoutOrderInput
@@ -1016,40 +748,28 @@ export type OrderUpdateManyWithWhereWithoutCustomerInput = {
 
 export type OrderCreateWithoutItemsInput = {
   id?: string
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
   merchant: Prisma.UserCreateNestedOneWithoutOrdersInput
   customer: Prisma.CustomerCreateNestedOneWithoutOrdersInput
-  linkedAccount?: Prisma.LinkedAccountCreateNestedOneWithoutOrdersInput
 }
 
 export type OrderUncheckedCreateWithoutItemsInput = {
   id?: string
   merchantId: string
   customerId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -1072,40 +792,28 @@ export type OrderUpdateToOneWithWhereWithoutItemsInput = {
 
 export type OrderUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchant?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   customer?: Prisma.CustomerUpdateOneRequiredWithoutOrdersNestedInput
-  linkedAccount?: Prisma.LinkedAccountUpdateOneWithoutOrdersNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutItemsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1113,57 +821,39 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
 export type OrderCreateManyMerchantInput = {
   id?: string
   customerId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type OrderUpdateWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   customer?: Prisma.CustomerUpdateOneRequiredWithoutOrdersNestedInput
-  linkedAccount?: Prisma.LinkedAccountUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -1172,96 +862,12 @@ export type OrderUncheckedUpdateWithoutMerchantInput = {
 export type OrderUncheckedUpdateManyWithoutMerchantInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type OrderCreateManyLinkedAccountInput = {
-  id?: string
-  merchantId: string
-  customerId: string
-  paymentProvider?: string | null
-  paymentStatus?: string
-  paywayTranId?: string | null
-  subtotal: number
-  tax?: number
-  total: number
-  currency?: string
-  paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type OrderUpdateWithoutLinkedAccountInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
-  tax?: Prisma.FloatFieldUpdateOperationsInput | number
-  total?: Prisma.FloatFieldUpdateOperationsInput | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  merchant?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
-  customer?: Prisma.CustomerUpdateOneRequiredWithoutOrdersNestedInput
-  items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
-}
-
-export type OrderUncheckedUpdateWithoutLinkedAccountInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
-  tax?: Prisma.FloatFieldUpdateOperationsInput | number
-  total?: Prisma.FloatFieldUpdateOperationsInput | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
-}
-
-export type OrderUncheckedUpdateManyWithoutLinkedAccountInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-  customerId?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
-  tax?: Prisma.FloatFieldUpdateOperationsInput | number
-  total?: Prisma.FloatFieldUpdateOperationsInput | number
-  currency?: Prisma.StringFieldUpdateOperationsInput | string
-  paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1269,57 +875,39 @@ export type OrderUncheckedUpdateManyWithoutLinkedAccountInput = {
 export type OrderCreateManyCustomerInput = {
   id?: string
   merchantId: string
-  linkedAccountId?: string | null
-  paymentProvider?: string | null
   paymentStatus?: string
-  paywayTranId?: string | null
   subtotal: number
   tax?: number
   total: number
   currency?: string
   paidAt?: Date | string | null
-  paywayApv?: string | null
-  qrGeneratedAt?: Date | string | null
-  qrExpiresAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
 export type OrderUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   merchant?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
-  linkedAccount?: Prisma.LinkedAccountUpdateOneWithoutOrdersNestedInput
   items?: Prisma.OrderItemUpdateManyWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.OrderItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -1328,18 +916,12 @@ export type OrderUncheckedUpdateWithoutCustomerInput = {
 export type OrderUncheckedUpdateManyWithoutCustomerInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   merchantId?: Prisma.StringFieldUpdateOperationsInput | string
-  linkedAccountId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  paymentProvider?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   paymentStatus?: Prisma.StringFieldUpdateOperationsInput | string
-  paywayTranId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   subtotal?: Prisma.FloatFieldUpdateOperationsInput | number
   tax?: Prisma.FloatFieldUpdateOperationsInput | number
   total?: Prisma.FloatFieldUpdateOperationsInput | number
   currency?: Prisma.StringFieldUpdateOperationsInput | string
   paidAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  paywayApv?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  qrGeneratedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  qrExpiresAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1379,23 +961,16 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   id?: boolean
   merchantId?: boolean
   customerId?: boolean
-  linkedAccountId?: boolean
-  paymentProvider?: boolean
   paymentStatus?: boolean
-  paywayTranId?: boolean
   subtotal?: boolean
   tax?: boolean
   total?: boolean
   currency?: boolean
   paidAt?: boolean
-  paywayApv?: boolean
-  qrGeneratedAt?: boolean
-  qrExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
@@ -1404,85 +979,62 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   id?: boolean
   merchantId?: boolean
   customerId?: boolean
-  linkedAccountId?: boolean
-  paymentProvider?: boolean
   paymentStatus?: boolean
-  paywayTranId?: boolean
   subtotal?: boolean
   tax?: boolean
   total?: boolean
   currency?: boolean
   paidAt?: boolean
-  paywayApv?: boolean
-  qrGeneratedAt?: boolean
-  qrExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   merchantId?: boolean
   customerId?: boolean
-  linkedAccountId?: boolean
-  paymentProvider?: boolean
   paymentStatus?: boolean
-  paywayTranId?: boolean
   subtotal?: boolean
   tax?: boolean
   total?: boolean
   currency?: boolean
   paidAt?: boolean
-  paywayApv?: boolean
-  qrGeneratedAt?: boolean
-  qrExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectScalar = {
   id?: boolean
   merchantId?: boolean
   customerId?: boolean
-  linkedAccountId?: boolean
-  paymentProvider?: boolean
   paymentStatus?: boolean
-  paywayTranId?: boolean
   subtotal?: boolean
   tax?: boolean
   total?: boolean
   currency?: boolean
   paidAt?: boolean
-  paywayApv?: boolean
-  qrGeneratedAt?: boolean
-  qrExpiresAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "customerId" | "linkedAccountId" | "paymentProvider" | "paymentStatus" | "paywayTranId" | "subtotal" | "tax" | "total" | "currency" | "paidAt" | "paywayApv" | "qrGeneratedAt" | "qrExpiresAt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "merchantId" | "customerId" | "paymentStatus" | "subtotal" | "tax" | "total" | "currency" | "paidAt" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
 }
 export type OrderIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   merchant?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   customer?: boolean | Prisma.CustomerDefaultArgs<ExtArgs>
-  linkedAccount?: boolean | Prisma.Order$linkedAccountArgs<ExtArgs>
 }
 
 export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1490,25 +1042,18 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     merchant: Prisma.$UserPayload<ExtArgs>
     customer: Prisma.$CustomerPayload<ExtArgs>
-    linkedAccount: Prisma.$LinkedAccountPayload<ExtArgs> | null
     items: Prisma.$OrderItemPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     merchantId: string
     customerId: string
-    linkedAccountId: string | null
-    paymentProvider: string | null
     paymentStatus: string
-    paywayTranId: string | null
     subtotal: number
     tax: number
     total: number
     currency: string
     paidAt: Date | null
-    paywayApv: string | null
-    qrGeneratedAt: Date | null
-    qrExpiresAt: Date | null
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["order"]>
@@ -1907,7 +1452,6 @@ export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   merchant<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   customer<T extends Prisma.CustomerDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.CustomerDefaultArgs<ExtArgs>>): Prisma.Prisma__CustomerClient<runtime.Types.Result.GetResult<Prisma.$CustomerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  linkedAccount<T extends Prisma.Order$linkedAccountArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$linkedAccountArgs<ExtArgs>>): Prisma.Prisma__LinkedAccountClient<runtime.Types.Result.GetResult<Prisma.$LinkedAccountPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   items<T extends Prisma.Order$itemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$itemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1941,18 +1485,12 @@ export interface OrderFieldRefs {
   readonly id: Prisma.FieldRef<"Order", 'String'>
   readonly merchantId: Prisma.FieldRef<"Order", 'String'>
   readonly customerId: Prisma.FieldRef<"Order", 'String'>
-  readonly linkedAccountId: Prisma.FieldRef<"Order", 'String'>
-  readonly paymentProvider: Prisma.FieldRef<"Order", 'String'>
   readonly paymentStatus: Prisma.FieldRef<"Order", 'String'>
-  readonly paywayTranId: Prisma.FieldRef<"Order", 'String'>
   readonly subtotal: Prisma.FieldRef<"Order", 'Float'>
   readonly tax: Prisma.FieldRef<"Order", 'Float'>
   readonly total: Prisma.FieldRef<"Order", 'Float'>
   readonly currency: Prisma.FieldRef<"Order", 'String'>
   readonly paidAt: Prisma.FieldRef<"Order", 'DateTime'>
-  readonly paywayApv: Prisma.FieldRef<"Order", 'String'>
-  readonly qrGeneratedAt: Prisma.FieldRef<"Order", 'DateTime'>
-  readonly qrExpiresAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Order", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Order", 'DateTime'>
 }
@@ -2348,25 +1886,6 @@ export type OrderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Orders to delete.
    */
   limit?: number
-}
-
-/**
- * Order.linkedAccount
- */
-export type Order$linkedAccountArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LinkedAccount
-   */
-  select?: Prisma.LinkedAccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LinkedAccount
-   */
-  omit?: Prisma.LinkedAccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LinkedAccountInclude<ExtArgs> | null
-  where?: Prisma.LinkedAccountWhereInput
 }
 
 /**

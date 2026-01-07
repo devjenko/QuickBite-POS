@@ -390,12 +390,10 @@ export const ModelName = {
   VerificationToken: 'VerificationToken',
   MenuItem: 'MenuItem',
   Settings: 'Settings',
-  PaymentAccount: 'PaymentAccount',
-  LinkedAccount: 'LinkedAccount',
-  PaymentLinkRequest: 'PaymentLinkRequest',
   Customer: 'Customer',
   Order: 'Order',
-  OrderItem: 'OrderItem'
+  OrderItem: 'OrderItem',
+  BankQRCode: 'BankQRCode'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -411,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "account" | "session" | "verificationToken" | "menuItem" | "settings" | "paymentAccount" | "linkedAccount" | "paymentLinkRequest" | "customer" | "order" | "orderItem"
+    modelProps: "user" | "account" | "session" | "verificationToken" | "menuItem" | "settings" | "customer" | "order" | "orderItem" | "bankQRCode"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -859,228 +857,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    PaymentAccount: {
-      payload: Prisma.$PaymentAccountPayload<ExtArgs>
-      fields: Prisma.PaymentAccountFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.PaymentAccountFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.PaymentAccountFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        findFirst: {
-          args: Prisma.PaymentAccountFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.PaymentAccountFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        findMany: {
-          args: Prisma.PaymentAccountFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>[]
-        }
-        create: {
-          args: Prisma.PaymentAccountCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        createMany: {
-          args: Prisma.PaymentAccountCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.PaymentAccountCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>[]
-        }
-        delete: {
-          args: Prisma.PaymentAccountDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        update: {
-          args: Prisma.PaymentAccountUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        deleteMany: {
-          args: Prisma.PaymentAccountDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.PaymentAccountUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.PaymentAccountUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>[]
-        }
-        upsert: {
-          args: Prisma.PaymentAccountUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentAccountPayload>
-        }
-        aggregate: {
-          args: Prisma.PaymentAccountAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePaymentAccount>
-        }
-        groupBy: {
-          args: Prisma.PaymentAccountGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PaymentAccountGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.PaymentAccountCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PaymentAccountCountAggregateOutputType> | number
-        }
-      }
-    }
-    LinkedAccount: {
-      payload: Prisma.$LinkedAccountPayload<ExtArgs>
-      fields: Prisma.LinkedAccountFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.LinkedAccountFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.LinkedAccountFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        findFirst: {
-          args: Prisma.LinkedAccountFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.LinkedAccountFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        findMany: {
-          args: Prisma.LinkedAccountFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>[]
-        }
-        create: {
-          args: Prisma.LinkedAccountCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        createMany: {
-          args: Prisma.LinkedAccountCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.LinkedAccountCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>[]
-        }
-        delete: {
-          args: Prisma.LinkedAccountDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        update: {
-          args: Prisma.LinkedAccountUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        deleteMany: {
-          args: Prisma.LinkedAccountDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.LinkedAccountUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.LinkedAccountUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>[]
-        }
-        upsert: {
-          args: Prisma.LinkedAccountUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$LinkedAccountPayload>
-        }
-        aggregate: {
-          args: Prisma.LinkedAccountAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateLinkedAccount>
-        }
-        groupBy: {
-          args: Prisma.LinkedAccountGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LinkedAccountGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.LinkedAccountCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.LinkedAccountCountAggregateOutputType> | number
-        }
-      }
-    }
-    PaymentLinkRequest: {
-      payload: Prisma.$PaymentLinkRequestPayload<ExtArgs>
-      fields: Prisma.PaymentLinkRequestFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.PaymentLinkRequestFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.PaymentLinkRequestFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        findFirst: {
-          args: Prisma.PaymentLinkRequestFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.PaymentLinkRequestFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        findMany: {
-          args: Prisma.PaymentLinkRequestFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>[]
-        }
-        create: {
-          args: Prisma.PaymentLinkRequestCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        createMany: {
-          args: Prisma.PaymentLinkRequestCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.PaymentLinkRequestCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>[]
-        }
-        delete: {
-          args: Prisma.PaymentLinkRequestDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        update: {
-          args: Prisma.PaymentLinkRequestUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        deleteMany: {
-          args: Prisma.PaymentLinkRequestDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.PaymentLinkRequestUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.PaymentLinkRequestUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>[]
-        }
-        upsert: {
-          args: Prisma.PaymentLinkRequestUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$PaymentLinkRequestPayload>
-        }
-        aggregate: {
-          args: Prisma.PaymentLinkRequestAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregatePaymentLinkRequest>
-        }
-        groupBy: {
-          args: Prisma.PaymentLinkRequestGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PaymentLinkRequestGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.PaymentLinkRequestCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.PaymentLinkRequestCountAggregateOutputType> | number
-        }
-      }
-    }
     Customer: {
       payload: Prisma.$CustomerPayload<ExtArgs>
       fields: Prisma.CustomerFieldRefs
@@ -1303,6 +1079,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    BankQRCode: {
+      payload: Prisma.$BankQRCodePayload<ExtArgs>
+      fields: Prisma.BankQRCodeFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BankQRCodeFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BankQRCodeFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        findFirst: {
+          args: Prisma.BankQRCodeFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BankQRCodeFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        findMany: {
+          args: Prisma.BankQRCodeFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>[]
+        }
+        create: {
+          args: Prisma.BankQRCodeCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        createMany: {
+          args: Prisma.BankQRCodeCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BankQRCodeCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>[]
+        }
+        delete: {
+          args: Prisma.BankQRCodeDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        update: {
+          args: Prisma.BankQRCodeUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        deleteMany: {
+          args: Prisma.BankQRCodeDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BankQRCodeUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BankQRCodeUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>[]
+        }
+        upsert: {
+          args: Prisma.BankQRCodeUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BankQRCodePayload>
+        }
+        aggregate: {
+          args: Prisma.BankQRCodeAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBankQRCode>
+        }
+        groupBy: {
+          args: Prisma.BankQRCodeGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BankQRCodeGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BankQRCodeCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BankQRCodeCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1427,54 +1277,6 @@ export const SettingsScalarFieldEnum = {
 export type SettingsScalarFieldEnum = (typeof SettingsScalarFieldEnum)[keyof typeof SettingsScalarFieldEnum]
 
 
-export const PaymentAccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  merchantId: 'merchantId',
-  apiKeyHash: 'apiKeyHash',
-  webhookSecret: 'webhookSecret',
-  isActive: 'isActive',
-  metadata: 'metadata',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentAccountScalarFieldEnum = (typeof PaymentAccountScalarFieldEnum)[keyof typeof PaymentAccountScalarFieldEnum]
-
-
-export const LinkedAccountScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  ctidEncrypted: 'ctidEncrypted',
-  pwtEncrypted: 'pwtEncrypted',
-  maskAccount: 'maskAccount',
-  tokenExpiresAt: 'tokenExpiresAt',
-  isActive: 'isActive',
-  linkedAt: 'linkedAt',
-  lastUsed: 'lastUsed',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type LinkedAccountScalarFieldEnum = (typeof LinkedAccountScalarFieldEnum)[keyof typeof LinkedAccountScalarFieldEnum]
-
-
-export const PaymentLinkRequestScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  provider: 'provider',
-  returnParam: 'returnParam',
-  status: 'status',
-  expiresAt: 'expiresAt',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type PaymentLinkRequestScalarFieldEnum = (typeof PaymentLinkRequestScalarFieldEnum)[keyof typeof PaymentLinkRequestScalarFieldEnum]
-
-
 export const CustomerScalarFieldEnum = {
   id: 'id',
   firstName: 'firstName',
@@ -1492,18 +1294,12 @@ export const OrderScalarFieldEnum = {
   id: 'id',
   merchantId: 'merchantId',
   customerId: 'customerId',
-  linkedAccountId: 'linkedAccountId',
-  paymentProvider: 'paymentProvider',
   paymentStatus: 'paymentStatus',
-  paywayTranId: 'paywayTranId',
   subtotal: 'subtotal',
   tax: 'tax',
   total: 'total',
   currency: 'currency',
   paidAt: 'paidAt',
-  paywayApv: 'paywayApv',
-  qrGeneratedAt: 'qrGeneratedAt',
-  qrExpiresAt: 'qrExpiresAt',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1524,20 +1320,24 @@ export const OrderItemScalarFieldEnum = {
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
 
 
+export const BankQRCodeScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  bankName: 'bankName',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type BankQRCodeScalarFieldEnum = (typeof BankQRCodeScalarFieldEnum)[keyof typeof BankQRCodeScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const NullableJsonNullValueInput = {
-  DbNull: DbNull,
-  JsonNull: JsonNull
-} as const
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
 export const QueryMode = {
@@ -1554,15 +1354,6 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
 
@@ -1631,20 +1422,6 @@ export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaMode
  * Reference to a field of type 'Boolean'
  */
 export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-/**
- * Reference to a field of type 'Json'
- */
-export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
-    
-
-
-/**
- * Reference to a field of type 'QueryMode'
- */
-export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
     
 
 /**
@@ -1748,12 +1525,10 @@ export type GlobalOmitConfig = {
   verificationToken?: Prisma.VerificationTokenOmit
   menuItem?: Prisma.MenuItemOmit
   settings?: Prisma.SettingsOmit
-  paymentAccount?: Prisma.PaymentAccountOmit
-  linkedAccount?: Prisma.LinkedAccountOmit
-  paymentLinkRequest?: Prisma.PaymentLinkRequestOmit
   customer?: Prisma.CustomerOmit
   order?: Prisma.OrderOmit
   orderItem?: Prisma.OrderItemOmit
+  bankQRCode?: Prisma.BankQRCodeOmit
 }
 
 /* Types for Logging */

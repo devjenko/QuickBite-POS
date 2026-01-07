@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ToggleSwitch from "@/components/settings/ToggleSwitch";
 import SettingsSection from "@/components/settings/SettingsSection";
 import SettingItem from "@/components/settings/SettingItem";
@@ -13,25 +13,15 @@ import {
 } from "@/consts/settings";
 import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
 import UserModeOption from "@/components/settings/UserModeOption";
-import { toast } from "sonner";
 import { UserMode } from "@/types/settings";
 import Dropdown from "../shared/Dropdown";
-import ConnectAccountModal from "./ConnectAccountModal";
 
 interface SettingsState {
-  // Payment Settings
-  ABAConnected: boolean;
-  WingConnected: boolean;
   acceptCardPayments: boolean;
   qrCodePayments: boolean;
   cashPayments: boolean;
-  enableTipping: boolean;
   defaultTaxRate: string;
-
-  // User Mode
   userMode: UserMode;
-
-  // Display & Interface
   language: string;
   currency: string;
   dateFormat: string;
@@ -40,21 +30,18 @@ interface SettingsState {
   soundEffects: boolean;
 }
 
+const BANKS = [
+  { name: "ABA Pay", img: "/logos/aba_bank_logo.webp" },
+  { name: "Wing Money", img: "/logos/wing_bank_logo.webp" },
+];
+
 const SettingsContent: React.FC = () => {
   const [settings, setSettings] = useState<SettingsState>({
-    // Payment Settings
-    ABAConnected: false,
-    WingConnected: false,
     acceptCardPayments: true,
     qrCodePayments: true,
     cashPayments: true,
-    enableTipping: true,
     defaultTaxRate: "0",
-
-    // User Modes
     userMode: "owner",
-
-    // Display & Interface
     language: "en",
     currency: "usd",
     dateFormat: "mm-dd-yyyy",
@@ -63,40 +50,44 @@ const SettingsContent: React.FC = () => {
     soundEffects: true,
   });
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [merchantId, setMerchantId] = useState("");
-  const [apiKey, setApiKey] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [uploadedBanks, setUploadedBanks] = useState<Set<string>>(new Set());
+  const [reloadToken, setReloadToken] = useState(0);
 
-  // Handler functions
+  useEffect(() => {
+    let cancelled = false;
+
+    const load = async () => {
+      try {
+        const response = await fetch("/api/bank-qr");
+        if (!response.ok) return;
+        const data = await response.json();
+
+        if (!cancelled) {
+          setUploadedBanks(
+            new Set(data.qrCodes.map((qr: { bankName: string }) => qr.bankName))
+          );
+        }
+      } catch (error) {
+        console.error("Failed to fetch uploaded banks:", error);
+      }
+    };
+
+    void load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [reloadToken]);
+
+  const handleUploadSuccess = () => {
+    setReloadToken((token) => token + 1);
+  };
+
   const updateSetting = <K extends keyof SettingsState>(
     key: K,
     value: SettingsState[K]
   ) => {
     setSettings((prev) => ({ ...prev, [key]: value }));
-  };
-
-  const handleABAConnect = () => {
-    setIsLoading(true);
-    console.log("Connecting to ABA...");
-
-    try {
-    } catch (error) {}
-  };
-
-  const handleABADisconnect = () => {
-    console.log("Disconnecting from ABA...");
-    updateSetting("ABAConnected", false);
-  };
-
-  const handleWingConnect = () => {
-    console.log("Connecting to Wing...");
-    updateSetting("WingConnected", true);
-  };
-
-  const handleWingDisconnect = () => {
-    console.log("Disconnecting from Wing...");
-    updateSetting("WingConnected", false);
   };
 
   return (
@@ -106,54 +97,17 @@ const SettingsContent: React.FC = () => {
       {/* Payment Settings Section */}
       <SettingsSection
         title="Payment Settings"
-        description="Manage your payment processing and transaction preferences"
+        description="Upload your bank QR codes to accept payments"
       >
-        <ConnectAccountCard
-          name="ABA Merchant"
-          img="/logos/aba_bank_logo.webp"
-          isConnected={settings.ABAConnected}
-          onConnect={() => setIsOpen(true)}
-          onDisconnect={handleABADisconnect}
-        />
-
-        <ConnectAccountModal
-          title="Connect ABA PayWay Account"
-          description="Enter your ABA PayWay Merchant credentials to start accepting payments"
-          helpText="Don't have an ABA Merchant account yet?"
-          helpLink={{
-            text: "Download the ABA Merchant App here",
-            href: "https://www.ababank.com/en/aba-merchant-app/",
-          }}
-          fields={[
-            {
-              label: "Merchant ID",
-              placeholder: "eg., eh629400",
-              type: "text",
-              required: true,
-              value: merchantId,
-              onChange: setMerchantId,
-            },
-            {
-              label: "API Key",
-              placeholder: "Your API Key",
-              type: "password",
-              required: true,
-              value: apiKey,
-              onChange: setApiKey,
-            },
-          ]}
-          onConnect={handleABAConnect}
-          setIsOpen={setIsOpen}
-          isOpen={isOpen}
-        />
-
-        <ConnectAccountCard
-          isConnected={settings.WingConnected}
-          onConnect={handleWingConnect}
-          onDisconnect={handleWingDisconnect}
-          name="Wing Merchant"
-          img="/logos/wing_bank_logo.webp"
-        />
+        {BANKS.map((bank) => (
+          <ConnectAccountCard
+            key={bank.name}
+            name={bank.name}
+            img={bank.img}
+            isUploaded={uploadedBanks.has(bank.name)}
+            onUploadSuccess={handleUploadSuccess}
+          />
+        ))}
 
         <div>
           <SettingItem

@@ -1,3 +1,5 @@
+"use client";
+
 import { BaseModalProps } from "@/components/shared/BaseModal";
 import { Input } from "@/components/ui/Input";
 import BaseModal from "@/components/shared/BaseModal";

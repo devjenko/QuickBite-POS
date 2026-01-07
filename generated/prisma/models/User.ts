@@ -194,10 +194,8 @@ export type UserWhereInput = {
   sessions?: Prisma.SessionListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
-  paymentAccounts?: Prisma.PaymentAccountListRelationFilter
-  linkedAccounts?: Prisma.LinkedAccountListRelationFilter
-  linkRequests?: Prisma.PaymentLinkRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  bankQRCodes?: Prisma.BankQRCodeListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -211,10 +209,8 @@ export type UserOrderByWithRelationInput = {
   sessions?: Prisma.SessionOrderByRelationAggregateInput
   menuItems?: Prisma.MenuItemOrderByRelationAggregateInput
   settings?: Prisma.SettingsOrderByWithRelationInput
-  paymentAccounts?: Prisma.PaymentAccountOrderByRelationAggregateInput
-  linkedAccounts?: Prisma.LinkedAccountOrderByRelationAggregateInput
-  linkRequests?: Prisma.PaymentLinkRequestOrderByRelationAggregateInput
   orders?: Prisma.OrderOrderByRelationAggregateInput
+  bankQRCodes?: Prisma.BankQRCodeOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -231,10 +227,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   sessions?: Prisma.SessionListRelationFilter
   menuItems?: Prisma.MenuItemListRelationFilter
   settings?: Prisma.XOR<Prisma.SettingsNullableScalarRelationFilter, Prisma.SettingsWhereInput> | null
-  paymentAccounts?: Prisma.PaymentAccountListRelationFilter
-  linkedAccounts?: Prisma.LinkedAccountListRelationFilter
-  linkRequests?: Prisma.PaymentLinkRequestListRelationFilter
   orders?: Prisma.OrderListRelationFilter
+  bankQRCodes?: Prisma.BankQRCodeListRelationFilter
 }, "id" | "businessId">
 
 export type UserOrderByWithAggregationInput = {
@@ -272,10 +266,8 @@ export type UserCreateInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -289,10 +281,8 @@ export type UserUncheckedCreateInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -306,10 +296,8 @@ export type UserUpdateInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -323,10 +311,8 @@ export type UserUncheckedUpdateInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -456,48 +442,6 @@ export type UserUpdateOneRequiredWithoutSettingsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutSettingsInput, Prisma.UserUpdateWithoutSettingsInput>, Prisma.UserUncheckedUpdateWithoutSettingsInput>
 }
 
-export type UserCreateNestedOneWithoutPaymentAccountsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentAccountsInput, Prisma.UserUncheckedCreateWithoutPaymentAccountsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentAccountsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutPaymentAccountsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutPaymentAccountsInput, Prisma.UserUncheckedCreateWithoutPaymentAccountsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutPaymentAccountsInput
-  upsert?: Prisma.UserUpsertWithoutPaymentAccountsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPaymentAccountsInput, Prisma.UserUpdateWithoutPaymentAccountsInput>, Prisma.UserUncheckedUpdateWithoutPaymentAccountsInput>
-}
-
-export type UserCreateNestedOneWithoutLinkedAccountsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLinkedAccountsInput, Prisma.UserUncheckedCreateWithoutLinkedAccountsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLinkedAccountsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutLinkedAccountsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLinkedAccountsInput, Prisma.UserUncheckedCreateWithoutLinkedAccountsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLinkedAccountsInput
-  upsert?: Prisma.UserUpsertWithoutLinkedAccountsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLinkedAccountsInput, Prisma.UserUpdateWithoutLinkedAccountsInput>, Prisma.UserUncheckedUpdateWithoutLinkedAccountsInput>
-}
-
-export type UserCreateNestedOneWithoutLinkRequestsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLinkRequestsInput, Prisma.UserUncheckedCreateWithoutLinkRequestsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLinkRequestsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutLinkRequestsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutLinkRequestsInput, Prisma.UserUncheckedCreateWithoutLinkRequestsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLinkRequestsInput
-  upsert?: Prisma.UserUpsertWithoutLinkRequestsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLinkRequestsInput, Prisma.UserUpdateWithoutLinkRequestsInput>, Prisma.UserUncheckedUpdateWithoutLinkRequestsInput>
-}
-
 export type UserCreateNestedOneWithoutOrdersInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
@@ -512,6 +456,20 @@ export type UserUpdateOneRequiredWithoutOrdersNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
 }
 
+export type UserCreateNestedOneWithoutBankQRCodesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBankQRCodesInput, Prisma.UserUncheckedCreateWithoutBankQRCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBankQRCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutBankQRCodesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutBankQRCodesInput, Prisma.UserUncheckedCreateWithoutBankQRCodesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutBankQRCodesInput
+  upsert?: Prisma.UserUpsertWithoutBankQRCodesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutBankQRCodesInput, Prisma.UserUpdateWithoutBankQRCodesInput>, Prisma.UserUncheckedUpdateWithoutBankQRCodesInput>
+}
+
 export type UserCreateWithoutAccountsInput = {
   id?: string
   businessId: string
@@ -522,10 +480,8 @@ export type UserCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAccountsInput = {
@@ -538,10 +494,8 @@ export type UserUncheckedCreateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAccountsInput = {
@@ -570,10 +524,8 @@ export type UserUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -586,10 +538,8 @@ export type UserUncheckedUpdateWithoutAccountsInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSessionsInput = {
@@ -602,10 +552,8 @@ export type UserCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSessionsInput = {
@@ -618,10 +566,8 @@ export type UserUncheckedCreateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSessionsInput = {
@@ -650,10 +596,8 @@ export type UserUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -666,10 +610,8 @@ export type UserUncheckedUpdateWithoutSessionsInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutMenuItemsInput = {
@@ -682,10 +624,8 @@ export type UserCreateWithoutMenuItemsInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutMenuItemsInput = {
@@ -698,10 +638,8 @@ export type UserUncheckedCreateWithoutMenuItemsInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutMenuItemsInput = {
@@ -730,10 +668,8 @@ export type UserUpdateWithoutMenuItemsInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutMenuItemsInput = {
@@ -746,10 +682,8 @@ export type UserUncheckedUpdateWithoutMenuItemsInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutSettingsInput = {
@@ -762,10 +696,8 @@ export type UserCreateWithoutSettingsInput = {
   accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutSettingsInput = {
@@ -778,10 +710,8 @@ export type UserUncheckedCreateWithoutSettingsInput = {
   accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
   orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutSettingsInput = {
@@ -810,10 +740,8 @@ export type UserUpdateWithoutSettingsInput = {
   accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutSettingsInput = {
@@ -826,250 +754,8 @@ export type UserUncheckedUpdateWithoutSettingsInput = {
   accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
   orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserCreateWithoutPaymentAccountsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
-}
-
-export type UserUncheckedCreateWithoutPaymentAccountsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
-}
-
-export type UserCreateOrConnectWithoutPaymentAccountsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentAccountsInput, Prisma.UserUncheckedCreateWithoutPaymentAccountsInput>
-}
-
-export type UserUpsertWithoutPaymentAccountsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutPaymentAccountsInput, Prisma.UserUncheckedUpdateWithoutPaymentAccountsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutPaymentAccountsInput, Prisma.UserUncheckedCreateWithoutPaymentAccountsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutPaymentAccountsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutPaymentAccountsInput, Prisma.UserUncheckedUpdateWithoutPaymentAccountsInput>
-}
-
-export type UserUpdateWithoutPaymentAccountsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserUncheckedUpdateWithoutPaymentAccountsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserCreateWithoutLinkedAccountsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
-}
-
-export type UserUncheckedCreateWithoutLinkedAccountsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
-}
-
-export type UserCreateOrConnectWithoutLinkedAccountsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLinkedAccountsInput, Prisma.UserUncheckedCreateWithoutLinkedAccountsInput>
-}
-
-export type UserUpsertWithoutLinkedAccountsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLinkedAccountsInput, Prisma.UserUncheckedUpdateWithoutLinkedAccountsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLinkedAccountsInput, Prisma.UserUncheckedCreateWithoutLinkedAccountsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutLinkedAccountsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLinkedAccountsInput, Prisma.UserUncheckedUpdateWithoutLinkedAccountsInput>
-}
-
-export type UserUpdateWithoutLinkedAccountsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserUncheckedUpdateWithoutLinkedAccountsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserCreateWithoutLinkRequestsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
-}
-
-export type UserUncheckedCreateWithoutLinkRequestsInput = {
-  id?: string
-  businessId: string
-  password: string
-  image?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
-  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
-  menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
-  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
-}
-
-export type UserCreateOrConnectWithoutLinkRequestsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutLinkRequestsInput, Prisma.UserUncheckedCreateWithoutLinkRequestsInput>
-}
-
-export type UserUpsertWithoutLinkRequestsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutLinkRequestsInput, Prisma.UserUncheckedUpdateWithoutLinkRequestsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutLinkRequestsInput, Prisma.UserUncheckedCreateWithoutLinkRequestsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutLinkRequestsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutLinkRequestsInput, Prisma.UserUncheckedUpdateWithoutLinkRequestsInput>
-}
-
-export type UserUpdateWithoutLinkRequestsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
-}
-
-export type UserUncheckedUpdateWithoutLinkRequestsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  businessId?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
-  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
-  menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
-  settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutOrdersInput = {
@@ -1083,9 +769,7 @@ export type UserCreateWithoutOrdersInput = {
   sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestCreateNestedManyWithoutUserInput
+  bankQRCodes?: Prisma.BankQRCodeCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutOrdersInput = {
@@ -1099,9 +783,7 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
   menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
   settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedCreateNestedManyWithoutUserInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedCreateNestedManyWithoutUserInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedCreateNestedManyWithoutUserInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutOrdersInput = {
@@ -1131,9 +813,7 @@ export type UserUpdateWithoutOrdersInput = {
   sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUpdateManyWithoutUserNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutOrdersInput = {
@@ -1147,9 +827,79 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
   menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
   settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
-  paymentAccounts?: Prisma.PaymentAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkedAccounts?: Prisma.LinkedAccountUncheckedUpdateManyWithoutUserNestedInput
-  linkRequests?: Prisma.PaymentLinkRequestUncheckedUpdateManyWithoutUserNestedInput
+  bankQRCodes?: Prisma.BankQRCodeUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutBankQRCodesInput = {
+  id?: string
+  businessId: string
+  password: string
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionCreateNestedManyWithoutUserInput
+  menuItems?: Prisma.MenuItemCreateNestedManyWithoutUserInput
+  settings?: Prisma.SettingsCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderCreateNestedManyWithoutMerchantInput
+}
+
+export type UserUncheckedCreateWithoutBankQRCodesInput = {
+  id?: string
+  businessId: string
+  password: string
+  image?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  accounts?: Prisma.AccountUncheckedCreateNestedManyWithoutUserInput
+  sessions?: Prisma.SessionUncheckedCreateNestedManyWithoutUserInput
+  menuItems?: Prisma.MenuItemUncheckedCreateNestedManyWithoutUserInput
+  settings?: Prisma.SettingsUncheckedCreateNestedOneWithoutUserInput
+  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutMerchantInput
+}
+
+export type UserCreateOrConnectWithoutBankQRCodesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutBankQRCodesInput, Prisma.UserUncheckedCreateWithoutBankQRCodesInput>
+}
+
+export type UserUpsertWithoutBankQRCodesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutBankQRCodesInput, Prisma.UserUncheckedUpdateWithoutBankQRCodesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutBankQRCodesInput, Prisma.UserUncheckedCreateWithoutBankQRCodesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutBankQRCodesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutBankQRCodesInput, Prisma.UserUncheckedUpdateWithoutBankQRCodesInput>
+}
+
+export type UserUpdateWithoutBankQRCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  businessId?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUpdateManyWithoutUserNestedInput
+  menuItems?: Prisma.MenuItemUpdateManyWithoutUserNestedInput
+  settings?: Prisma.SettingsUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUpdateManyWithoutMerchantNestedInput
+}
+
+export type UserUncheckedUpdateWithoutBankQRCodesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  businessId?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  accounts?: Prisma.AccountUncheckedUpdateManyWithoutUserNestedInput
+  sessions?: Prisma.SessionUncheckedUpdateManyWithoutUserNestedInput
+  menuItems?: Prisma.MenuItemUncheckedUpdateManyWithoutUserNestedInput
+  settings?: Prisma.SettingsUncheckedUpdateOneWithoutUserNestedInput
+  orders?: Prisma.OrderUncheckedUpdateManyWithoutMerchantNestedInput
 }
 
 
@@ -1161,20 +911,16 @@ export type UserCountOutputType = {
   accounts: number
   sessions: number
   menuItems: number
-  paymentAccounts: number
-  linkedAccounts: number
-  linkRequests: number
   orders: number
+  bankQRCodes: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   accounts?: boolean | UserCountOutputTypeCountAccountsArgs
   sessions?: boolean | UserCountOutputTypeCountSessionsArgs
   menuItems?: boolean | UserCountOutputTypeCountMenuItemsArgs
-  paymentAccounts?: boolean | UserCountOutputTypeCountPaymentAccountsArgs
-  linkedAccounts?: boolean | UserCountOutputTypeCountLinkedAccountsArgs
-  linkRequests?: boolean | UserCountOutputTypeCountLinkRequestsArgs
   orders?: boolean | UserCountOutputTypeCountOrdersArgs
+  bankQRCodes?: boolean | UserCountOutputTypeCountBankQRCodesArgs
 }
 
 /**
@@ -1211,29 +957,15 @@ export type UserCountOutputTypeCountMenuItemsArgs<ExtArgs extends runtime.Types.
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountPaymentAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentAccountWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountLinkedAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.LinkedAccountWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountLinkRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PaymentLinkRequestWhereInput
-}
-
-/**
- * UserCountOutputType without action
- */
 export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountBankQRCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.BankQRCodeWhereInput
 }
 
 
@@ -1248,10 +980,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   menuItems?: boolean | Prisma.User$menuItemsArgs<ExtArgs>
   settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
-  paymentAccounts?: boolean | Prisma.User$paymentAccountsArgs<ExtArgs>
-  linkedAccounts?: boolean | Prisma.User$linkedAccountsArgs<ExtArgs>
-  linkRequests?: boolean | Prisma.User$linkRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  bankQRCodes?: boolean | Prisma.User$bankQRCodesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1288,10 +1018,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   sessions?: boolean | Prisma.User$sessionsArgs<ExtArgs>
   menuItems?: boolean | Prisma.User$menuItemsArgs<ExtArgs>
   settings?: boolean | Prisma.User$settingsArgs<ExtArgs>
-  paymentAccounts?: boolean | Prisma.User$paymentAccountsArgs<ExtArgs>
-  linkedAccounts?: boolean | Prisma.User$linkedAccountsArgs<ExtArgs>
-  linkRequests?: boolean | Prisma.User$linkRequestsArgs<ExtArgs>
   orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  bankQRCodes?: boolean | Prisma.User$bankQRCodesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -1304,10 +1032,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     sessions: Prisma.$SessionPayload<ExtArgs>[]
     menuItems: Prisma.$MenuItemPayload<ExtArgs>[]
     settings: Prisma.$SettingsPayload<ExtArgs> | null
-    paymentAccounts: Prisma.$PaymentAccountPayload<ExtArgs>[]
-    linkedAccounts: Prisma.$LinkedAccountPayload<ExtArgs>[]
-    linkRequests: Prisma.$PaymentLinkRequestPayload<ExtArgs>[]
     orders: Prisma.$OrderPayload<ExtArgs>[]
+    bankQRCodes: Prisma.$BankQRCodePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1714,10 +1440,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   sessions<T extends Prisma.User$sessionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$sessionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$SessionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   menuItems<T extends Prisma.User$menuItemsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$menuItemsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MenuItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   settings<T extends Prisma.User$settingsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$settingsArgs<ExtArgs>>): Prisma.Prisma__SettingsClient<runtime.Types.Result.GetResult<Prisma.$SettingsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  paymentAccounts<T extends Prisma.User$paymentAccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$paymentAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  linkedAccounts<T extends Prisma.User$linkedAccountsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$linkedAccountsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LinkedAccountPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  linkRequests<T extends Prisma.User$linkRequestsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$linkRequestsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PaymentLinkRequestPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  bankQRCodes<T extends Prisma.User$bankQRCodesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$bankQRCodesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$BankQRCodePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2232,78 +1956,6 @@ export type User$settingsArgs<ExtArgs extends runtime.Types.Extensions.InternalA
 }
 
 /**
- * User.paymentAccounts
- */
-export type User$paymentAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentAccount
-   */
-  select?: Prisma.PaymentAccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentAccount
-   */
-  omit?: Prisma.PaymentAccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentAccountInclude<ExtArgs> | null
-  where?: Prisma.PaymentAccountWhereInput
-  orderBy?: Prisma.PaymentAccountOrderByWithRelationInput | Prisma.PaymentAccountOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentAccountWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentAccountScalarFieldEnum | Prisma.PaymentAccountScalarFieldEnum[]
-}
-
-/**
- * User.linkedAccounts
- */
-export type User$linkedAccountsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the LinkedAccount
-   */
-  select?: Prisma.LinkedAccountSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the LinkedAccount
-   */
-  omit?: Prisma.LinkedAccountOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.LinkedAccountInclude<ExtArgs> | null
-  where?: Prisma.LinkedAccountWhereInput
-  orderBy?: Prisma.LinkedAccountOrderByWithRelationInput | Prisma.LinkedAccountOrderByWithRelationInput[]
-  cursor?: Prisma.LinkedAccountWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.LinkedAccountScalarFieldEnum | Prisma.LinkedAccountScalarFieldEnum[]
-}
-
-/**
- * User.linkRequests
- */
-export type User$linkRequestsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PaymentLinkRequest
-   */
-  select?: Prisma.PaymentLinkRequestSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PaymentLinkRequest
-   */
-  omit?: Prisma.PaymentLinkRequestOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PaymentLinkRequestInclude<ExtArgs> | null
-  where?: Prisma.PaymentLinkRequestWhereInput
-  orderBy?: Prisma.PaymentLinkRequestOrderByWithRelationInput | Prisma.PaymentLinkRequestOrderByWithRelationInput[]
-  cursor?: Prisma.PaymentLinkRequestWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PaymentLinkRequestScalarFieldEnum | Prisma.PaymentLinkRequestScalarFieldEnum[]
-}
-
-/**
  * User.orders
  */
 export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2325,6 +1977,30 @@ export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+}
+
+/**
+ * User.bankQRCodes
+ */
+export type User$bankQRCodesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the BankQRCode
+   */
+  select?: Prisma.BankQRCodeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the BankQRCode
+   */
+  omit?: Prisma.BankQRCodeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.BankQRCodeInclude<ExtArgs> | null
+  where?: Prisma.BankQRCodeWhereInput
+  orderBy?: Prisma.BankQRCodeOrderByWithRelationInput | Prisma.BankQRCodeOrderByWithRelationInput[]
+  cursor?: Prisma.BankQRCodeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.BankQRCodeScalarFieldEnum | Prisma.BankQRCodeScalarFieldEnum[]
 }
 
 /**
