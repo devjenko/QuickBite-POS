@@ -68,7 +68,8 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
       onUploadSuccess();
     } catch (error) {
       console.error("Upload error:", error);
-      const errorMessage = error instanceof Error ? error.message : "Failed to upload QR code";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to upload QR code";
       toast.error(errorMessage);
     } finally {
       setUploading(false);
@@ -103,8 +104,8 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
               <span
                 className={`inline-flex items-center px-2.5 py-1 rounded-sm text-xxxsmall font-medium ${
                   isUploaded
-                    ? "bg-[var(--Green)] bg-opacity-10 text-[var(--Green)]"
-                    : "bg-[var(--Red)] bg-opacity-10 text-[var(--Red)]"
+                    ? "bg-[var(--Green)] bg-opacity-10 text-[var(--White)]"
+                    : "bg-[var(--Red)] bg-opacity-10 text-[var(--White)]"
                 }`}
               >
                 {isUploaded ? "Uploaded" : "Not Uploaded"}

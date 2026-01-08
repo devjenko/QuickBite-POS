@@ -22,6 +22,8 @@ export const useCartStore = create<CartState>()(
   persist(
     (set) => ({
       items: [],
+      totalPrice: (state: CartState) =>
+        state.items.reduce((sum, i) => sum + i.price * i.quantity, 0),
 
       addItem: (item) =>
         set((state) => {
@@ -64,7 +66,7 @@ export const useCartStore = create<CartState>()(
         })),
     }),
     {
-      name: "cart-storage", // 👈 localStorage key
+      name: "cart-storage",
     }
   )
 );

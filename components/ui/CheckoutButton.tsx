@@ -6,7 +6,6 @@ import { ArrowRight } from "lucide-react";
 const CheckoutButton = ({
   href,
   className,
-  onClick,
 }: {
   href: string;
   className?: string;

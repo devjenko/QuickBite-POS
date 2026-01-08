@@ -9,8 +9,8 @@ import PaymentTabs from "@/components/checkout/PaymentTabs";
 
 const CheckoutPage = () => {
   return (
-    <CenterContentContainer className="flex w-full gap-5.5 h-screen">
-      <ContentWrapper className="flex-1 p-5 overflow-hidden gap-5 flex flex-col">
+    <CenterContentContainer className=" flex flex-col overflow-auto md:flex-row w-full gap-5.5 h-screen">
+      <ContentWrapper className="flex-1 p-5  gap-5 flex flex-col ">
         <BackButton href="/menu" />
         <OrderList />
       </ContentWrapper>

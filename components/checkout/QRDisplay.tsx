@@ -34,7 +34,7 @@ const QRDisplay = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-64">
+      <div className="flex items-center justify-center h-full">
         <div className="flex flex-col items-center gap-3">
           <Spinner className="size-6 text-[var(--Grey)]" />
           <div className="text-[var(--Grey)]">Loading QR codes...</div>
@@ -46,7 +46,9 @@ const QRDisplay = () => {
   if (qrCodes.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center h-64 text-center px-4">
-        <div className="text-[var(--Grey)] mb-2 text-base">No QR codes uploaded yet</div>
+        <div className="text-[var(--Grey)] mb-2 text-base">
+          No QR codes uploaded yet
+        </div>
         <div className="text-xxxsmall text-[var(--Grey)]">
           Upload bank QR codes in Settings to accept payments
         </div>

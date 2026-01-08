@@ -57,7 +57,8 @@ const CashCalculator = () => {
         break;
     }
 
-    const formattedResult = result % 1 === 0 ? result.toString() : result.toFixed(2);
+    const formattedResult =
+      result % 1 === 0 ? result.toString() : result.toFixed(2);
     setDisplay(formattedResult);
     setPreviousValue(null);
     setOperation(null);
@@ -94,11 +95,11 @@ const CashCalculator = () => {
   ];
 
   return (
-    <div className="flex flex-col gap-4">
-      <Card>
-        <CardContent className="p-6">
-          <div className="bg-[var(--LightGrey)] p-6 rounded-lg min-h-[100px] flex items-center justify-end">
-            <div className="text-right text-4xl font-semibold text-[var(--Black)] break-all">
+    <div className="flex flex-col gap-4 max-w-md min-w-xs m-auto">
+      <Card className="max-w-none ">
+        <CardContent className="p-6 w-full">
+          <div className="bg-[var(--LightGrey)]  p-6 rounded-lg min-h-[100px] flex items-center justify-end">
+            <div className="text-right text-4xl font-semibold  text-[var(--Black)] break-all">
               {display}
             </div>
           </div>
