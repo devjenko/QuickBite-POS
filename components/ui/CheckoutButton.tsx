@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Button from "@/components/ui/Button";
-import { useCartStore } from "@/store/cart-store";
+import { useCartTotal } from "@/store/cart-store";
 import { ArrowRight } from "lucide-react";
 
 const CheckoutButton = ({
@@ -11,9 +11,7 @@ const CheckoutButton = ({
   className?: string;
   onClick?: () => void;
 }) => {
-  const totalPrice = useCartStore((state) =>
-    state.items.reduce((sum, i) => sum + i.price * i.quantity, 0)
-  );
+  const totalPrice = useCartTotal();
 
   return (
     <Link href={href}>

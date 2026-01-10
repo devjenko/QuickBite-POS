@@ -21,6 +21,7 @@ export interface BaseModalProps {
   isLoading?: boolean | undefined;
   onSubmit?: (e: FormEvent<Element>) => void;
   btnName?: string;
+  footer?: React.ReactNode;
 }
 
 const BaseModal = ({
@@ -32,6 +33,7 @@ const BaseModal = ({
   onSubmit,
   isLoading,
   btnName,
+  footer,
 }: BaseModalProps) => {
   // Add stopPropagation to the dialog content itself
   const handleDialogClick = (e: React.MouseEvent) => {
@@ -54,25 +56,27 @@ const BaseModal = ({
           {children}
         </DialogHeader>
 
-        <DialogFooter className="flex gap-3  m-auto  w-full">
-          <DialogClose asChild>
-            <Button variant="default">Cancel</Button>
-          </DialogClose>
-          <Button
-            type="submit"
-            onClick={onSubmit}
-            variant={"dark"}
-            disabled={isLoading}
-          >
-            {isLoading ? (
-              <span className="flex items-center gap-2">
-                {btnName}ing <Spinner />
-              </span>
-            ) : (
-              btnName
-            )}
-          </Button>
-        </DialogFooter>
+        {footer && (
+          <DialogFooter className="flex gap-3  m-auto  w-full">
+            <DialogClose asChild>
+              <Button variant="default">Cancel</Button>
+            </DialogClose>
+            <Button
+              type="submit"
+              onClick={onSubmit}
+              variant={"dark"}
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <span className="flex items-center gap-2">
+                  {btnName}ing <Spinner />
+                </span>
+              ) : (
+                btnName
+              )}
+            </Button>
+          </DialogFooter>
+        )}
       </DialogContent>
     </Dialog>
   );
