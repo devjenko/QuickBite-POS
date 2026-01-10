@@ -28,7 +28,9 @@ const CashCalculator = () => {
 
   // Initialize display based on currency
   const getInitialDisplay = (curr: Currency) =>
-    curr === "USD" ? totalPriceUsd.toString() : totalPriceKhr.toString();
+    curr === "USD"
+      ? (Math.floor(totalPriceUsd * 100) / 100).toString()
+      : totalPriceKhr.toString();
 
   const [display, setDisplay] = useState<string>(getInitialDisplay(currency));
 
