@@ -24,15 +24,28 @@ const CashCalculator = () => {
   const [currency, setCurrency] = useState<Currency>("USD");
 
   const totalPriceUsd = useCartTotal();
-  const totalPriceKhr = usdToKhr(totalPriceUsd);
 
-  // Initialize display based on currency
-  const getInitialDisplay = (curr: Currency) =>
+  // Get display value based on currency
+  const getDisplayForTotal = (curr: Currency, usdTotal: number) =>
     curr === "USD"
-      ? (Math.floor(totalPriceUsd * 100) / 100).toString()
-      : totalPriceKhr.toString();
+      ? (Math.floor(usdTotal * 100) / 100).toString()
+      : usdToKhr(usdTotal).toString();
 
-  const [display, setDisplay] = useState<string>(getInitialDisplay(currency));
+  const [display, setDisplay] = useState<string>(() =>
+    getDisplayForTotal(currency, totalPriceUsd)
+  );
+  const [hasUserInput, setHasUserInput] = useState(false);
+
+  // Track the last synced total to detect cart changes
+  const [lastSyncedTotal, setLastSyncedTotal] = useState(totalPriceUsd);
+
+  // Sync display with cart total when cart changes (only if user hasn't started calculating)
+  if (totalPriceUsd !== lastSyncedTotal) {
+    setLastSyncedTotal(totalPriceUsd);
+    if (!hasUserInput) {
+      setDisplay(getDisplayForTotal(currency, totalPriceUsd));
+    }
+  }
 
   // Handle currency toggle
   const handleCurrencyToggle = (newCurrency: Currency) => {
@@ -40,10 +53,11 @@ const CashCalculator = () => {
 
     setCurrency(newCurrency);
     // Reset calculator with new currency's total
-    setDisplay(getInitialDisplay(newCurrency));
+    setDisplay(getDisplayForTotal(newCurrency, totalPriceUsd));
     setPreviousValue(null);
     setOperation(null);
     setWaitingForOperand(false);
+    setHasUserInput(false);
   };
 
   // Format number with commas for display
@@ -70,6 +84,8 @@ const CashCalculator = () => {
   };
 
   const handleNumberClick = (num: string) => {
+    setHasUserInput(true);
+
     if (display === "Error") {
       setDisplay(num);
       setWaitingForOperand(false);
@@ -92,6 +108,7 @@ const CashCalculator = () => {
   // In KHR mode: adds KHR value directly
   // In USD mode: converts KHR to USD and adds
   const handleQuickAmount = (khrAmount: string) => {
+    setHasUserInput(true);
     const khrValue = parseInt(khrAmount);
     // Convert to current currency
     const amountInCurrentCurrency =
@@ -215,13 +232,15 @@ const CashCalculator = () => {
 
   const handleClear = () => {
     // AC behavior: if display is not 0, first press clears display (C)
-    // If display is 0 or after C, clear everything (AC)
+    // If display is 0 or after C, clear everything and reset to cart total (AC)
     if (getRawValue(display) !== "0" && !waitingForOperand) {
       setDisplay("0");
     } else {
-      setDisplay("0");
+      // Full reset - go back to cart total
+      setDisplay(getDisplayForTotal(currency, totalPriceUsd));
       setPreviousValue(null);
       setOperation(null);
+      setHasUserInput(false);
     }
     setWaitingForOperand(false);
   };
