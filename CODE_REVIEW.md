@@ -76,36 +76,6 @@ export interface BankQRCode {
 
 ## 6. Security Improvements
 
-### 6.1 Rate Limiting for Auth Endpoints
-
-**Problem:** No rate limiting on login/signup endpoints allows brute force attacks.
-
-**Fix:** Add rate limiting middleware or use a service like Upstash:
-
-```tsx
-// lib/rate-limit.ts
-import { Ratelimit } from "@upstash/ratelimit";
-import { Redis } from "@upstash/redis";
-
-export const ratelimit = new Ratelimit({
-  redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(5, "1 m"), // 5 requests per minute
-});
-
-// In auth routes:
-const ip = request.headers.get("x-forwarded-for") ?? "127.0.0.1";
-const { success } = await ratelimit.limit(ip);
-
-if (!success) {
-  return NextResponse.json(
-    { error: "Too many requests. Please try again later." },
-    { status: 429 }
-  );
-}
-```
-
----
-
 ### 6.2 Validate Image URLs from Cloudinary
 
 **Problem:** Images from Cloudinary URLs are used without validation.
