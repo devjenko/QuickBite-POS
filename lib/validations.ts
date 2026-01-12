@@ -35,17 +35,21 @@ export const settingsUpdateSchema = z.object({
   timeFormat: z.string().optional(),
 });
 
-// Connect ABA PayWay inputs
-export const abaPayWaySchema = z.object({
-  merchant_id: z
-    .string()
-    .min(1, "Merchant ID is required")
-    .regex(/^[a-zA-Z0-9_-]+$/, "Invalid Merchant ID format"),
+// Auth validation schemas
+export const passwordSchema = z
+  .string()
+  .min(8, "Must be at least 8 characters")
+  .regex(/[A-Z]/, "Must contain at least one uppercase letter")
+  .regex(/[a-z]/, "Must contain at least one lowercase letter")
+  .regex(/[0-9]/, "Must contain at least one number")
+  .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Must contain at least one special character");
 
-  api_key: z
-    .string()
-    .min(10, "API Key must be at least 10 characters")
-    .min(1, "API Key is required"),
-});
+export const signupSchema = z.object({
+  businessName: z.string().min(1, { message: "Business name is required" }),
+  password: passwordSchema,
+}).strict();
 
-export type AbaPayWayCredentials = z.infer<typeof abaPayWaySchema>;
+export const loginSchema = z.object({
+  businessId: z.string().min(1, { message: "Business ID is required" }),
+  password: passwordSchema,
+}).strict();

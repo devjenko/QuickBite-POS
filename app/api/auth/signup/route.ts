@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { signupSchema } from "@/lib/validations";
 
 // Helper function to generate staff ID
 function generateBusinessId(businessName: string): string {
@@ -29,17 +30,19 @@ async function generateUniqueBusinessId(businessName: string): Promise<string> {
 
 export async function POST(request: Request) {
   try {
-    // Parse the request body
+    
     const body = await request.json();
-    const { businessName, password } = body;
 
-    // Validate required fields
-    if (!businessName || !password) {
+    // validate body with zod
+    const validatedData = signupSchema.safeParse(body);
+    if (!validatedData.success) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: validatedData.error.message },
         { status: 400 }
       );
     }
+
+    const { businessName, password } = validatedData.data;
 
     // Trim whitespace from names
     const trimmedBusinessName = businessName.trim();

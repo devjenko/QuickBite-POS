@@ -48,15 +48,6 @@ image={item.image || "/images/placeholder-menu-item.webp"}
 
 ## 4. Best Practices
 
-### 4.1 Use Proper TypeScript Types for Route Params
-
-**File:** `app/(pos)/menu/[category]/page.tsx`
-
-**Current:** Using `Promise<{ category: string }>` which is correct for Next.js 15.
-
-**Recommendation:** This is already correct! Good job.
-
----
 
 ### 4.2 Move Password Validation to Shared Location
 
