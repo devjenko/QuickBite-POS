@@ -33,6 +33,8 @@ export function SignUpForm({
     setPassword(e.target.value);
   };
 
+  const passed = PASSWORD_REQUIREMENTS.every((req) => req.test(password));
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -173,7 +175,7 @@ export function SignUpForm({
         </Field>
 
         <Field>
-          <Button type="submit" variant="dark" disabled={isLoading}>
+          <Button  type="submit" variant="dark" disabled={!passed || isLoading}>
             {isLoading ? (
               <span className="flex items-center gap-2">
                 Creating Account <Spinner />
