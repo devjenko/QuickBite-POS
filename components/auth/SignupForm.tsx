@@ -14,6 +14,10 @@ import Link from "next/link";
 import { useState } from "react";
 import InputPassword from "@/components/auth/InputPassword";
 import { CopyButton } from "@/components/auth/CopyTextBtn";
+import { passwordSchema } from "@/lib/validations";
+import { Check, X } from "lucide-react";
+import { PASSWORD_REQUIREMENTS } from "@/consts/signup-form";
+
 
 export function SignUpForm({
   className,
@@ -24,45 +28,9 @@ export function SignUpForm({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [generatedBusinessId, setGeneratedBusinessId] = useState();
-  const [passwordErrors, setPasswordErrors] = useState<string[]>([]);
 
-  function validatePassword(password: string): {
-    isValid: boolean;
-    errors: string[];
-  } {
-    const errors: string[] = [];
-
-    if (password.length < 8) {
-      errors.push("Must be at least 8 characters");
-    }
-
-    if (!/[A-Z]/.test(password)) {
-      errors.push("Must contain at least one uppercase letter");
-    }
-
-    if (!/[a-z]/.test(password)) {
-      errors.push("Must contain at least one lowercase letter");
-    }
-
-    if (!/[0-9]/.test(password)) {
-      errors.push("Must contain at least one number");
-    }
-
-    if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
-      errors.push("Must contain at least one special character");
-    }
-
-    return { isValid: errors.length === 0, errors };
-  }
-
-  // Validate password on change
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newPassword = e.target.value;
-    setPassword(newPassword);
-
-    // Show real-time validation
-    const validation = validatePassword(newPassword);
-    setPasswordErrors(validation.errors);
+    setPassword(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,10 +38,10 @@ export function SignUpForm({
     setIsLoading(true);
     setError("");
 
-    const passwordValidation = validatePassword(password);
-
-    if (!passwordValidation.isValid) {
-      setError(passwordValidation.errors.join(". "));
+    // Validate with Zod before submitting
+    const result = passwordSchema.safeParse(password);
+    if (!result.success) {
+      setError(result.error.issues.map((i) => i.message).join(". "));
       setIsLoading(false);
       return;
     }
@@ -182,22 +150,29 @@ export function SignUpForm({
             autoComplete="off"
           />
 
-          {/* Real-time password requirements display */}
-          {password.length > 0 && passwordErrors.length > 0 && (
-            <ul className="text-sm space-y-1 mt-2">
-              {passwordErrors.map((error, index) => (
-                <li key={index} className="text-destructive text-xs">
-                  • {error}
-                </li>
-              ))}
+          {/* Password requirements checklist */}
+          {password.length > 0 && (
+            <ul className="text-xs space-y-1 mt-3">
+              {PASSWORD_REQUIREMENTS.map((req, index) => {
+                const passed = req.test(password);
+                return (
+                  <li
+                    key={index}
+                    className={cn(
+                      "flex items-center gap-2 transition-colors",
+                      passed ? "text-green-600" : "text-destructive"
+                    )}
+                  >
+                    {passed ? (
+                      <Check className="size-3.5" />
+                    ) : (
+                      <X className="size-3.5" />
+                    )}
+                    {req.label}
+                  </li>
+                );
+              })}
             </ul>
-          )}
-
-          {/* Show success when all requirements met */}
-          {password.length > 0 && passwordErrors.length === 0 && (
-            <p className="text-sm text-green-600 mt-2">
-              ✓ Password meets all requirements
-            </p>
           )}
         </Field>
 
