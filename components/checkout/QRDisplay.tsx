@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import Spinner from "@/components/ui/Spinner";
 import ProviderButton from "./ProviderButton";
@@ -15,9 +15,9 @@ const QRDisplay = () => {
 
   const totalPrice = useCartTotal();
 
-  const handleProviderBtnClick = (qr: BankQRCode) => {
+  const handleProviderBtnClick = useCallback((qr: BankQRCode) => {
     setSelectedQR(qr);
-  };
+  }, []);
 
   const handleCloseModal = () => {
     setSelectedQR(null);

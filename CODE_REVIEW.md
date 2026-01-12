@@ -49,51 +49,6 @@ image={item.image || "/images/placeholder-menu-item.webp"}
 ## 4. Best Practices
 
 
-### 4.2 Move Password Validation to Shared Location
-
-**Files:** `components/auth/SignupForm.tsx`, `app/api/auth/signup/route.ts`
-
-**Problem:** Password validation only exists on the client side. Server doesn't validate password strength.
-
-**Fix:** Add validation to the API route:
-
-```tsx
-// lib/validations.ts - Add password schema
-export const passwordSchema = z
-  .string()
-  .min(8, "Must be at least 8 characters")
-  .regex(/[A-Z]/, "Must contain at least one uppercase letter")
-  .regex(/[a-z]/, "Must contain at least one lowercase letter")
-  .regex(/[0-9]/, "Must contain at least one number")
-  .regex(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/, "Must contain at least one special character");
-
-export const signupSchema = z.object({
-  businessName: z.string().min(1, "Business name is required").trim(),
-  password: passwordSchema,
-});
-
-// Update signup route to use schema
-import { signupSchema } from "@/lib/validations";
-
-export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const validated = signupSchema.safeParse(body);
-
-    if (!validated.success) {
-      return NextResponse.json(
-        { error: validated.error.errors[0].message },
-        { status: 400 }
-      );
-    }
-
-    const { businessName, password } = validated.data;
-    // ... rest of the code
-  }
-}
-```
-
----
 
 ### 4.3 Use `useCallback` for Event Handlers Passed as Props
 
