@@ -22,6 +22,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { createMenuItem } from "@/app/actions/menu";
 
 const AddItemModal = ({ ItemId }: { ItemId?: string }) => {
   const [name, setName] = useState<string>("");
@@ -39,26 +40,13 @@ const AddItemModal = ({ ItemId }: { ItemId?: string }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/menu-items/${ItemId}`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          description,
-          price,
-          category,
-          image,
-        }),
+      await createMenuItem({
+        name,
+        description,
+        price,
+        category,
+        image,
       });
-
-      if (!response.ok) {
-        throw new Error("Failed to add menu item");
-      }
-
-      const menuItem = await response.json();
-      console.log("Menu item added:", menuItem);
 
       router.refresh();
 

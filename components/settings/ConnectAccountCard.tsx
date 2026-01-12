@@ -8,6 +8,7 @@ import { useState, useRef } from "react";
 import { toast } from "sonner";
 import Spinner from "@/components/ui/Spinner";
 import { Upload } from "lucide-react";
+import { uploadBankQRCode } from "@/app/actions/payment";
 
 interface ConnectAccountCardProps {
   name: string;
@@ -46,23 +47,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
       formData.append("file", file);
       formData.append("bankName", name);
 
-      const response = await fetch("/api/bank-qr/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      let data;
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        data = await response.json();
-      } else {
-        const text = await response.text();
-        throw new Error(text || "Upload failed");
-      }
-
-      if (!response.ok) {
-        throw new Error(data?.error || "Upload failed");
-      }
+      await uploadBankQRCode(formData);
 
       toast.success(`${name} QR code uploaded successfully`);
       onUploadSuccess();

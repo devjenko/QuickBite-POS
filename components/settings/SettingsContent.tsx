@@ -17,6 +17,7 @@ import UserModeOption from "@/components/settings/UserModeOption";
 import { UserMode } from "@/types/settings";
 import Dropdown from "../shared/Dropdown";
 import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
+import { updateSettings } from "@/app/actions/settings";
 
 interface SettingsState {
   acceptCardPayments: boolean;
@@ -56,11 +57,7 @@ const SettingsContent: React.FC = () => {
   // Debounced save settings to database
   const saveSettings = useDebouncedCallback(async (newSettings: SettingsState) => {
     try {
-      await fetch("/api/settings", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newSettings),
-      });
+      await updateSettings(newSettings);
     } catch (error) {
       console.error("Failed to save settings:", error);
     }
