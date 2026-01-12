@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { buttonRows, quickAmounts } from "@/consts/cash-calculator";
 import { useCartTotal } from "@/store/cart-store";

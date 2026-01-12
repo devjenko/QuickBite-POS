@@ -1,14 +1,7 @@
 import useSWR from "swr";
+import { BankQRCode, BankQRResponse } from "@/types/bank-qr";
 
-export interface BankQRCode {
-  id: string;
-  bankName: string;
-  imageUrl: string;
-}
-
-interface BankQRResponse {
-  qrCodes: BankQRCode[];
-}
+export type { BankQRCode, BankQRResponse };
 
 const fetcher = (url: string) =>
   fetch(url).then((res) => {

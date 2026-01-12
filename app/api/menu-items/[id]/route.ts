@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { uploadImage } from "@/lib/cloudinary";
 import { auth } from "@/auth";
 import { createMenuItemSchema } from "@/lib/validations";
+import { AppError, handleApiError } from "@/lib/errors";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,7 +11,7 @@ export async function POST(request: NextRequest) {
     const session = await auth();
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const body = await request.json();
@@ -19,22 +20,16 @@ export async function POST(request: NextRequest) {
     const validatedBody = createMenuItemSchema.safeParse(body);
 
     if (!validatedBody.success) {
-      return NextResponse.json(
-        { error: validatedBody.error.message },
-        { status: 400 }
-      );
+      throw new AppError(validatedBody.error.issues[0].message, 400, "VALIDATION_ERROR");
     }
 
     const { name, description, price, category, image } = validatedBody.data;
-
-
 
     // normalize category to lowercase, remove spaces, and replace & with 'and'
     const normalizedCategory =
       typeof category === "string"
         ? category.trim().toLowerCase().replace(/&/g, "and").replace(/\s+/g, "")
         : category;
-
 
     // Upload image to Cloudinary
     let imageUrl = null;
@@ -55,11 +50,7 @@ export async function POST(request: NextRequest) {
     });
     return NextResponse.json(menuItem, { status: 201 });
   } catch (error) {
-    console.error("Error creating menu item", error);
-    return NextResponse.json(
-      { error: "Failed to create menu item" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }
 
@@ -67,23 +58,21 @@ export async function DELETE(
   request: NextRequest,
   context: { params: Promise<{ id: string }> }
 ) {
-  const id = (await context.params).id;
-
-  console.log("Deleting item with id:", id);
-
   try {
+    const id = (await context.params).id;
     const session = await auth();
+    
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     // verify item belongs to user
     const menuItem = await prisma.menuItem.findUnique({where: {id}, select: {userId: true}});
     if (!menuItem) {
-      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+      throw new AppError("Item not found", 404, "NOT_FOUND");
     }
     if (menuItem.userId !== session.user.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     await prisma.menuItem.delete({ where: { id } });
@@ -93,15 +82,10 @@ export async function DELETE(
       { status: 200 }
     );
   } catch (error: unknown) {
-    console.error("Delete error:", error);
-
+    // Handle Prisma not found error
     if ((error as { code?: string }).code === "P2025") {
-      return NextResponse.json({ error: "Item not found" }, { status: 404 });
+      return handleApiError(new AppError("Item not found", 404, "NOT_FOUND"));
     }
-
-    return NextResponse.json(
-      { error: "Failed to delete the item" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }

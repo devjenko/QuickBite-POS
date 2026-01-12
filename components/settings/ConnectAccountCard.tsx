@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import ContentWrapper from "@/components/shared/ContentWrapper";
 import Image from "next/image";

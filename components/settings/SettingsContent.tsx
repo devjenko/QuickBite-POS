@@ -14,23 +14,10 @@ import {
 } from "@/consts/settings";
 import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
 import UserModeOption from "@/components/settings/UserModeOption";
-import { UserMode } from "@/types/settings";
+import { UserMode, SettingsState } from "@/types/settings";
 import Dropdown from "../shared/Dropdown";
 import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
 import { updateSettings } from "@/app/actions/settings";
-
-interface SettingsState {
-  acceptCardPayments: boolean;
-  qrCodePayments: boolean;
-  cashPayments: boolean;
-  defaultTaxRate: string;
-  userMode: UserMode;
-  language: string;
-  currency: string;
-  dateFormat: string;
-  timeFormat: string;
-  darkMode: boolean;
-}
 
 const BANKS = [
   { name: "ABA Pay", img: "/logos/aba_bank_logo.webp" },

@@ -64,11 +64,7 @@ export function SignUpForm({
         throw new Error(data.error || "Something went wrong");
       }
 
-      setTimeout(() => {
-        setGeneratedBusinessId(data.businessId);
-      }, 0);
-
-      // Success! Show the generated business ID
+      //  Show the generated business ID
       setGeneratedBusinessId(data.businessId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to create account");

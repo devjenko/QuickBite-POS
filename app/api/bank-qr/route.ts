@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
+import { AppError, handleApiError } from "@/lib/errors";
 
 export async function GET() {
-  const session = await auth();
-
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   try {
+    const session = await auth();
+
+    if (!session?.user) {
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
+    }
+
     const qrCodes = await prisma.bankQRCode.findMany({
       where: { userId: session.user.id },
       orderBy: { createdAt: "desc" },
@@ -17,10 +18,6 @@ export async function GET() {
 
     return NextResponse.json({ qrCodes });
   } catch (error) {
-    console.error("Fetch error:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch QR codes" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }

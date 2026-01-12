@@ -5,7 +5,7 @@ import Image from "next/image";
 import Spinner from "@/components/ui/Spinner";
 import ProviderButton from "./ProviderButton";
 import BaseModal from "../shared/BaseModal";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 import { useCartTotal } from "@/store/cart-store";
 import { useBankQRCodes, BankQRCode } from "@/lib/hooks/useBankQRCodes";
 
@@ -94,7 +94,7 @@ const QRDisplay = () => {
           )}
         </BaseModal>
 
-        <div className="flex  flex-col  items-center gap-4"></div>
+      
       </div>
     </div>
   );

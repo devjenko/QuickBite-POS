@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { v2 as cloudinary } from "cloudinary";
+import { AppError, handleApiError } from "@/lib/errors";
 
 if (
   process.env.CLOUDINARY_CLOUD_NAME &&
@@ -21,48 +22,35 @@ interface CloudinaryUploadResult {
 }
 
 export async function POST(req: NextRequest) {
-  const session = await auth();
-
-  if (!session?.user) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  if (
-    !process.env.CLOUDINARY_CLOUD_NAME ||
-    !process.env.CLOUDINARY_API_KEY ||
-    !process.env.CLOUDINARY_API_SECRET
-  ) {
-    console.error("Cloudinary configuration missing");
-    return NextResponse.json(
-      { error: "Image upload service not configured" },
-      { status: 500 }
-    );
-  }
-
   try {
+    const session = await auth();
+
+    if (!session?.user) {
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
+    }
+
+    if (
+      !process.env.CLOUDINARY_CLOUD_NAME ||
+      !process.env.CLOUDINARY_API_KEY ||
+      !process.env.CLOUDINARY_API_SECRET
+    ) {
+      throw new AppError("Image upload service not configured", 500, "CONFIG_ERROR");
+    }
+
     const formData = await req.formData();
     const file = formData.get("file") as File | null;
     const bankName = formData.get("bankName") as string | null;
 
     if (!file || !bankName) {
-      return NextResponse.json(
-        { error: "File and bank name are required" },
-        { status: 400 }
-      );
+      throw new AppError("File and bank name are required", 400, "VALIDATION_ERROR");
     }
 
     if (!file.type.startsWith("image/")) {
-      return NextResponse.json(
-        { error: "File must be an image" },
-        { status: 400 }
-      );
+      throw new AppError("File must be an image", 400, "VALIDATION_ERROR");
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      return NextResponse.json(
-        { error: "File size must be less than 10MB" },
-        { status: 400 }
-      );
+      throw new AppError("File size must be less than 10MB", 400, "VALIDATION_ERROR");
     }
 
     const bytes = await file.arrayBuffer();
@@ -128,9 +116,6 @@ export async function POST(req: NextRequest) {
       imageUrl: result.secure_url,
     });
   } catch (error) {
-    console.error("Upload error:", error);
-    const errorMessage =
-      error instanceof Error ? error.message : "Failed to upload QR code";
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+    return handleApiError(error);
   }
 }

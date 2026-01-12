@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { useCartTotal } from "@/store/cart-store";
 import { ArrowRight } from "lucide-react";
 

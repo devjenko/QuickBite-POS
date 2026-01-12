@@ -4,20 +4,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { settingsUpdateSchema } from "@/lib/validations";
 import { revalidatePath } from "next/cache";
-
-// Settings data type
-interface SettingsData {
-  acceptCardPayments?: boolean;
-  qrCodePayments?: boolean;
-  cashPayments?: boolean;
-  defaultTaxRate?: string | number;
-  userMode?: string;
-  language?: string;
-  currency?: string;
-  dateFormat?: string;
-  timeFormat?: string;
-  darkMode?: boolean;
-}
+import { SettingsData } from "@/types/settings";
 
 // Update settings action
 export async function updateSettings(data: SettingsData) {

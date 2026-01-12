@@ -2,7 +2,7 @@ import Image from "next/image";
 import Counter from "@/components/shared/Counter";
 import { CircleXIcon } from "lucide-react";
 import { useCartStore } from "@/store/cart-store";
-import Button from "../ui/Button";
+import { Button } from "../ui/Button";
 
 interface CartItemProps {
   id: string;

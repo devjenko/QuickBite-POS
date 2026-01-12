@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { settingsUpdateSchema } from "@/lib/validations";
+import { AppError, handleApiError } from "@/lib/errors";
 
 // fetch settings
 export async function GET() {
@@ -9,7 +10,7 @@ export async function GET() {
     const session = await auth();
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     // get or create settings for the user
@@ -30,11 +31,7 @@ export async function GET() {
 
     return NextResponse.json(settingsData);
   } catch (error) {
-    console.error("Error fetching settings:", error);
-    return NextResponse.json(
-      { error: "Failed to fetch settings" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }
 
@@ -44,7 +41,7 @@ export async function PUT(request: Request) {
     const session = await auth();
 
     if (!session?.user?.id) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const body = await request.json();
@@ -53,10 +50,7 @@ export async function PUT(request: Request) {
     const parsed = settingsUpdateSchema.safeParse(body);
 
     if (!parsed.success) {
-      return NextResponse.json(
-        { error: "Invalid input", issues: parsed.error },
-        { status: 400 }
-      );
+      throw new AppError("Invalid input", 400, "VALIDATION_ERROR");
     }
 
     const updateData = parsed.data;
@@ -74,10 +68,6 @@ export async function PUT(request: Request) {
 
     return NextResponse.json(settingsData);
   } catch (error) {
-    console.error("Error updating settings:", error);
-    return NextResponse.json(
-      { error: "Failed to update settings" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }

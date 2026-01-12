@@ -1,7 +1,7 @@
 "use client";
 
 import { useCartStore } from "@/store/cart-store";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { useShallow } from "zustand/react/shallow";
 

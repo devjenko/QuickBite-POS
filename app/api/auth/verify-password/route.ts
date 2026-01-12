@@ -3,22 +3,20 @@ import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
+import { AppError, handleApiError } from "@/lib/errors";
 
 export async function POST(req: Request) {
   try {
     const session = await auth();
 
     if (!session?.user.businessId) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
     const { password } = await req.json();
 
     if (!password) {
-      return NextResponse.json(
-        { error: "Password is required" },
-        { status: 400 }
-      );
+      throw new AppError("Password is required", 400, "VALIDATION_ERROR");
     }
 
     // fetch user from db
@@ -28,7 +26,7 @@ export async function POST(req: Request) {
     });
 
     if (!user || !user?.password) {
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      throw new AppError("User not found", 404, "NOT_FOUND");
     }
 
     // Compare passwords
@@ -36,11 +34,10 @@ export async function POST(req: Request) {
 
     // if the password is not valid
     if (!isPasswordValid) {
-      return NextResponse.json({ error: "Invalid password" }, { status: 401 });
+      throw new AppError("Invalid password", 401, "INVALID_PASSWORD");
     }
 
-    // store user ID in cookie, for account owners trying to access settings (only user in current session after password verification will be able to access settings page within 15 min)
-
+    // store user ID in cookie, for account owners trying to access settings
     const cookieStore = await cookies();
     cookieStore.set("settings-verified", session.user.id, {
       httpOnly: true,
@@ -52,10 +49,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error("Password verification error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }

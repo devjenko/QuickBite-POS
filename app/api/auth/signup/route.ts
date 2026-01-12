@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "@/lib/validations";
+import { AppError, handleApiError } from "@/lib/errors";
 
 // Helper function to generate staff ID
 function generateBusinessId(businessName: string): string {
@@ -30,16 +31,12 @@ async function generateUniqueBusinessId(businessName: string): Promise<string> {
 
 export async function POST(request: Request) {
   try {
-    
     const body = await request.json();
 
     // validate body with zod
     const validatedData = signupSchema.safeParse(body);
     if (!validatedData.success) {
-      return NextResponse.json(
-        { error: validatedData.error.message },
-        { status: 400 }
-      );
+      throw new AppError(validatedData.error.issues[0].message, 400, "VALIDATION_ERROR");
     }
 
     const { businessName, password } = validatedData.data;
@@ -49,10 +46,7 @@ export async function POST(request: Request) {
 
     // Validate name lengths
     if (trimmedBusinessName.length === 0) {
-      return NextResponse.json(
-        { error: "Names cannot be empty" },
-        { status: 400 }
-      );
+      throw new AppError("Business name cannot be empty", 400, "VALIDATION_ERROR");
     }
 
     // Generate unique staff ID
@@ -78,10 +72,6 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Sign-up error:", error);
-    return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
-      { status: 500 }
-    );
+    return handleApiError(error);
   }
 }

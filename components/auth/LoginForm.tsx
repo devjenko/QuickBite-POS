@@ -49,7 +49,6 @@ export function LoginForm({
       });
 
       if (result?.error) {
-        console.log("Error found:", result.error);
         setError("Invalid business ID or password");
         setIsLoading(false);
         return;
@@ -57,8 +56,7 @@ export function LoginForm({
 
       router.push("/dashboard");
       router.refresh();
-    } catch (err) {
-      console.log("Caught error:", err);
+    } catch {
       setError("Something went wrong. Please try again.");
       setIsLoading(false);
     }
