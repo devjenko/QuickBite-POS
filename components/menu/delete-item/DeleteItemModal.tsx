@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Spinner from "@/components/ui/Spinner";
+import { deleteMenuItem } from "@/app/actions/menu";
 
 interface DeleteItemModalProps {
   ItemName?: string;
@@ -35,14 +36,9 @@ const DeleteItemModal = ({
   const handleDelete = async () => {
     setIsDeleting(true);
 
-    try {
-      const response = await fetch(`/api/menu-items/${ItemId}`, {
-        method: "DELETE",
-      });
 
-      if (!response.ok) {
-        throw new Error("Failed to delete menu item");
-      }
+    try {
+      await deleteMenuItem(ItemId!);
       setIsOpen(false);
       router.refresh();
       toast.success("Menu item deleted");
@@ -52,6 +48,8 @@ const DeleteItemModal = ({
     } finally {
       setIsDeleting(false);
     }
+
+
   };
 
   // Add stopPropagation to the dialog content itself

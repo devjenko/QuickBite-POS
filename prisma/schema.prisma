@@ -95,7 +95,7 @@ model Settings {
   // Display and interface
   language   String  @default("en")
   currency   String  @default("usd")
-  dateFormat String  @default("mm-dd-yyy")
+  dateFormat String  @default("mm-dd-yyyy")
   timeFormat String  @default("12h")
   darkMode   Boolean @default(false)
 

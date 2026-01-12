@@ -3,14 +3,16 @@
 import { useCartStore } from "@/store/cart-store";
 import Button from "@/components/ui/Button";
 import { MinusIcon, PlusIcon } from "lucide-react";
+import { useShallow } from "zustand/react/shallow";
 
 const Counter = ({ id }: { id: string }) => {
-  const quantity = useCartStore(
-    (state) => state.items.find((i) => i.id === id)?.quantity ?? 0
+  const { quantity, increaseQuantity, decreaseQuantity } = useCartStore(
+    useShallow((state) => ({
+      quantity: state.items.find((i) => i.id === id)?.quantity ?? 0,
+      increaseQuantity: state.increaseQuantity,
+      decreaseQuantity: state.decreaseQuantity,
+    }))
   );
-
-  const increaseQuantity = useCartStore((state) => state.increaseQuantity);
-  const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
 
   return (
     <div className="flex gap-4 justify-center items-center w-full">

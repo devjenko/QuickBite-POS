@@ -20,16 +20,16 @@ export const deleteMenuItemSchema = z
 
 // Settings inputs
 export const settingsUpdateSchema = z.object({
-  acceptCardPayments: z.boolean(),
-  qrCodePayments: z.boolean(),
-  cashPayments: z.boolean(),
+  acceptCardPayments: z.boolean().optional(),
+  qrCodePayments: z.boolean().optional(),
+  cashPayments: z.boolean().optional(),
 
   defaultTaxRate: z.coerce.number().min(0).max(100).optional(),
 
-  userMode: z.enum(["owner", "staff"]),
-  language: z.enum(["en", "kh"]),
-  currency: z.enum(["USD", "KHR"]),
-  darkMode: z.boolean(),
+  userMode: z.enum(["owner", "staff"]).optional(),
+  language: z.enum(["en", "kh"]).optional(),
+  currency: z.enum(["usd", "khr", "eur", "gbp", "jpy", "cad"]).optional(),
+  darkMode: z.boolean().optional(),
 
   dateFormat: z.string().optional(),
   timeFormat: z.string().optional(),

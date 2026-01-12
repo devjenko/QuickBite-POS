@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import ToggleSwitch from "@/components/settings/ToggleSwitch";
 import SettingsSection from "@/components/settings/SettingsSection";
 import SettingItem from "@/components/settings/SettingItem";
+import { useDebouncedCallback } from "use-debounce";
 import {
   taxRateOptions,
   languageOptions,
@@ -15,6 +16,7 @@ import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
 import UserModeOption from "@/components/settings/UserModeOption";
 import { UserMode } from "@/types/settings";
 import Dropdown from "../shared/Dropdown";
+import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
 
 interface SettingsState {
   acceptCardPayments: boolean;
@@ -27,7 +29,6 @@ interface SettingsState {
   dateFormat: string;
   timeFormat: string;
   darkMode: boolean;
-  soundEffects: boolean;
 }
 
 const BANKS = [
@@ -47,48 +48,61 @@ const SettingsContent: React.FC = () => {
     dateFormat: "mm-dd-yyyy",
     timeFormat: "12h",
     darkMode: false,
-    soundEffects: true,
   });
 
-  const [uploadedBanks, setUploadedBanks] = useState<Set<string>>(new Set());
-  const [reloadToken, setReloadToken] = useState(0);
+  const { qrCodes, refresh: refreshQRCodes } = useBankQRCodes();
+  const uploadedBanks = new Set(qrCodes.map((qr) => qr.bankName));
 
+  // Debounced save settings to database
+  const saveSettings = useDebouncedCallback(async (newSettings: SettingsState) => {
+    try {
+      await fetch("/api/settings", {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newSettings),
+      });
+    } catch (error) {
+      console.error("Failed to save settings:", error);
+    }
+  }, 500);
+
+  const updateSetting = useCallback((key: keyof SettingsState, value: SettingsState[keyof SettingsState]) => {
+    setSettings((prev) => {
+      const newSettings = { ...prev, [key]: value };
+      saveSettings(newSettings);
+      return newSettings;
+    });
+  }, [saveSettings]);
+
+  // Load settings on mount
   useEffect(() => {
     let cancelled = false;
 
-    const load = async () => {
+    const loadSettings = async () => {
       try {
-        const response = await fetch("/api/bank-qr");
+        const response = await fetch("/api/settings");
         if (!response.ok) return;
         const data = await response.json();
 
         if (!cancelled) {
-          setUploadedBanks(
-            new Set(data.qrCodes.map((qr: { bankName: string }) => qr.bankName))
-          );
+          setSettings((prev) => ({ ...prev, ...data }));
         }
       } catch (error) {
-        console.error("Failed to fetch uploaded banks:", error);
+        console.error("Failed to fetch settings:", error);
       }
     };
 
-    void load();
+    void loadSettings();
 
     return () => {
       cancelled = true;
     };
-  }, [reloadToken]);
+  }, []);
 
   const handleUploadSuccess = () => {
-    setReloadToken((token) => token + 1);
+    refreshQRCodes();
   };
 
-  const updateSetting = <K extends keyof SettingsState>(
-    key: K,
-    value: SettingsState[K]
-  ) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
-  };
 
   return (
     <>
@@ -225,21 +239,11 @@ const SettingsContent: React.FC = () => {
           <SettingItem
             label="Dark Mode"
             sublabel="Use dark theme for reduced eye strain"
+            isLast
           >
             <ToggleSwitch
               checked={settings.darkMode}
               onChange={(checked) => updateSetting("darkMode", checked)}
-            />
-          </SettingItem>
-
-          <SettingItem
-            label="Sound Effects"
-            sublabel="Play sounds for button clicks and notifications"
-            isLast
-          >
-            <ToggleSwitch
-              checked={settings.soundEffects}
-              onChange={(checked) => updateSetting("soundEffects", checked)}
             />
           </SettingItem>
         </div>

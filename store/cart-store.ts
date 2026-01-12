@@ -18,7 +18,7 @@ interface CartState {
   decreaseQuantity: (id: string) => void;
 }
 
-// Selector for total price - use this anywhere you need the total
+// Selector for total price 
 export const selectCartTotal = (state: CartState) =>
   state.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
 

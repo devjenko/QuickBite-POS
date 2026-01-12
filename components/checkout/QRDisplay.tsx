@@ -1,52 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Spinner from "@/components/ui/Spinner";
 import ProviderButton from "./ProviderButton";
 import BaseModal from "../shared/BaseModal";
 import Button from "../ui/Button";
 import { useCartTotal } from "@/store/cart-store";
-interface BankQRCode {
-  id: string;
-  bankName: string;
-  imageUrl: string;
-}
+import { useBankQRCodes, BankQRCode } from "@/lib/hooks/useBankQRCodes";
 
 const QRDisplay = () => {
-  const [qrCodes, setQrCodes] = useState<BankQRCode[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { qrCodes, isLoading, error, refresh } = useBankQRCodes();
   const [selectedQR, setSelectedQR] = useState<BankQRCode | null>(null);
 
   const totalPrice = useCartTotal();
-
-  useEffect(() => {
-    fetchQRCodes();
-  }, []);
-
-  const fetchQRCodes = async () => {
-    try {
-      setError(null);
-      const response = await fetch("/api/bank-qr");
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(
-          errorData.error || `Failed to fetch: ${response.status}`
-        );
-      }
-      const data = await response.json();
-      setQrCodes(data.qrCodes || []);
-    } catch (error) {
-      console.error("Error fetching QR codes:", error);
-      const errorMessage =
-        error instanceof Error ? error.message : "Failed to fetch QR codes";
-      setError(errorMessage);
-      setQrCodes([]);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleProviderBtnClick = (qr: BankQRCode) => {
     setSelectedQR(qr);
@@ -62,15 +29,17 @@ const QRDisplay = () => {
         <div className="text-red-500 mb-2 text-base">
           Error loading providers
         </div>
-        <div className="text-sm text-[var(--Grey)]">{error}</div>
-        <Button onClick={fetchQRCodes} variant="dark" className="mt-4">
+        <div className="text-sm text-[var(--Grey)]">
+          {error instanceof Error ? error.message : "Failed to fetch QR codes"}
+        </div>
+        <Button onClick={() => refresh()} variant="dark" className="mt-4">
           Retry
         </Button>
       </div>
     );
   }
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex items-center  m-auto h-full">
         <div className="flex flex-col items-center gap-3">
