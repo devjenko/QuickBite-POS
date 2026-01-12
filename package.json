@@ -20,6 +20,8 @@
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "@types/pg": "^8.16.0",
+    "@upstash/ratelimit": "^2.0.7",
+    "@upstash/redis": "^1.36.1",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.8.0",

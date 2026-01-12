@@ -3,6 +3,7 @@ import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 import { signupSchema } from "@/lib/validations";
 import { AppError, handleApiError } from "@/lib/errors";
+import { signupRatelimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 // Helper function to generate staff ID
 function generateBusinessId(businessName: string): string {
@@ -31,6 +32,14 @@ async function generateUniqueBusinessId(businessName: string): Promise<string> {
 
 export async function POST(request: Request) {
   try {
+    // Rate limiting
+    const ip = getClientIp(request);
+    const { success, remaining } = await signupRatelimit.limit(ip);
+
+    if (!success) {
+      return rateLimitResponse(remaining);
+    }
+
     const body = await request.json();
 
     // validate body with zod

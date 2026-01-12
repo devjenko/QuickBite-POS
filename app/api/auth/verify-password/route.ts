@@ -4,9 +4,18 @@ import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { AppError, handleApiError } from "@/lib/errors";
+import { passwordVerifyRatelimit, getClientIp, rateLimitResponse } from "@/lib/rate-limit";
 
 export async function POST(req: Request) {
   try {
+    // Rate limiting - stricter for password verification
+    const ip = getClientIp(req);
+    const { success, remaining } = await passwordVerifyRatelimit.limit(ip);
+
+    if (!success) {
+      return rateLimitResponse(remaining);
+    }
+
     const session = await auth();
 
     if (!session?.user.businessId) {

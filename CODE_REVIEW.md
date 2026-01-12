@@ -50,11 +50,6 @@ image={item.image || "/images/placeholder-menu-item.webp"}
 
 
 
-
-
-
-### 5.5 Move Type Definitions to Types Folder
-
 **Problem:** Types are defined inline in many components.
 
 **Example in `QRDisplay.tsx`:**
