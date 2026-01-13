@@ -31,39 +31,8 @@ This document contains a comprehensive review of the codebase with identified is
 
 ## 🔴 Critical Issues
 
-### 1. External Image Dependency as Fallback
 
-**Severity:** Critical  
-**Category:** Performance / Security  
-**File:** `components/menu/CategoryPageContent.tsx`
 
-**Current Code (Line 31-33):**
-
-```tsx
-image={
-  item.image ||
-  "https://media1.giphy.com/media/v1.Y2lkPTc5..."
-}
-```
-
-**Problem:**
-
-- External Giphy URL loads a large animated GIF from an untrusted source
-- If Giphy is down, images fail to load
-- Large GIF files hurt performance
-- Not included in CSP `img-src` could cause issues
-
-**Solution:**
-
-Create a local placeholder image and use it:
-
-```tsx
-image={item.image || "/images/placeholder-menu-item.webp"}
-```
-
-Create a small optimized placeholder at `public/images/placeholder-menu-item.webp`
-
----
 
 ## 🟠 High Priority Issues
 

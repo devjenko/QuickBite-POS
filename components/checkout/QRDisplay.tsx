@@ -90,6 +90,7 @@ const QRDisplay = () => {
               width={500}
               height={500}
               alt={`${selectedQR.bankName} QR code`}
+              unoptimized
             />
           )}
         </BaseModal>
