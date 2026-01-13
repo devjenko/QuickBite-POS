@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import ToggleSwitch from "@/components/settings/ToggleSwitch";
-import SettingsSection from "@/components/settings/SettingsSection";
+import Section from "@/components/shared/Section";
 import SettingItem from "@/components/settings/SettingItem";
 import { useDebouncedCallback } from "use-debounce";
 import {
@@ -14,8 +14,8 @@ import {
 } from "@/consts/settings";
 import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
 import UserModeOption from "@/components/settings/UserModeOption";
-import { UserMode, SettingsState } from "@/types/settings";
-import Dropdown from "../shared/Dropdown";
+import { SettingsState } from "@/types/settings";
+import Dropdown from "@/components/shared/Dropdown";
 import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
 import { updateSettings } from "@/app/actions/settings";
 
@@ -93,7 +93,7 @@ const SettingsContent: React.FC = () => {
       <h1 className="mb-8 text-black">Settings</h1>
 
       {/* Payment Settings Section */}
-      <SettingsSection
+      <Section
         title="Payment Settings"
         description="Upload your bank QR codes to accept payments"
       >
@@ -154,10 +154,10 @@ const SettingsContent: React.FC = () => {
             />
           </SettingItem>
         </div>
-      </SettingsSection>
+      </Section>
 
       {/* User Modes Section */}
-      <SettingsSection
+      <Section
         title="User Modes"
         description="Control access levels and permissions for different users"
       >
@@ -174,10 +174,10 @@ const SettingsContent: React.FC = () => {
           isActive={settings.userMode === "staff"}
           onClick={() => updateSetting("userMode", "staff")}
         />
-      </SettingsSection>
+      </Section>
 
       {/* Display & Interface Section */}
-      <SettingsSection
+      <Section
         title="Display & Interface"
         description="Customize how your POS system looks and behaves"
       >
@@ -231,7 +231,7 @@ const SettingsContent: React.FC = () => {
             />
           </SettingItem>
         </div>
-      </SettingsSection>
+      </Section>
     </>
   );
 };

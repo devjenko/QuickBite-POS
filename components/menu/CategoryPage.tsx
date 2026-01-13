@@ -21,9 +21,9 @@ const CategoryPage = async ({ category }: { category: string }) => {
   });
 
   return (
-    <CenterContentContainer className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max ">
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max">
       <CategoryPageContent items={items} />
-    </CenterContentContainer>
+    </div>
   );
 };
 

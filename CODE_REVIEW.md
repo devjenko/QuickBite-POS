@@ -29,10 +29,6 @@ This document contains a comprehensive review of the codebase with identified is
 
 ---
 
-## 🔴 Critical Issues
-
-
-
 
 ## 🟠 High Priority Issues
 
@@ -81,27 +77,6 @@ Generate QR code locally and save as static image:
 
 
 ## 🟡 Medium Priority Issues
-
-
-### 8. Empty DialogTrigger in Modals
-
-**Severity:** Medium  
-**Category:** Code Quality  
-**Files:** `components/shared/BaseModal.tsx`, `components/menu/delete-item/DeleteItemModal.tsx`
-
-**Current Code:**
-
-```tsx
-<DialogTrigger asChild></DialogTrigger>
-```
-
-**Problem:** Empty DialogTrigger serves no purpose and adds unnecessary DOM elements.
-
-**Solution:**
-
-Remove the empty DialogTrigger if the modal is controlled externally via `open` prop.
-
----
 
 ### 9. Console.log Statements in Production Code
 

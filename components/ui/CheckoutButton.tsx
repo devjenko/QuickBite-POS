@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { useCartTotal } from "@/store/cart-store";
 import { ArrowRight } from "lucide-react";
+import { useCartTotal } from "@/store/cart-store";
+
 
 const CheckoutButton = ({
   href,
   className,
+  onClick,
 }: {
   href: string;
   className?: string;
@@ -14,7 +16,7 @@ const CheckoutButton = ({
   const totalPrice = useCartTotal();
 
   return (
-    <Link href={href}>
+    <Link onClick={onClick} href={href}>
       {" "}
       <Button className={`${className}  justify-between p-3`} variant={"dark"}>
         ${totalPrice.toFixed(2)}
