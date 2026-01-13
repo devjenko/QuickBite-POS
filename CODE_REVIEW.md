@@ -83,42 +83,6 @@ Generate QR code locally and save as static image:
 ## 🟡 Medium Priority Issues
 
 
-### 7. CashCalculator State Updates During Render
-
-**Severity:** Medium  
-**Category:** Performance / Best Practices  
-**File:** `components/checkout/CashCalculator.tsx`
-
-**Current Code (Lines 43-48):**
-
-```tsx
-if (totalPriceUsd !== lastSyncedTotal) {
-  setLastSyncedTotal(totalPriceUsd);
-  if (!hasUserInput) {
-    setDisplay(getDisplayForTotal(currency, totalPriceUsd));
-  }
-}
-```
-
-**Problem:** Calling setState during render can cause infinite loops and React warnings.
-
-**Solution:**
-
-Move to useEffect:
-
-```tsx
-useEffect(() => {
-  if (totalPriceUsd !== lastSyncedTotal) {
-    setLastSyncedTotal(totalPriceUsd);
-    if (!hasUserInput) {
-      setDisplay(getDisplayForTotal(currency, totalPriceUsd));
-    }
-  }
-}, [totalPriceUsd, lastSyncedTotal, hasUserInput, currency]);
-```
-
----
-
 ### 8. Empty DialogTrigger in Modals
 
 **Severity:** Medium  

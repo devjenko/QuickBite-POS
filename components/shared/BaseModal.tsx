@@ -42,7 +42,6 @@ const BaseModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild></DialogTrigger>
       <DialogContent
         onClick={handleDialogClick}
         className="max-w-[425px] overflow-hidden"
