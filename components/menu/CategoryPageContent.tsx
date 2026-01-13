@@ -30,7 +30,7 @@ const CategoryPageContent = ({ items }: CategoryPageContentProps) => {
           description={item.description}
           image={
             item.image ||
-            "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeTB5emRxdHViYzU1ZmswcHR2YnU0eHBtMWl1NWNhMDNkcHB3NDY0diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3zhxq2ttgN6rEw8SDx/giphy.gif"
+            "/gifs/empty-img.gif"
           }
         />
       ))}
