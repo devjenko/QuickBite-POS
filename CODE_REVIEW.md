@@ -36,29 +36,8 @@ This document contains a comprehensive review of the codebase with identified is
 
 ## 🟠 High Priority Issues
 
-### 2. Cart Items Using `name` as Key Instead of `id`
 
-**Severity:** High  
-**Category:** Bug  
-**File:** `components/shared/OrderList.tsx`
-
-**Current Code (Line 12):**
-
-```tsx
-<li key={item.name}>
-```
-
-**Problem:** If two items have the same name, React will have key conflicts causing rendering bugs.
-
-**Solution:**
-
-```tsx
-<li key={item.id}>
-```
-
----
-
-### 3. Forgot Password Page Uses External QR Code API
+<!-- ### 3. Forgot Password Page Uses External QR Code API
 
 **Severity:** High  
 **Category:** Security / Performance  
@@ -98,97 +77,11 @@ Generate QR code locally and save as static image:
 ```
 
 ---
+ -->
 
-### 4. Login Schema Uses Password Strength Validation
-
-**Severity:** High  
-**Category:** Bug  
-**File:** `lib/validations.ts`
-
-**Current Code (Lines 52-55):**
-
-```typescript
-export const loginSchema = z
-  .object({
-    businessId: z.string().min(1, { message: "Business ID is required" }),
-    password: passwordSchema, // ← Uses full password strength validation
-  })
-  .strict();
-```
-
-**Problem:** Users who signed up before password strength requirements were added won't be able to log in because their existing passwords won't pass the new validation.
-
-**Solution:**
-
-```typescript
-export const loginSchema = z
-  .object({
-    businessId: z.string().min(1, { message: "Business ID is required" }),
-    password: z.string().min(1, { message: "Password is required" }),
-  })
-  .strict();
-```
-
----
-
-### 5. Missing `unoptimized` Prop for External Cloudinary Images in QR Modal
-
-**Severity:** High  
-**Category:** Performance  
-**File:** `components/checkout/QRDisplay.tsx`
-
-**Current Code (Lines 88-93):**
-
-```tsx
-<Image
-  src={selectedQR.imageUrl}
-  width={500}
-  height={500}
-  alt={`${selectedQR.bankName} QR code`}
-/>
-```
-
-**Problem:** Next.js tries to optimize external Cloudinary images which can cause issues or slow loading.
-
-**Solution:**
-
-```tsx
-<Image
-  src={selectedQR.imageUrl}
-  width={500}
-  height={500}
-  alt={`${selectedQR.bankName} QR code`}
-  unoptimized
-/>
-```
-
----
 
 ## 🟡 Medium Priority Issues
 
-### 6. Unused `ItemId` Prop in AddItemModal
-
-**Severity:** Medium  
-**Category:** Code Quality  
-**File:** `components/menu/add-item/AddItemModal.tsx`
-
-**Current Code (Line 27):**
-
-```tsx
-const AddItemModal = ({ ItemId }: { ItemId?: string }) => {
-```
-
-**Problem:** `ItemId` prop is never used in the component.
-
-**Solution:**
-
-Remove the unused prop:
-
-```tsx
-const AddItemModal = () => {
-```
-
----
 
 ### 7. CashCalculator State Updates During Render
 

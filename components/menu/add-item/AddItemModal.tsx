@@ -24,7 +24,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createMenuItem } from "@/app/actions/menu";
 
-const AddItemModal = ({ ItemId }: { ItemId?: string }) => {
+const AddItemModal = () => {
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [price, setPrice] = useState<number>(0);

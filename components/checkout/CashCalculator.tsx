@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { buttonRows, quickAmounts } from "@/consts/cash-calculator";
@@ -40,12 +40,15 @@ const CashCalculator = () => {
   const [lastSyncedTotal, setLastSyncedTotal] = useState(totalPriceUsd);
 
   // Sync display with cart total when cart changes (only if user hasn't started calculating)
-  if (totalPriceUsd !== lastSyncedTotal) {
-    setLastSyncedTotal(totalPriceUsd);
-    if (!hasUserInput) {
-      setDisplay(getDisplayForTotal(currency, totalPriceUsd));
+  useEffect(() => {
+    if (totalPriceUsd !== lastSyncedTotal) {
+      setLastSyncedTotal(totalPriceUsd);
+      if (!hasUserInput) {
+        setDisplay(getDisplayForTotal(currency, totalPriceUsd));
+      }
     }
-  }
+  }, [totalPriceUsd, lastSyncedTotal, hasUserInput, currency]);
+  
 
   // Handle currency toggle
   const handleCurrencyToggle = (newCurrency: Currency) => {
