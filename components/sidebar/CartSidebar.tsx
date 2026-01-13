@@ -4,6 +4,7 @@ import { useCartStore } from "@/store/cart-store";
 import { Trash2Icon } from "lucide-react";
 import CheckoutButton from "../ui/CheckoutButton";
 import OrderList from "../shared/OrderList";
+import Link from "next/link";
 
 const CartSidebar = () => {
   const { clearCart } = useCartStore();
@@ -18,7 +19,7 @@ const CartSidebar = () => {
         <Trash2Icon onClick={clearCart} />
       </div>
       <OrderList />
-      <CheckoutButton className="w-2xs" href="/checkout" />
+      <Link href="/checkout"><CheckoutButton  className="w-2xs"/></Link>
     </BaseSidebar>
   );
 };

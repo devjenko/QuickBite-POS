@@ -11,15 +11,21 @@ import CashCalculator from "@/components/checkout/CashCalculator";
 import { createOrder } from "@/app/actions/order";
   import { toast } from "sonner";
 import { useCartStore, useCartTotal } from "@/store/cart-store";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
-
 
   const items = useCartStore((state) => state.items);
   const clearCart = useCartStore((state) => state.clearCart);
   const totalPrice = useCartTotal();
-
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
   const handleCheckout = async () => {
+
+    setIsLoading(true);
+
+
     if (items.length === 0) {
       toast.error("Cart is empty");
       return;
@@ -47,8 +53,11 @@ const CheckoutPage = () => {
       await createOrder(formData);
       clearCart();
       toast.success("Order created successfully");
+      router.push("/orders");
     } catch (error) {
       toast.error("Failed to create order");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -69,7 +78,7 @@ const CheckoutPage = () => {
           />
         </div>
         <div className="mt-5">
-          <CheckoutButton className="w-full" onClick={handleCheckout} href="/orders" />
+          <CheckoutButton isLoading={isLoading} className="w-full" onClick={handleCheckout}  />
         </div>
       </ContentWrapper>
     </CenterContentContainer>

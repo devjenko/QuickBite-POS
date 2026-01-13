@@ -1,30 +1,33 @@
-import Link from "next/link";
+
 import { Button } from "@/components/ui/Button";
 import { ArrowRight } from "lucide-react";
 import { useCartTotal } from "@/store/cart-store";
+import Spinner from "./Spinner";
 
 
 const CheckoutButton = ({
-  href,
+  isLoading,
   className,
   onClick,
 }: {
-  href: string;
+
+  isLoading?: boolean;
   className?: string;
   onClick?: () => void;
 }) => {
   const totalPrice = useCartTotal();
 
   return (
-    <Link onClick={onClick} href={href}>
-      {" "}
-      <Button className={`${className}  justify-between p-3`} variant={"dark"}>
-        ${totalPrice.toFixed(2)}
-        <span className="flex justify-center items-center gap-2">
-          Pay <ArrowRight />
-        </span>
-      </Button>
-    </Link>
+    <Button onClick={onClick} className={`${className}  justify-between p-3`} variant={"dark"}>
+      {isLoading ? <Spinner className="m-auto" /> : (
+        <>
+          ${totalPrice.toFixed(2)}
+          <span className="flex justify-center items-center gap-2">
+            Pay <ArrowRight />
+          </span>
+        </>
+      )}
+    </Button>
   );
 };
 
