@@ -19,11 +19,19 @@ export async function createOrder(formData: FormData){
     const paymentStatus = formData.get("paymentStatus") as string;
     const paidAt = formData.get("paidAt") as string;
 
-
     const parsedItems = JSON.parse(items);
+
+    // Get the next order number for this merchant
+    const lastOrder = await prisma.order.findFirst({
+        where: { merchantId: session.user.id },
+        orderBy: { orderNumber: "desc" },
+        select: { orderNumber: true },
+    });
+    const nextOrderNumber = (lastOrder?.orderNumber ?? 0) + 1;
 
     const order = await prisma.order.create({
         data: {
+            orderNumber: nextOrderNumber,
             merchant: { connect: { id: session.user.id } },
             customer: customerId ? { connect: { id: customerId } } : undefined,
             subtotal: parseFloat(subtotal),

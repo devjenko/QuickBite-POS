@@ -17,7 +17,7 @@ const Tabs = ({ tabs }: { tabs: Tab[] }) => {
           <button
             key={tab.label}
             onClick={() => setActiveIndex(index)}
-            className={`px-6 pb-3 text-sm font-semibold transition-colors relative ${
+            className={`cursor-pointer px-6 pb-3 text-sm font-semibold transition-colors relative ${
               activeIndex === index ? "text-[var(--Black)]" : "text-[var(--Grey)]"
             }`}
           >

@@ -2,14 +2,16 @@ export interface SectionProps {
   title?: string;
   description?: string;
   children: React.ReactNode;
+  className?: string;
 }
 
 const Section = ({
   title,
   description,
   children,
+  className,
 }: SectionProps) => {
-  return <section>
+  return <section className={`${className}`}>
     {title && <h2 className="mb-2">{title}</h2>}
     {description && <p className="mb-6">{description}</p>}
     {children}

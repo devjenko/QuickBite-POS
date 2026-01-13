@@ -132,9 +132,11 @@ model Customer {
 model Order {
   id String @id @default(cuid())
 
+  orderNumber Int @default(0) // Default 0 for existing orders
+
   // Who is this order for?
-  merchantId String // Which business owner
-  customerId String // Which customer
+  merchantId String  // Which business owner
+  customerId String? // Optional - for walk-in customers without a record
 
   // Payment tracking
   paymentStatus String @default("pending") // 'pending', 'paid', 'failed', 'refunded'
@@ -153,8 +155,8 @@ model Order {
   updatedAt DateTime @updatedAt
 
   // Relations
-  merchant User     @relation(fields: [merchantId], references: [id])
-  customer Customer @relation(fields: [customerId], references: [id])
+  merchant User      @relation(fields: [merchantId], references: [id])
+  customer Customer? @relation(fields: [customerId], references: [id])
   items    OrderItem[]
 
   @@index([merchantId])

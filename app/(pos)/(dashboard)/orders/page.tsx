@@ -1,14 +1,50 @@
 import Section from "@/components/shared/Section";
 import Tabs from "@/components/checkout/Tabs";
+import {auth } from "@/auth";
+import prisma from "@/lib/prisma";
 
-const OrdersPage = () => {
+
+const OrdersPage = async () => {
+
+const session = await auth();
+
+const pendingOrders = await prisma.order.findMany({
+  where: {
+    merchantId: session?.user?.id,
+    paymentStatus: "pending",
+  },
+});
+
+const completedOrders = await prisma.order.findMany({
+  where: {
+    merchantId: session?.user?.id,
+    paymentStatus: "paid",
+  },
+});
+
+
+
   return (
-   <Section >
+<>
     <Tabs tabs={[
-      { label: "Pending", content: <div>Active</div> },
-      { label: "Completed", content: <div>Completed</div> },
+      { label: "Pending", content: <Section>{pendingOrders.map((order) => (
+        <div key={order.id}>
+          <h3>Order #{order.orderNumber}</h3>
+          <p>${order.total}</p>
+          <p>pending</p>
+        </div>
+      ))}</Section>},
+      { label: "Completed", content: <Section>{completedOrders.map((order) => (
+        <div key={order.id}>
+          <h3>Order #{order.orderNumber}</h3>
+          <p>{order.total}</p>
+          <p>paid</p>
+        </div>
+      ))}</Section> },
     ]} />
-   </Section>
+
+   
+   </>
   );
 };
 
