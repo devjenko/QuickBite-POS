@@ -31,7 +31,7 @@ const completedOrders = await prisma.order.findMany({
         <div key={order.id}>
           <h3>Order #{order.orderNumber}</h3>
           <p>${order.total}</p>
-          <p>pending</p>
+          <p>Paid</p>
         </div>
       ))}</Section>},
       { label: "Completed", content: <Section>{completedOrders.map((order) => (

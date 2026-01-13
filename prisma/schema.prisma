@@ -166,9 +166,9 @@ model Order {
 
 // Individual items in an order
 model OrderItem {
-  id         String @id @default(cuid())
+  id         String  @id @default(cuid())
   orderId    String
-  menuItemId String
+  menuItemId String? // Optional - MenuItem can be deleted
 
   // Snapshot of item details at time of order
   // WHY: If merchant changes price later, order should show original price
@@ -179,8 +179,8 @@ model OrderItem {
   createdAt DateTime @default(now())
 
   // Relations
-  order    Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  menuItem MenuItem @relation(fields: [menuItemId], references: [id])
+  order    Order     @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  menuItem MenuItem? @relation(fields: [menuItemId], references: [id], onDelete: SetNull)
 
   @@index([orderId])
   @@index([menuItemId])

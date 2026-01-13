@@ -478,9 +478,9 @@ export type MenuItemSumOrderByAggregateInput = {
   price?: Prisma.SortOrder
 }
 
-export type MenuItemScalarRelationFilter = {
-  is?: Prisma.MenuItemWhereInput
-  isNot?: Prisma.MenuItemWhereInput
+export type MenuItemNullableScalarRelationFilter = {
+  is?: Prisma.MenuItemWhereInput | null
+  isNot?: Prisma.MenuItemWhereInput | null
 }
 
 export type MenuItemCreateNestedManyWithoutUserInput = {
@@ -543,10 +543,12 @@ export type MenuItemCreateNestedOneWithoutOrderItemsInput = {
   connect?: Prisma.MenuItemWhereUniqueInput
 }
 
-export type MenuItemUpdateOneRequiredWithoutOrderItemsNestedInput = {
+export type MenuItemUpdateOneWithoutOrderItemsNestedInput = {
   create?: Prisma.XOR<Prisma.MenuItemCreateWithoutOrderItemsInput, Prisma.MenuItemUncheckedCreateWithoutOrderItemsInput>
   connectOrCreate?: Prisma.MenuItemCreateOrConnectWithoutOrderItemsInput
   upsert?: Prisma.MenuItemUpsertWithoutOrderItemsInput
+  disconnect?: Prisma.MenuItemWhereInput | boolean
+  delete?: Prisma.MenuItemWhereInput | boolean
   connect?: Prisma.MenuItemWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.MenuItemUpdateToOneWithWhereWithoutOrderItemsInput, Prisma.MenuItemUpdateWithoutOrderItemsInput>, Prisma.MenuItemUncheckedUpdateWithoutOrderItemsInput>
 }
