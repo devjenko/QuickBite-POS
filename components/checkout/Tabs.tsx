@@ -1,17 +1,18 @@
 "use client";
 
 import { ReactNode, useState } from "react";
+import { cn } from "@/lib/utils";
 
 type Tab = {
   label: string;
   content: ReactNode;
 };
 
-const Tabs = ({ tabs }: { tabs: Tab[] }) => {
+const Tabs = ({ tabs, className }: { tabs: Tab[], className?: string }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-
+  
   return (
-    <div className="flex flex-col h-full">
+    <div className={cn("flex flex-col h-full", className)}>
       <div className="flex gap-2 mb-5 border-b border-[var(--LightGrey)]">
         {tabs.map((tab, index) => (
           <button
