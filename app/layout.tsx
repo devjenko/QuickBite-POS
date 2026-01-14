@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto">
         <Providers>{children}</Providers>
-        <Toaster />
+        <Toaster position="top-center" />
       </body>
     </html>
   );

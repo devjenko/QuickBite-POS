@@ -14,9 +14,17 @@ const OrdersPage = async () => {
       paymentStatus: "pending",
     },
     include: {
+      items: {
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          quantity: true,
+        },
+      },
       _count: {
         select: { items: true },
-      },
+      }
     },
     orderBy: {
       createdAt: "desc",
@@ -26,9 +34,17 @@ const OrdersPage = async () => {
   const completedOrders = await prisma.order.findMany({
     where: {
       merchantId: session?.user?.id,
-      paymentStatus: "paid",
+      paymentStatus: "completed",
     },
     include: {
+      items: {
+        select: {
+          id: true,
+          name: true,
+          price: true,
+          quantity: true,
+        },
+      },
       _count: {
         select: { items: true },
       },

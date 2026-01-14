@@ -1,15 +1,16 @@
 "use client";
 
-import { useState } from "react";
 import Order from "./Order";
 import { OrderProps } from "@/types/order";
+import { useOrderStore } from "@/store/order-store";
 
 const OrderList = ({ orders }: { orders: OrderProps[] }) => {
-  const [selectedOrderId, setSelectedOrderId] = useState<string | null>(null);
+  const { selectedOrder, setSelectedOrder } = useOrderStore();
 
-  const handleOrderSelect = (orderId: string) => {
-    setSelectedOrderId(selectedOrderId === orderId ? null : orderId);
+  const handleOrderSelect = (order: OrderProps) => {
+    setSelectedOrder(order);
   };
+
 
   return (
     <ul className="flex flex-col gap-2.5">
@@ -19,10 +20,12 @@ const OrderList = ({ orders }: { orders: OrderProps[] }) => {
           id={order.id}
           orderNumber={order.orderNumber}
           createdAt={order.createdAt}
+          items={order.items}
+          paymentStatus={order.paymentStatus}
           _count={order._count}
           total={order.total}
-          isSelected={selectedOrderId === order.id}
-          onSelect={() => handleOrderSelect(order.id)}
+          isSelected={selectedOrder?.id === order.id}
+          onSelect={() => handleOrderSelect(order)}
         />
       ))}
     </ul>

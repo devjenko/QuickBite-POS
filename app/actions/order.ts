@@ -57,3 +57,21 @@ export async function createOrder(formData: FormData){
 
     return order;
 }
+
+
+export async function completeOrder(orderId: string){
+    const session = await auth();
+
+    if(!session?.user?.id){
+        throw new Error("Unauthorized");
+    }
+
+    const order = await prisma.order.update({
+        where: { id: orderId },
+        data: { paymentStatus: "completed" },
+    });
+
+    revalidatePath("/orders");
+
+    return order;
+}
