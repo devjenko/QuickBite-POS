@@ -27,7 +27,7 @@ const OrdersPage = async () => {
       }
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
   });
 
@@ -50,7 +50,7 @@ const OrdersPage = async () => {
       },
     },
     orderBy: {
-      createdAt: "desc",
+      createdAt: "asc",
     },
   });
 
