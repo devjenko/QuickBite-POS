@@ -2,6 +2,7 @@
 
 import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function createOrder(formData: FormData){
     const session = await auth();
@@ -50,6 +51,9 @@ export async function createOrder(formData: FormData){
             },
         },
     });
+
+    // Revalidate the orders page so it shows the new order
+    revalidatePath("/orders");
 
     return order;
 }
