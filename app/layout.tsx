@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "@/styles/globals.css";
 import Providers from "./providers";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/Sonner";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto">
         <Providers>{children}</Providers>
-        <Toaster position="top-center" />
+        <Toaster />
       </body>
     </html>
   );

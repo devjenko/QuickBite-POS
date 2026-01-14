@@ -4,6 +4,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import OrderList from "@/components/orders/OrderList";
 import OrdersPageWrapper from "@/components/orders/OrdersPageWrapper";
+import EmptyOrdersState from "@/components/orders/EmptyOrdersState";
 
 const OrdersPage = async () => {
   const session = await auth();
@@ -50,7 +51,7 @@ const OrdersPage = async () => {
       },
     },
     orderBy: {
-      createdAt: "asc",
+      createdAt: "desc",
     },
   });
 
@@ -61,16 +62,24 @@ const OrdersPage = async () => {
           {
             label: "Pending",
             content: (
-              <Section className="w-full flex flex-col gap-2.5">
-                <OrderList orders={pendingOrders} />
+              <Section className={`w-full flex flex-col gap-2.5 ${pendingOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
+                {pendingOrders.length > 0 ? (
+                  <OrderList orders={pendingOrders} />
+                ) : (
+                  <EmptyOrdersState type="pending" />
+                )}
               </Section>
             ),
           },
           {
             label: "Completed",
             content: (
-              <Section className="w-full flex flex-col gap-2.5">
-                <OrderList orders={completedOrders} />
+              <Section className={`w-full flex flex-col gap-2.5 ${completedOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
+                {completedOrders.length > 0 ? (
+                  <OrderList orders={completedOrders} />
+                ) : (
+                  <EmptyOrdersState type="completed" />
+                )}
               </Section>
             ),
           },

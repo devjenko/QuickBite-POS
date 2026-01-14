@@ -2,7 +2,7 @@ import BaseSidebar from "./BaseSidebar"
 import { useOrderStore } from "@/store/order-store";
 import ContentWrapper from "../shared/ContentWrapper";
 import { Button } from "../ui/Button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ClipboardList } from "lucide-react";
 import { toast } from "sonner";
 import { completeOrder } from "@/app/actions/order";
 import { useState } from "react";
@@ -31,7 +31,18 @@ const OrdersSidebar = () => {
     return (
     <BaseSidebar style={{ right: "max(0px, calc((100vw - 3000px) / 2))" }}
     className="top-0 bg-[var(--White)]  w-xs ">
-      <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
+      <div className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
+      {!selectedOrder && (
+        <div className="flex flex-col items-center justify-center h-full text-center px-4">
+          <div className="rounded-full p-6 mb-4">
+            <ClipboardList className="w-12 h-12 text-[var(--Grey)]" />
+          </div>
+          <h3 className="text-large font-semibold text-[var(--Black)] mb-2">No Order Selected</h3>
+          <p className="text-xsmall text-[var(--Grey)]">
+            Select an order from the list to view its details
+          </p>
+        </div>
+      )}
       {selectedOrder && (
         <div className="flex flex-col gap-4 flex-1">
           <h2 className="font-bold">
@@ -64,7 +75,7 @@ const OrdersSidebar = () => {
           )}
         </div>
       )}
-      </ul>
+      </div>
     </BaseSidebar>
   )
 }

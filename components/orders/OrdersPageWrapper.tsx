@@ -22,7 +22,7 @@ const OrdersPageWrapper = ({
     return () => clearInterval(interval);
   }, [router, pollInterval]);
 
-  return <>{children}</>;
+  return <div className="flex flex-col h-full flex-1 w-full">{children}</div>;
 };
 
 export default OrdersPageWrapper;
