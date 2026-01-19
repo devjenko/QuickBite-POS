@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
 
-export default async function DashboardGreeting() {
+export default async function DashboardGreeting({className}: {className?: string}) {
   const session = await auth();
 
   function extractBusinessName(businessId: string) {
@@ -18,7 +18,7 @@ export default async function DashboardGreeting() {
     return formattedName;
   }
   return (
-    <h2>
+    <h2 className={className}>
       Welcome,{" "}
       <strong>
         {extractBusinessName(session?.user?.businessId ?? "Guest")}.

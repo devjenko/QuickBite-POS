@@ -13,7 +13,7 @@ const Tabs = ({ tabs, className }: { tabs: Tab[], className?: string }) => {
   
   return (
     <div className={cn("flex flex-col h-full", className)}>
-      <div className="flex gap-2 mb-5 border-b border-[var(--LightGrey)]">
+      <div className="flex gap-2 mb-5 border-b border-[var(--LightGrey)] justify-center">
         {tabs.map((tab, index) => (
           <button
             key={tab.label}

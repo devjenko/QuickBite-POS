@@ -6,13 +6,16 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 interface SideBarNavLinkProps {
-  icon: string;
-  name: string;
+  icon?: string;
+  name?: string;
   href?: string;
   activeHref?: string;
   onClick?: () => void;
   children?: React.ReactNode;
   className?: string;
+  wrapperClassName?: string;
+  iconClassName?: string;
+  iconSize?: number;
   prefetch?: boolean;
 }
 
@@ -23,8 +26,10 @@ const SideBarNavLink = ({
   activeHref,
   onClick,
   className,
+  wrapperClassName,
+  iconClassName,
+  iconSize = 24,
   prefetch = true,
-
   children,
 }: SideBarNavLinkProps) => {
   const pathname = usePathname();
@@ -38,19 +43,19 @@ const SideBarNavLink = ({
 
   return (
     <Link prefetch={prefetch} onClick={onClick} href={href || "#"}>
-      <ContentWrapper variant={(isActive && "dark") || undefined}>
+      <ContentWrapper variant={(isActive && "dark") || undefined} className={wrapperClassName}>
         <div
           className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}
         >
           <Image
             alt="Sidebar Icon"
-            width={24}
-            height={24}
-            src={icon}
-            className={(isActive && "brightness-0 invert") || undefined}
+            width={iconSize}
+            height={iconSize}
+            src={icon || ""}
+            className={`${isActive ? "brightness-0 invert" : ""} ${iconClassName || ""}`}
           />
           {children}
-          <span>{name}</span>
+          {name && <span>{name}</span>}
         </div>
       </ContentWrapper>
     </Link>

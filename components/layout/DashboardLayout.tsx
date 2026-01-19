@@ -13,7 +13,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     <POSLayout>
       <NavSidebar />
       <CenterContentContainer contained className="md:pl-50 md:pr-80">
-        <main className="flex-1 overflow-y-auto  m-auto">{children}</main>
+        <main className="flex-1 overflow-y-auto m-auto">{children}</main>
       </CenterContentContainer>
       <StatsSidebar />
     </POSLayout>

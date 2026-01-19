@@ -11,7 +11,7 @@ const Section = ({
   children,
   className,
 }: SectionProps) => {
-  return <section className={`${className}`}>
+  return <section className={`${className} py-5`}>
     {title && <h2 className="mb-2">{title}</h2>}
     {description && <p className="mb-6">{description}</p>}
     {children}

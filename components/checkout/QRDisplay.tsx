@@ -65,9 +65,7 @@ const QRDisplay = () => {
 
   return (
     <div className="flex flex-col w-full gap-8">
-      <h2 className="text-large  font-semibold text-center text-[var(--Black)] mb-2">
-        Providers
-      </h2>
+    
       <div className="flex flex-wrap gap-4 w-full ">
         {qrCodes.map((qr) => (
           <ProviderButton

@@ -21,7 +21,7 @@ const DateDisplay = () => {
   return (
     <span
       suppressHydrationWarning
-      className="flex justify-center items-center text-large"
+      className="flex justify-center items-center text-small md:text-large"
     >
       {today} | {time}
     </span>
