@@ -65,18 +65,18 @@ export default async function DashboardPage() {
   return (
     <DashboardLayout>
       <header className="flex  w-full items-center justify-between">
-        <DashboardGreeting className="hidden md:block" />
+        <DashboardGreeting className="hidden xl:block" />
         <Image
           src="/logos/quickbite-logo.webp"
           alt="QuickBite logo"
           width={60}
           height={60}
-          className="rounded-sm md:hidden"
+          className="rounded-sm xl:hidden"
           unoptimized
           loading="eager"
         />
         <DateDisplay />
-        <div className="md:hidden">
+        <div className="xl:hidden">
           <MobileMenuButton />
         </div>
       </header>
@@ -118,7 +118,7 @@ export default async function DashboardPage() {
           </Table>
         </Section>
 
-        <Section className="md:hidden" title="Overall Statistics">
+        <Section className="xl:hidden" title="Overall Statistics">
           <StatsContent />
         </Section>
       </main>
