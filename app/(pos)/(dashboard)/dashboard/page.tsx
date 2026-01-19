@@ -64,7 +64,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <header className="flex md:justify-between w-full items-center justify-between">
+      <header className="flex  w-full items-center justify-between">
         <DashboardGreeting className="hidden md:block" />
         <Image
           src="/logos/quickbite-logo.webp"
@@ -76,18 +76,20 @@ export default async function DashboardPage() {
           loading="eager"
         />
         <DateDisplay />
-        <MobileMenuButton />
+        <div className="md:hidden">
+          <MobileMenuButton />
+        </div>
       </header>
 
       <main>
-        <Section>
-          <div className="flex gap-3 items-center justify-between">
+        <Section className="!bg-[var(--LightGrey)] !px-0">
+          <div className="flex gap-3 items-center justify-between ">
             {statCardContent.map((stat) => (
               <StatCard
                 key={stat.name}
                 icon={stat.icon}
                 name={stat.name}
-                value={Math.floor(stats[stat.key])}
+                value={stat.name === "Revenue" ? "$ " + Math.floor(stats[stat.key])  :  Number(stats[stat.key].toFixed(2))}
               />
             ))}
           </div>
@@ -116,7 +118,7 @@ export default async function DashboardPage() {
           </Table>
         </Section>
 
-        <Section title="Overall Statistics">
+        <Section className="md:hidden" title="Overall Statistics">
           <StatsContent />
         </Section>
       </main>

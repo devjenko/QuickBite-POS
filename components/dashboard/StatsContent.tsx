@@ -1,5 +1,7 @@
 import { cn } from "@/lib/utils"
 import Tabs from "../checkout/Tabs"
+import { itemCategories } from "@/consts/menu"
+import StatBlock from "./StatBlock"
 
 
 const StatsContent = ({className}: {className?: string}) => {
@@ -8,7 +10,12 @@ const StatsContent = ({className}: {className?: string}) => {
       tabs={[
             {
             label: "This Week",
-            content: <div>Overall Statistics</div>,
+            content: <div>{itemCategories.map((category) => (
+              <StatBlock key={category.name}
+                icon={`/icons/${category.name.toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]/g, "")}.svg`}
+                category={category.name}
+              />
+            ))}</div>,
             },
             {
             label: "This Month",
@@ -19,7 +26,7 @@ const StatsContent = ({className}: {className?: string}) => {
             content: <div>Orders</div>,
             },
       ]}
-      className={cn("", className)}
+      className={cn("mt-10", className)}
     />
   )
 }

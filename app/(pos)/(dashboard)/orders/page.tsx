@@ -62,7 +62,7 @@ const OrdersPage = async () => {
           {
             label: "Pending",
             content: (
-              <Section className={`w-full flex flex-col gap-2.5 ${pendingOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
+              <Section className={`w-full flex flex-col gap-2.5 !bg-[var(--LightGrey)] ${pendingOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
                 {pendingOrders.length > 0 ? (
                   <OrderList orders={pendingOrders} />
                 ) : (
@@ -74,7 +74,7 @@ const OrdersPage = async () => {
           {
             label: "Completed",
             content: (
-              <Section className={`w-full flex flex-col gap-2.5 ${completedOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
+              <Section className={`w-full flex flex-col gap-2.5 !bg-[var(--LightGrey)] ${completedOrders.length === 0 ? "h-full items-center justify-center" : ""}`}>
                 {completedOrders.length > 0 ? (
                   <OrderList orders={completedOrders} />
                 ) : (
