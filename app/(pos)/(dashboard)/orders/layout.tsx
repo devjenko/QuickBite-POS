@@ -12,7 +12,7 @@ const OrdersLayout = ({ children }: OrdersLayoutProps) => {
   return (
     <POSLayout>
       <NavSidebar />
-      <CenterContentContainer contained className="md:pl-50 md:pr-80 flex flex-col">
+      <CenterContentContainer sidebarLeft sidebarRight className="flex flex-col">
         <main className="flex-1 overflow-y-auto flex flex-col h-full w-full">{children}</main>
       </CenterContentContainer>
       <OrdersSidebar />

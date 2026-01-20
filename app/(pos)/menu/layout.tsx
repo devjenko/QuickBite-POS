@@ -12,9 +12,9 @@ const MenuLayout = async ({ children }: DashboardLayoutProps) => {
   const session = await auth();
 
   return (
-    <POSLayout >
+    <POSLayout>
       <MenuSidebar session={session} />
-      <CenterContentContainer className=" md:px-56 md:pr-88">{children}</CenterContentContainer>
+      <CenterContentContainer sidebarLeft sidebarRight>{children}</CenterContentContainer>
       <CartSidebar />
     </POSLayout>
   );

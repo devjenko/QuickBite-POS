@@ -29,8 +29,10 @@ const OrdersSidebar = () => {
     }
 
     return (
-    <BaseSidebar style={{ right: "max(0px, calc((100vw - 3000px) / 2))" }}
-    className="top-0 bg-[var(--White)]  w-xs ">
+    <BaseSidebar
+      position="right"
+      className="top-0 bg-[var(--White)]"
+    >
       <div className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
       {!selectedOrder && (
         <div className="flex flex-col items-center justify-center h-full text-center px-4">
