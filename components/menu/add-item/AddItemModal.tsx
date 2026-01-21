@@ -78,7 +78,7 @@ const AddItemModal = () => {
                 height={24}
                 src={"/icons/add.svg"}
               />
-              <span>Menu Item</span>
+
             </ContentWrapper>
           </Button>
         </DialogTrigger>
