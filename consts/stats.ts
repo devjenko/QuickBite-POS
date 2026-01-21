@@ -43,9 +43,5 @@ export const statCardContent = [
     name: "Inventory",
     key: "inventory" as const,
   },
-  {
-    icon: "/icons/newOrder.svg",
-    name: "Items",
-    key: "items" as const,
-  }
+
 ]

@@ -17,6 +17,7 @@ import {
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import StatsContent from "@/components/dashboard/StatsContent";
+import EmptyOrderedItemsState from "@/components/dashboard/EmptyOrderedItemsState";
 
 export default async function DashboardPage() {
   const session = await auth();
@@ -64,64 +65,68 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <header className="flex  w-full items-center justify-between">
-        <DashboardGreeting className="hidden xl:block" />
-        <Image
-          src="/logos/quickbite-logo.webp"
-          alt="QuickBite logo"
-          width={60}
-          height={60}
-          className="rounded-sm xl:hidden"
-          unoptimized
-          loading="eager"
-        />
-        <DateDisplay />
-        <div className="xl:hidden">
-          <MobileMenuButton />
-        </div>
-      </header>
+      <div className="flex flex-col h-full">
+        <header className="flex w-full items-center justify-between shrink-0">
+          <DashboardGreeting className="hidden xl:block" />
+          <Image
+            src="/logos/quickbite-logo.webp"
+            alt="QuickBite logo"
+            width={60}
+            height={60}
+            className="rounded-sm xl:hidden"
+            unoptimized
+            loading="eager"
+          />
+          <DateDisplay />
+          <div className="xl:hidden">
+            <MobileMenuButton />
+          </div>
+        </header>
 
-      <main>
-        <Section className="!bg-[var(--LightGrey)] !px-0">
-          <div className="flex gap-2.5 md:gap-5    items-center justify-around ">
+        <Section className="!bg-[var(--LightGrey)] !px-0 shrink-0">
+          <div className="flex gap-2.5 md:gap-5 items-center justify-around">
             {statCardContent.map((stat) => (
               <StatCard
                 key={stat.name}
                 icon={stat.icon}
                 name={stat.name}
-                value={stat.name === "Revenue" ? "$ " + Math.floor(stats[stat.key])  :  Number(stats[stat.key].toFixed(2))}
+                value={stat.name === "Revenue" ? "$ " + Math.floor(stats[stat.key]) : Number(stats[stat.key].toFixed(2))}
               />
             ))}
           </div>
         </Section>
 
-        <Section title="Ordered Items">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Item</TableHead>
-                <TableHead>Orders</TableHead>
-                <TableHead>PPU</TableHead>
-                <TableHead className="!text-right">Revenue</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {groupedItems.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell>{item.name}</TableCell>
-                  <TableCell>{item.totalQuantity}</TableCell>
-                  <TableCell>${item.price.toFixed(2)}</TableCell>
-                  <TableCell className="text-right">${item.totalRevenue.toFixed(2)}</TableCell>
+        <Section className="flex-1 min-h-0 rounded-sm overflow-auto" title="Ordered Items">
+          {groupedItems.length === 0 ? (
+            <EmptyOrderedItemsState />
+          ) : (
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Item</TableHead>
+                  <TableHead>Orders</TableHead>
+                  <TableHead>PPU</TableHead>
+                  <TableHead className="!text-right">Revenue</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {groupedItems.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell>{item.name}</TableCell>
+                    <TableCell>{item.totalQuantity}</TableCell>
+                    <TableCell>${item.price.toFixed(2)}</TableCell>
+                    <TableCell className="text-right">${item.totalRevenue.toFixed(2)}</TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          )}
         </Section>
 
-        <Section className="xl:hidden" title="Overall Statistics">
+        <Section className="xl:hidden shrink-0" title="Overall Statistics">
           <StatsContent />
         </Section>
-      </main>
+      </div>
     </DashboardLayout>
   );
 }
