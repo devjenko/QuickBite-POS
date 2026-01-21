@@ -89,10 +89,9 @@ const SettingsContent: React.FC = () => {
 
 
   return (
-    <>
-      <h1 className="mb-8 text-black">Settings</h1>
+    <div className="flex flex-col gap-6">
+      <h1 className="text-black">Settings</h1>
 
-      {/* Payment Settings Section */}
       <Section
         title="Payment Settings"
         description="Upload your bank QR codes to accept payments"
@@ -107,7 +106,7 @@ const SettingsContent: React.FC = () => {
           />
         ))}
 
-        <div>
+        <div className="mt-4">
           <SettingItem
             label="Accept Card Payments"
             sublabel="Allow customers to pay with credit/debit cards"
@@ -156,7 +155,6 @@ const SettingsContent: React.FC = () => {
         </div>
       </Section>
 
-      {/* User Modes Section */}
       <Section
         title="User Modes"
         description="Control access levels and permissions for different users"
@@ -176,63 +174,60 @@ const SettingsContent: React.FC = () => {
         />
       </Section>
 
-      {/* Display & Interface Section */}
       <Section
         title="Display & Interface"
         description="Customize how your POS system looks and behaves"
       >
-        <div>
-          <SettingItem
-            label="Language"
-            sublabel="Choose your preferred language"
-          >
-            <Dropdown
-              value={settings.language}
-              onValueChange={(value) => updateSetting("language", value)}
-              options={languageOptions}
-            />
-          </SettingItem>
+        <SettingItem
+          label="Language"
+          sublabel="Choose your preferred language"
+        >
+          <Dropdown
+            value={settings.language}
+            onValueChange={(value) => updateSetting("language", value)}
+            options={languageOptions}
+          />
+        </SettingItem>
 
-          <SettingItem
-            label="Currency"
-            sublabel="Default currency for transactions"
-          >
-            <Dropdown
-              value={settings.currency}
-              onValueChange={(value) => updateSetting("currency", value)}
-              options={currencyOptions}
-            />
-          </SettingItem>
+        <SettingItem
+          label="Currency"
+          sublabel="Default currency for transactions"
+        >
+          <Dropdown
+            value={settings.currency}
+            onValueChange={(value) => updateSetting("currency", value)}
+            options={currencyOptions}
+          />
+        </SettingItem>
 
-          <SettingItem label="Date Format" sublabel="How dates are displayed">
-            <Dropdown
-              value={settings.dateFormat}
-              onValueChange={(value) => updateSetting("dateFormat", value)}
-              options={dateFormatOptions}
-            />
-          </SettingItem>
+        <SettingItem label="Date Format" sublabel="How dates are displayed">
+          <Dropdown
+            value={settings.dateFormat}
+            onValueChange={(value) => updateSetting("dateFormat", value)}
+            options={dateFormatOptions}
+          />
+        </SettingItem>
 
-          <SettingItem label="Time Format" sublabel="12-hour or 24-hour clock">
-            <Dropdown
-              value={settings.timeFormat}
-              onValueChange={(value) => updateSetting("timeFormat", value)}
-              options={timeFormatOptions}
-            />
-          </SettingItem>
+        <SettingItem label="Time Format" sublabel="12-hour or 24-hour clock">
+          <Dropdown
+            value={settings.timeFormat}
+            onValueChange={(value) => updateSetting("timeFormat", value)}
+            options={timeFormatOptions}
+          />
+        </SettingItem>
 
-          <SettingItem
-            label="Dark Mode"
-            sublabel="Use dark theme for reduced eye strain"
-            isLast
-          >
-            <ToggleSwitch
-              checked={settings.darkMode}
-              onChange={(checked) => updateSetting("darkMode", checked)}
-            />
-          </SettingItem>
-        </div>
+        <SettingItem
+          label="Dark Mode"
+          sublabel="Use dark theme for reduced eye strain"
+          isLast
+        >
+          <ToggleSwitch
+            checked={settings.darkMode}
+            onChange={(checked) => updateSetting("darkMode", checked)}
+          />
+        </SettingItem>
       </Section>
-    </>
+    </div>
   );
 };
 

@@ -65,7 +65,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full">
+      <div className="flex flex-col h-full gap-5">
         <header className="flex w-full items-center justify-between shrink-0">
           <DashboardGreeting className="hidden xl:block" />
           <Image
@@ -83,7 +83,7 @@ export default async function DashboardPage() {
           </div>
         </header>
 
-        <Section className="!bg-[var(--LightGrey)] !px-0 shrink-0">
+       
           <div className="flex gap-2.5 md:gap-5 items-center justify-around">
             {statCardContent.map((stat) => (
               <StatCard
@@ -94,9 +94,9 @@ export default async function DashboardPage() {
               />
             ))}
           </div>
-        </Section>
 
-        <Section className="flex-1 min-h-0 rounded-sm overflow-auto" title="Ordered Items">
+
+        <Section className="flex-1 rounded-sm overflow-auto" title="Ordered Items">
           {groupedItems.length === 0 ? (
             <EmptyOrderedItemsState />
           ) : (

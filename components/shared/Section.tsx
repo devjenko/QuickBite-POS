@@ -11,10 +11,12 @@ const Section = ({
   children,
   className,
 }: SectionProps) => {
-  return <section className={`${className} p-5 bg-[var(--White)]`}>
-    {title && <h2 className="mb-2">{title}</h2>}
-    {description && <p className="mb-6">{description}</p>}
-    {children}
-  </section>;
+  return (
+    <section className={`p-5 bg-[var(--White)] rounded-sm ${className}`}>
+      {title && <h2 className="mb-2">{title}</h2>}
+      {description && <p className="mb-6">{description}</p>}
+      {children}
+    </section>
+  );
 };
 export default Section;
