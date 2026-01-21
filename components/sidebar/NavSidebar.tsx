@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
 import { signOut } from "next-auth/react";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
@@ -30,17 +30,17 @@ const NavSidebar = () => {
   return (
     <BaseSidebar>
       <ul className="flex flex-col gap-5 overflow-y-auto h-full hide-scrollbar">
-        <Link href={"/dashboard"}>
+        
           <Image
             src={"/logos/quickbite-logo.webp"}
             alt="QuickBite logo"
-            className="object-cover rounded-sm"
+            className="object-cover rounded-sm w-full"
             width={125}
             height={125}
             loading="eager"
             unoptimized
           />
-        </Link>
+        
 
         {SidebarNavLinks.map((link, index) => (
           <li key={index}>

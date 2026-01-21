@@ -83,7 +83,7 @@ export default async function DashboardPage() {
 
       <main>
         <Section className="!bg-[var(--LightGrey)] !px-0">
-          <div className="flex gap-3 items-center justify-between ">
+          <div className="flex gap-2.5 md:gap-5    items-center justify-around ">
             {statCardContent.map((stat) => (
               <StatCard
                 key={stat.name}
