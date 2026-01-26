@@ -1,77 +1,61 @@
 "use client";
 
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
+// #region Sample data
 const data = [
   {
-    name: "Page A",
-    uv: 400,
-    pv: 2400,
-    amt: 2400,
+    name: 'Mon',
+    Revenue: 2400,  
   },
   {
-    name: "Page B",
-    uv: 300,
-    pv: 4567,
-    amt: 2400,
+    name: 'Tue',
+    Revenue: 3000,
   },
   {
-    name: "Page C",
-    uv: 300,
-    pv: 1398,
-    amt: 2400,
+    name: 'Wed',
+    Revenue: 2000,
+  },
+  { 
+    name: 'Thu',
+    Revenue: 2780,
   },
   {
-    name: "Page D",
-    uv: 200,
-    pv: 9800,
-    amt: 2400,
+    name: 'Fri',
+    Revenue: 2780,
   },
   {
-    name: "Page E",
-    uv: 278,
-    pv: 3908,
-    amt: 2400,
+    name: 'Sat',
+    Revenue: 2780,
   },
   {
-    name: "Page F",
-    uv: 189,
-    pv: 4800,
-    amt: 2400,
+    name: 'Sun',
+    Revenue: 2780,
   },
+
 ];
 
-const margin = {
-  top: 20,
-  right: 30,
-  left: 20,
-  bottom: 25,
-};
-
-const formatAxisTick = (value: string): string => {
-  return `*${value}*`;
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const renderCustomBarLabel = (props: any) => {
-  const { x = 0, y = 0, width = 0, value = 0 } = props;
+// #endregion
+const SimpleAreaChart = () => {
   return (
-    <text x={Number(x) + Number(width) / 2} y={Number(y)} fill="#666" textAnchor="middle" dy={-6}>
-      {`value: ${value}`}
-    </text>
+    <ResponsiveContainer width="100%" height={300}>
+      <AreaChart
+        data={data}
+        margin={{
+          top: 20,
+          right: 0,
+          left: -10,
+          bottom: 0,
+        }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="name" />
+        <YAxis />
+        <Tooltip />
+        <Area type="monotone" dataKey="Revenue" stroke="var(--DarkBlue)" fill="var(--Blue)" />
+      </AreaChart>
+    </ResponsiveContainer>
   );
 };
 
-export default function Chart() {
-  return (
-    <BarChart width={600} height={300} data={data} margin={margin}>
-      <XAxis
-        dataKey="name"
-        tickFormatter={formatAxisTick}
-        label={{ position: "insideBottomRight", value: "XAxis title", offset: -10 }}
-      />
-      <YAxis label={{ position: "insideTopLeft", value: "YAxis title", angle: -90, dy: 60 }} />
-      <Bar dataKey="uv" fill="#8884d8" label={renderCustomBarLabel} />
-    </BarChart>
-  );
-}
+export default SimpleAreaChart;

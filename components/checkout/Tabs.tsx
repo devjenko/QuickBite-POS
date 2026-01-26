@@ -30,7 +30,7 @@ const Tabs = ({ tabs, className }: { tabs: Tab[], className?: string }) => {
         ))}
       </div>
 
-      <div className="flex-1 overflow-y-auto min-h-0 flex hide-scrollbar">
+      <div className="flex-1 overflow-y-auto min-h-0  hide-scrollbar">
         {tabs[activeIndex]?.content}
       </div>
     </div>

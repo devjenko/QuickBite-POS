@@ -26,7 +26,7 @@ const StatsContent = ({className}: {className?: string}) => {
             content: <div>Orders</div>,
             },
       ]}
-      className={cn("mt-10", className)}
+      className={cn("mt-10 ", className)}
     />
   )
 }
