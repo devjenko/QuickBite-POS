@@ -169,12 +169,10 @@ model OrderItem {
   id         String  @id @default(cuid())
   orderId    String
   menuItemId String? // Optional - MenuItem can be deleted
-
-  // Snapshot of item details at time of order
-  // WHY: If merchant changes price later, order should show original price
   name     String
   price    Float
   quantity Int
+  category String @default("uncategorized")
 
   createdAt DateTime @default(now())
 

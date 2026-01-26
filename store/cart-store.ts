@@ -7,6 +7,7 @@ type CartItem = {
   price: number;
   id: string;
   quantity: number;
+  category: string;
 };
 
 interface CartState {

@@ -39,7 +39,11 @@ const CheckoutPage = () => {
       name: item.name,
       price: item.price,
       quantity: item.quantity,
+      category: item.category,
     }));
+
+    console.log("Cart items:", items);
+  console.log("Order items being sent:", orderItems);
     
     formData.append("items", JSON.stringify(orderItems));
     formData.append("subtotal", totalPrice.toString());
@@ -47,7 +51,7 @@ const CheckoutPage = () => {
     formData.append("total", totalPrice.toString());
     formData.append("currency", "USD");
     formData.append("paymentStatus", "pending");
-    
+    formData.append("category", items[0].category);
     
     try {
       await createOrder(formData);

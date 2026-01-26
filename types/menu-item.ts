@@ -5,5 +5,6 @@ export type MenuItemCardProps = {
   price: number | null;
   description: string | null;
   id: string;
+  category:string;
 };
 

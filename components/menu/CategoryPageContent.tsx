@@ -28,6 +28,7 @@ const CategoryPageContent = ({ items }: CategoryPageContentProps) => {
           key={item.name}
           price={item.price}
           description={item.description}
+          category={item.category}
           image={
             item.image ||
             "/gifs/empty-img.gif"

@@ -20,6 +20,7 @@ const MenuItemCard = ({
   price,
   description,
   id,
+  category,
 }: MenuItemCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -38,7 +39,7 @@ const MenuItemCard = ({
   const handleAddToCart = () => {
     // Store optimized image URL in cart for better quality
     const optimizedImage = getOptimizedImage(image);
-    addItem({ image: optimizedImage, name: name || "", price: price || 0, id, quantity: 1 });
+    addItem({ image: optimizedImage, name: name || "", price: price || 0, id, quantity: 1, category });
   };
 
   return (

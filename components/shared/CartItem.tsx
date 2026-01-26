@@ -8,11 +8,12 @@ interface CartItemProps {
   id: string;
   name: string;
   price: number;
+  category?: string;
   className?: string;
   imageUrl?: string;
 }
 
-const CartItem = ({ name, price, className, imageUrl, id }: CartItemProps) => {
+const CartItem = ({ name, price, className, imageUrl, id, category }: CartItemProps) => {
   const removeItem = useCartStore((state) => state.removeItem);
 
   return (

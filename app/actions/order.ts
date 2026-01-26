@@ -4,6 +4,15 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
+
+type OrderItemInput = {
+    menuItemId: string;
+    name: string;
+    price: number;
+    quantity: number;
+    category: string;
+};
+
 export async function createOrder(formData: FormData){
     const session = await auth();
 
@@ -19,8 +28,12 @@ export async function createOrder(formData: FormData){
     const currency = formData.get("currency") as string;
     const paymentStatus = formData.get("paymentStatus") as string;
     const paidAt = formData.get("paidAt") as string;
+  
 
     const parsedItems = JSON.parse(items);
+
+    console.log("Parsed items received:", parsedItems);
+    console.log("First item category:", parsedItems[0]?.category);
 
     // Get the next order number for this merchant
     const lastOrder = await prisma.order.findFirst({
@@ -42,11 +55,13 @@ export async function createOrder(formData: FormData){
             paymentStatus,
             paidAt: paidAt ? new Date(paidAt) : undefined,
             items: {
-                create: parsedItems.map((item: { menuItemId: string; name: string; price: number; quantity: number }) => ({
+               
+                create: parsedItems.map((item: OrderItemInput) => ({
                     menuItem: { connect: { id: item.menuItemId } },
                     name: item.name,
                     price: item.price,
                     quantity: item.quantity,
+                    category: item.category,
                 })),
             },
         },
@@ -57,7 +72,6 @@ export async function createOrder(formData: FormData){
 
     return order;
 }
-
 
 export async function completeOrder(orderId: string){
     const session = await auth();
