@@ -10,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/Select";
 import Image from "next/image";
-import { itemCategories } from "@/consts/menu";
+import { itemCategories } from "@/consts/menu/menu";
 
 const CategoryDropdown = ({
   onValueChange,

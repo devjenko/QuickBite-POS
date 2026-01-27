@@ -21,6 +21,23 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+
+  // Add webpack config here
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      // Don't bundle server-only packages in client code
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        dns: false,
+        net: false,
+        tls: false,
+        fs: false,
+        'pg-native': false,
+      };
+    }
+    return config;
+  },
+
   // security headers
   async headers() {
     return [

@@ -28,6 +28,7 @@ export default async function DashboardPage() {
       order: {
         merchantId: session?.user?.id,
         paymentStatus: "completed",
+
       },
     },
     include: {

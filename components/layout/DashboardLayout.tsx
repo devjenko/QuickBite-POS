@@ -1,8 +1,8 @@
-"use client";
+
 import POSLayout from "@/components/layout/POSLayout";
 import NavSidebar from "@/components/sidebar/NavSidebar";
 import CenterContentContainer from "@/components/shared/CenterContentContainer";
-import StatsSidebar from "@/components/sidebar/StatsSidebar";
+import StatsSidebarWrapper from "../sidebar/StatsSidebarWrapper";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -15,7 +15,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
       <CenterContentContainer sidebarLeft sidebarRightWide className="flex flex-col">
         {children}
       </CenterContentContainer>
-      <StatsSidebar />
+      <StatsSidebarWrapper />
     </POSLayout>
   );
 };

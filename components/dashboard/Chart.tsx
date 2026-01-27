@@ -1,42 +1,14 @@
 "use client";
 
+import { ChartDataPoint } from '@/lib/chartUtils';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-// #region Sample data
-const data = [
-  {
-    name: 'Mon',
-    Revenue: 2400,  
-  },
-  {
-    name: 'Tue',
-    Revenue: 3000,
-  },
-  {
-    name: 'Wed',
-    Revenue: 2000,
-  },
-  { 
-    name: 'Thu',
-    Revenue: 2780,
-  },
-  {
-    name: 'Fri',
-    Revenue: 2780,
-  },
-  {
-    name: 'Sat',
-    Revenue: 2780,
-  },
-  {
-    name: 'Sun',
-    Revenue: 2780,
-  },
 
-];
+type SimpleAreaChartProps = {
+  data: ChartDataPoint[];
+}
 
-// #endregion
-const SimpleAreaChart = () => {
+const SimpleAreaChart = ({data}: SimpleAreaChartProps) => {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <AreaChart
@@ -44,14 +16,14 @@ const SimpleAreaChart = () => {
         margin={{
           top: 20,
           right: 0,
-          left: -10,
+          left: -12,
           bottom: 0,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip  />
         <Area type="monotone" dataKey="Revenue" stroke="var(--DarkBlue)" fill="var(--Blue)" />
       </AreaChart>
     </ResponsiveContainer>
