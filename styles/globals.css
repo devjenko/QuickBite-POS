@@ -178,3 +178,40 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutToRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+/* Target the toast container more specifically */
+[data-sonner-toaster][data-x-position="right"] [data-sonner-toast] {
+  animation: slideInFromRight 0.3s ease-out !important;
+}
+
+[data-sonner-toaster][data-x-position="right"] [data-sonner-toast][data-removed="true"] {
+  animation: slideOutToRight 0.2s ease-in !important;
+}
+
+/* Override the default y-axis transform */
+[data-sonner-toaster][data-y-position="top"] [data-sonner-toast],
+[data-sonner-toaster][data-y-position="bottom"] [data-sonner-toast] {
+  --y: 0px !important;
+}
