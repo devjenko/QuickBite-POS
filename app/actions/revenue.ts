@@ -1,6 +1,7 @@
 'use server'
 
 import prisma from "@/lib/prisma";
+import { auth } from "@/auth";
 
 type Period = 'week' | 'month' | 'year';
 type GroupedRevenue = Record<string, Record<string, number>>;
@@ -21,7 +22,9 @@ function getWeekOfMonth(date: Date): number {
   return Math.floor(offsetDate / 7) + 1;
 }
 
+
 export async function getUniqueCategories(): Promise<string[]> {
+    
   const categories = await prisma.orderItem.findMany({
     select: {
       category: true,
@@ -57,6 +60,7 @@ export async function getRevenueByCategoryOverTime(
 
   const items = await prisma.orderItem.findMany({
     where: {
+    
       createdAt: {
         gte: startDate,
         lte: now,

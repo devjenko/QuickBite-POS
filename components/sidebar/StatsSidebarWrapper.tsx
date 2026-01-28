@@ -6,7 +6,7 @@ import {
   } from "@/lib/queries/revenue";
 import BaseSidebar from "./BaseSidebar";
 
-
+// Loading skeleton for sidebar stats
 function StatsSidebarLoading() {
   return (
     <BaseSidebar

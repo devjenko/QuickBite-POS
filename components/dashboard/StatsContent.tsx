@@ -23,6 +23,7 @@ const StatsContent = ({
 }: StatsContentProps) => {
   // Helper function to generate icon path from category name
   const getIconPath = (categoryName: string) => {
+    
     const normalized = categoryName
       .toLowerCase()
       .replace(/&/g, "and")
@@ -33,7 +34,7 @@ const StatsContent = ({
  
   if (!categories || categories.length === 0) {
     return (
-      <div className={cn("mt-10 text-center p-12 bg-gray-50 rounded-lg", className)}>
+      <div className={cn("mt-10 text-center p-12 bg-gray-50 rounded-sm", className)}>
         <p className="text-gray-600 text-lg">No sales data available yet.</p>
         <p className="text-gray-500 text-sm mt-2">
           Start taking orders to see revenue analytics here.

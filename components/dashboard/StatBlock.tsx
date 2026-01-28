@@ -24,19 +24,15 @@ const StatBlock = ({icon, category, revenueData, period}: StatBlockProps) => {
 
    function denormalizeCategory(category:string){
     return category
-
     // Capitalize first letter of each word
     .split(/(?=[A-Z])/).map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ')
-
      // Handle the common cases manually
      .replace(/^maincourses$/i, 'Main Courses')
      .replace(/^sidedishes$/i, 'Side Dishes')
      .replace(/^colddrinks$/i, 'Cold Drinks')
      .replace(/^hotdrinks$/i, 'Hot Drinks')
      .trim();
-
-
   }
 
 

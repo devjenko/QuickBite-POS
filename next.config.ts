@@ -22,7 +22,7 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // Add webpack config here
+
   webpack: (config, { isServer }) => {
     if (!isServer) {
       // Don't bundle server-only packages in client code

@@ -18,10 +18,23 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import StatsContent from "@/components/dashboard/StatsContent";
 import EmptyOrderedItemsState from "@/components/dashboard/EmptyOrderedItemsState";
+import { 
+  getRevenueByCategoryOverTime,
+  getUniqueCategories 
+} from "@/lib/queries/revenue";
+
 
 export default async function DashboardPage() {
   const session = await auth();
   const stats = await getStats();
+
+   // Fetch all data in parallel
+   const [categories, weekData, monthData, yearData] = await Promise.all([
+    getUniqueCategories(),
+    getRevenueByCategoryOverTime('week'),
+    getRevenueByCategoryOverTime('month'),
+    getRevenueByCategoryOverTime('year'),
+  ]);
 
   const orderedItems = await prisma.orderItem.findMany({
     where: {
@@ -125,7 +138,10 @@ export default async function DashboardPage() {
         </Section>
 
         <Section className="xl:hidden shrink-0" title="Overall Statistics">
-          <StatsContent />
+          <StatsContent   categories={categories}
+        weekData={weekData}
+        monthData={monthData}
+        yearData={yearData}  />
         </Section>
       </div>
     </DashboardLayout>
