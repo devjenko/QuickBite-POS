@@ -3,7 +3,7 @@ import StatsContent from "../dashboard/StatsContent";
 
 type GroupedRevenue = Record<string, Record<string, number>>;
 
-type StatsSidebarProps = {
+export type StatsSidebarProps = {
   categories: string[];
   weekData: GroupedRevenue;
   monthData: GroupedRevenue;

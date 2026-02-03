@@ -24,6 +24,7 @@ import {
 } from "@/lib/queries/revenue";
 
 
+
 export default async function DashboardPage() {
   const session = await auth();
   const stats = await getStats();
@@ -51,6 +52,7 @@ export default async function DashboardPage() {
           name: true,
           price: true,
         },
+        
       },
     },
   });
@@ -75,7 +77,8 @@ export default async function DashboardPage() {
     return acc;
   }, new Map<string, { id: string; name: string; price: number; totalQuantity: number; totalRevenue: number }>());
 
-  const groupedItems = Array.from(aggregatedItems.values());
+  const groupedItems = Array.from(aggregatedItems.values()).sort((a,b) => b.totalRevenue - a.totalRevenue);
+
 
   return (
     <DashboardLayout>
@@ -111,6 +114,7 @@ export default async function DashboardPage() {
 
 
         <Section className="flex-1 rounded-sm overflow-auto" title="Ordered Items">
+          
           {groupedItems.length === 0 ? (
             <EmptyOrderedItemsState />
           ) : (
