@@ -85,9 +85,9 @@ const AddItemModal = () => {
         <DialogContent className="sm:max-w-[425px]">
           <form onSubmit={handleAddItem}>
             <DialogHeader>
-              <DialogTitle>Add a Menu Item</DialogTitle>
+              <DialogTitle>Create a Menu Item</DialogTitle>
               <DialogDescription className="pb-3">
-                Enter some information about the item you want to add.
+                Enter a few details about the item you want to create.
               </DialogDescription>
             </DialogHeader>
             <div className="grid gap-4">
@@ -123,7 +123,7 @@ const AddItemModal = () => {
                 <Button variant="default">Cancel</Button>
               </DialogClose>
               <Button variant={"dark"} type="submit">
-                {!isLoading ? "Add" : <Spinner color="white" />}
+                {!isLoading ? "Create" : <Spinner color="white" />}
               </Button>
             </DialogFooter>
           </form>
