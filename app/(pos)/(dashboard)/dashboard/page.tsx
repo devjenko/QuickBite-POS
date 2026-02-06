@@ -18,23 +18,19 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import StatsContent from "@/components/dashboard/StatsContent";
 import EmptyOrderedItemsState from "@/components/dashboard/EmptyOrderedItemsState";
-import { 
-  getRevenueByCategoryOverTime,
-  getUniqueCategories 
-} from "@/lib/queries/revenue";
-
-
+import { getRevenueByCategoryOverTime, getUniqueCategories } from "@/lib/queries/revenue";
+import MobileNavbar from "@/components/dashboard/MobileNavbar";
 
 export default async function DashboardPage() {
   const session = await auth();
   const stats = await getStats();
 
-   // Fetch all data in parallel
-   const [categories, weekData, monthData, yearData] = await Promise.all([
+  // Fetch all data in parallel
+  const [categories, weekData, monthData, yearData] = await Promise.all([
     getUniqueCategories(),
-    getRevenueByCategoryOverTime('week'),
-    getRevenueByCategoryOverTime('month'),
-    getRevenueByCategoryOverTime('year'),
+    getRevenueByCategoryOverTime("week"),
+    getRevenueByCategoryOverTime("month"),
+    getRevenueByCategoryOverTime("year"),
   ]);
 
   const orderedItems = await prisma.orderItem.findMany({
@@ -42,7 +38,6 @@ export default async function DashboardPage() {
       order: {
         merchantId: session?.user?.id,
         paymentStatus: "completed",
-
       },
     },
     include: {
@@ -52,7 +47,6 @@ export default async function DashboardPage() {
           name: true,
           price: true,
         },
-        
       },
     },
   });
@@ -77,8 +71,9 @@ export default async function DashboardPage() {
     return acc;
   }, new Map<string, { id: string; name: string; price: number; totalQuantity: number; totalRevenue: number }>());
 
-  const groupedItems = Array.from(aggregatedItems.values()).sort((a,b) => b.totalRevenue - a.totalRevenue);
-
+  const groupedItems = Array.from(aggregatedItems.values()).sort(
+    (a, b) => b.totalRevenue - a.totalRevenue
+  );
 
   return (
     <DashboardLayout>
@@ -100,21 +95,22 @@ export default async function DashboardPage() {
           </div>
         </header>
 
-       
-          <div className="flex gap-2.5 md:gap-5 items-center justify-around">
-            {statCardContent.map((stat) => (
-              <StatCard
-                key={stat.name}
-                icon={stat.icon}
-                name={stat.name}
-                value={stat.name === "Revenue" ? "$ " + Math.floor(stats[stat.key]) : Number(stats[stat.key].toFixed(2))}
-              />
-            ))}
-          </div>
-
+        <div className="flex gap-2.5 md:gap-5 items-center justify-around">
+          {statCardContent.map((stat) => (
+            <StatCard
+              key={stat.name}
+              icon={stat.icon}
+              name={stat.name}
+              value={
+                stat.name === "Revenue"
+                  ? "$ " + Math.floor(stats[stat.key])
+                  : Number(stats[stat.key].toFixed(2))
+              }
+            />
+          ))}
+        </div>
 
         <Section className="flex-1 rounded-sm overflow-auto" title="Ordered Items">
-          
           {groupedItems.length === 0 ? (
             <EmptyOrderedItemsState />
           ) : (
@@ -142,10 +138,12 @@ export default async function DashboardPage() {
         </Section>
 
         <Section className="xl:hidden shrink-0" title="Overall Statistics">
-          <StatsContent   categories={categories}
-        weekData={weekData}
-        monthData={monthData}
-        yearData={yearData}  />
+          <StatsContent
+            categories={categories}
+            weekData={weekData}
+            monthData={monthData}
+            yearData={yearData}
+          />
         </Section>
       </div>
     </DashboardLayout>
