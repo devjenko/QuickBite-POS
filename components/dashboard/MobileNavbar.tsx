@@ -36,7 +36,6 @@ const MobileNavbar = () => {
         icon="/icons/settings.svg"
         onClick={() => setIsOpen(true)}
         prefetch={false}
-        activeHref="/settings"
         className="shadow-none! p-4!"
       />
       <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />
