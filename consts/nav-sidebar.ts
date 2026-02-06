@@ -15,9 +15,4 @@ export const SidebarNavLinks = [
     iconPath: "/icons/online.svg",
     href: "/orders",
   },
-  {
-    name: "Inventory",
-    iconPath: "/icons/inventory.svg",
-    href: "/inventory",
-  },
 ];
