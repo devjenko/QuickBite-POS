@@ -15,7 +15,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "QuickBite",
-  description: "An elegant fast food POS system.",
+  description: "An elegant restaurant POS system.",
   icons: {
     shortcut: "/favicon-32x32.png",
     apple: "/apple-touch-icon.png",
@@ -29,8 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
-      <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto">
-        {/* Mobile Nav */}
+      <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto ">
         <MobileNavbar />
         <Providers>{children}</Providers>
         <Toaster />

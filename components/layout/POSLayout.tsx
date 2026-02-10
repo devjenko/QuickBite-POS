@@ -1,10 +1,4 @@
-const POSLayout = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => {
+const POSLayout = ({ children, className }: { children: React.ReactNode; className?: string }) => {
   return (
     <div
       className={`h-screen justify-between overflow-x-hidden flex bg-[var(--LightGrey)] ${className}`}

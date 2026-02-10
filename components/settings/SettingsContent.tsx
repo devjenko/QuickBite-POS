@@ -50,13 +50,16 @@ const SettingsContent: React.FC = () => {
     }
   }, 500);
 
-  const updateSetting = useCallback((key: keyof SettingsState, value: SettingsState[keyof SettingsState]) => {
-    setSettings((prev) => {
-      const newSettings = { ...prev, [key]: value };
-      saveSettings(newSettings);
-      return newSettings;
-    });
-  }, [saveSettings]);
+  const updateSetting = useCallback(
+    (key: keyof SettingsState, value: SettingsState[keyof SettingsState]) => {
+      setSettings((prev) => {
+        const newSettings = { ...prev, [key]: value };
+        saveSettings(newSettings);
+        return newSettings;
+      });
+    },
+    [saveSettings]
+  );
 
   // Load settings on mount
   useEffect(() => {
@@ -87,15 +90,11 @@ const SettingsContent: React.FC = () => {
     refreshQRCodes();
   };
 
-
   return (
     <div className="flex flex-col gap-6">
       <h1 className="text-black">Settings</h1>
 
-      <Section
-        title="Payment Settings"
-        description="Upload your bank QR codes to accept payments"
-      >
+      <Section title="Payment Settings" description="Upload your bank QR codes to accept payments">
         {BANKS.map((bank) => (
           <ConnectAccountCard
             key={bank.name}
@@ -107,32 +106,14 @@ const SettingsContent: React.FC = () => {
         ))}
 
         <div className="mt-4">
-          <SettingItem
-            label="Accept Card Payments"
-            sublabel="Allow customers to pay with credit/debit cards"
-          >
-            <ToggleSwitch
-              checked={settings.acceptCardPayments}
-              onChange={(checked) =>
-                updateSetting("acceptCardPayments", checked)
-              }
-            />
-          </SettingItem>
-
-          <SettingItem
-            label="QR Code Payments"
-            sublabel="Enable QR scanning for quick checkout"
-          >
+          <SettingItem label="QR Code Payments" sublabel="Enable QR scanning for quick checkout">
             <ToggleSwitch
               checked={settings.qrCodePayments}
               onChange={(checked) => updateSetting("qrCodePayments", checked)}
             />
           </SettingItem>
 
-          <SettingItem
-            label="Cash Payments"
-            sublabel="Accept cash and track cash transactions"
-          >
+          <SettingItem label="Cash Payments" sublabel="Accept cash and track cash transactions">
             <ToggleSwitch
               checked={settings.cashPayments}
               onChange={(checked) => updateSetting("cashPayments", checked)}
@@ -146,9 +127,7 @@ const SettingsContent: React.FC = () => {
           >
             <Dropdown
               value={settings.defaultTaxRate}
-              onValueChange={(value: string) =>
-                updateSetting("defaultTaxRate", value)
-              }
+              onValueChange={(value: string) => updateSetting("defaultTaxRate", value)}
               options={taxRateOptions}
             />
           </SettingItem>
@@ -178,10 +157,7 @@ const SettingsContent: React.FC = () => {
         title="Display & Interface"
         description="Customize how your POS system looks and behaves"
       >
-        <SettingItem
-          label="Language"
-          sublabel="Choose your preferred language"
-        >
+        <SettingItem label="Language" sublabel="Choose your preferred language">
           <Dropdown
             value={settings.language}
             onValueChange={(value) => updateSetting("language", value)}
@@ -189,10 +165,7 @@ const SettingsContent: React.FC = () => {
           />
         </SettingItem>
 
-        <SettingItem
-          label="Currency"
-          sublabel="Default currency for transactions"
-        >
+        <SettingItem label="Currency" sublabel="Default currency for transactions">
           <Dropdown
             value={settings.currency}
             onValueChange={(value) => updateSetting("currency", value)}
@@ -216,11 +189,7 @@ const SettingsContent: React.FC = () => {
           />
         </SettingItem>
 
-        <SettingItem
-          label="Dark Mode"
-          sublabel="Use dark theme for reduced eye strain"
-          isLast
-        >
+        <SettingItem label="Dark Mode" sublabel="Use dark theme for reduced eye strain" isLast>
           <ToggleSwitch
             checked={settings.darkMode}
             onChange={(checked) => updateSetting("darkMode", checked)}

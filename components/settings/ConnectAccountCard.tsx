@@ -63,7 +63,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
 
   return (
     <ContentWrapper className="mb-5">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5">
+      <div className="flex flex-col sm:flex-row items-end sm:items-center gap-5 p-5">
         <div className="flex items-center gap-4 flex-1 min-w-0">
           <div className="flex items-center justify-center shrink-0 w-16 h-16 bg-[var(--LightGrey)] rounded-sm overflow-hidden">
             <Image
@@ -95,7 +95,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex m-auto items-center gap-2 shrink-0">
+        <div className="flex gap-2 shrink-0">
           <Input
             ref={fileInputRef}
             type="file"
