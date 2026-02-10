@@ -53,8 +53,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
       onUploadSuccess();
     } catch (error) {
       console.error("Upload error:", error);
-      const errorMessage =
-        error instanceof Error ? error.message : "Failed to upload QR code";
+      const errorMessage = error instanceof Error ? error.message : "Failed to upload QR code";
       toast.error(errorMessage);
     } finally {
       setUploading(false);
@@ -77,9 +76,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
             />
           </div>
           <div className="flex-1 min-w-0">
-            <div className="text-base font-semibold text-[var(--Black)] mb-1">
-              {name}
-            </div>
+            <div className="text-base font-semibold text-[var(--Black)] mb-1">{name}</div>
             <div className="text-xxsmall text-[var(--Grey)] mb-2">
               {isUploaded
                 ? `Your ${name} QR code is uploaded and ready to accept payments`
@@ -98,7 +95,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex m-auto items-center gap-2 shrink-0">
           <Input
             ref={fileInputRef}
             type="file"
@@ -121,7 +118,7 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
             ) : (
               <>
                 <Upload className="size-4" />
-                <span>Upload</span>
+                <span>{isUploaded ? "Reupload" : "Upload"}</span>
               </>
             )}
           </Button>
