@@ -21,13 +21,11 @@ export const getStats = async () => {
   return {
     revenue: Number(revenueResult._sum.subtotal) || 0,
     orders: ordersCount,
-    inventory: 0, //!TODO: Add inventory count to schema
     items: itemsCount,
   };
-}
+};
 
-
-export const statCardContent = [	
+export const statCardContent = [
   {
     icon: "/icons/dollar.svg",
     name: "Revenue",
@@ -40,8 +38,7 @@ export const statCardContent = [
   },
   {
     icon: "/icons/inventory.svg",
-    name: "Inventory",
-    key: "inventory" as const,
+    name: "Items",
+    key: "items" as const,
   },
-
-]
+];
