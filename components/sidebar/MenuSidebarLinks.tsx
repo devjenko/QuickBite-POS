@@ -1,9 +1,12 @@
 import prisma from "@/lib/prisma";
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
 import { Session } from "next-auth";
+import { cn } from "@/lib/utils";
 
 interface MenuSidebarLinksProps {
   session: Session | null;
+  className?: string;
+  linksClassName?: string;
 }
 
 const categoryMap: Record<string, string> = {
@@ -24,7 +27,7 @@ const categoryMap: Record<string, string> = {
   coffee: "Coffee",
 };
 
-const MenuSidebarLinks = async ({ session }: MenuSidebarLinksProps) => {
+const MenuSidebarLinks = async ({ session, className, linksClassName }: MenuSidebarLinksProps) => {
   if (!session?.user?.id) {
     return null;
   }
@@ -43,19 +46,17 @@ const MenuSidebarLinks = async ({ session }: MenuSidebarLinksProps) => {
   const categoryNames = categories.map((item) => item.category);
 
   return (
-    <>
+    <div className={cn("gap-4 flex flex-col", className)}>
       {categoryNames.map((category, index) => (
         <SideBarNavLink
           key={index}
-          name={
-            categoryMap[category] ||
-            category.charAt(0).toUpperCase() + category.slice(1)
-          }
+          name={categoryMap[category] || category.charAt(0).toUpperCase() + category.slice(1)}
           icon={`/icons/${category}.svg`}
           href={`/menu/${category}`}
+          className={linksClassName}
         />
       ))}
-    </>
+    </div>
   );
 };
 

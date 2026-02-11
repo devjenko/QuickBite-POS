@@ -11,7 +11,7 @@ const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <POSLayout>
       <NavSidebar />
-      <CenterContentContainer sidebarLeft sidebarRightWide className="flex flex-col ">
+      <CenterContentContainer sidebarLeft sidebarRightWide className="flex flex-col">
         {children}
       </CenterContentContainer>
       <StatsSidebarWrapper />
