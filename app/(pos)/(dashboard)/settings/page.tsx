@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import SettingsContent from "@/components/settings/SettingsContent";
 import DashboardLayout from "@/components/layout/DashboardLayout";
+import MobileNavbar from "@/components/dashboard/MobileNavbar";
 
 const SettingsPage = async () => {
   const session = await auth();
@@ -18,6 +19,7 @@ const SettingsPage = async () => {
 
   return (
     <DashboardLayout>
+      <MobileNavbar />
       <SettingsContent />
     </DashboardLayout>
   );

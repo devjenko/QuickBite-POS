@@ -3,7 +3,6 @@ import "@/styles/globals.css";
 import Providers from "./providers";
 import { Toaster } from "@/components/ui/Sonner";
 import { Inter } from "next/font/google";
-import MobileNavbar from "@/components/dashboard/MobileNavbar";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +29,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-[family-name:var(--font-inter)] bg-white antialiased overflow-hidden  max-w-750 m-auto ">
-        <MobileNavbar />
         <Providers>{children}</Providers>
         <Toaster />
       </body>

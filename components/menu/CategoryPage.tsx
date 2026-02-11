@@ -22,8 +22,8 @@ const CategoryPage = async ({ category }: { category: string }) => {
 
   return (
     <>
+      <BackButton href="/dashboard" className="mb-4 w-fit xl:hidden" />
       <div className="overflow-x-auto w-full mb-4 xl:hidden hide-scrollbar">
-        <BackButton href="/dashboard" className="mb-4 w-fit" />
         <MenuSidebarLinks
           linksClassName="p-4! whitespace-nowrap"
           session={session}
