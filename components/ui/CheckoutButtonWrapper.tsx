@@ -9,9 +9,9 @@ const CheckoutButtonWrapper = () => {
 
   const router = useRouter();
 
-  const handleClick = async () => {
+  const handleClick = () => {
     setIsLoading(true);
-    await router.push("/checkout");
+    router.push("/checkout");
   };
   return (
     <CheckoutButton
