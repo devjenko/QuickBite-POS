@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import CategoryPageContent from "./CategoryPageContent";
 import MenuSidebarLinks from "../sidebar/MenuSidebarLinks";
 import BackButton from "../shared/BackButton";
+import CheckoutButtonWrapper from "../ui/CheckoutButtonWrapper";
 
 const CategoryPage = async ({ category }: { category: string }) => {
   const session = await auth();
@@ -33,6 +34,7 @@ const CategoryPage = async ({ category }: { category: string }) => {
       <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max">
         <CategoryPageContent items={items} />
       </div>
+      <CheckoutButtonWrapper />
     </>
   );
 };
