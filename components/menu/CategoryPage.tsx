@@ -1,9 +1,9 @@
-import CenterContentContainer from "@/components/shared/CenterContentContainer";
 import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CategoryPageContent from "./CategoryPageContent";
 import MenuSidebarLinks from "../sidebar/MenuSidebarLinks";
+import BackButton from "../shared/BackButton";
 
 const CategoryPage = async ({ category }: { category: string }) => {
   const session = await auth();
@@ -23,6 +23,7 @@ const CategoryPage = async ({ category }: { category: string }) => {
   return (
     <>
       <div className="overflow-x-auto w-full mb-4 xl:hidden hide-scrollbar">
+        <BackButton href="/dashboard" className="mb-4 w-fit" />
         <MenuSidebarLinks
           linksClassName="p-4! whitespace-nowrap"
           session={session}
