@@ -131,24 +131,6 @@ quickbite-app/
 - NextAuth.js session management
 - OAuth account linking support
 
-## 🚦 Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
-
-##  Environment Variables
-
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `AUTH_SECRET` | Secret key for NextAuth.js | Yes |
-| `NEXTAUTH_URL` | Base URL of your application | Yes |
-| `CLOUDINARY_CLOUD_NAME` | Cloudinary cloud name | Yes |
-| `CLOUDINARY_API_KEY` | Cloudinary API key | Yes |
-| `CLOUDINARY_API_SECRET` | Cloudinary API secret | Yes |
-
 ##  Key Features in Detail
 
 ### Multi-tenant Architecture
