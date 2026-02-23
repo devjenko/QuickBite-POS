@@ -1,6 +1,15 @@
-# QuickBite POS System
+
+<div align="center">
+  
+# The QuickBite POS System
+
+<br/>
+
+
 
 ![QuickBite Demo](https://res.cloudinary.com/dope0htm4/video/upload/q_auto:low,w_800,c_fit,du_15/v1771659301/quickbite-vid_wjruvi.gif)
+
+<br/>
 
 ![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)
 ![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
@@ -15,8 +24,7 @@
 ![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=white)
 ![Sonner](https://img.shields.io/badge/Sonner-black?style=for-the-badge&logo=react)
 
-
-
+</div>
 
 ##  Features
 
