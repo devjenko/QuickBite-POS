@@ -1,14 +1,24 @@
 # QuickBite POS System
 
-
-![QuickBite](https://img.shields.io/badge/Next.js-16.0-black?style=for-the-badge&logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql)
-
-
 ![QuickBite Demo](https://res.cloudinary.com/dope0htm4/video/upload/q_auto:low,w_800,c_fit,du_15/v1771659301/quickbite-vid_wjruvi.gif)
 
-## 🚀 Features
+![Next.js](https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white)
+![NextAuth](https://img.shields.io/badge/NextAuth.js-v5-black?style=for-the-badge&logo=nextdotjs)
+![Zustand](https://img.shields.io/badge/Zustand-brown?style=for-the-badge&logo=react)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS_v4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Radix UI](https://img.shields.io/badge/Radix_UI-161618?style=for-the-badge&logo=radix-ui&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=cloudinary&logoColor=white)
+![Framer Motion](https://img.shields.io/badge/Framer_Motion-black?style=for-the-badge&logo=framer&logoColor=white)
+![Sonner](https://img.shields.io/badge/Sonner-black?style=for-the-badge&logo=react)
+
+
+
+
+##  Features
 
 ### Authentication & Security
 - **Secure Login System**: Business ID and password-based authentication
@@ -40,7 +50,7 @@
 - **Date Display**: Current date information
 - **Navigation Hub**: Quick access to all features
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Framework**: [Next.js 16](https://nextjs.org/) (App Router) with React 19
 - **Language**: TypeScript
@@ -53,70 +63,7 @@
 - **Animations**: [Motion](https://motion.dev/) (Framer Motion)
 - **Notifications**: [Sonner](https://sonner.emilkowal.ski/)
 
-## 📋 Prerequisites
-
-Before you begin, ensure you have the following installed:
-
-- **Node.js** 18+ and npm/pnpm
-- **PostgreSQL** database
-- **Cloudinary** account (for image uploads)
-
-## 🔧 Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd quickbite-app
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   pnpm install
-   ```
-
-3. **Set up environment variables**
-   
-   Create a `.env` file in the root directory:
-   ```env
-   # Database
-   DATABASE_URL="postgresql://user:password@localhost:5432/quickbite?schema=public"
-
-   # NextAuth
-   AUTH_SECRET="your-secret-key-here"
-   NEXTAUTH_URL="http://localhost:3000"
-
-   # Cloudinary
-   CLOUDINARY_CLOUD_NAME="your-cloud-name"
-   CLOUDINARY_API_KEY="your-api-key"
-   CLOUDINARY_API_SECRET="your-api-secret"
-   ```
-
-4. **Set up the database**
-   ```bash
-   # Generate Prisma Client
-   npx prisma generate
-
-   # Run migrations
-   npx prisma migrate dev
-
-   # (Optional) Open Prisma Studio to view your data
-   npx prisma studio
-   ```
-
-5. **Run the development server**
-   ```bash
-   npm run dev
-   # or
-   pnpm dev
-   ```
-
-6. **Open your browser**
-   
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
-## 📁 Project Structure
+##  Project Structure
 
 ```
 quickbite-app/
@@ -158,7 +105,7 @@ quickbite-app/
 └── public/                 # Static assets
 ```
 
-## 🗄️ Database Schema
+##  Database Schema
 
 ### User
 - Business accounts with unique `businessId`
@@ -183,7 +130,7 @@ quickbite-app/
 - `npm run start` - Start production server
 - `npm run lint` - Run ESLint
 
-## 🔐 Environment Variables
+##  Environment Variables
 
 | Variable | Description | Required |
 |----------|-------------|----------|
@@ -194,7 +141,7 @@ quickbite-app/
 | `CLOUDINARY_API_KEY` | Cloudinary API key | Yes |
 | `CLOUDINARY_API_SECRET` | Cloudinary API secret | Yes |
 
-## 🎨 Key Features in Detail
+##  Key Features in Detail
 
 ### Multi-tenant Architecture
 Each business user has a unique `businessId` and can only access and manage their own menu items. Data is isolated at the database level using user ID filtering.
@@ -207,11 +154,6 @@ The shopping cart uses Zustand with localStorage persistence, so cart items rema
 
 ### Server-Side Rendering
 Leverages Next.js App Router for optimal performance with server components for data fetching and client components for interactivity.
-
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📝 License
 
