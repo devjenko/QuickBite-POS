@@ -5,6 +5,9 @@
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql)
 
+
+![QuickBite Demo](https://res.cloudinary.com/dope0htm4/video/upload/q_auto:low,w_800,c_fit,du_15/v1771659301/quickbite-vid_wjruvi.gif)
+
 ## 🚀 Features
 
 ### Authentication & Security
