@@ -3,6 +3,8 @@
   
 # The QuickBite POS System
 
+Implemented with serverless architecture, REST APIs, and a cloud-hosted database, optimizing scalability and performance.
+
 <br/>
 
 
@@ -25,6 +27,9 @@
 ![Sonner](https://img.shields.io/badge/Sonner-black?style=for-the-badge&logo=react)
 
 </div>
+
+
+
 
 ##  Features
 
