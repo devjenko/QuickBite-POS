@@ -82,7 +82,11 @@ const CheckoutPage = () => {
           />
         </div>
         <div className="mt-5">
-          <CheckoutButton isLoading={isLoading} className="w-full" onClick={handleCheckout} />
+          <CheckoutButton
+            isLoading={isLoading}
+            className="w-full  fixed bottom-1 max-w-[400px] xl:hidden left-1/2 -translate-x-1/2"
+            onClick={handleCheckout}
+          />
         </div>
       </ContentWrapper>
     </CenterContentContainer>
