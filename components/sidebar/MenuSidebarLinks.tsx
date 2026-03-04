@@ -47,9 +47,9 @@ const MenuSidebarLinks = async ({ session, className, linksClassName }: MenuSide
 
   return (
     <div className={cn("gap-4 flex flex-col", className)}>
-      {categoryNames.map((category, index) => (
+      {categoryNames.map((category) => (
         <SideBarNavLink
-          key={index}
+          key={category}
           name={categoryMap[category] || category.charAt(0).toUpperCase() + category.slice(1)}
           icon={`/icons/${category}.svg`}
           href={`/menu/${category}`}

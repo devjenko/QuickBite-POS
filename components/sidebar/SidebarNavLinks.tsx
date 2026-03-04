@@ -42,11 +42,9 @@ const SideBarNavLink = ({
     : false;
 
   return (
-    <Link prefetch={prefetch} onClick={onClick} href={href || "#"}>
+    <Link scroll={false} prefetch={prefetch} onClick={onClick} href={href || "#"}>
       <ContentWrapper variant={(isActive && "dark") || undefined} className={wrapperClassName}>
-        <div
-          className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}
-        >
+        <div className={`gap-2 px-4 py-8 flex flex-col justify-center items-center ${className}`}>
           <Image
             alt="Sidebar Icon"
             width={iconSize}

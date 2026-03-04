@@ -2,8 +2,6 @@ import prisma from "@/lib/prisma";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import CategoryPageContent from "./CategoryPageContent";
-import MenuSidebarLinks from "../sidebar/MenuSidebarLinks";
-import BackButton from "../shared/BackButton";
 import CheckoutButtonWrapper from "../ui/CheckoutButtonWrapper";
 
 const CategoryPage = async ({ category }: { category: string }) => {
@@ -23,14 +21,6 @@ const CategoryPage = async ({ category }: { category: string }) => {
 
   return (
     <>
-      <BackButton href="/dashboard" className="mb-4 w-fit xl:hidden" />
-      <div className="overflow-x-auto w-full mb-4 xl:hidden hide-scrollbar">
-        <MenuSidebarLinks
-          linksClassName="p-4! whitespace-nowrap"
-          session={session}
-          className="flex-row text-xxxsmall"
-        />
-      </div>
       <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max pb-20">
         <CategoryPageContent items={items} />
       </div>
