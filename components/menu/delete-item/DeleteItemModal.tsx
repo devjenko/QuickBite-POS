@@ -36,7 +36,6 @@ const DeleteItemModal = ({
   const handleDelete = async () => {
     setIsDeleting(true);
 
-
     try {
       await deleteMenuItem(ItemId!);
       setIsOpen(false);
@@ -48,8 +47,6 @@ const DeleteItemModal = ({
     } finally {
       setIsDeleting(false);
     }
-
-
   };
 
   // Add stopPropagation to the dialog content itself
@@ -62,21 +59,17 @@ const DeleteItemModal = ({
       <DialogTrigger asChild></DialogTrigger>
       <DialogContent
         onClick={handleDialogClick}
-        className="max-w-[425px] max-h-[90vh] flex flex-col overflow-hidden"
+        className="max-w-[90%] max-h-[90vh] flex flex-col overflow-hidden"
       >
-        
         <div className="flex-1 overflow-y-auto overflow-x-hidden min-h-0">
           <DialogHeader>
             <DialogTitle>Delete a Menu Item</DialogTitle>
             <DialogDescription className="flex flex-col gap-2">
               <span className="m-auto sm:m-0">
-                Are you sure you want to delete your{" "}
-                <strong className="break-all">{ItemName}</strong>?
+                Are you sure you want to delete your <strong>{ItemName}</strong>?
               </span>
 
-              <span>
-                This item will be permanently removed and cannot be recovered.
-              </span>
+              <span>This item will be permanently removed and cannot be recovered.</span>
             </DialogDescription>
           </DialogHeader>
         </div>

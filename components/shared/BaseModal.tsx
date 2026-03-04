@@ -42,10 +42,7 @@ const BaseModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent
-        onClick={handleDialogClick}
-        className="max-w-[425px] overflow-hidden"
-      >
+      <DialogContent onClick={handleDialogClick} className="max-w-[90%] overflow-hidden">
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription className="flex flex-col gap-2">
@@ -60,12 +57,7 @@ const BaseModal = ({
             <DialogClose asChild>
               <Button variant="default">Cancel</Button>
             </DialogClose>
-            <Button
-              type="submit"
-              onClick={onSubmit}
-              variant={"dark"}
-              disabled={isLoading}
-            >
+            <Button type="submit" onClick={onSubmit} variant={"dark"} disabled={isLoading}>
               {isLoading ? (
                 <span className="flex items-center gap-2">
                   {btnName}ing <Spinner />
