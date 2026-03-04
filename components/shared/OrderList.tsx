@@ -5,17 +5,10 @@ const OrderList = ({ className }: { className?: string }) => {
   const items = useCartStore((state) => state.items);
 
   return (
-    <ul
-      className={`${className}  p-2.5  gap-2.5 flex flex-col overflow-y-auto hide-scrollbar h-screen`}
-    >
+    <ul className={`${className}  p-2.5  gap-2.5 flex flex-col overflow-y-auto hide-scrollbar `}>
       {items.map((item) => (
         <li key={item.id}>
-          <CartItem
-            imageUrl={item.image}
-            id={item.id}
-            name={item.name}
-            price={item.price}
-          />
+          <CartItem imageUrl={item.image} id={item.id} name={item.name} price={item.price} />
         </li>
       ))}
     </ul>
