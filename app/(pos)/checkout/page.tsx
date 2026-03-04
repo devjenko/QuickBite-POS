@@ -69,7 +69,7 @@ const CheckoutPage = () => {
         <OrderList />
       </ContentWrapper>
       <ContentWrapper className="flex-1 p-5 flex flex-col">
-        <h1 className="mb-5">Payment</h1>
+        <h1 className="mb-6 text-center">Payment</h1>
         <div className="flex-1 flex flex-col overflow-hidden ">
           <Tabs
             tabs={[
