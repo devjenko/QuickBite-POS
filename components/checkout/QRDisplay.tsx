@@ -62,7 +62,7 @@ const QRDisplay = () => {
 
   return (
     <div className="flex flex-col w-full gap-8">
-      <div className="flex flex-wrap gap-4 w-full ">
+      <div className="flex flex-wrap gap-4 w-full justify-center">
         {qrCodes.map((qr) => (
           <ProviderButton
             key={qr.bankName}
