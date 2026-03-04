@@ -84,7 +84,7 @@ const CheckoutPage = () => {
         <div className="mt-5">
           <CheckoutButton
             isLoading={isLoading}
-            className="w-full  fixed bottom-1 max-w-[400px] xl:hidden left-1/2 -translate-x-1/2"
+            className="xl:max-w-none w-full xl:relative fixed bottom-1 max-w-[400px]  left-1/2 -translate-x-1/2"
             onClick={handleCheckout}
           />
         </div>
