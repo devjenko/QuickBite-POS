@@ -68,7 +68,7 @@ const CheckoutPage = () => {
         <BackButton href="/menu" />
         <OrderList />
       </ContentWrapper>
-      <ContentWrapper className="flex-1 p-5 mb-20 md:mb-0 flex flex-col">
+      <ContentWrapper className="flex-1 p-5 px-0 mb-20 md:mb-0 flex flex-col">
         <h1 className="mb-6 text-center">Payment</h1>
         <div className="flex-1 flex flex-col overflow-hidden ">
           <Tabs
@@ -81,10 +81,10 @@ const CheckoutPage = () => {
             ]}
           />
         </div>
-        <div className="">
+        <div>
           <CheckoutButton
             isLoading={isLoading}
-            className="md:max-w-none w-full md:relative fixed bottom-1 max-w-[400px]  left-1/2 -translate-x-1/2"
+            className="w-full md:relative max-w-[90%] fixed bottom-1 left-1/2 -translate-x-1/2"
             onClick={handleCheckout}
           />
         </div>

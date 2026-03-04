@@ -15,7 +15,7 @@ const CheckoutButtonWrapper = () => {
   };
   return (
     <CheckoutButton
-      className="w-full fixed bottom-1 max-w-[400px] xl:hidden left-1/2 -translate-x-1/2"
+      className="w-full  max-w-[90%] fixed bottom-1 left-1/2 -translate-x-1/2 xl:hidden"
       onClick={handleClick}
       isLoading={isLoading}
     />

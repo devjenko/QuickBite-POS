@@ -22,7 +22,7 @@ const CenterContentContainer = ({
 
   return (
     <div
-      className={`p-5 md:p-8 h-screen w-full ${leftMargin} ${rightMargin} ${contained ? "max-w-screen-2xl mx-auto" : ""} ${className}`}
+      className={`p-4 md:p-8 h-screen w-full ${leftMargin} ${rightMargin} ${contained ? "max-w-screen-2xl mx-auto" : ""} ${className}`}
     >
       {children}
     </div>

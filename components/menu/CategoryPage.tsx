@@ -31,7 +31,7 @@ const CategoryPage = async ({ category }: { category: string }) => {
           className="flex-row text-xxxsmall"
         />
       </div>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max">
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-6 auto-rows-max pb-20">
         <CategoryPageContent items={items} />
       </div>
       <CheckoutButtonWrapper />

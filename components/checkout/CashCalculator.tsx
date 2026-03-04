@@ -27,13 +27,9 @@ const CashCalculator = () => {
 
   // Get display value based on currency
   const getDisplayForTotal = (curr: Currency, usdTotal: number) =>
-    curr === "USD"
-      ? (Math.floor(usdTotal * 100) / 100).toString()
-      : usdToKhr(usdTotal).toString();
+    curr === "USD" ? (Math.floor(usdTotal * 100) / 100).toString() : usdToKhr(usdTotal).toString();
 
-  const [display, setDisplay] = useState<string>(() =>
-    getDisplayForTotal(currency, totalPriceUsd)
-  );
+  const [display, setDisplay] = useState<string>(() => getDisplayForTotal(currency, totalPriceUsd));
   const [hasUserInput, setHasUserInput] = useState(false);
 
   // Track the last synced total to detect cart changes
@@ -48,7 +44,6 @@ const CashCalculator = () => {
       }
     }
   }, [totalPriceUsd, lastSyncedTotal, hasUserInput, currency]);
-  
 
   // Handle currency toggle
   const handleCurrencyToggle = (newCurrency: Currency) => {
@@ -73,9 +68,7 @@ const CashCalculator = () => {
     if (value.includes(".")) {
       const [intPart, decPart] = value.split(".");
       const formattedInt = parseInt(intPart).toLocaleString();
-      return decPart !== undefined
-        ? `${formattedInt}.${decPart}`
-        : formattedInt;
+      return decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
     }
 
     return num.toLocaleString();
@@ -114,13 +107,10 @@ const CashCalculator = () => {
     setHasUserInput(true);
     const khrValue = parseInt(khrAmount);
     // Convert to current currency
-    const amountInCurrentCurrency =
-      currency === "KHR" ? khrValue : khrToUsd(khrValue);
+    const amountInCurrentCurrency = currency === "KHR" ? khrValue : khrToUsd(khrValue);
 
     const displayValue =
-      currency === "KHR"
-        ? khrValue.toString()
-        : amountInCurrentCurrency.toFixed(2);
+      currency === "KHR" ? khrValue.toString() : amountInCurrentCurrency.toFixed(2);
 
     if (display === "Error") {
       setDisplay(displayValue);
@@ -156,11 +146,7 @@ const CashCalculator = () => {
 
     // If we already have an operation pending and user enters another, calculate first
     if (operation && previousValue && !waitingForOperand) {
-      const result = performCalculation(
-        parseFloat(previousValue),
-        current,
-        operation
-      );
+      const result = performCalculation(parseFloat(previousValue), current, operation);
       if (result === null) {
         setDisplay("Error");
         setPreviousValue(null);
@@ -178,11 +164,7 @@ const CashCalculator = () => {
     setWaitingForOperand(true);
   };
 
-  const performCalculation = (
-    prev: number,
-    current: number,
-    op: string
-  ): number | null => {
+  const performCalculation = (prev: number, current: number, op: string): number | null => {
     switch (op) {
       case "+":
         return prev + current;
@@ -204,11 +186,7 @@ const CashCalculator = () => {
     const current = parseFloat(getRawValue(display));
 
     if (operation && previousValue) {
-      const result = performCalculation(
-        parseFloat(previousValue),
-        current,
-        operation
-      );
+      const result = performCalculation(parseFloat(previousValue), current, operation);
 
       if (result === null) {
         setDisplay("Error");
@@ -268,8 +246,7 @@ const CashCalculator = () => {
   };
 
   // Determine clear button text (C vs AC like Apple)
-  const clearButtonText =
-    getRawValue(display) !== "0" && !waitingForOperand ? "C" : "AC";
+  const clearButtonText = getRawValue(display) !== "0" && !waitingForOperand ? "C" : "AC";
 
   // Get conversion display for the secondary line
   const getConversionDisplay = () => {
@@ -335,9 +312,7 @@ const CashCalculator = () => {
               </div>
               {/* Conversion equivalent */}
               {display !== "Error" && (
-                <div className="text-sm text-[var(--Grey)] mt-1">
-                  {getConversionDisplay()}
-                </div>
+                <div className="text-sm text-[var(--Grey)] mt-1">{getConversionDisplay()}</div>
               )}
             </div>
           </CardContent>
@@ -372,8 +347,7 @@ const CashCalculator = () => {
             row.buttons.map((btn, btnIndex) => {
               const isOperator = row.ops[btnIndex];
               const isEquals = btn === "=";
-              const isActiveOperator =
-                isOperator && operation === btn && waitingForOperand;
+              const isActiveOperator = isOperator && operation === btn && waitingForOperand;
 
               return (
                 <Button
