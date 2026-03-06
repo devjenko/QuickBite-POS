@@ -9,10 +9,16 @@ type SimpleAreaChartProps = {
 }
 
 const SimpleAreaChart = ({data}: SimpleAreaChartProps) => {
+
+  const flooredData = data.map(item => ({
+    ...item,
+    Revenue: Math.floor(item.Revenue)
+  }));
+
   return (
     <ResponsiveContainer width="100%" height={300}>
       <AreaChart
-        data={data}
+        data={flooredData}
         margin={{
           top: 20,
           right: 0,
