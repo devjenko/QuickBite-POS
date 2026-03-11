@@ -1,7 +1,6 @@
 "use client";
 
 import SideBarNavLink from "@/components/sidebar/SidebarNavLinks";
-import { signOut } from "next-auth/react";
 import BaseSidebar from "@/components/sidebar/BaseSidebar";
 import { useState } from "react";
 import Spinner from "@/components/ui/Spinner";
@@ -9,22 +8,11 @@ import Image from "next/image";
 import SettingsModal from "../settings/SettingsModal";
 import ContentWrapper from "../shared/ContentWrapper";
 import { SidebarNavLinks } from "@/consts/nav-sidebar";
+import { useLogout } from "@/lib/hooks/useLogout";
 
 const NavSidebar = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, handleLogout } = useLogout();
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleLogoutOut = async () => {
-    setIsLoading(true);
-    await signOut({
-      callbackUrl: "/login",
-      redirect: true,
-    });
-  };
-
-  const handleOpenSettings = () => {
-    setIsOpen(true);
-  };
 
   return (
     <BaseSidebar>
@@ -55,7 +43,7 @@ const NavSidebar = () => {
           <SideBarNavLink
             name="Settings"
             icon="/icons/settings.svg"
-            onClick={handleOpenSettings}
+            onClick={() => setIsOpen(true)}
             prefetch={false}
             activeHref="/settings"
           />
@@ -70,7 +58,7 @@ const NavSidebar = () => {
               <SideBarNavLink
                 name="Logout"
                 icon="/icons/logout.svg"
-                onClick={handleLogoutOut}
+                onClick={handleLogout}
                 prefetch={false}
               />
             </>

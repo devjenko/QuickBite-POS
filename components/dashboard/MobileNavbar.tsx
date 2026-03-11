@@ -3,8 +3,12 @@
 import SideBarNavLink from "../sidebar/SidebarNavLinks";
 import { useState } from "react";
 import SettingsModal from "../settings/SettingsModal";
+import Spinner from "@/components/ui/Spinner";
+import { useLogout } from "@/lib/hooks/useLogout";
+
 const MobileNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { isLoading, handleLogout } = useLogout();
   const MobileSidebarNavLinks = [
     {
       name: "Dashboard",
@@ -38,6 +42,20 @@ const MobileNavbar = () => {
         prefetch={false}
         className="shadow-none! p-2!"
       />
+      {!isLoading ? (
+        <SideBarNavLink
+          wrapperClassName="shadow-none!"
+          name="Logout"
+          icon="/icons/logout.svg"
+          onClick={handleLogout}
+          prefetch={false}
+          className="shadow-none! p-2!"
+        />
+      ) : (
+        <div className="flex flex-col items-center justify-center p-2">
+          <Spinner className="size-4" color="black" />
+        </div>
+      )}
       <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
   );
