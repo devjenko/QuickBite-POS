@@ -110,7 +110,7 @@ export default async function DashboardPage() {
           ))}
         </div>
 
-        <Section className="flex-1 rounded-sm overflow-auto" title="Ordered Items">
+        <Section className="xl:flex-1 rounded-sm overflow-auto" title="Ordered Items">
           {groupedItems.length === 0 ? (
             <EmptyOrderedItemsState />
           ) : (
