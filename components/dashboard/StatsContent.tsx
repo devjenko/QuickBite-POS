@@ -1,29 +1,28 @@
 "use client";
 
-import { cn } from "@/lib/utils"
-import Tabs from "../checkout/Tabs"
-import StatBlock from "./StatBlock"
+import { cn } from "@/lib/utils";
+import Tabs from "../checkout/Tabs";
+import StatBlock from "./StatBlock";
 
 type GroupedRevenue = Record<string, Record<string, number>>;
 
 type StatsContentProps = {
-  categories?: string[]; 
-  weekData?: GroupedRevenue; 
-  monthData?: GroupedRevenue; 
-  yearData?: GroupedRevenue; 
+  categories?: string[];
+  weekData?: GroupedRevenue;
+  monthData?: GroupedRevenue;
+  yearData?: GroupedRevenue;
   className?: string;
 };
 
 const StatsContent = ({
-  categories = [], 
-  weekData = {}, 
-  monthData = {}, 
-  yearData = {}, 
+  categories = [],
+  weekData = {},
+  monthData = {},
+  yearData = {},
   className,
 }: StatsContentProps) => {
   // Helper function to generate icon path from category name
   const getIconPath = (categoryName: string) => {
-    
     const normalized = categoryName
       .toLowerCase()
       .replace(/&/g, "and")
@@ -31,11 +30,15 @@ const StatsContent = ({
     return `/icons/${normalized}.svg`;
   };
 
- 
   if (!categories || categories.length === 0) {
     return (
-      <div className={cn("mt-10 text-center p-12 bg-gray-50 rounded-sm", className)}>
-        <p className="text-gray-600 text-lg">No sales data available yet.</p>
+      <div
+        className={cn(
+          " flex flex-col flex-1 justify-center text-center p-12  rounded-sm",
+          className
+        )}
+      >
+        <p className="text-black font-semibold text-lg">No sales data available yet.</p>
         <p className="text-gray-500 text-sm mt-2">
           Start taking orders to see revenue analytics here.
         </p>
@@ -44,7 +47,7 @@ const StatsContent = ({
   }
 
   return (
-    <Tabs 
+    <Tabs
       tabs={[
         {
           label: "This Week",
@@ -97,7 +100,7 @@ const StatsContent = ({
       ]}
       className={cn("mt-10", className)}
     />
-  )
-}
+  );
+};
 
-export default StatsContent
+export default StatsContent;
