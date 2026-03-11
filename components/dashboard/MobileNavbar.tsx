@@ -18,12 +18,12 @@ const MobileNavbar = () => {
     },
   ];
   return (
-    <div className="w-full h-fit rounded-sm shadow-sm border-t-[0.5px] bg-[var(--White)] fixed bottom-0 left-0 z-10 xl:hidden px-4 flex justify-between ">
+    <div className="w-full h-fit rounded-sm shadow-sm border-t-[0.5px] bg-[var(--White)] fixed bottom-0 left-0 z-10 xl:hidden px-4 flex justify-between">
       {MobileSidebarNavLinks.map((link) => (
         <SideBarNavLink
           key={link.name}
           activeHref="#"
-          className="p-4!"
+          className="p-2!"
           wrapperClassName="shadow-none!"
           icon={link.iconPath}
           name={link.name}
@@ -31,12 +31,12 @@ const MobileNavbar = () => {
         />
       ))}
       <SideBarNavLink
-        wrapperClassName="shadow-none!"
+        wrapperClassName="shadow-none! "
         name="Settings"
         icon="/icons/settings.svg"
         onClick={() => setIsOpen(true)}
         prefetch={false}
-        className="shadow-none! p-4!"
+        className="shadow-none! p-2!"
       />
       <SettingsModal isOpen={isOpen} setIsOpen={setIsOpen} />
     </div>
