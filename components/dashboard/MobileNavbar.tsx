@@ -18,7 +18,7 @@ const MobileNavbar = () => {
     },
   ];
   return (
-    <div className="w-full bg-[var(--White)] fixed bottom-0 z-10 xl:hidden px-4 flex justify-between">
+    <div className="w-full h-fit rounded-sm shadow-sm border-t-[0.5px] bg-[var(--White)] fixed bottom-0 left-0 z-10 xl:hidden px-4 flex justify-between ">
       {MobileSidebarNavLinks.map((link) => (
         <SideBarNavLink
           key={link.name}
