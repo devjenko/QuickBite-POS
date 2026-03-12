@@ -42,13 +42,17 @@ const CheckoutPage = () => {
     console.log("Cart items:", items);
     console.log("Order items being sent:", orderItems);
 
-    formData.append("items", JSON.stringify(orderItems));
-    formData.append("subtotal", totalPrice.toString());
-    formData.append("tax", "0"); // TODO: Get from settings
-    formData.append("total", totalPrice.toString());
-    formData.append("currency", "USD");
-    formData.append("paymentStatus", "pending");
-    formData.append("category", items[0].category);
+    const fields: Record<string, string> = {
+      items: JSON.stringify(orderItems),
+      subtotal: totalPrice.toString(),
+      tax: "0", // TODO: Get from settings
+      total: totalPrice.toString(),
+      currency: "USD",
+      paymentStatus: "pending",
+      category: items[0].category,
+    };
+
+    Object.entries(fields).forEach(([key, value]) => formData.append(key, value));
 
     try {
       await createOrder(formData);
