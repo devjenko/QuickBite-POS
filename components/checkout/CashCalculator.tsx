@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { buttonRows, quickAmounts } from "@/consts/cash-calculator";
@@ -17,6 +17,41 @@ const khrToUsd = (khr: number): number => khr / KHR_PER_USD;
 
 type Currency = "USD" | "KHR";
 
+const getDisplayForTotal = (curr: Currency, usdTotal: number) =>
+  curr === "USD" ? (Math.floor(usdTotal * 100) / 100).toString() : usdToKhr(usdTotal).toString();
+
+const formatDisplay = (value: string) => {
+  if (value === "Error") return value;
+  const num = parseFloat(value);
+  if (isNaN(num)) return value;
+
+  if (value.includes(".")) {
+    const [intPart, decPart] = value.split(".");
+    const formattedInt = parseInt(intPart).toLocaleString();
+    return decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
+  }
+
+  return num.toLocaleString();
+};
+
+const getRawValue = (formatted: string) => formatted.replace(/,/g, "");
+
+const performCalculation = (prev: number, current: number, op: string): number | null => {
+  switch (op) {
+    case "+":
+      return prev + current;
+    case "-":
+      return prev - current;
+    case "×":
+      return prev * current;
+    case "÷":
+      if (current === 0) return null;
+      return prev / current;
+    default:
+      return current;
+  }
+};
+
 const CashCalculator = () => {
   const [previousValue, setPreviousValue] = useState<string | null>(null);
   const [operation, setOperation] = useState<string | null>(null);
@@ -25,25 +60,17 @@ const CashCalculator = () => {
 
   const totalPriceUsd = useCartTotal();
 
-  // Get display value based on currency
-  const getDisplayForTotal = (curr: Currency, usdTotal: number) =>
-    curr === "USD" ? (Math.floor(usdTotal * 100) / 100).toString() : usdToKhr(usdTotal).toString();
-
   const [display, setDisplay] = useState<string>(() => getDisplayForTotal(currency, totalPriceUsd));
   const [hasUserInput, setHasUserInput] = useState(false);
 
-  // Track the last synced total to detect cart changes
   const [lastSyncedTotal, setLastSyncedTotal] = useState(totalPriceUsd);
 
-  // Sync display with cart total when cart changes (only if user hasn't started calculating)
-  useEffect(() => {
-    if (totalPriceUsd !== lastSyncedTotal) {
-      setLastSyncedTotal(totalPriceUsd);
-      if (!hasUserInput) {
-        setDisplay(getDisplayForTotal(currency, totalPriceUsd));
-      }
+  if (totalPriceUsd !== lastSyncedTotal) {
+    setLastSyncedTotal(totalPriceUsd);
+    if (!hasUserInput) {
+      setDisplay(getDisplayForTotal(currency, totalPriceUsd));
     }
-  }, [totalPriceUsd, lastSyncedTotal, hasUserInput, currency]);
+  }
 
   // Handle currency toggle
   const handleCurrencyToggle = (newCurrency: Currency) => {
@@ -56,27 +83,6 @@ const CashCalculator = () => {
     setOperation(null);
     setWaitingForOperand(false);
     setHasUserInput(false);
-  };
-
-  // Format number with commas for display
-  const formatDisplay = (value: string) => {
-    if (value === "Error") return value;
-    const num = parseFloat(value);
-    if (isNaN(num)) return value;
-
-    // Handle decimals
-    if (value.includes(".")) {
-      const [intPart, decPart] = value.split(".");
-      const formattedInt = parseInt(intPart).toLocaleString();
-      return decPart !== undefined ? `${formattedInt}.${decPart}` : formattedInt;
-    }
-
-    return num.toLocaleString();
-  };
-
-  // Get raw value without formatting
-  const getRawValue = (formatted: string) => {
-    return formatted.replace(/,/g, "");
   };
 
   const handleNumberClick = (num: string) => {
@@ -162,22 +168,6 @@ const CashCalculator = () => {
 
     setOperation(op);
     setWaitingForOperand(true);
-  };
-
-  const performCalculation = (prev: number, current: number, op: string): number | null => {
-    switch (op) {
-      case "+":
-        return prev + current;
-      case "-":
-        return prev - current;
-      case "×":
-        return prev * current;
-      case "÷":
-        if (current === 0) return null;
-        return prev / current;
-      default:
-        return current;
-    }
   };
 
   const handleEquals = () => {
