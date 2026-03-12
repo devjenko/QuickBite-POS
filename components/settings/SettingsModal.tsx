@@ -39,7 +39,7 @@ const SettingsModal = ({ isOpen, setIsOpen }: BaseModalProps) => {
       }
 
       //   if password is verified successfully
-      toast.success("Password verified!");
+      toast.success("Password verified");
       setIsOpen(false);
       router.push("/settings");
     } catch (error) {
