@@ -17,8 +17,8 @@ const ProviderButton = ({
         <Image
           className="rounded-sm"
           src={image}
-          width={200}
-          height={200}
+          width={100}
+          height={100}
           alt="Payment provider logo"
         />
       </Card>
