@@ -63,12 +63,12 @@ const CheckoutPage = () => {
   };
 
   return (
-    <CenterContentContainer className=" flex flex-col overflow-auto md:flex-row w-full gap-5.5 h-screen">
+    <CenterContentContainer className=" flex flex-col overflow-auto md:flex-row w-full pb-16! md:pb-8!  h-screen">
       <ContentWrapper className="flex-1 p-5  gap-5 flex flex-col ">
         <BackButton href="/menu" />
         <OrderList />
       </ContentWrapper>
-      <ContentWrapper className="flex-1 p-5 px-0 mb-20 md:mb-0 flex flex-col">
+      <ContentWrapper className="flex-1 p-5 px-0  md:mb-0 flex flex-col ">
         <h1 className="mb-6 text-center">Payment</h1>
         <div className="flex-1 flex flex-col overflow-hidden ">
           <Tabs

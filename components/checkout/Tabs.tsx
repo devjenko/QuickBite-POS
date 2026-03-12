@@ -8,11 +8,11 @@ type Tab = {
   content: ReactNode;
 };
 
-const Tabs = ({ tabs, className }: { tabs: Tab[], className?: string }) => {
+const Tabs = ({ tabs, className }: { tabs: Tab[]; className?: string }) => {
   const [activeIndex, setActiveIndex] = useState(0);
-  
+
   return (
-    <div className={cn("flex flex-col h-full", className)}>
+    <div className={cn("flex flex-col h-full ", className)}>
       <div className="flex gap-2 mb-5 border-b border-[var(--LightGrey)] justify-center">
         {tabs.map((tab, index) => (
           <button

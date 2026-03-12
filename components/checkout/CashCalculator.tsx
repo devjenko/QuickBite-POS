@@ -250,13 +250,13 @@ const CashCalculator = () => {
   };
 
   return (
-    <div className="flex items-center justify-center w-full h-full">
-      <div className="flex flex-col gap-4 min-w-sm lg:min-w-lg">
+    <div className="flex items-center justify-center w-full h-full overflow-hidden pb-6 flex-1">
+      <div className="flex flex-col gap-2 w-full max-w-lg h-full max-h-full px-4 ">
         {/* Currency Toggle */}
-        <div className="flex justify-center gap-2 p-1 bg-gray-100 rounded-lg">
+        <div className="flex justify-center gap-2 p-1 bg-gray-100 rounded-sm ">
           <button
             onClick={() => handleCurrencyToggle("USD")}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition-all ${
+            className={`flex-1 py-1.5 md:py-2 px-4 rounded-sm text-sm font-semibold transition-all ${
               currency === "USD"
                 ? "bg-white text-[var(--Black)] shadow-sm"
                 : "text-[var(--Grey)] hover:text-[var(--Black)]"
@@ -266,7 +266,7 @@ const CashCalculator = () => {
           </button>
           <button
             onClick={() => handleCurrencyToggle("KHR")}
-            className={`flex-1 py-2 px-4 rounded-md text-sm font-semibold transition-all ${
+            className={`flex-1 py-1.5 md:py-2 px-4 rounded-sm text-sm font-semibold transition-all ${
               currency === "KHR"
                 ? "bg-white text-[var(--Black)] shadow-sm"
                 : "text-[var(--Grey)] hover:text-[var(--Black)]"
@@ -278,8 +278,8 @@ const CashCalculator = () => {
 
         {/* Display */}
         <Card className="max-w-none">
-          <CardContent className="p-6 w-full">
-            <div className="bg-[var(--LightGrey)] p-6 rounded-lg min-h-[120px] flex flex-col justify-center items-end">
+          <CardContent className="p-3 md:p-6 w-full">
+            <div className="bg-[var(--LightGrey)] p-3 md:p-2 rounded-lg flex flex-col justify-center items-end">
               {/* Show operation indicator */}
               {operation && previousValue && (
                 <div className="text-sm text-[var(--Grey)] mb-1">
@@ -289,7 +289,7 @@ const CashCalculator = () => {
                 </div>
               )}
               {/* Main display */}
-              <div className="text-right text-4xl font-semibold text-[var(--Black)] break-all">
+              <div className="text-right text-2xl md:text-4xl font-semibold text-[var(--Black)] break-all">
                 {display !== "Error" ? (
                   <>
                     {currency === "USD" && "$"}
@@ -302,35 +302,35 @@ const CashCalculator = () => {
               </div>
               {/* Conversion equivalent */}
               {display !== "Error" && (
-                <div className="text-sm text-[var(--Grey)] mt-1">{getConversionDisplay()}</div>
+                <div className="text-xs md:text-sm text-[var(--Grey)] mt-1">
+                  {getConversionDisplay()}
+                </div>
               )}
             </div>
           </CardContent>
         </Card>
 
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-4 gap-1.5 flex-1 min-h-0 auto-rows-fr">
           {/* Clear button */}
           <Button
             onClick={handleClear}
             variant="grey"
-            className="col-span-4 h-14 text-base font-semibold"
+            className="col-span-4 text-sm md:text-base font-semibold min-h-8  "
           >
             {clearButtonText}
           </Button>
 
           {/* Quick amount buttons (KHR denominations) */}
-          <div className="col-span-4 grid grid-cols-4 gap-3">
-            {quickAmounts.map((amount) => (
-              <Button
-                key={amount}
-                onClick={() => handleQuickAmount(amount)}
-                variant="grey"
-                className="h-14 text-sm font-semibold"
-              >
-                {parseInt(amount).toLocaleString()}៛
-              </Button>
-            ))}
-          </div>
+          {quickAmounts.map((amount) => (
+            <Button
+              key={amount}
+              onClick={() => handleQuickAmount(amount)}
+              variant="grey"
+              className="text-xs md:text-sm font-semibold min-h-8 "
+            >
+              {parseInt(amount).toLocaleString()}៛
+            </Button>
+          ))}
 
           {/* Calculator buttons */}
           {buttonRows.map((row, rowIndex) =>
@@ -354,7 +354,7 @@ const CashCalculator = () => {
                     }
                   }}
                   variant={isOperator || isEquals ? "dark" : "grey"}
-                  className={`h-14 text-lg font-semibold ${
+                  className={`text-base md:text-lg font-semibold min-h-8  ${
                     isActiveOperator ? "ring-2 ring-white ring-inset" : ""
                   }`}
                 >
