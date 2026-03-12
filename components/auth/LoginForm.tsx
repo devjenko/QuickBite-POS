@@ -16,19 +16,17 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import InputPassword from "@/components/auth/InputPassword";
 
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good morning!";
+  if (hour < 18) return "Good afternoon!";
+  return "Good evening!";
+}
+
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
-  // Dynamic greeting
-  function greeting() {
-    const hour = new Date().getHours();
-
-    if (hour < 12) return "Good morning!";
-    if (hour < 18) return "Good afternoon!";
-    return "Good evening!";
-  }
-
   const [businessId, setBusinessId] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -70,7 +68,7 @@ export function LoginForm({
     >
       <FieldGroup>
         <div className="flex flex-col items-center gap-4 text-center">
-          <h1 className="text-4xl font-bold">{greeting()}</h1>
+          <h1 className="text-4xl font-bold">{getGreeting()}</h1>
           <p className="text-muted-foreground text-md text-balance">
             Enter your credentials below to login
           </p>

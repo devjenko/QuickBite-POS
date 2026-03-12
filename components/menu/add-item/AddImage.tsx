@@ -90,8 +90,8 @@ const AddImage = ({
       try {
         const compressedImage = await compressImage(file);
         setImage(compressedImage);
-      } catch (error) {
-        console.error("Error compressing image:", error);
+      } catch {
+        // Image compression failed silently
       }
     }
   };

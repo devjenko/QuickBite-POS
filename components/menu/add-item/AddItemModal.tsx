@@ -21,7 +21,6 @@ import Spinner from "@/components/ui/Spinner";
 import { useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { createMenuItem } from "@/app/actions/menu";
 
 const AddItemModal = () => {
@@ -32,8 +31,6 @@ const AddItemModal = () => {
   const [image, setImage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const router = useRouter();
 
   async function handleAddItem(e: React.FormEvent) {
     e.preventDefault();
@@ -48,8 +45,6 @@ const AddItemModal = () => {
         image,
       });
 
-      router.refresh();
-
       // Reset form
       setName("");
       setDescription("");
@@ -58,8 +53,7 @@ const AddItemModal = () => {
       setImage(null);
       setIsOpen(false);
       toast.success("Menu item added successfully!");
-    } catch (error) {
-      console.error("Error:", error);
+    } catch {
       toast.error("Failed to add menu item. Please try again.");
     } finally {
       setIsLoading(false);
@@ -94,7 +88,7 @@ const AddItemModal = () => {
               <div className="grid gap-3">
                 <Label htmlFor="name">Name</Label>
                 <Input
-                  id="name-1"
+                  id="name"
                   name="name"
                   onChange={(e) => setName(e.target.value)}
                 />

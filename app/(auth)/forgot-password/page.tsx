@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import Image from "next/image";
 
-const page = () => {
+const ForgotPasswordPage = () => {
   return (
     <div className="flex justify-center items-center h-screen ">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md shadow-sm  w-full text-center border">
@@ -16,9 +16,7 @@ const page = () => {
         <div className="flex justify-center mb-4">
           <Image
             alt="Support telegram QR code"
-            src={
-              "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://t.me/JENKOZA"
-            }
+            src="/images/support-qr.png"
             width={200}
             height={200}
           />
@@ -46,4 +44,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default ForgotPasswordPage;

@@ -30,7 +30,9 @@ const CartSidebar = () => {
           <>
             <div className="flex justify-between">
               <h2>New Order</h2>
-              <Trash2Icon onClick={clearCart} className="cursor-pointer" />
+              <button onClick={clearCart} aria-label="Clear cart">
+                <Trash2Icon className="cursor-pointer" />
+              </button>
             </div>
             <OrderList className="flex-1" />
             <Link href="/checkout">

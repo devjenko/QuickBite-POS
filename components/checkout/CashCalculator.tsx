@@ -1,13 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Card, CardContent } from "@/components/ui/Card";
 import { buttonRows, quickAmounts } from "@/consts/cash-calculator";
 import { useCartTotal } from "@/store/cart-store";
 
 // Exchange rate: 4000 KHR = 1 USD
-const KHR_PER_USD = 4000;
+const KHR_PER_USD = Number(process.env.NEXT_PUBLIC_KHR_PER_USD) || 4000;
 
 // Convert USD to KHR
 const usdToKhr = (usd: number): number => Math.round(usd * KHR_PER_USD);
@@ -63,14 +63,11 @@ const CashCalculator = () => {
   const [display, setDisplay] = useState<string>(() => getDisplayForTotal(currency, totalPriceUsd));
   const [hasUserInput, setHasUserInput] = useState(false);
 
-  const [lastSyncedTotal, setLastSyncedTotal] = useState(totalPriceUsd);
-
-  if (totalPriceUsd !== lastSyncedTotal) {
-    setLastSyncedTotal(totalPriceUsd);
+  useEffect(() => {
     if (!hasUserInput) {
       setDisplay(getDisplayForTotal(currency, totalPriceUsd));
     }
-  }
+  }, [totalPriceUsd, currency, hasUserInput]);
 
   // Handle currency toggle
   const handleCurrencyToggle = (newCurrency: Currency) => {

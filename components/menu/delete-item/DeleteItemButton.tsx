@@ -3,8 +3,6 @@ import { Trash2Icon } from "lucide-react";
 import Spinner from "@/components/ui/Spinner";
 
 export interface DeleteItemButtonProps {
-  ItemId?: string;
-  ItemName?: string;
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   isDeleting: boolean;
 }

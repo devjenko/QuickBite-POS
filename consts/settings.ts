@@ -31,3 +31,8 @@ export const timeFormatOptions = [
   { value: "12h", label: "12-hour (2:30 PM)" },
   { value: "24h", label: "24-hour (14:30)" },
 ];
+
+export const SUPPORTED_BANKS = [
+  { name: "ABA Pay", img: "/logos/aba_bank_logo.webp" },
+  { name: "Wing Money", img: "/logos/wing_bank_logo.webp" },
+];

@@ -52,7 +52,6 @@ const ConnectAccountCard: React.FC<ConnectAccountCardProps> = ({
       toast.success(`${name} QR code uploaded successfully`);
       onUploadSuccess();
     } catch (error) {
-      console.error("Upload error:", error);
       const errorMessage = error instanceof Error ? error.message : "Failed to upload QR code";
       toast.error(errorMessage);
     } finally {

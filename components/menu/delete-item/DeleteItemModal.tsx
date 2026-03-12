@@ -6,7 +6,6 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/Dialog";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
@@ -41,8 +40,7 @@ const DeleteItemModal = ({
       setIsOpen(false);
       router.refresh();
       toast.success("Menu item deleted");
-    } catch (error) {
-      console.error("Error deleting item:", error);
+    } catch {
       toast.error("Failed to delete menu item. Please try again.");
     } finally {
       setIsDeleting(false);
@@ -56,7 +54,6 @@ const DeleteItemModal = ({
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogTrigger asChild></DialogTrigger>
       <DialogContent
         onClick={handleDialogClick}
         className="max-w-[90%] max-h-[90vh] flex flex-col overflow-hidden"

@@ -84,9 +84,7 @@ function CopyButton({
             handleIsCopied(true);
             setTimeout(() => handleIsCopied(false), delay);
           })
-          .catch((error) => {
-            console.error("Error copying command", error);
-          });
+          .catch(() => {});
       }
       onClick?.(e);
     },

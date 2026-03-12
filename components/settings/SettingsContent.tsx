@@ -11,6 +11,7 @@ import {
   currencyOptions,
   dateFormatOptions,
   timeFormatOptions,
+  SUPPORTED_BANKS,
 } from "@/consts/settings";
 import ConnectAccountCard from "@/components/settings/ConnectAccountCard";
 import UserModeOption from "@/components/settings/UserModeOption";
@@ -18,11 +19,6 @@ import { SettingsState } from "@/types/settings";
 import Dropdown from "@/components/shared/Dropdown";
 import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
 import { updateSettings } from "@/app/actions/settings";
-
-const BANKS = [
-  { name: "ABA Pay", img: "/logos/aba_bank_logo.webp" },
-  { name: "Wing Money", img: "/logos/wing_bank_logo.webp" },
-];
 
 const SettingsContent: React.FC = () => {
   const [settings, setSettings] = useState<SettingsState>({
@@ -46,7 +42,7 @@ const SettingsContent: React.FC = () => {
     try {
       await updateSettings(newSettings);
     } catch (error) {
-      console.error("Failed to save settings:", error);
+      void error;
     }
   }, 500);
 
@@ -75,7 +71,7 @@ const SettingsContent: React.FC = () => {
           setSettings((prev) => ({ ...prev, ...data }));
         }
       } catch (error) {
-        console.error("Failed to fetch settings:", error);
+        void error;
       }
     };
 
@@ -95,7 +91,7 @@ const SettingsContent: React.FC = () => {
       <h1 className="text-black">Settings</h1>
 
       <Section title="Payment Settings" description="Upload your bank QR codes to accept payments">
-        {BANKS.map((bank) => (
+        {SUPPORTED_BANKS.map((bank) => (
           <ConnectAccountCard
             key={bank.name}
             name={bank.name}

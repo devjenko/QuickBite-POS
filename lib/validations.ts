@@ -51,5 +51,5 @@ export const signupSchema = z.object({
 
 export const loginSchema = z.object({
   businessId: z.string().min(1, { message: "Business ID is required" }),
-  password: passwordSchema,
+  password: z.string().min(1, { message: "Password is required" }),
 }).strict();

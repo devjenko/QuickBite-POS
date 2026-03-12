@@ -6,7 +6,7 @@ import { auth } from "@/auth";
 // Cache for 60 seconds
 export const revalidate = 60;
 
-const page = async () => {
+const MenuPage = async () => {
   const session = await auth();
 
   //  get the first user category
@@ -34,4 +34,4 @@ const page = async () => {
   redirect(`/menu/${firstMenuItem.category}`);
 };
 
-export default page;
+export default MenuPage;

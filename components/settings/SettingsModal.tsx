@@ -42,8 +42,7 @@ const SettingsModal = ({ isOpen, setIsOpen }: BaseModalProps) => {
       toast.success("Password verified");
       setIsOpen(false);
       router.push("/settings");
-    } catch (error) {
-      console.error("Verification error:", error);
+    } catch {
       toast.error("An error occurred. Please try again.");
     } finally {
       setIsLoading(false);

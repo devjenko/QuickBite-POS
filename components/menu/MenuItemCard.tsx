@@ -27,10 +27,16 @@ const MenuItemCard = ({
 
   const { addItem } = useCartStore();
 
-  // Optimize Cloudinary images
+  const isCloudinaryUrl = (url: string): boolean => {
+    try {
+      return new URL(url).hostname === "res.cloudinary.com";
+    } catch {
+      return false;
+    }
+  };
+
   const getOptimizedImage = (url: string) => {
-    if (url.includes("cloudinary.com")) {
-      // Use c_fit to preserve full image, or c_scale for simple resize
+    if (isCloudinaryUrl(url)) {
       return url.replace("/upload/", "/upload/q_100,f_auto,c_fit,w_1200/");
     }
     return url;
@@ -54,8 +60,6 @@ const MenuItemCard = ({
           e.stopPropagation(); // Stop the click from reaching the card
           setIsOpen(true);
         }}
-        ItemId={id}
-        ItemName={name || "this item"}
       />
 
       {isOpen && (
