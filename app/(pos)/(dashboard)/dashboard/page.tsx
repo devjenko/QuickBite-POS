@@ -77,7 +77,7 @@ export default async function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-full gap-5">
+      <div className="flex flex-col min-h-full gap-5">
         <header className="flex w-full items-center justify-between shrink-0">
           <DashboardGreeting className="hidden xl:block" />
           <Image
@@ -110,7 +110,7 @@ export default async function DashboardPage() {
           ))}
         </div>
 
-        <Section className="flex-1 rounded-sm overflow-auto" title="Ordered Items">
+        <Section className="xl:flex-1 rounded-sm overflow-auto" title="Ordered Items">
           {groupedItems.length === 0 ? (
             <EmptyOrderedItemsState />
           ) : (

@@ -1,6 +1,7 @@
 import prisma from "../prisma";
+import { auth } from "@/auth";
 
-type Period = 'week' | 'month' | 'year';
+type Period = "week" | "month" | "year";
 type GroupedRevenue = Record<string, Record<string, number>>;
 
 function getStartOfWeek(date: Date): Date {
@@ -20,41 +21,49 @@ function getWeekOfMonth(date: Date): number {
 }
 
 export async function getUniqueCategories(): Promise<string[]> {
+  const session = await auth();
+  const userId = session?.user?.id;
+
   const categories = await prisma.orderItem.findMany({
+    where: {
+      order: { merchantId: userId },
+    },
     select: {
       category: true,
     },
-    distinct: ['category'],
+    distinct: ["category"],
     orderBy: {
-      category: 'asc',
+      category: "asc",
     },
   });
 
-  return categories.map(item => item.category);
+  return categories.map((item) => item.category);
 }
 
-export async function getRevenueByCategoryOverTime(
-  period: Period
-): Promise<GroupedRevenue> {
+export async function getRevenueByCategoryOverTime(period: Period): Promise<GroupedRevenue> {
   const now = new Date();
   let startDate: Date;
 
   switch (period) {
-    case 'week':
+    case "week":
       startDate = getStartOfWeek(now);
       break;
-    case 'month':
+    case "month":
       startDate = new Date(now.getFullYear(), now.getMonth(), 1);
       startDate.setHours(0, 0, 0, 0);
       break;
-    case 'year':
+    case "year":
       startDate = new Date(now.getFullYear(), 0, 1);
       startDate.setHours(0, 0, 0, 0);
       break;
   }
 
+  const session = await auth();
+  const userId = session?.user?.id;
+
   const items = await prisma.orderItem.findMany({
     where: {
+      order: { merchantId: userId },
       createdAt: {
         gte: startDate,
         lte: now,
@@ -67,7 +76,7 @@ export async function getRevenueByCategoryOverTime(
       createdAt: true,
     },
     orderBy: {
-      createdAt: 'asc',
+      createdAt: "asc",
     },
   });
 
@@ -77,16 +86,26 @@ export async function getRevenueByCategoryOverTime(
     const revenue = item.price * item.quantity;
     let timeKey: string;
 
-    if (period === 'week') {
-      const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    if (period === "week") {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       timeKey = days[item.createdAt.getDay()];
-    } else if (period === 'month') {
+    } else if (period === "month") {
       const weekNum = getWeekOfMonth(item.createdAt);
       timeKey = `Week ${weekNum}`;
     } else {
       const months = [
-        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
       ];
       timeKey = months[item.createdAt.getMonth()];
     }
@@ -95,8 +114,7 @@ export async function getRevenueByCategoryOverTime(
       grouped[item.category] = {};
     }
 
-    grouped[item.category][timeKey] = 
-      (grouped[item.category][timeKey] || 0) + revenue;
+    grouped[item.category][timeKey] = (grouped[item.category][timeKey] || 0) + revenue;
   });
 
   return grouped;

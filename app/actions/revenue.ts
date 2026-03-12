@@ -24,8 +24,13 @@ function getWeekOfMonth(date: Date): number {
 
 
 export async function getUniqueCategories(): Promise<string[]> {
-    
+  const session = await auth();
+  const userId = session?.user?.id;
+
   const categories = await prisma.orderItem.findMany({
+    where: {
+      order: { merchantId: userId },
+    },
     select: {
       category: true,
     },
@@ -58,9 +63,12 @@ export async function getRevenueByCategoryOverTime(
       break;
   }
 
+  const session = await auth();
+  const userId = session?.user?.id;
+
   const items = await prisma.orderItem.findMany({
     where: {
-    
+      order: { merchantId: userId },
       createdAt: {
         gte: startDate,
         lte: now,
