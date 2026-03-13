@@ -31,7 +31,6 @@ export default function LoginPage() {
           sizes="50vw"
           className="object-cover"
           priority
-          unoptimized
         />
       </div>
     </div>

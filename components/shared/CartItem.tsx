@@ -19,7 +19,6 @@ const CartItem = ({ name, price, className, imageUrl, id, category }: CartItemPr
   return (
     <div className={`${className} flex  w-full flex-col`}>
       <Image
-        unoptimized
         width={40}
         height={40}
         alt="cart item image"

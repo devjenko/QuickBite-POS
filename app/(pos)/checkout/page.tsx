@@ -11,7 +11,7 @@ import CashCalculator from "@/components/checkout/CashCalculator";
 import { createOrder } from "@/app/actions/order";
 import { toast } from "sonner";
 import { useCartStore, useCartTotal } from "@/store/cart-store";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 const CheckoutPage = () => {
@@ -19,12 +19,28 @@ const CheckoutPage = () => {
   const clearCart = useCartStore((state) => state.clearCart);
   const totalPrice = useCartTotal();
   const [isLoading, setIsLoading] = useState(false);
+  const [taxRate, setTaxRate] = useState(0);
   const router = useRouter();
+
+  useEffect(() => {
+    fetch("/api/settings")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.defaultTaxRate != null) {
+          setTaxRate(Number(data.defaultTaxRate));
+        }
+      })
+      .catch(() => {
+        // Fall back to 0% tax if settings can't be loaded
+      });
+  }, []);
+
   const handleCheckout = async () => {
     setIsLoading(true);
 
     if (items.length === 0) {
       toast.error("Cart is empty");
+      setIsLoading(false);
       return;
     }
 
@@ -39,14 +55,14 @@ const CheckoutPage = () => {
       category: item.category,
     }));
 
-    console.log("Cart items:", items);
-    console.log("Order items being sent:", orderItems);
+    const tax = totalPrice * (taxRate / 100);
+    const total = totalPrice + tax;
 
     const fields: Record<string, string> = {
       items: JSON.stringify(orderItems),
       subtotal: totalPrice.toString(),
-      tax: "0", // TODO: Get from settings
-      total: totalPrice.toString(),
+      tax: tax.toFixed(2),
+      total: total.toFixed(2),
       currency: "USD",
       paymentStatus: "pending",
       category: items[0].category,
