@@ -7,7 +7,9 @@ import { signupRatelimit, getClientIp, rateLimitResponse } from "@/lib/rate-limi
 
 // Helper function to generate staff ID
 function generateBusinessId(businessName: string): string {
-  const randomCode = Math.floor(1000 + Math.random() * 9000);
+  const array = new Uint32Array(1);
+  crypto.getRandomValues(array);
+  const randomCode = 1000 + (array[0] % 9000);
   const base = businessName.trim().replace(/\s+/g, "");
   return `${base}${randomCode}@quickbite`;
 }
@@ -72,7 +74,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // Return success with staffId (don't return password!)
+    // Return success with staffId
     return NextResponse.json(
       {
         message: "Account created successfully",
