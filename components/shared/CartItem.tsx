@@ -19,8 +19,9 @@ const CartItem = ({ name, price, className, imageUrl, id, category }: CartItemPr
   return (
     <div className={`${className} flex  w-full flex-col`}>
       <Image
-        width={40}
-        height={40}
+        unoptimized
+        width={60}
+        height={60}
         alt="cart item image"
         src={imageUrl || ""}
         className="object-cover w-15 h-15 rounded-sm"
