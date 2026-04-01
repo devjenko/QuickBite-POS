@@ -19,12 +19,14 @@ import { SettingsState } from "@/types/settings";
 import Dropdown from "@/components/shared/Dropdown";
 import { useBankQRCodes } from "@/lib/hooks/useBankQRCodes";
 import { updateSettings } from "@/app/actions/settings";
+import BakongAccountSettings from "@/components/settings/BakongAccountSettings";
 
 const SettingsContent: React.FC = () => {
   const [settings, setSettings] = useState<SettingsState>({
     acceptCardPayments: true,
     qrCodePayments: true,
     cashPayments: true,
+    bakongPayments: true,
     defaultTaxRate: "0",
     userMode: "owner",
     language: "en",
@@ -91,6 +93,18 @@ const SettingsContent: React.FC = () => {
       <h1 className="text-black">Settings</h1>
 
       <Section title="Payment Settings" description="Upload your bank QR codes to accept payments">
+        <div className="mb-6 pb-6 border-b border-[var(--LightGrey)]">
+          <h3 className="text-sm font-semibold text-[var(--Black)] mb-4">Bakong KHQR</h3>
+          <BakongAccountSettings />
+
+          <SettingItem label="Enable Bakong Payments" sublabel="Accept Bakong KHQR payments from customers">
+            <ToggleSwitch
+              checked={settings.bakongPayments}
+              onChange={(checked) => updateSetting("bakongPayments", checked)}
+            />
+          </SettingItem>
+        </div>
+
         {SUPPORTED_BANKS.map((bank) => (
           <ConnectAccountCard
             key={bank.name}

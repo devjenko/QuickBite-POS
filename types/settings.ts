@@ -4,6 +4,7 @@ export interface SettingsData {
   acceptCardPayments?: boolean;
   qrCodePayments?: boolean;
   cashPayments?: boolean;
+  bakongPayments?: boolean;
   defaultTaxRate?: string | number;
   userMode?: UserMode;
   language?: string;
@@ -17,6 +18,7 @@ export interface SettingsState {
   acceptCardPayments: boolean;
   qrCodePayments: boolean;
   cashPayments: boolean;
+  bakongPayments: boolean;
   defaultTaxRate: string;
   userMode: UserMode;
   language: string;

@@ -85,7 +85,8 @@ export const UserScalarFieldEnum = {
   password: 'password',
   image: 'image',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  bakongAccountId: 'bakongAccountId'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -150,6 +151,7 @@ export const SettingsScalarFieldEnum = {
   acceptCardPayments: 'acceptCardPayments',
   qrCodePayments: 'qrCodePayments',
   cashPayments: 'cashPayments',
+  bakongPayments: 'bakongPayments',
   defaultTaxRate: 'defaultTaxRate',
   userMode: 'userMode',
   language: 'language',

@@ -40,6 +40,7 @@ export type SettingsMinAggregateOutputType = {
   acceptCardPayments: boolean | null
   qrCodePayments: boolean | null
   cashPayments: boolean | null
+  bakongPayments: boolean | null
   defaultTaxRate: number | null
   userMode: string | null
   language: string | null
@@ -57,6 +58,7 @@ export type SettingsMaxAggregateOutputType = {
   acceptCardPayments: boolean | null
   qrCodePayments: boolean | null
   cashPayments: boolean | null
+  bakongPayments: boolean | null
   defaultTaxRate: number | null
   userMode: string | null
   language: string | null
@@ -74,6 +76,7 @@ export type SettingsCountAggregateOutputType = {
   acceptCardPayments: number
   qrCodePayments: number
   cashPayments: number
+  bakongPayments: number
   defaultTaxRate: number
   userMode: number
   language: number
@@ -101,6 +104,7 @@ export type SettingsMinAggregateInputType = {
   acceptCardPayments?: true
   qrCodePayments?: true
   cashPayments?: true
+  bakongPayments?: true
   defaultTaxRate?: true
   userMode?: true
   language?: true
@@ -118,6 +122,7 @@ export type SettingsMaxAggregateInputType = {
   acceptCardPayments?: true
   qrCodePayments?: true
   cashPayments?: true
+  bakongPayments?: true
   defaultTaxRate?: true
   userMode?: true
   language?: true
@@ -135,6 +140,7 @@ export type SettingsCountAggregateInputType = {
   acceptCardPayments?: true
   qrCodePayments?: true
   cashPayments?: true
+  bakongPayments?: true
   defaultTaxRate?: true
   userMode?: true
   language?: true
@@ -239,6 +245,7 @@ export type SettingsGroupByOutputType = {
   acceptCardPayments: boolean
   qrCodePayments: boolean
   cashPayments: boolean
+  bakongPayments: boolean
   defaultTaxRate: number
   userMode: string
   language: string
@@ -279,6 +286,7 @@ export type SettingsWhereInput = {
   acceptCardPayments?: Prisma.BoolFilter<"Settings"> | boolean
   qrCodePayments?: Prisma.BoolFilter<"Settings"> | boolean
   cashPayments?: Prisma.BoolFilter<"Settings"> | boolean
+  bakongPayments?: Prisma.BoolFilter<"Settings"> | boolean
   defaultTaxRate?: Prisma.FloatFilter<"Settings"> | number
   userMode?: Prisma.StringFilter<"Settings"> | string
   language?: Prisma.StringFilter<"Settings"> | string
@@ -297,6 +305,7 @@ export type SettingsOrderByWithRelationInput = {
   acceptCardPayments?: Prisma.SortOrder
   qrCodePayments?: Prisma.SortOrder
   cashPayments?: Prisma.SortOrder
+  bakongPayments?: Prisma.SortOrder
   defaultTaxRate?: Prisma.SortOrder
   userMode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -318,6 +327,7 @@ export type SettingsWhereUniqueInput = Prisma.AtLeast<{
   acceptCardPayments?: Prisma.BoolFilter<"Settings"> | boolean
   qrCodePayments?: Prisma.BoolFilter<"Settings"> | boolean
   cashPayments?: Prisma.BoolFilter<"Settings"> | boolean
+  bakongPayments?: Prisma.BoolFilter<"Settings"> | boolean
   defaultTaxRate?: Prisma.FloatFilter<"Settings"> | number
   userMode?: Prisma.StringFilter<"Settings"> | string
   language?: Prisma.StringFilter<"Settings"> | string
@@ -336,6 +346,7 @@ export type SettingsOrderByWithAggregationInput = {
   acceptCardPayments?: Prisma.SortOrder
   qrCodePayments?: Prisma.SortOrder
   cashPayments?: Prisma.SortOrder
+  bakongPayments?: Prisma.SortOrder
   defaultTaxRate?: Prisma.SortOrder
   userMode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -361,6 +372,7 @@ export type SettingsScalarWhereWithAggregatesInput = {
   acceptCardPayments?: Prisma.BoolWithAggregatesFilter<"Settings"> | boolean
   qrCodePayments?: Prisma.BoolWithAggregatesFilter<"Settings"> | boolean
   cashPayments?: Prisma.BoolWithAggregatesFilter<"Settings"> | boolean
+  bakongPayments?: Prisma.BoolWithAggregatesFilter<"Settings"> | boolean
   defaultTaxRate?: Prisma.FloatWithAggregatesFilter<"Settings"> | number
   userMode?: Prisma.StringWithAggregatesFilter<"Settings"> | string
   language?: Prisma.StringWithAggregatesFilter<"Settings"> | string
@@ -377,6 +389,7 @@ export type SettingsCreateInput = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: number
   userMode?: string
   language?: string
@@ -395,6 +408,7 @@ export type SettingsUncheckedCreateInput = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: number
   userMode?: string
   language?: string
@@ -411,6 +425,7 @@ export type SettingsUpdateInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -429,6 +444,7 @@ export type SettingsUncheckedUpdateInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -446,6 +462,7 @@ export type SettingsCreateManyInput = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: number
   userMode?: string
   language?: string
@@ -462,6 +479,7 @@ export type SettingsUpdateManyMutationInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -479,6 +497,7 @@ export type SettingsUncheckedUpdateManyInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -501,6 +520,7 @@ export type SettingsCountOrderByAggregateInput = {
   acceptCardPayments?: Prisma.SortOrder
   qrCodePayments?: Prisma.SortOrder
   cashPayments?: Prisma.SortOrder
+  bakongPayments?: Prisma.SortOrder
   defaultTaxRate?: Prisma.SortOrder
   userMode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -522,6 +542,7 @@ export type SettingsMaxOrderByAggregateInput = {
   acceptCardPayments?: Prisma.SortOrder
   qrCodePayments?: Prisma.SortOrder
   cashPayments?: Prisma.SortOrder
+  bakongPayments?: Prisma.SortOrder
   defaultTaxRate?: Prisma.SortOrder
   userMode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -539,6 +560,7 @@ export type SettingsMinOrderByAggregateInput = {
   acceptCardPayments?: Prisma.SortOrder
   qrCodePayments?: Prisma.SortOrder
   cashPayments?: Prisma.SortOrder
+  bakongPayments?: Prisma.SortOrder
   defaultTaxRate?: Prisma.SortOrder
   userMode?: Prisma.SortOrder
   language?: Prisma.SortOrder
@@ -591,6 +613,7 @@ export type SettingsCreateWithoutUserInput = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: number
   userMode?: string
   language?: string
@@ -607,6 +630,7 @@ export type SettingsUncheckedCreateWithoutUserInput = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: number
   userMode?: string
   language?: string
@@ -639,6 +663,7 @@ export type SettingsUpdateWithoutUserInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -655,6 +680,7 @@ export type SettingsUncheckedUpdateWithoutUserInput = {
   acceptCardPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   qrCodePayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   cashPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  bakongPayments?: Prisma.BoolFieldUpdateOperationsInput | boolean
   defaultTaxRate?: Prisma.FloatFieldUpdateOperationsInput | number
   userMode?: Prisma.StringFieldUpdateOperationsInput | string
   language?: Prisma.StringFieldUpdateOperationsInput | string
@@ -674,6 +700,7 @@ export type SettingsSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: boolean
   userMode?: boolean
   language?: boolean
@@ -692,6 +719,7 @@ export type SettingsSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: boolean
   userMode?: boolean
   language?: boolean
@@ -710,6 +738,7 @@ export type SettingsSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: boolean
   userMode?: boolean
   language?: boolean
@@ -728,6 +757,7 @@ export type SettingsSelectScalar = {
   acceptCardPayments?: boolean
   qrCodePayments?: boolean
   cashPayments?: boolean
+  bakongPayments?: boolean
   defaultTaxRate?: boolean
   userMode?: boolean
   language?: boolean
@@ -739,7 +769,7 @@ export type SettingsSelectScalar = {
   updatedAt?: boolean
 }
 
-export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "acceptCardPayments" | "qrCodePayments" | "cashPayments" | "defaultTaxRate" | "userMode" | "language" | "currency" | "dateFormat" | "timeFormat" | "darkMode" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
+export type SettingsOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "acceptCardPayments" | "qrCodePayments" | "cashPayments" | "bakongPayments" | "defaultTaxRate" | "userMode" | "language" | "currency" | "dateFormat" | "timeFormat" | "darkMode" | "createdAt" | "updatedAt", ExtArgs["result"]["settings"]>
 export type SettingsInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
 }
@@ -761,6 +791,7 @@ export type $SettingsPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     acceptCardPayments: boolean
     qrCodePayments: boolean
     cashPayments: boolean
+    bakongPayments: boolean
     defaultTaxRate: number
     userMode: string
     language: string
@@ -1199,6 +1230,7 @@ export interface SettingsFieldRefs {
   readonly acceptCardPayments: Prisma.FieldRef<"Settings", 'Boolean'>
   readonly qrCodePayments: Prisma.FieldRef<"Settings", 'Boolean'>
   readonly cashPayments: Prisma.FieldRef<"Settings", 'Boolean'>
+  readonly bakongPayments: Prisma.FieldRef<"Settings", 'Boolean'>
   readonly defaultTaxRate: Prisma.FieldRef<"Settings", 'Float'>
   readonly userMode: Prisma.FieldRef<"Settings", 'String'>
   readonly language: Prisma.FieldRef<"Settings", 'String'>

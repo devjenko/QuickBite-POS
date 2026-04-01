@@ -20,6 +20,7 @@ const CheckoutPage = () => {
   const totalPrice = useCartTotal();
   const [isLoading, setIsLoading] = useState(false);
   const [taxRate, setTaxRate] = useState(0);
+  const [orderId, setOrderId] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -71,7 +72,9 @@ const CheckoutPage = () => {
     Object.entries(fields).forEach(([key, value]) => formData.append(key, value));
 
     try {
-      await createOrder(formData);
+      const result = await createOrder(formData);
+      // Extract order ID from the result if available
+      // For now, we'll use a generated ID that matches the order
       clearCart();
       toast.success("Order created successfully");
       router.push("/orders");
@@ -79,6 +82,27 @@ const CheckoutPage = () => {
       toast.error("Failed to create order");
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleBakongPaymentSuccess = async (paidOrderId: string) => {
+    try {
+      // Mark the order as paid
+      const response = await fetch("/api/orders/mark-paid", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ orderId: paidOrderId }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to mark order as paid");
+      }
+
+      toast.success("Payment confirmed! Order marked as paid.");
+      router.push("/orders");
+    } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : "Payment processing failed";
+      toast.error(errorMessage);
     }
   };
 
@@ -95,7 +119,7 @@ const CheckoutPage = () => {
             tabs={[
               {
                 label: "QR",
-                content: <QRDisplay />,
+                content: <QRDisplay onBakongPaymentSuccess={handleBakongPaymentSuccess} />,
               },
               { label: "Cash", content: <CashCalculator /> },
             ]}

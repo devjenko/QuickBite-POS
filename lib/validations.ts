@@ -23,6 +23,7 @@ export const settingsUpdateSchema = z.object({
   acceptCardPayments: z.boolean().optional(),
   qrCodePayments: z.boolean().optional(),
   cashPayments: z.boolean().optional(),
+  bakongPayments: z.boolean().optional(),
 
   defaultTaxRate: z.coerce.number().min(0).max(100).optional(),
 

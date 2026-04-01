@@ -20,6 +20,7 @@ model User {
   settings        Settings?
   orders          Order[]
   bankQRCodes     BankQRCode[]
+  bakongAccountId String?              // e.g. "storename@ababank"
 }
 
 model Account {
@@ -87,6 +88,7 @@ model Settings {
   acceptCardPayments Boolean @default(true)
   qrCodePayments     Boolean @default(true)
   cashPayments       Boolean @default(true)
+  bakongPayments     Boolean @default(true)
   defaultTaxRate     Float   @default(0)
 
   // User mode
