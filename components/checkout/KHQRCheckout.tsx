@@ -199,12 +199,15 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
       {/* Header */}
       <div className="w-full text-center">
         <h2 className="text-2xl font-semibold text-[var(--Black)] mb-2">Bakong KHQR</h2>
-        <p className="text-sm text-[var(--Grey)]">Scan with any Cambodian bank app</p>
+        {/* Info text */}
+        <div className="w-full text-center text-xs text-[var(--Grey)]">
+          <p>Accepts all Cambodian bank apps</p>
+          <p className="text-[var(--Grey)] text-opacity-70">ABA, ACLEDA, Wing, and more</p>
+        </div>
       </div>
 
       {/* Amount Display */}
       <div className="text-center">
-        <p className="text-sm text-[var(--Grey)] mb-2">Amount</p>
         <p className="text-3xl font-bold text-[var(--Black)]">${amount.toFixed(2)}</p>
       </div>
 
@@ -219,13 +222,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
 
         {state === "displaying" && qrData && (
           <div className="flex flex-col items-center gap-4">
-            <QRCodeSVG
-              value={qrData}
-              size={256}
-              level="H"
-              fgColor="#000000"
-              bgColor="#ffffff"
-            />
+            <QRCodeSVG value={qrData} size={256} level="H" fgColor="#000000" bgColor="#ffffff" />
             {/* Timer */}
             <div className="text-center">
               <p className="text-xs text-[var(--Grey)] mb-1">Expires in</p>
@@ -272,11 +269,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
             <p className="text-sm text-[var(--Grey)] mb-4">
               The QR code has expired. Tap below to generate a new one.
             </p>
-            <Button
-              onClick={generateQR}
-              variant="dark"
-              className="w-full"
-            >
+            <Button onClick={generateQR} variant="dark" className="w-full">
               Generate New QR
             </Button>
           </div>
@@ -287,32 +280,12 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
             <div className="text-4xl">❌</div>
             <p className="text-lg font-semibold text-red-600">Error</p>
             <p className="text-sm text-[var(--Grey)] mb-4">{error}</p>
-            <Button
-              onClick={generateQR}
-              variant="dark"
-              className="w-full"
-            >
+            <Button onClick={generateQR} variant="dark" className="w-full">
               Try Again
             </Button>
           </div>
         )}
       </div>
-
-      {/* Info text */}
-      <div className="w-full text-center text-xs text-[var(--Grey)]">
-        <p>Accepts all Cambodian bank apps</p>
-        <p className="text-[var(--Grey)] text-opacity-70">ABA, ACLEDA, Wing, and more</p>
-      </div>
-
-      {/* Close button (only shown for non-success states) */}
-      {state !== "success" && (
-        <button
-          onClick={onClose}
-          className="text-sm text-[var(--Grey)] hover:text-[var(--Black)] transition-colors"
-        >
-          Cancel
-        </button>
-      )}
     </div>
   );
 };
