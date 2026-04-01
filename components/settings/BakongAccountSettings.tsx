@@ -35,7 +35,10 @@ const BakongAccountSettings: React.FC = () => {
         const data = await response.json();
         setSavedAccountId(data.bakongAccountId || null);
       } catch (error) {
-        console.debug("Error loading Bakong account ID:", error instanceof Error ? error.message : error);
+        console.debug(
+          "Error loading Bakong account ID:",
+          error instanceof Error ? error.message : error
+        );
         // Don't show error to user - settings can still work
         // setSavedAccountId remains null and user can add one
       } finally {
@@ -60,7 +63,7 @@ const BakongAccountSettings: React.FC = () => {
     }
 
     if (!validateFormat(trimmedValue)) {
-      toast.error("Invalid format. Use format: name@bankcode (e.g., brandon_jenkins@bkrt)");
+      toast.error("Invalid format. Use format: name@bankcode (e.g., your_name@bkrt)");
       return;
     }
 
@@ -95,7 +98,8 @@ const BakongAccountSettings: React.FC = () => {
       setShowInput(false);
       toast.success("Bakong account ID saved successfully");
     } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to save Bakong account ID";
+      const errorMessage =
+        error instanceof Error ? error.message : "Failed to save Bakong account ID";
       console.error("[BakongAccountSettings] Error:", errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -149,22 +153,17 @@ const BakongAccountSettings: React.FC = () => {
           <div className="flex flex-col gap-3 w-full">
             <Input
               type="text"
-              placeholder="e.g., mystore@ababank"
+              placeholder="e.g., mystore@bkrt"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
               disabled={isLoading}
               autoFocus
             />
             <p className="text-xs text-[var(--Grey)]">
-              Format: name@bankcode (e.g., mystore@ababank, restaurant@acleda)
+              Format: name@bkrt (e.g., bob_ross@bkrt, panha@bkrt)
             </p>
             <div className="flex gap-2">
-              <Button
-                onClick={handleSave}
-                variant="dark"
-                disabled={isLoading}
-                className="flex-1"
-              >
+              <Button onClick={handleSave} variant="dark" disabled={isLoading} className="flex-1">
                 {isLoading ? (
                   <>
                     <Spinner className="size-4 mr-2" />
@@ -174,12 +173,7 @@ const BakongAccountSettings: React.FC = () => {
                   "Save"
                 )}
               </Button>
-              <Button
-                onClick={handleCancel}
-                variant="grey"
-                disabled={isLoading}
-                className="flex-1"
-              >
+              <Button onClick={handleCancel} variant="grey" disabled={isLoading} className="flex-1">
                 Cancel
               </Button>
             </div>
@@ -187,11 +181,7 @@ const BakongAccountSettings: React.FC = () => {
         )}
 
         {!showInput && !savedAccountId && (
-          <Button
-            onClick={handleEdit}
-            variant="dark"
-            disabled={isLoading}
-          >
+          <Button onClick={handleEdit} variant="dark" disabled={isLoading}>
             Add Bakong Account ID
           </Button>
         )}

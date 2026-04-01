@@ -92,18 +92,24 @@ const SettingsContent: React.FC = () => {
     <div className="flex flex-col gap-6">
       <h1 className="text-black">Settings</h1>
 
-      <Section title="Payment Settings" description="Upload your bank QR codes to accept payments">
+      <Section title="Payment Settings" description="Configure your payment methods below">
         <div className="mb-6 pb-6 border-b border-[var(--LightGrey)]">
-          <h3 className="text-sm font-semibold text-[var(--Black)] mb-4">Bakong KHQR</h3>
+          <h3 className="text-sm font-semibold text-[var(--Black)] mb-4">Bakong KHQR <div className="text-xxsmall text-gray-500">Connect your Bakong account using the Bakong account ID from the mobile app</div></h3>
           <BakongAccountSettings />
 
-          <SettingItem label="Enable Bakong Payments" sublabel="Accept Bakong KHQR payments from customers">
+          <SettingItem
+            label="Enable Bakong Payments"
+            sublabel="Accept Bakong KHQR payments from customers"
+          >
             <ToggleSwitch
               checked={settings.bakongPayments}
               onChange={(checked) => updateSetting("bakongPayments", checked)}
             />
           </SettingItem>
         </div>
+
+        <h3 className="text-sm font-semibold text-[var(--Black)] mb-4">Manual QR uploads  <div className="text-xxsmall text-gray-500">Requires manual payment verification, use this if you have not set up your Bakong account yet</div> </h3>
+       
 
         {SUPPORTED_BANKS.map((bank) => (
           <ConnectAccountCard
