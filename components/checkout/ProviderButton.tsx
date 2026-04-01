@@ -15,11 +15,12 @@ const ProviderButton = ({
       <Card className="w-fit h-fit text-center p-5" onClick={onClick}>
         <CardTitle>{title}</CardTitle>{" "}
         <Image
-          className="rounded-sm"
+          className="rounded-sm w-25 h-25 object-contain"
           src={image}
           width={100}
           height={100}
           alt="Payment provider logo"
+          unoptimized
         />
       </Card>
     </>

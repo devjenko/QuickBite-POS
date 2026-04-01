@@ -47,13 +47,6 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
       setState("loading");
       setError("");
 
-      console.log("[KHQRCheckout] Generating QR with:", {
-        amount,
-        orderId,
-        merchantName,
-        bakongAccountId,
-      });
-
       // Create a new AbortController for this request
       const abortController = new AbortController();
       abortControllerRef.current = abortController;
@@ -133,13 +126,6 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
 
   // Initial QR generation on mount
   useEffect(() => {
-    console.log("[KHQRCheckout] Component mounted with props:", {
-      amount,
-      orderId,
-      merchantName,
-      bakongAccountId,
-    });
-
     // Validate props before generating
     if (!amount || !orderId || !merchantName || !bakongAccountId) {
       const missing = [];

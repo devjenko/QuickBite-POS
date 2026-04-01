@@ -24,16 +24,8 @@ export async function POST(request: NextRequest) {
     try {
       body = (await request.json()) as GenerateQRRequest;
     } catch (parseErr) {
-      console.error("[KHQR Generate] Failed to parse request body:", parseErr);
       throw new AppError("Invalid request format", 400, "INVALID_REQUEST");
     }
-
-    console.log("[KHQR Generate] Request body:", {
-      amount: body.amount,
-      orderId: body.orderId,
-      merchantName: body.merchantName,
-      bakongAccountId: body.bakongAccountId,
-    });
 
     // Validate required fields
     if (!body.amount || !body.orderId || !body.merchantName || !body.bakongAccountId) {
@@ -49,8 +41,6 @@ export async function POST(request: NextRequest) {
     if (body.amount <= 0) {
       throw new AppError("Amount must be greater than 0", 400, "INVALID_AMOUNT");
     }
-
-    console.log("[KHQR Generate] Generating KHQR for account:", body.bakongAccountId);
 
     // Generate dynamic KHQR with 10 minute expiration
     const expiryDate = new Date(Date.now() + 10 * 60 * 1000);

@@ -4,7 +4,6 @@ import { useCallback, useState, useEffect } from "react";
 import Image from "next/image";
 import Spinner from "@/components/ui/Spinner";
 import ProviderButton from "./ProviderButton";
-import BakongButton from "./BakongButton";
 import BaseModal from "../shared/BaseModal";
 import { Button } from "../ui/Button";
 import { toast } from "sonner";
@@ -202,7 +201,11 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
       <div className="flex flex-wrap gap-4 w-full justify-center">
         {/* Bakong KHQR Button */}
         {!isFetchingBakong && bakongEnabled && bakongAccountId && (
-          <BakongButton onClick={handleKHQRClick} />
+          <ProviderButton
+            title="Bakong KHQR"
+            image="/logos/bakong_bank_logo.webp"
+            onClick={handleKHQRClick}
+          />
         )}
 
         {/* Bank QR Buttons */}
@@ -237,12 +240,6 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
         <BaseModal isOpen={showKHQR} setIsOpen={handleCloseKHQR}>
           {bakongAccountId ? (
             <>
-              {console.log("[QRDisplay] Showing KHQR modal with props:", {
-                amount: totalPrice,
-                orderId,
-                merchantName,
-                bakongAccountId,
-              })}
               <KHQRCheckout
                 amount={totalPrice}
                 orderId={orderId}

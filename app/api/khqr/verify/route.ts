@@ -6,12 +6,6 @@ interface VerifyRequest {
   md5: string;
 }
 
-interface BakongCheckResponse {
-  data: {
-    status: string;
-  };
-}
-
 export async function POST(request: NextRequest) {
   try {
     const session = await auth();
@@ -54,8 +48,6 @@ export async function POST(request: NextRequest) {
 
     const data = (await response.json()) as any;
 
-    console.log("[KHQR Verify] Bakong API response:", JSON.stringify(data));
-
     // Check if transaction is successful
     // Handle different response structures from Bakong API
     let isPaid = false;
@@ -69,8 +61,6 @@ export async function POST(request: NextRequest) {
     } else {
       console.warn("[KHQR Verify] Unexpected Bakong response structure:", data);
     }
-
-    console.log("[KHQR Verify] Payment status:", { isPaid, fullResponse: data });
 
     return NextResponse.json({ paid: isPaid });
   } catch (error) {

@@ -19,7 +19,6 @@ export async function PATCH(request: NextRequest) {
     const session = await auth();
 
     if (!session?.user?.id) {
-      console.warn("[KHQR Settings] User not authenticated");
       throw new AppError("Unauthorized", 401, "UNAUTHORIZED");
     }
 
@@ -27,12 +26,10 @@ export async function PATCH(request: NextRequest) {
     try {
       body = (await request.json()) as SettingsRequest;
     } catch (parseErr) {
-      console.error("[KHQR Settings] Failed to parse request body:", parseErr);
       throw new AppError("Invalid request format", 400, "INVALID_REQUEST");
     }
 
     if (!body.bakongAccountId || typeof body.bakongAccountId !== "string") {
-      console.warn("[KHQR Settings] Missing or invalid bakongAccountId:", body.bakongAccountId);
       throw new AppError("Missing or invalid bakongAccountId", 400, "INVALID_REQUEST");
     }
 
@@ -40,7 +37,6 @@ export async function PATCH(request: NextRequest) {
 
     // Validate format (name@bankcode)
     if (!validateBakongAccountId(accountId)) {
-      console.warn("[KHQR Settings] Invalid format for account ID:", accountId);
       throw new AppError(
         "Invalid Bakong account format. Use format: name@bankcode (e.g., brandon_jenkins@bkrt, mystore@ababank)",
         400,
@@ -48,21 +44,17 @@ export async function PATCH(request: NextRequest) {
       );
     }
 
-    // Save to database
-    console.log(`[KHQR Settings] Saving Bakong account ${accountId} for user ${session.user.id}`);
     const user = await prisma.user.update({
       where: { id: session.user.id },
       data: { bakongAccountId: accountId },
       select: { bakongAccountId: true },
     });
 
-    console.log(`[KHQR Settings] Successfully saved Bakong account for user ${session.user.id}`);
     return NextResponse.json({
       success: true,
       bakongAccountId: user.bakongAccountId,
     });
   } catch (error) {
-    console.error("[KHQR Settings] Error in PATCH handler:", error);
     return handleApiError(error);
   }
 }

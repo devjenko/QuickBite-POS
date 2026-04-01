@@ -70,7 +70,6 @@ const BakongAccountSettings: React.FC = () => {
     setIsLoading(true);
 
     try {
-      console.log("[BakongAccountSettings] Saving account ID:", trimmedValue);
       const response = await fetch("/api/khqr/settings", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -91,8 +90,6 @@ const BakongAccountSettings: React.FC = () => {
       }
 
       const data = await response.json();
-      console.log("[BakongAccountSettings] Successfully saved:", data);
-
       setSavedAccountId(data.bakongAccountId);
       setInputValue("");
       setShowInput(false);
