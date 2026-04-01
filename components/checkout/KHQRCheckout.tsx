@@ -7,10 +7,9 @@ import { Button } from "@/components/ui/Button";
 
 interface KHQRCheckoutProps {
   amount: number;
-  orderId: string;
   merchantName: string;
   bakongAccountId: string;
-  onPaymentSuccess: (orderId: string) => void;
+  onPaymentSuccess: () => void;
   onClose: () => void;
 }
 
@@ -18,12 +17,12 @@ type PaymentState = "loading" | "displaying" | "verifying" | "success" | "expire
 
 export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
   amount,
-  orderId,
   merchantName,
   bakongAccountId,
   onPaymentSuccess,
   onClose,
 }) => {
+  const billNumber = useRef(`TXN-${Date.now()}`).current;
   const [state, setState] = useState<PaymentState>("loading");
   const [qrData, setQrData] = useState<string>("");
   const [md5, setMd5] = useState<string>("");
@@ -56,7 +55,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           amount,
-          orderId,
+          orderId: billNumber,
           merchantName,
           bakongAccountId,
         }),
@@ -127,14 +126,12 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
   // Initial QR generation on mount
   useEffect(() => {
     // Validate props before generating
-    if (!amount || !orderId || !merchantName || !bakongAccountId) {
+    if (!amount || !merchantName || !bakongAccountId) {
       const missing = [];
       if (!amount) missing.push("amount");
-      if (!orderId) missing.push("orderId");
       if (!merchantName) missing.push("merchantName");
       if (!bakongAccountId) missing.push("bakongAccountId");
 
-      console.error("[KHQRCheckout] Missing required props:", missing);
       setError(`Missing required fields: ${missing.join(", ")}`);
       setState("error");
       return;
@@ -146,7 +143,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
-  }, [amount, orderId, merchantName, bakongAccountId]);
+  }, [amount, merchantName, bakongAccountId]);
 
   // Start polling and timer once QR is displayed
   useEffect(() => {
@@ -174,7 +171,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
         if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
         // Call success callback after showing success state briefly
         setTimeout(() => {
-          onPaymentSuccess(orderId);
+          onPaymentSuccess();
         }, 1500);
       }
     }, 3000); // Poll every 3 seconds
@@ -183,7 +180,7 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
       if (pollIntervalRef.current) clearInterval(pollIntervalRef.current);
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
-  }, [state, md5, orderId, onPaymentSuccess]);
+  }, [state, md5, onPaymentSuccess]);
 
   // Cleanup on unmount
   useEffect(() => {

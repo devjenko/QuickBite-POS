@@ -85,20 +85,41 @@ const CheckoutPage = () => {
     }
   };
 
-  const handleBakongPaymentSuccess = async (paidOrderId: string) => {
+  const handleBakongPaymentSuccess = async () => {
     try {
-      // Mark the order as paid
-      const response = await fetch("/api/orders/mark-paid", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ orderId: paidOrderId }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to mark order as paid");
+      if (items.length === 0) {
+        toast.error("Cart is empty");
+        return;
       }
 
-      toast.success("Payment confirmed! Order marked as paid.");
+      const orderItems = items.map((item) => ({
+        menuItemId: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        category: item.category,
+      }));
+
+      const tax = totalPrice * (taxRate / 100);
+      const total = totalPrice + tax;
+
+      const formData = new FormData();
+      const fields: Record<string, string> = {
+        items: JSON.stringify(orderItems),
+        subtotal: totalPrice.toString(),
+        tax: tax.toFixed(2),
+        total: total.toFixed(2),
+        currency: "USD",
+        paymentStatus: "paid",
+        paidAt: new Date().toISOString(),
+        category: items[0].category,
+      };
+
+      Object.entries(fields).forEach(([key, value]) => formData.append(key, value));
+
+      await createOrder(formData);
+      clearCart();
+      toast.success("Payment confirmed! Order created.");
       router.push("/orders");
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "Payment processing failed";

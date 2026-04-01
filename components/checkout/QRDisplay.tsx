@@ -12,13 +12,8 @@ import { useCartStore } from "@/store/cart-store";
 import { useBankQRCodes, BankQRCode } from "@/lib/hooks/useBankQRCodes";
 import KHQRCheckout from "./KHQRCheckout";
 
-interface OrderData {
-  id: string;
-  merchantName: string;
-}
-
 interface QRDisplayProps {
-  onBakongPaymentSuccess?: (orderId: string) => void;
+  onBakongPaymentSuccess?: () => void;
 }
 
 const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
@@ -29,7 +24,6 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
   const [bakongAccountId, setBakongAccountId] = useState<string | null>(null);
   const [bakongEnabled, setBakongEnabled] = useState<boolean>(true);
   const [merchantName, setMerchantName] = useState<string>("QuickBite");
-  const [orderId, setOrderId] = useState<string>("");
   const [isFetchingBakong, setIsFetchingBakong] = useState<boolean>(true);
 
   const totalPrice = useCartTotal();
@@ -63,8 +57,6 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
           }
         }
 
-        // Generate a temporary order ID for the QR
-        setOrderId(`ORDER-${Date.now()}`);
       } catch (err) {
         console.debug("Error loading Bakong settings:", err);
       } finally {
@@ -83,80 +75,23 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
     setSelectedQR(null);
   };
 
-  const handleKHQRClick = async () => {
-    try {
-      console.log("[QRDisplay] Bakong button clicked");
-
-      // Get tax rate from settings
-      const settingsResponse = await fetch("/api/settings");
-      const settingsData = await settingsResponse.json();
-      const taxRate = settingsData.defaultTaxRate || 0;
-
-      // Create order for Bakong payment
-      const items = useCartStore.getState().items;
-      if (items.length === 0) {
-        toast.error("Cart is empty");
-        return;
-      }
-
-      console.log("[QRDisplay] Creating order with items:", items.length);
-
-      const orderItems = items.map((item) => ({
-        menuItemId: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        category: item.category,
-      }));
-
-      const tax = totalPrice * (taxRate / 100);
-      const total = totalPrice + tax;
-
-      const formData = new FormData();
-      const fields: Record<string, string> = {
-        items: JSON.stringify(orderItems),
-        subtotal: totalPrice.toString(),
-        tax: tax.toFixed(2),
-        total: total.toFixed(2),
-        currency: "USD",
-        paymentStatus: "pending",
-        category: items[0].category,
-      };
-
-      Object.entries(fields).forEach(([key, value]) => formData.append(key, value));
-
-      // Import createOrder from actions
-      const { createOrder } = await import("@/app/actions/order");
-      const result = await createOrder(formData);
-
-      console.log("[QRDisplay] Order created with ID:", result?.id);
-
-      // Get the order ID from the result
-      if (result && result.id) {
-        console.log("[QRDisplay] Setting orderId to:", result.id);
-        setOrderId(result.id);
-        setShowKHQR(true);
-      } else {
-        console.error("[QRDisplay] No order ID returned from createOrder");
-        toast.error("Failed to create order");
-      }
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : "Failed to prepare Bakong payment";
-      console.error("[QRDisplay] Error:", errorMessage);
-      toast.error(errorMessage);
+  const handleKHQRClick = () => {
+    const items = useCartStore.getState().items;
+    if (items.length === 0) {
+      toast.error("Cart is empty");
+      return;
     }
+    setShowKHQR(true);
   };
 
   const handleCloseKHQR = () => {
     setShowKHQR(false);
   };
 
-  const handleKHQRPaymentSuccess = (confirmedOrderId: string) => {
-    // The payment has been confirmed
+  const handleKHQRPaymentSuccess = () => {
     handleCloseKHQR();
-    // Call parent callback to mark order as paid and redirect
     if (onBakongPaymentSuccess) {
-      onBakongPaymentSuccess(confirmedOrderId);
+      onBakongPaymentSuccess();
     }
   };
 
@@ -242,7 +177,6 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
             <>
               <KHQRCheckout
                 amount={totalPrice}
-                orderId={orderId}
                 merchantName={merchantName}
                 bakongAccountId={bakongAccountId}
                 onPaymentSuccess={handleKHQRPaymentSuccess}
