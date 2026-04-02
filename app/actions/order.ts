@@ -32,9 +32,6 @@ export async function createOrder(formData: FormData){
 
     const parsedItems = JSON.parse(items);
 
-    console.log("Parsed items received:", parsedItems);
-    console.log("First item category:", parsedItems[0]?.category);
-
     // Get the next order number for this merchant
     const lastOrder = await prisma.order.findFirst({
         where: { merchantId: session.user.id },

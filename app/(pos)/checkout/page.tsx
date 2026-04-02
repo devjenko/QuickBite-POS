@@ -110,7 +110,7 @@ const CheckoutPage = () => {
         tax: tax.toFixed(2),
         total: total.toFixed(2),
         currency: "USD",
-        paymentStatus: "paid",
+        paymentStatus: "pending",
         paidAt: new Date().toISOString(),
         category: items[0].category,
       };

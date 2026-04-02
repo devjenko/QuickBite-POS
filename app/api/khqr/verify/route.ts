@@ -48,19 +48,8 @@ export async function POST(request: NextRequest) {
 
     const data = (await response.json()) as any;
 
-    // Check if transaction is successful
-    // Handle different response structures from Bakong API
-    let isPaid = false;
-
-    if (data && data.data && data.data.status) {
-      isPaid = data.data.status === "success";
-    } else if (data && data.status) {
-      isPaid = data.status === "success";
-    } else if (data && data.result && data.result.status) {
-      isPaid = data.result.status === "success";
-    } else {
-      console.warn("[KHQR Verify] Unexpected Bakong response structure:", data);
-    }
+    // Bakong API returns responseCode: 0 for a successful/found transaction
+    const isPaid = data?.responseCode === 0;
 
     return NextResponse.json({ paid: isPaid });
   } catch (error) {

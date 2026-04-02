@@ -62,22 +62,18 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
         signal: abortController.signal,
       });
 
-      console.log("[KHQRCheckout] Generate response status:", response.status);
-
       if (!response.ok) {
         let errorMessage = "Failed to generate QR code";
         try {
           const errorData = await response.json();
           errorMessage = errorData.error || errorMessage;
-        } catch (parseErr) {
-          console.error("[KHQRCheckout] Failed to parse error response:", parseErr);
+        } catch {
+          // Response wasn't JSON
         }
         throw new Error(errorMessage);
       }
 
       const data = await response.json();
-      console.log("[KHQRCheckout] Generated QR successfully");
-
       if (!data.qr || !data.md5) {
         throw new Error("Invalid QR response: missing qr or md5");
       }
@@ -88,7 +84,6 @@ export const KHQRCheckout: React.FC<KHQRCheckoutProps> = ({
       setState("displaying");
     } catch (err) {
       if (err instanceof Error && err.name !== "AbortError") {
-        console.error("[KHQRCheckout] Error generating QR:", err.message);
         setError(err.message);
         setState("error");
       }

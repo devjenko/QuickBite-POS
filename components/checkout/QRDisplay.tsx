@@ -23,10 +23,15 @@ const QRDisplay: React.FC<QRDisplayProps> = ({ onBakongPaymentSuccess }) => {
   const [showKHQR, setShowKHQR] = useState<boolean>(false);
   const [bakongAccountId, setBakongAccountId] = useState<string | null>(null);
   const [bakongEnabled, setBakongEnabled] = useState<boolean>(true);
-  const [merchantName, setMerchantName] = useState<string>("QuickBite");
   const [isFetchingBakong, setIsFetchingBakong] = useState<boolean>(true);
 
   const totalPrice = useCartTotal();
+
+  // Derive merchant name from Bakong account ID (e.g., "brandon_jenkins@tour" → "Brandon Jenkins")
+  const merchantName = bakongAccountId
+    ?.split("@")[0]
+    .replace(/_/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase()) ?? "";
 
   // Load Bakong account ID and merchant info on mount
   useEffect(() => {

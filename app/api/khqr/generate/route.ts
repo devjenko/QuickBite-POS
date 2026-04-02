@@ -29,17 +29,16 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!body.amount || !body.orderId || !body.merchantName || !body.bakongAccountId) {
-      console.warn("[KHQR Generate] Missing required fields:", {
-        amount: !!body.amount,
-        orderId: !!body.orderId,
-        merchantName: !!body.merchantName,
-        bakongAccountId: !!body.bakongAccountId,
-      });
       throw new AppError("Missing required fields", 400, "INVALID_REQUEST");
     }
 
     if (body.amount <= 0) {
       throw new AppError("Amount must be greater than 0", 400, "INVALID_AMOUNT");
+    }
+
+    const bakongToken = process.env.BAKONG_TOKEN;
+    if (!bakongToken) {
+      throw new AppError("Bakong token not configured", 500, "SERVER_ERROR");
     }
 
     // Generate dynamic KHQR with 10 minute expiration
@@ -48,26 +47,22 @@ export async function POST(request: NextRequest) {
     let result: any;
     try {
       // Create individual info for KHQR generation
+      // IndividualInfo(bakongAccountID, merchantName, merchantCity, optional)
       const individualInfo = new IndividualInfo(
-        body.bakongAccountId, // accountId (e.g., "name@bankcode")
-        khqrData.currency.usd, // currency
-        body.merchantName, // name
+        body.bakongAccountId,
+        body.merchantName,
         body.merchantName, // city (using merchant name)
         {
+          currency: khqrData.currency.usd,
           amount: body.amount,
           billNumber: body.orderId,
+          expirationTimestamp: expiryDate.getTime(),
         }
       );
 
-      // Create BakongKHQR instance and generate QR
+      // Generate QR code
       const bakongKHQR = new BakongKHQR();
       result = bakongKHQR.generateIndividual(individualInfo);
-
-      console.log("[KHQR Generate] BakongKHQR response:", {
-        status: result.status,
-        errorCode: result.code,
-        hasData: !!result.data,
-      });
 
       // Check for errors - status.code of 0 means success
       if (result.status && result.status.code !== 0) {
@@ -86,7 +81,6 @@ export async function POST(request: NextRequest) {
         );
       }
     } catch (khqrErr) {
-      console.error("[KHQR Generate] Error from generateIndividual:", khqrErr);
       throw new AppError(
         `Failed to generate KHQR: ${khqrErr instanceof Error ? khqrErr.message : "Unknown error"}`,
         500,
@@ -95,11 +89,8 @@ export async function POST(request: NextRequest) {
     }
 
     if (!result || !result.data) {
-      console.error("[KHQR Generate] Invalid khqr response:", result);
       throw new AppError("Invalid KHQR response from library", 500, "INVALID_KHQR_RESPONSE");
     }
-
-    console.log("[KHQR Generate] Successfully generated KHQR");
 
     return NextResponse.json({
       qr: result.data.qr,
@@ -107,7 +98,6 @@ export async function POST(request: NextRequest) {
       expireDate: expiryDate.toISOString(),
     });
   } catch (error) {
-    console.error("[KHQR Generate] Endpoint error:", error);
     return handleApiError(error);
   }
 }
