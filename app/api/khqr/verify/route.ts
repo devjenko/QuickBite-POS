@@ -20,23 +20,38 @@ export async function POST(request: NextRequest) {
       throw new AppError("Missing md5", 400, "INVALID_REQUEST");
     }
 
+    // Use proxy in production (Bakong API blocks non-Cambodian IPs)
+    // Fall back to direct Bakong API call for local development
+    const proxyUrl = process.env.BAKONG_PROXY_URL;
+    const proxySecret = process.env.BAKONG_PROXY_SECRET;
     const bakongToken = process.env.BAKONG_TOKEN;
-    if (!bakongToken) {
-      throw new AppError("Bakong token not configured", 500, "SERVER_ERROR");
-    }
 
-    // Call Bakong API to check transaction status
-    const response = await fetch(
-      "https://api-bakong.nbc.gov.kh/v1/check_transaction_by_md5",
-      {
+    let response: Response;
+
+    if (proxyUrl && proxySecret) {
+      response = await fetch(`${proxyUrl}/proxy/verify`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${bakongToken}`,
+          "x-proxy-key": proxySecret,
         },
         body: JSON.stringify({ md5: body.md5 }),
-      }
-    );
+      });
+    } else if (bakongToken) {
+      response = await fetch(
+        "https://api-bakong.nbc.gov.kh/v1/check_transaction_by_md5",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${bakongToken}`,
+          },
+          body: JSON.stringify({ md5: body.md5 }),
+        }
+      );
+    } else {
+      throw new AppError("Bakong verification not configured", 500, "SERVER_ERROR");
+    }
 
     if (!response.ok) {
       throw new AppError(
