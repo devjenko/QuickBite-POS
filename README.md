@@ -7,9 +7,8 @@ Implemented with serverless architecture, REST APIs, and a cloud-hosted database
 
 <br/>
 
+<img width="800" height="400" alt="ezgif com-optimize" src="https://github.com/user-attachments/assets/a8c4b76a-6221-49fb-a7cd-f1e975d49442" />
 
-
-![QuickBite Demo](https://res.cloudinary.com/dope0htm4/video/upload/q_auto:low,w_800,c_fit,du_15/v1771659301/quickbite-vid_wjruvi.gif)
 
 <br/>
 
