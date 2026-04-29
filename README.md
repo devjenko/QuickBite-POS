@@ -149,11 +149,11 @@ The shopping cart uses Zustand with localStorage persistence, so cart items rema
 ### Server-Side Rendering
 Leverages Next.js App Router for optimal performance with server components for data fetching and client components for interactivity.
 
-## 📝 License
+## License
 
 This project is private and proprietary.
 
-## 👤 Author
+## Author
 
 **Brandon Jenkins [devjenko]**
 
