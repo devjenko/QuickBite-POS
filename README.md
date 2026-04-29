@@ -62,19 +62,6 @@ Implemented with serverless architecture, REST APIs, and a cloud-hosted database
 - **Date Display**: Current date information
 - **Navigation Hub**: Quick access to all features
 
-##  Tech Stack
-
-- **Framework**: [Next.js 16](https://nextjs.org/) (App Router) with React 19
-- **Language**: TypeScript
-- **Database**: PostgreSQL with [Prisma ORM](https://www.prisma.io/)
-- **Authentication**: [NextAuth.js](https://next-auth.js.org/) v5 (beta)
-- **State Management**: [Zustand](https://zustand-demo.pmnd.rs/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) v4
-- **UI Components**: [Radix UI](https://www.radix-ui.com/)
-- **Image Storage**: [Cloudinary](https://cloudinary.com/)
-- **Animations**: [Motion](https://motion.dev/) (Framer Motion)
-- **Notifications**: [Sonner](https://sonner.emilkowal.ski/)
-
 ##  Project Structure
 
 ```
